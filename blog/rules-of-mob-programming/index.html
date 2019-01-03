@@ -1,0 +1,264 @@
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <meta name="description" content="1">
+
+        <meta property="og:title" content="The rules of mob programming | sebs.github.io"/>
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://my-jigsaw-blog.com/blog/rules-of-mob-programming"/>
+        <meta property="og:description" content="Incremental &amp; Iterative Software Development" />
+
+        <title>sebs.github.io | The rules of mob programming</title>
+
+        <link rel="home" href="https://my-jigsaw-blog.com">
+        <link rel="icon" href="/favicon.ico">
+        <link href="/blog/feed.atom" type="application/atom+xml" rel="alternate" title="sebs.github.io Atom Feed">
+
+            <meta property="og:title" content="The rules of mob programming" />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://my-jigsaw-blog.com/blog/rules-of-mob-programming"/>
+    <meta property="og:description" content="The rules of mob programming" />
+
+                    <!-- Insert analytics code here -->
+        
+        <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:300,300i,400,400i,700,700i,800,800i" rel="stylesheet">
+        <link rel="stylesheet" href="/assets/build/css/main.css?id=d458cd4f41d39493630d">
+    </head>
+
+    <body class="flex flex-col justify-between min-h-screen bg-grey-lightest text-grey-darkest leading-normal font-sans">
+        <div id="vue-app">
+            <header class="flex items-center shadow bg-white border-b h-24 py-4" role="banner">
+                <div class="container flex items-center max-w-4xl mx-auto px-4 lg:px-8">
+                    <div class="flex items-center">
+                        <a href="/" title="sebs.github.io home" class="inline-flex items-center">
+                            <img class="h-8 md:h-10 mr-3" src="/assets/img/logo.svg" alt="sebs.github.io logo" />
+
+                            <h1 class="text-lg md:text-2xl text-blue-darkest font-semibold hover:text-blue-dark my-0">sebs.github.io</h1>
+                        </a>
+                    </div>
+
+                    <div class="flex flex-1 justify-end items-center">
+                        <search></search>
+
+                        <nav class="hidden lg:flex items-center justify-end text-lg">
+    <a title="sebs.github.io Blog" href="/blog"
+        class="ml-6 text-grey-darker hover:text-blue-dark ">
+        Blog
+    </a>
+
+    <a title="sebs.github.io About" href="/about"
+        class="ml-6 text-grey-darker hover:text-blue-dark ">
+        About
+    </a>
+
+    <a title="sebs.github.io Contact" href="/contact"
+        class="ml-6 text-grey-darker hover:text-blue-dark ">
+        Contact
+    </a>
+</nav>
+
+                        <button class="flex justify-center items-center bg-blue border border-blue h-10 px-5 rounded-full lg:hidden focus:outline-none"
+    onclick="navMenu.toggle()"
+>
+    <svg id="js-nav-menu-show" xmlns="http://www.w3.org/2000/svg"
+        class="fill-current text-white h-9 w-4" viewBox="0 0 32 32"
+    >
+        <path d="M4,10h24c1.104,0,2-0.896,2-2s-0.896-2-2-2H4C2.896,6,2,6.896,2,8S2.896,10,4,10z M28,14H4c-1.104,0-2,0.896-2,2  s0.896,2,2,2h24c1.104,0,2-0.896,2-2S29.104,14,28,14z M28,22H4c-1.104,0-2,0.896-2,2s0.896,2,2,2h24c1.104,0,2-0.896,2-2  S29.104,22,28,22z"/>
+    </svg>
+
+    <svg id="js-nav-menu-hide" xmlns="http://www.w3.org/2000/svg"
+        class="hidden fill-current text-white h-9 w-4" viewBox="0 0 36 30"
+    >
+        <polygon points="32.8,4.4 28.6,0.2 18,10.8 7.4,0.2 3.2,4.4 13.8,15 3.2,25.6 7.4,29.8 18,19.2 28.6,29.8 32.8,25.6 22.2,15 "/>
+    </svg>
+</button>
+
+                    </div>
+                </div>
+            </header>
+
+            <nav id="js-nav-menu" class="nav-menu hidden lg:hidden">
+    <ul class="list-reset my-0">
+        <li class="pl-4">
+            <a
+                title="sebs.github.io Blog"
+                href="/blog"
+                class="nav-menu__item hover:text-blue "
+            >Blog</a>
+        </li>
+        <li class="pl-4">
+            <a
+                title="sebs.github.io About"
+                href="/about"
+                class="nav-menu__item hover:text-blue "
+            >About</a>
+        </li>
+        <li class="pl-4">
+            <a
+                title="sebs.github.io Contact"
+                href="/contact"
+                class="nav-menu__item hover:text-blue "
+            >Contact</a>
+        </li>
+    </ul>
+</nav>
+
+            <main role="main" class="flex-auto w-full container max-w-xl mx-auto py-16 px-6">
+                            <img src="/assets/img/post-cover-image-2.png" alt="The rules of mob programming cover image" class="mb-2">
+    
+    <h1 class="leading-none mb-2">The rules of mob programming</h1>
+
+    <p class="text-grey-darker text-xl md:mt-0">Sebastian Schürmann  •  February 6, 2016</p>
+
+    
+    <div class="border-b border-blue-lighter mb-10 pb-4" v-pre>
+        <p>A funny list of pseudo rules that apply to mob programming. Sometimes a laugh is a good thing</p>
+<ol>
+<li>Do talk /mob programming/ </li>
+<li>Do talk while /mob programming/ </li>
+<li>We are team. </li>
+<li>Team is legion. </li>
+<li>Team does forgive, Team does not forget. </li>
+<li>Team can be a horrible, senseless, uncaring monster. </li>
+<li>Team is still able to deliver. </li>
+<li>There are no real rules about Mob Programming. </li>
+<li>There are no real rules about moderation either — enjoy your flame. </li>
+<li>If you enjoy any rival sites — DON’T. Especially while mob programming. </li>
+<li>You can have pictures to prove your statement. Ugly pictures count equal.</li>
+<li>Lurk moar — it’s never enough. </li>
+<li>Nothing is Sacred. </li>
+<li>Do not argue with a troll — it means that they win. </li>
+<li>The more beautiful and pure a thing is, the more satisfying it is to build on it. </li>
+<li>There are NO girls on the internet. But in the room. Dont be a bunch of douches</li>
+<li>A cat is fine too. </li>
+<li>One cat leads to another. </li>
+<li>The more you hate it, the stronger it gets. In case of hatred: Use the law of 2 feet.</li>
+<li>It is delicious cake. You must eat it. Have a break. </li>
+<li>It is delicious trap. You must hit it. Don’t over extend the event. </li>
+<li>/programming/ sucks today. </li>
+<li>Ism goes in here. </li>
+<li>You will never have a good estimate. </li>
+<li>???? </li>
+<li>PROFIT! </li>
+<li>It needs more Desu. No exceptions. </li>
+<li>There will always be more fucked up shit than what you just saw. </li>
+<li>You can not divide by zero (just because the calculator says so). </li>
+<li>No real limits of any kind apply here — not even the sky </li>
+<li>CAPSLOCK IS CRUISE CONTROL FOR COOL. # is capslock for markdown. Write wiki while you are in the mob. </li>
+<li>EVEN WITH CRUISE CONTROL YOU STILL HAVE TO STEER. Decide whats next. </li>
+<li>Sexism isn’t funny. Seriously guys. </li>
+<li>There is porn of it. No exceptions. </li>
+<li>If no porn is found of it, it will be created. </li>
+<li>No matter what it is, it is somebody’s fetish. No exceptions. </li>
+<li>Even one positive comment about Japanese things can make you kaizen. </li>
+<li>When team sees a c-level executive, one wear a funny hat.</li>
+<li>There is furry porn of it. No exceptions. </li>
+<li>The pool is always closed due to everyone being at work (the 90ies want their startup legends back). </li>
+<li>If there isn’t enough Mob Programming just ask for Moar. </li>
+<li>Everything has been hacked, cargo culted and re-named. </li>
+<li>DISREGARD THAT I DO CARGOCULT </li>
+<li>The company is not your personal army. </li>
+<li>Rule 45 is a lie. </li>
+<li>The cake is a lie. </li>
+<li>If you post it on the wiki, they will read it. </li>
+<li>It will always need moar sauce. </li>
+<li>The internet (especially social media) makes you stupid. </li>
+<li>Anything can be a meme. </li>
+<li>Longcat is looooooooooong. </li>
+<li>If something goes wrong, doesnt matter who did it. You must get it right together. See rule 48 </li>
+<li>Everyone is root by default. </li>
+<li>Root has cat ears, even in real life. No exceptions. </li>
+<li>CP is awwwright, but DSFARGEG will get you b&amp;. </li>
+<li>Don’t mess with kaizen. </li>
+<li>Moderator has never been asked for his opinion so often. CROSSFUNCTIONAL. CROSSFUCKINGDISCIPLINARY. </li>
+<li>CFO does not “buy”, the users. Use your creativity, not web ads.</li>
+<li>The term “Scrum” does not refer to the american football. </li>
+<li>If you say Feedback, you be able to give it. </li>
+<li>You cannot divide by zero. Opinions will be different. </li>
+<li>The Mob Programming is SERIOUS FUCKING BUSINESS. </li>
+<li>If you do not believe it, then it wont work. </li>
+<li>Not even Scrum-Norris knows to create a perfect architecture. He gets ideas from stack overflow </li>
+<li>Snowden is a hero to us all. </li>
+<li>This is not “hanging out”, it’s MOBPROGRMAAAAAAAAAA. </li>
+<li>One does not simply shoop da whoop into Amazon instance limits. </li>
+<li>Katy is did PHP and Javascript, so deal w/it. </li>
+<li>LOL SIXTY NINE AMIRITE? </li>
+<li>There can be estimates of it. One exception: No Estimates. </li>
+<li>This is a showdown, a throwdown, hell no I can’t slow down, it’s gonna go. </li>
+<li>CXO did NOT, under any circumstances, tk him 2da bar|? </li>
+<li>If you express astonishment at someone’s claim, it is most likely just a clever ruse. </li>
+<li>If it hadn’t been for Cotton Eyed Joe, al MOb would have been married a long time ago. </li>
+<li>Around Snacks, Mob Programming is lax. </li>
+<li>All numbers are at least fibonacci but always OVER NINE THOUSAAAAAND. </li>
+<li>Racism definitely needs to gb2/hell/. </li>
+<li>Mods are root. No exceptions. </li>
+<li>All Caturday threads will be bombarded with Zippocat. No exceptions. </li>
+<li>No matter how cute it is, it will be probably the all-nighter of tomorrow. </li>
+<li>That’s not get shit done programming, but Mob Programming. </li>
+<li>The idea of flat hierarchies is really, really funny. </li>
+<li>The Mob Programming is SERIOUS BUSINESS. </li>
+<li>Rule 87 is true. </li>
+<li>Yes, it is some sourcecode. </li>
+<li>Bobba bobba is bobba. </li>
+<li>Rule 84 is false. OH SHI- </li>
+<li>If your statement is preceded by “Deine Mudda”, then you are not doing it right. </li>
+<li>If you cannot understand it, it is perl or closure or any other of 20 hipsterlangs out there. Grow a beard. </li>
+<li>Team still owes moderator a little courtesy. </li>
+<li>Spengbab Sqarpaint is luv Padtwick Zhstar iz fwend. </li>
+<li>Disregard Bigmike, he does waterfall. </li>
+<li>Secure tripcodes are for jerks. </li>
+<li>If someone herd u liek Mudkips, deny it constantly for the lulz. </li>
+<li>Off topic conversations are inevitable. If the whole thing works without moderation, it is boring and should have more off topic conversations.</li>
+<li>I am a huge fan of not zoning out to much here. </li>
+<li>All programming languages and lines of work suck equally and will never be fixed. </li>
+<li>Bricks must are required to be shat whenever team is surprised. </li>
+<li>If you have no bricks to shit, you prolly had nogood time together. </li>
+<li>ZOMG NONE</li>
+</ol>    </div>
+
+    <nav class="flex justify-between text-sm md:text-base">
+        <div>
+                            <a href="https://my-jigsaw-blog.com/blog/the-crux-of-done" title="Older Post: The crux of done">
+                    &LeftArrow; The crux of done
+                </a>
+                    </div>
+
+        <div>
+                            <a href="https://my-jigsaw-blog.com/blog/codereviews-and-pairprogramming" title="Newer Post: Codereviews and Pairprogramming">
+                    Codereviews and Pairprogramming &RightArrow;
+                </a>
+                    </div>
+    </nav>
+            </main>
+        </div>
+
+        <script src="/assets/build/js/main.js?id=e69137c6f1d8bca4b130"></script>
+
+        <script>
+    const navMenu = {
+        toggle() {
+            const menu = document.getElementById('js-nav-menu');
+            menu.classList.toggle('hidden');
+            menu.classList.toggle('lg:block');
+            document.getElementById('js-nav-menu-hide').classList.toggle('hidden');
+            document.getElementById('js-nav-menu-show').classList.toggle('hidden');
+        },
+    }
+</script>
+
+        <footer class="bg-white text-center text-sm mt-12 py-4" role="contentinfo">
+            <ul class="flex flex-col md:flex-row justify-center list-reset">
+                <li class="md:mr-2">
+                    &copy; <a href="https://tighten.co" title="Tighten website">Tighten</a> 2019.
+                </li>
+
+                <li>
+                    Built with <a href="http://jigsaw.tighten.co" title="Jigsaw by Tighten">Jigsaw</a>
+                    and <a href="https://tailwindcss.com" title="Tailwind CSS, a utility-first CSS framework">Tailwind CSS</a>.
+                </li>
+            </ul>
+        </footer>
+    </body>
+</html>

@@ -1,0 +1,224 @@
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <meta name="description" content="1">
+
+        <meta property="og:title" content="Surive your Frontend | sebs.github.io"/>
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://my-jigsaw-blog.com/blog/survive-your-frontend"/>
+        <meta property="og:description" content="Incremental &amp; Iterative Software Development" />
+
+        <title>sebs.github.io | Surive your Frontend</title>
+
+        <link rel="home" href="https://my-jigsaw-blog.com">
+        <link rel="icon" href="/favicon.ico">
+        <link href="/blog/feed.atom" type="application/atom+xml" rel="alternate" title="sebs.github.io Atom Feed">
+
+            <meta property="og:title" content="Surive your Frontend" />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://my-jigsaw-blog.com/blog/survive-your-frontend"/>
+    <meta property="og:description" content="A companion article for my talk about frontend rewrites" />
+
+                    <!-- Insert analytics code here -->
+        
+        <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:300,300i,400,400i,700,700i,800,800i" rel="stylesheet">
+        <link rel="stylesheet" href="/assets/build/css/main.css?id=d458cd4f41d39493630d">
+    </head>
+
+    <body class="flex flex-col justify-between min-h-screen bg-grey-lightest text-grey-darkest leading-normal font-sans">
+        <div id="vue-app">
+            <header class="flex items-center shadow bg-white border-b h-24 py-4" role="banner">
+                <div class="container flex items-center max-w-4xl mx-auto px-4 lg:px-8">
+                    <div class="flex items-center">
+                        <a href="/" title="sebs.github.io home" class="inline-flex items-center">
+                            <img class="h-8 md:h-10 mr-3" src="/assets/img/logo.svg" alt="sebs.github.io logo" />
+
+                            <h1 class="text-lg md:text-2xl text-blue-darkest font-semibold hover:text-blue-dark my-0">sebs.github.io</h1>
+                        </a>
+                    </div>
+
+                    <div class="flex flex-1 justify-end items-center">
+                        <search></search>
+
+                        <nav class="hidden lg:flex items-center justify-end text-lg">
+    <a title="sebs.github.io Blog" href="/blog"
+        class="ml-6 text-grey-darker hover:text-blue-dark ">
+        Blog
+    </a>
+
+    <a title="sebs.github.io About" href="/about"
+        class="ml-6 text-grey-darker hover:text-blue-dark ">
+        About
+    </a>
+
+    <a title="sebs.github.io Contact" href="/contact"
+        class="ml-6 text-grey-darker hover:text-blue-dark ">
+        Contact
+    </a>
+</nav>
+
+                        <button class="flex justify-center items-center bg-blue border border-blue h-10 px-5 rounded-full lg:hidden focus:outline-none"
+    onclick="navMenu.toggle()"
+>
+    <svg id="js-nav-menu-show" xmlns="http://www.w3.org/2000/svg"
+        class="fill-current text-white h-9 w-4" viewBox="0 0 32 32"
+    >
+        <path d="M4,10h24c1.104,0,2-0.896,2-2s-0.896-2-2-2H4C2.896,6,2,6.896,2,8S2.896,10,4,10z M28,14H4c-1.104,0-2,0.896-2,2  s0.896,2,2,2h24c1.104,0,2-0.896,2-2S29.104,14,28,14z M28,22H4c-1.104,0-2,0.896-2,2s0.896,2,2,2h24c1.104,0,2-0.896,2-2  S29.104,22,28,22z"/>
+    </svg>
+
+    <svg id="js-nav-menu-hide" xmlns="http://www.w3.org/2000/svg"
+        class="hidden fill-current text-white h-9 w-4" viewBox="0 0 36 30"
+    >
+        <polygon points="32.8,4.4 28.6,0.2 18,10.8 7.4,0.2 3.2,4.4 13.8,15 3.2,25.6 7.4,29.8 18,19.2 28.6,29.8 32.8,25.6 22.2,15 "/>
+    </svg>
+</button>
+
+                    </div>
+                </div>
+            </header>
+
+            <nav id="js-nav-menu" class="nav-menu hidden lg:hidden">
+    <ul class="list-reset my-0">
+        <li class="pl-4">
+            <a
+                title="sebs.github.io Blog"
+                href="/blog"
+                class="nav-menu__item hover:text-blue "
+            >Blog</a>
+        </li>
+        <li class="pl-4">
+            <a
+                title="sebs.github.io About"
+                href="/about"
+                class="nav-menu__item hover:text-blue "
+            >About</a>
+        </li>
+        <li class="pl-4">
+            <a
+                title="sebs.github.io Contact"
+                href="/contact"
+                class="nav-menu__item hover:text-blue "
+            >Contact</a>
+        </li>
+    </ul>
+</nav>
+
+            <main role="main" class="flex-auto w-full container max-w-xl mx-auto py-16 px-6">
+                            <img src="/assets/img/post-cover-image-2.png" alt="Surive your Frontend cover image" class="mb-2">
+    
+    <h1 class="leading-none mb-2">Surive your Frontend</h1>
+
+    <p class="text-grey-darker text-xl md:mt-0">Sebastian Schürmann  •  April 10, 2014</p>
+
+    
+    <div class="border-b border-blue-lighter mb-10 pb-4" v-pre>
+        <p>I am building a talk on how to approach big/long running front end projects that was initially presented at the Berlin PHP User-group July 2014. I started to prepare it and want to nail down my thoughts.</p>
+<h2>WHERE I AM COMING FROM</h2>
+<p>I have had the chance to get my hands on a lot of Javascript projects and most of the were not small projects per se. It is not only the raw lines of code that let me speak of “big” projects but longevity and complexity that you find in a modern front-end to a web applicationmaking it “big”.</p>
+<p>A regular observation is that front-ends do not get the same level of love that a backend gets. Some examples I came across this year alone:</p>
+<p>Specifications are very roughly prepared for front-ends
+The crafty side of development, modularization and testing is neglected
+Standards are not set and/or followed
+The fact that a javascript front-end is the client to a server application is often overlooked
+Front-end code is often thought as throw away.
+Seriously guys. It would be good business to go on and on and on like this for years. It is already going on. You think your back-end code rots from greenfield to brownfield fast? Look at your front-end code. It always rots faster.</p>
+<p>“Code this fast. We can rewrite this next year.” and next year we are sitting on the same type of code for the same website, thinking about other things we could do, but re-write a bunch of front-end legacy crap. Yeah, just implement another slider. You like to work in one checkout with 20k lines of code? You want to implement just another self made inline validation for address data? Go for it, but just do not expect me to like this and help you failing.</p>
+<p>Sorry, I am too old for this. Been there, done that - 10 Years ago.</p>
+<h2>WHERE TO START?</h2>
+<p>When working out all the specific little hints and tipps for the talk I had to group them in order to create a flow for the presentation. All the little things and tricks go into 3 groups.</p>
+<ul>
+<li>Tools - Its 2014 and there are a lot of new toys. Lets use them.</li>
+<li>Craft - We must use the tools. This means pure development</li>
+<li>Process - Development is just a part of a larger process.</li>
+<li>It is just the first order I brought into the first set of ideas. It all might be subject to change.</li>
+</ul>
+<h2>TOOLS</h2>
+<p>There is a bunch of new tools to help with front-end development. A little sneak peak of the things I have used in the last weeks and months.</p>
+<p>Bower, Component.js or NPM - for modularization and re-use
+Gulp and Grunt for Builds
+Docker, Chef or Puppet to build a machine where it runs on
+Mock and Stub Servers
+GIT(hub), do you speak it?
+…..(more in the talk)
+You can still right click and download Jquery if you want to, but there is no need for it and if you’ve checked it into your version control I do think of this as a anti-pattern. We moved way beyond this.</p>
+<p>I do not mind using Jquery plugins as a basis for a project or React components, but please, can have consistency? I do not mind doing coffeescript for you (and learning another language while you pay me doing this) but please, can we have all the code consistent in like one langugae then?</p>
+<h2>CRAFT</h2>
+<p>The pure coding is the thing that I call craft. This has not changed much. But using tools alone will not help you.</p>
+<p>I mean we can go on for the next ten years like this in our code ….</p>
+<pre><code class="language-javascript">function validForm(formName) {
+    switch (formName) {
+
+        case "request_showing":
+            // Validate the first name
+            if (request_showing.first_name.value == "") {
+                alert("Please enter your first name.");
+                request_showing.first_name.value = "*** FIRST NAME";
+                request_showing.first_name.focus();
+                problem = true;
+            };
+            break;
+
+        case "email_friend":
+        // ....... 
+
+    }
+}</code></pre>
+<p>or we can grow up and use patterns and a little thinking to find some slick implementations that follow old concepts like coupling) and cohesion). It is not new and just because you have visited jsconf last week and took away the concepts from es5, rxJS or any other reactive variant these “rules” are not bollocks.</p>
+<p>Really, I have seen this pattern over and over. The Jquery guys told us all the stuff we did before was crap in 2004 with all the same arguments used today by the rxJS community. And seriously the language that we actually use has not really changed. It is still javascript and the browsers we target still ask for a pretty old ECMA Standard. IE8 anyone? ;)</p>
+<p>It is not that I do not care for the niceties of es5, but some old patterns do not get out of fashion and a DOM tree, the main target of any JS front-end project, is still a evented thing so event driven programming will get you very far.</p>
+<h2>PROCESS</h2>
+<p>The “best” thing I have seen in the last year was a code review tool giving a automated +1 for any checkin based on executing the tests of the codebase I was assigned to. So far so good. But the tests executed in this case were the ones for the backend codebase. Front-end tests did not get executed at all (they were broken at the time). This is how you subvert the basically pretty cool code review process (no I wont argue pairing vs. code reviews here - although I am a big proponent of paired code as you all know). A lot of the investments done (tests for the frontend code), but all the money invested thrown out of the window.</p>
+<p>With a non-modularized codebase, in the same repository like your backend you are pretty much set up to fail. It starts with the big codebase, goes on with a one size fits all test and release process where you are pretty much forced to check all the functionality all the time. Besides TDD and some integration testing you are pretty much bound to do most of your real testing in a explorative way. It is a very important way of testing but should be used as a an extra to show your blind spots, discover new areas to test and not be the most important source for bugs.</p>
+<p>This is what you do when you specify requirements. The checkouts address form does need a inline validation is not a requirement in my world. I am sorry. But starting coding will just get you into a long loop of trial and error that is inherently costly and as I started out: you will repeat this next year. To be constructive here, why not go down the road of <a href="http://www.wikiwand.com/en/Specification_by_example#/overview">specification by example</a>. Yeah I know, that sounds like a big hassle. If you calculate the cost of bugs in specific steps of the development process, you might change your thinking here.</p>
+<h2>MY POINT!</h2>
+<p>I think we now can stop repeating the fails of the last ten years (and more) over and over. We have evolved the tools, craft and process over the last 10 years in a way that really helps with this.</p>
+<ul>
+<li>Tools - Use the tools at hand. They are not toys and they are a pretty good investment. Use them with care, but use them.</li>
+<li>Craft - Front-end is hardcore software development. Accept it and learn it.</li>
+<li>Process - Process wise we learned a lot on how we can improve development and find errors and bugs early in development. CI, CD, Feedback and all this is not a joke. This is the new imperative.
+I am looking forward to the talk and as always I am looking for feedback in the comments section here.</li>
+</ul>    </div>
+
+    <nav class="flex justify-between text-sm md:text-base">
+        <div>
+                    </div>
+
+        <div>
+                            <a href="https://my-jigsaw-blog.com/blog/the-crux-of-done" title="Newer Post: The crux of done">
+                    The crux of done &RightArrow;
+                </a>
+                    </div>
+    </nav>
+            </main>
+        </div>
+
+        <script src="/assets/build/js/main.js?id=e69137c6f1d8bca4b130"></script>
+
+        <script>
+    const navMenu = {
+        toggle() {
+            const menu = document.getElementById('js-nav-menu');
+            menu.classList.toggle('hidden');
+            menu.classList.toggle('lg:block');
+            document.getElementById('js-nav-menu-hide').classList.toggle('hidden');
+            document.getElementById('js-nav-menu-show').classList.toggle('hidden');
+        },
+    }
+</script>
+
+        <footer class="bg-white text-center text-sm mt-12 py-4" role="contentinfo">
+            <ul class="flex flex-col md:flex-row justify-center list-reset">
+                <li class="md:mr-2">
+                    &copy; <a href="https://tighten.co" title="Tighten website">Tighten</a> 2019.
+                </li>
+
+                <li>
+                    Built with <a href="http://jigsaw.tighten.co" title="Jigsaw by Tighten">Jigsaw</a>
+                    and <a href="https://tailwindcss.com" title="Tailwind CSS, a utility-first CSS framework">Tailwind CSS</a>.
+                </li>
+            </ul>
+        </footer>
+    </body>
+</html>

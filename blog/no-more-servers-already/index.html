@@ -1,0 +1,192 @@
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <meta name="description" content="1">
+
+        <meta property="og:title" content="No more servers already! | sebs.github.io"/>
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://my-jigsaw-blog.com/blog/no-more-servers-already"/>
+        <meta property="og:description" content="Incremental &amp; Iterative Software Development" />
+
+        <title>sebs.github.io | No more servers already!</title>
+
+        <link rel="home" href="https://my-jigsaw-blog.com">
+        <link rel="icon" href="/favicon.ico">
+        <link href="/blog/feed.atom" type="application/atom+xml" rel="alternate" title="sebs.github.io Atom Feed">
+
+            <meta property="og:title" content="No more servers already!" />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://my-jigsaw-blog.com/blog/no-more-servers-already"/>
+    <meta property="og:description" content="Some rough ideas how you can improve pairing" />
+
+                    <!-- Insert analytics code here -->
+        
+        <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:300,300i,400,400i,700,700i,800,800i" rel="stylesheet">
+        <link rel="stylesheet" href="/assets/build/css/main.css?id=d458cd4f41d39493630d">
+    </head>
+
+    <body class="flex flex-col justify-between min-h-screen bg-grey-lightest text-grey-darkest leading-normal font-sans">
+        <div id="vue-app">
+            <header class="flex items-center shadow bg-white border-b h-24 py-4" role="banner">
+                <div class="container flex items-center max-w-4xl mx-auto px-4 lg:px-8">
+                    <div class="flex items-center">
+                        <a href="/" title="sebs.github.io home" class="inline-flex items-center">
+                            <img class="h-8 md:h-10 mr-3" src="/assets/img/logo.svg" alt="sebs.github.io logo" />
+
+                            <h1 class="text-lg md:text-2xl text-blue-darkest font-semibold hover:text-blue-dark my-0">sebs.github.io</h1>
+                        </a>
+                    </div>
+
+                    <div class="flex flex-1 justify-end items-center">
+                        <search></search>
+
+                        <nav class="hidden lg:flex items-center justify-end text-lg">
+    <a title="sebs.github.io Blog" href="/blog"
+        class="ml-6 text-grey-darker hover:text-blue-dark ">
+        Blog
+    </a>
+
+    <a title="sebs.github.io About" href="/about"
+        class="ml-6 text-grey-darker hover:text-blue-dark ">
+        About
+    </a>
+
+    <a title="sebs.github.io Contact" href="/contact"
+        class="ml-6 text-grey-darker hover:text-blue-dark ">
+        Contact
+    </a>
+</nav>
+
+                        <button class="flex justify-center items-center bg-blue border border-blue h-10 px-5 rounded-full lg:hidden focus:outline-none"
+    onclick="navMenu.toggle()"
+>
+    <svg id="js-nav-menu-show" xmlns="http://www.w3.org/2000/svg"
+        class="fill-current text-white h-9 w-4" viewBox="0 0 32 32"
+    >
+        <path d="M4,10h24c1.104,0,2-0.896,2-2s-0.896-2-2-2H4C2.896,6,2,6.896,2,8S2.896,10,4,10z M28,14H4c-1.104,0-2,0.896-2,2  s0.896,2,2,2h24c1.104,0,2-0.896,2-2S29.104,14,28,14z M28,22H4c-1.104,0-2,0.896-2,2s0.896,2,2,2h24c1.104,0,2-0.896,2-2  S29.104,22,28,22z"/>
+    </svg>
+
+    <svg id="js-nav-menu-hide" xmlns="http://www.w3.org/2000/svg"
+        class="hidden fill-current text-white h-9 w-4" viewBox="0 0 36 30"
+    >
+        <polygon points="32.8,4.4 28.6,0.2 18,10.8 7.4,0.2 3.2,4.4 13.8,15 3.2,25.6 7.4,29.8 18,19.2 28.6,29.8 32.8,25.6 22.2,15 "/>
+    </svg>
+</button>
+
+                    </div>
+                </div>
+            </header>
+
+            <nav id="js-nav-menu" class="nav-menu hidden lg:hidden">
+    <ul class="list-reset my-0">
+        <li class="pl-4">
+            <a
+                title="sebs.github.io Blog"
+                href="/blog"
+                class="nav-menu__item hover:text-blue "
+            >Blog</a>
+        </li>
+        <li class="pl-4">
+            <a
+                title="sebs.github.io About"
+                href="/about"
+                class="nav-menu__item hover:text-blue "
+            >About</a>
+        </li>
+        <li class="pl-4">
+            <a
+                title="sebs.github.io Contact"
+                href="/contact"
+                class="nav-menu__item hover:text-blue "
+            >Contact</a>
+        </li>
+    </ul>
+</nav>
+
+            <main role="main" class="flex-auto w-full container max-w-xl mx-auto py-16 px-6">
+                            <img src="/assets/img/post-cover-image-2.png" alt="No more servers already! cover image" class="mb-2">
+    
+    <h1 class="leading-none mb-2">No more servers already!</h1>
+
+    <p class="text-grey-darker text-xl md:mt-0">Sebastian Schürmann  •  February 6, 2018</p>
+
+    
+    <div class="border-b border-blue-lighter mb-10 pb-4" v-pre>
+        <p>I am working a lot with clients who pay me to extend software they have created themselves or let others write it for them. A web shop here, a custom CRM there. Nothing crazy. I fix broken dependencies often and add features where ever my work is required. Me and the previous Hackers on these codebases seem too have the same approach to code/style and documentation (fancy/questionable and documentation minimal). Its ok to build things like this, but over the years, it is hard to keep all the elements up and running as if it were “day 1” (or besser said bugfix release 1.14)</p>
+<p>However, such software is in use for a while updates and security fixes come around the corner, hearts bleed and processors melt down. And while these projects do what every they are supposed to do, the maintenance of old code and updates create a drag on goals my customers try to reach. In the end, I am paid to fix mistakes, that other developers already made and fixed in their own (often open source) code bases. Reinventing the Wheel for a living. Why is that?</p>
+<h2>Times are changing</h2>
+<p>When these projects were created, there was neither a server less, nor a movement for micro services. In one case, the main Framework was to be updated 3 major versions, just to hint at the day of the creation. Plus there is the cost of being a first mover: Given todays standards, INSERTFRAMEWORKHERE, back then had totally different ideas of clean code etc.</p>
+<p>Other things got just way simpler: Where a version of Elasticsearch was used, nowadays a simple postgres extension will do. Where contact attempts got stored in a JSON Database again Postgres can handle this now.</p>
+<p>But if I look beyond the horizon of this specific vendor locked box I have my self shut in: With CDN, DNS, Email, Monitoring: There are already a lot of different external services used. Just not the main job at hand: In this case selling things and receiving contact attempts about products.</p>
+<p>The customers site has a login, but he has no desire to use any data beyond order data at any time in future. So even this could be put to a external service. There are a bunch of content elements like Videos/Blog posts etc.</p>
+<p>All these services are out there as a service these days.</p>
+<p>Most of them are easy scalable beyond what one can achieve with small server setups or small teams</p>
+<p>Shop: Snipcart provides a shopping backend charging 2% by purchase plus handling for payment.
+Search: Multiple providers Allow for simple indexing and add the metadata that Snipcart can not provide
+CMS: Aerobatic provides everything to deploy and static stack of sites. Or use Amazons infra to get cheaper rates. however.
+Contact: In 2018, there are several simple Services to do this.
+Contact management and CMS in SAAS is already a commodity, available widely and provide several products to pick from. In the case of shopping and search, the amount of companies coming into closer consideration is not so big anymore.</p>
+<h2>Wardley</h2>
+<p><img src="/assets/img/wardley-1.png" alt="Wardley" /></p>
+<p>All this code is custom controllers on top of a framework. This is how things got done, when there was no big collection of gems, ready to do anything for you. If I would replace the DIY shop codebase with a predefined gem or framework, a mode towards the “Product” is in order. Search is a good example.</p>
+<p>Lets assume 2 user groups for a eShop: Owner and Customer . And now lets think of some some Basic needs.</p>
+<p>Customer Needs: Search, Order and being informed about products</p>
+<p>Owner Needs: Process orders; Provide Information and Products</p>
+<p>Another thing is to think about how visible these features are to the customer.</p>
+<p>Shop: 50% lots of things “under the hood”
+Contact: Code handles a message, delivers it. There is not even an admin part 90%
+CMS 40%: With image handling etc. Not so visible to the user.
+Search: Very invisible. Apart from a well filled index, you just dont care — as long as it works.</p>
+<p>Mapping alls this we get</p>
+<p><img src="/assets/img/wardley-2.png" alt="Wardley 2" /></p>
+<p>So what happens, when we start refactoring as proposed before? Host only static content from a base website service, fully CDN backed! Search is a configurable service that needs monitoring of requests/day and success of imports. CMS is as simple as “github” pages and the shop integration done on “deploy” time! Contacts are done with any of the services out there.</p>
+<p><img src="/assets/img/wardley-3.png" alt="Wardley 3" /></p>
+<p>Nowadays one can rent most of these services and it seems, this is a very good visual representation if where I want to go.</p>
+<p>There are many nice things about commodity services and one of them being widely available, normally high quality and a good bang for the buck. Why? Markets make sure of that in most cases. When a service sucks: Users Change it. In markets like this: Money buys you features and I heavily doubt, I can beat my providers on their own game (aka build a better shop than Snipcart e.g.)</p>
+<p>Conclusion</p>
+<p>I can not wait to see more commodity services available for general tasks and I enjoy every announcement about it. And the great thing about it is: Scaling and Distribution of load is not a secret to these companies anymore and their core business (e.g. providing a eCart) is completely different to mine (adding functionality) and my customers (selling things). So we are all winning so far.</p>
+<p>For me it looks like I will be a bit more wary, with spinning up a container here, installing a database there and try to explore the “No more servers already” idea a bit more. I am starting to enjoy it being “serverless”</p>    </div>
+
+    <nav class="flex justify-between text-sm md:text-base">
+        <div>
+                            <a href="https://my-jigsaw-blog.com/blog/opsec-on-events" title="Older Post: A piece on “OpSec” and Events/Hackathons/Barcamps">
+                    &LeftArrow; A piece on “OpSec” and Events/Hackathons/Barcamps
+                </a>
+                    </div>
+
+        <div>
+                    </div>
+    </nav>
+            </main>
+        </div>
+
+        <script src="/assets/build/js/main.js?id=e69137c6f1d8bca4b130"></script>
+
+        <script>
+    const navMenu = {
+        toggle() {
+            const menu = document.getElementById('js-nav-menu');
+            menu.classList.toggle('hidden');
+            menu.classList.toggle('lg:block');
+            document.getElementById('js-nav-menu-hide').classList.toggle('hidden');
+            document.getElementById('js-nav-menu-show').classList.toggle('hidden');
+        },
+    }
+</script>
+
+        <footer class="bg-white text-center text-sm mt-12 py-4" role="contentinfo">
+            <ul class="flex flex-col md:flex-row justify-center list-reset">
+                <li class="md:mr-2">
+                    &copy; <a href="https://tighten.co" title="Tighten website">Tighten</a> 2019.
+                </li>
+
+                <li>
+                    Built with <a href="http://jigsaw.tighten.co" title="Jigsaw by Tighten">Jigsaw</a>
+                    and <a href="https://tailwindcss.com" title="Tailwind CSS, a utility-first CSS framework">Tailwind CSS</a>.
+                </li>
+            </ul>
+        </footer>
+    </body>
+</html>

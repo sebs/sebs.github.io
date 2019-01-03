@@ -1,0 +1,513 @@
+<?xml version="1.0"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <title>sebs.github.io</title>
+    <link href="https://my-jigsaw-blog.com" />
+    <link type="application/atom+xml" rel="self" href="https://my-jigsaw-blog.com/blog/feed.atom" />
+    <updated>2019-01-03T11:43:03+01:00</updated>
+    <id>https://my-jigsaw-blog.com/blog/feed.atom</id>
+    <author>
+        <name>Sebastian Schürmann</name>
+    </author>
+                <entry>
+    <id>https://my-jigsaw-blog.com/blog/no-more-servers-already</id>
+    <link type="text/html" rel="alternate" href="https://my-jigsaw-blog.com/blog/no-more-servers-already" />
+    <title>No more servers already!</title>
+    <published>2018-02-06T01:00:00+01:00</published>
+    <updated>2018-02-06T01:00:00+01:00</updated>
+    <author>
+        <name>Sebastian Schürmann</name>
+    </author>
+    <summary type="html">I am working a lot with clients who pay me to extend software they have created themselves or let others write it for them. A web shop here, a custom CRM there. Nothing crazy. I fix broken dependencies often and add features where ever my work is......</summary>
+    <content type="html"><![CDATA[
+        <p>I am working a lot with clients who pay me to extend software they have created themselves or let others write it for them. A web shop here, a custom CRM there. Nothing crazy. I fix broken dependencies often and add features where ever my work is required. Me and the previous Hackers on these codebases seem too have the same approach to code/style and documentation (fancy/questionable and documentation minimal). Its ok to build things like this, but over the years, it is hard to keep all the elements up and running as if it were “day 1” (or besser said bugfix release 1.14)</p>
+<p>However, such software is in use for a while updates and security fixes come around the corner, hearts bleed and processors melt down. And while these projects do what every they are supposed to do, the maintenance of old code and updates create a drag on goals my customers try to reach. In the end, I am paid to fix mistakes, that other developers already made and fixed in their own (often open source) code bases. Reinventing the Wheel for a living. Why is that?</p>
+<h2>Times are changing</h2>
+<p>When these projects were created, there was neither a server less, nor a movement for micro services. In one case, the main Framework was to be updated 3 major versions, just to hint at the day of the creation. Plus there is the cost of being a first mover: Given todays standards, INSERTFRAMEWORKHERE, back then had totally different ideas of clean code etc.</p>
+<p>Other things got just way simpler: Where a version of Elasticsearch was used, nowadays a simple postgres extension will do. Where contact attempts got stored in a JSON Database again Postgres can handle this now.</p>
+<p>But if I look beyond the horizon of this specific vendor locked box I have my self shut in: With CDN, DNS, Email, Monitoring: There are already a lot of different external services used. Just not the main job at hand: In this case selling things and receiving contact attempts about products.</p>
+<p>The customers site has a login, but he has no desire to use any data beyond order data at any time in future. So even this could be put to a external service. There are a bunch of content elements like Videos/Blog posts etc.</p>
+<p>All these services are out there as a service these days.</p>
+<p>Most of them are easy scalable beyond what one can achieve with small server setups or small teams</p>
+<p>Shop: Snipcart provides a shopping backend charging 2% by purchase plus handling for payment.
+Search: Multiple providers Allow for simple indexing and add the metadata that Snipcart can not provide
+CMS: Aerobatic provides everything to deploy and static stack of sites. Or use Amazons infra to get cheaper rates. however.
+Contact: In 2018, there are several simple Services to do this.
+Contact management and CMS in SAAS is already a commodity, available widely and provide several products to pick from. In the case of shopping and search, the amount of companies coming into closer consideration is not so big anymore.</p>
+<h2>Wardley</h2>
+<p><img src="/assets/img/wardley-1.png" alt="Wardley" /></p>
+<p>All this code is custom controllers on top of a framework. This is how things got done, when there was no big collection of gems, ready to do anything for you. If I would replace the DIY shop codebase with a predefined gem or framework, a mode towards the “Product” is in order. Search is a good example.</p>
+<p>Lets assume 2 user groups for a eShop: Owner and Customer . And now lets think of some some Basic needs.</p>
+<p>Customer Needs: Search, Order and being informed about products</p>
+<p>Owner Needs: Process orders; Provide Information and Products</p>
+<p>Another thing is to think about how visible these features are to the customer.</p>
+<p>Shop: 50% lots of things “under the hood”
+Contact: Code handles a message, delivers it. There is not even an admin part 90%
+CMS 40%: With image handling etc. Not so visible to the user.
+Search: Very invisible. Apart from a well filled index, you just dont care — as long as it works.</p>
+<p>Mapping alls this we get</p>
+<p><img src="/assets/img/wardley-2.png" alt="Wardley 2" /></p>
+<p>So what happens, when we start refactoring as proposed before? Host only static content from a base website service, fully CDN backed! Search is a configurable service that needs monitoring of requests/day and success of imports. CMS is as simple as “github” pages and the shop integration done on “deploy” time! Contacts are done with any of the services out there.</p>
+<p><img src="/assets/img/wardley-3.png" alt="Wardley 3" /></p>
+<p>Nowadays one can rent most of these services and it seems, this is a very good visual representation if where I want to go.</p>
+<p>There are many nice things about commodity services and one of them being widely available, normally high quality and a good bang for the buck. Why? Markets make sure of that in most cases. When a service sucks: Users Change it. In markets like this: Money buys you features and I heavily doubt, I can beat my providers on their own game (aka build a better shop than Snipcart e.g.)</p>
+<p>Conclusion</p>
+<p>I can not wait to see more commodity services available for general tasks and I enjoy every announcement about it. And the great thing about it is: Scaling and Distribution of load is not a secret to these companies anymore and their core business (e.g. providing a eCart) is completely different to mine (adding functionality) and my customers (selling things). So we are all winning so far.</p>
+<p>For me it looks like I will be a bit more wary, with spinning up a container here, installing a database there and try to explore the “No more servers already” idea a bit more. I am starting to enjoy it being “serverless”</p>    ]]></content>
+</entry>
+            <entry>
+    <id>https://my-jigsaw-blog.com/blog/opsec-on-events</id>
+    <link type="text/html" rel="alternate" href="https://my-jigsaw-blog.com/blog/opsec-on-events" />
+    <title>A piece on “OpSec” and Events/Hackathons/Barcamps</title>
+    <published>2018-02-06T01:00:00+01:00</published>
+    <updated>2018-02-06T01:00:00+01:00</updated>
+    <author>
+        <name>Sebastian Schürmann</name>
+    </author>
+    <summary type="html">I thought, everything that you could say has been said, about how to stay half assed secure on conferences and other nerdy events and environments. Let me tell you about some mistakes that I made. This is aimed on the half way tech savy from a half assed......</summary>
+    <content type="html"><![CDATA[
+        <p>I thought, everything that you could say has been said, about how to stay half assed secure on conferences and other nerdy events and environments. Let me tell you about some mistakes that I made. This is aimed on the half way tech savy from a half assed programmer. Please correct me in the comments if necessary</p>
+<p>Note: Writing this from first person view just for a more readable text and reader enjoyment. I am not endorsing or engaging in hacking at community events. My point is: get your shit together. It is easy.</p>
+<h2>Don’t bring your workbox.</h2>
+<p>Probably the Best advice, one can give here. Where is no data, there is no problem. On how many services are you connected? How many pieces of paper did you sign before you got access to X and downloaded it? I have news: The result of that signing is a cookie or other session auth thingie that you got after giving company Y’s server a username and password.     That is what I may want, to start reading your email, starting virtual machines or just writing to your team that you will come out, transform to what ever your gender is NOT atm and demand to be addressed with “Your Highness” in the future. SSD Drives get big, we developers are very not doing a good job at keeping them clean. This 200GIG dump of the user table you used last time to debug that problem? Publishing modules on npm? Same thing. npm remembers logins in a session. What stops me from publishing some exploit to your users labeled v2.0.0 G?. On the other side: What does a attacker really KNOW about that computer: That you, the human, will carry it to work, where you have perfect credentials in your home network. A infection to a computer is done in a very short time and if you are working in any kind of organization that handles money: leave your shit at home. To what ip(s) ports exactly is that well crafted software of yours trying to speak? In a public network, with not only a great community, but as well, contenders on markets. Leave that shit at home, if you work in a big company, go to your security aware ADMIN, tell him where you go and let him help out. Seriously, covering the risk on your devbox might justify for a smaller, more mobile computer (macbook pro replaced by air for conference). Btw: encryption will not help you. On a event or hackathon, your box will be up and running all the time. Filesystem encryption and a long password is implied. And dont leave the box unattended. Drive by exploits, totally CSI Cyber stlye, google this shit ;) its real and it is damn cheap.</p>
+<h2>Protocol Encryption and Auth</h2>
+<p>For all open ports and resources, of maybe your hackathon project have a username and password configured and use the S variants of protocols: https and a password for any port serving a website from your localhost. All dev servers, all REST endpoints, everything. Just don’t start a blank version of anything without auth. You are now safe from a lot of script kiddie attacks. And NO, localhost is not local. RTFM. Just make sure everything that uses IP and protocols to use usernames and passwords. Big in the Game: Redis for a remote code execution that writes to the known hosts SSH file or MongoDB with defaults with no password. Access to pgsql/mysql: data sinks open up. One just not simply Relational DB and store no data.</p>
+<h2>Traffic</h2>
+<p>All normal traffic should be encrypted and send via a SSH tunnel or proxy in order to avoid the sharing of local network resources with others. Except from ports that you WANT to share (see 2.) All traffic from local network is evil. If you find a way, to deploy the thing you are working on to a online service, even better. Do that via the tunnel, and et voila. As dangerous as before, but not 100 buddies in the same network and your application has a totally different “localhost” environment there. You can even stay on pure 4G if your local legislation allows for cheap mobile web access. ;)</p>
+<h2>Social</h2>
+<p>Do I need let everyone know that my deploy comes from docker cloud, I monitor metrics with a prometheus instance or I am a CircleCI user? I can look on both sides of the screen of your macbook: one side the stickers will tell me, the other ones the icons on the desktop or bookmarks (remember: it is a sharing thingie — you let me look at your screen). App wise: just bring what you need, make sure for easy “webaccess” with what ever the smart admin gave you. Knowing this is as effort rich as adding the tools of your choice and “CVE”. This will alarm me every time, when I might have another attempt at owning you. In general, since you brought another box, just access what you need and don’t put bigass icons in the middle of the screen of your “Outlook Express 2017” your company installed for you (the OTHER admin, who does not care as much). Opsec would contain as well, to know what you are allowed to tell others and what not. Have a good conversation with your superior or someone else from your environment. Just manage expectations here beforehand. I heard of hackathons ending up in bars and things getting funny. You better make a cut at what you are allowed to tell. No, exactly that Story … Everyone would find funny, but make sure you realize: This is not a team internal event. It’s easy to mistake easy bonding on community events for trust. Especially when I involve alcohol.</p>
+<p>TL:TR: I am just a developer of software, but even I find myself on a nice community event, that is just accompanied by a “hostile network environment” and needs to be treated this way. As developers, we should take care for our dev boxes and their contents.
+Bringing a big data bait, having services without authentication and encrypted traffic and telling everyone how to own you will not end with fun at all. 4 Ports got closed and 3 services completely deactivated during the production of this blog post.</p>    ]]></content>
+</entry>
+            <entry>
+    <id>https://my-jigsaw-blog.com/blog/sit-together</id>
+    <link type="text/html" rel="alternate" href="https://my-jigsaw-blog.com/blog/sit-together" />
+    <title>10 TIPS FOR THE XP PRACTICE &quot;SIT TOGETHER&quot;</title>
+    <published>2017-03-23T01:00:00+01:00</published>
+    <updated>2017-03-23T01:00:00+01:00</updated>
+    <author>
+        <name>Sebastian Schürmann</name>
+    </author>
+    <summary type="html">James Shore describes “Sit together” in his book as
+Sitting together fuels team communication. This has impressive results, cutting time-to-market by two thirds in one field study. It enables simultaneous phases, eliminates waste, and allows team......</summary>
+    <content type="html"><![CDATA[
+        <p>James Shore describes “Sit together” in his book as</p>
+<p>Sitting together fuels team communication. This has impressive results, cutting time-to-market by two thirds in one field study. It enables simultaneous phases, eliminates waste, and allows team members to contribute insights to others’ conversations.</p>
+<p>To sit together, create an open workspace. This takes longer than you expect. Organize your workspace around pairing stations, locating people according to conversations they should overhear. Provide plenty of whiteboard space. Make sure there’s room for personal effects and a place for private conversations.</p>
+<p>Open workspaces are hard for some to accept. Get team members’ permission before switching, or they may rebel.“</p>
+<ol>
+<li>Sit all the disciplines together. I often see designers skipping this one and staying with their designer teams. Not so good. Everyone should be on the product they are working on. </li>
+<li>Agree to common rules explicitly - Different people have different needs and desires. Talk about them and write them down. After a few weeks: rinse and repeat. make this explicit</li>
+<li>Must not be in one Room - BUT - Sitting together fuels team communication. This has impressive results, cutting time-to-market by two thirds in one field study. It enables simultaneous phases, eliminates waste, and allows team members to contribute insights to others’ conversations. To sit together, create an workspace. This takes longer than you expect. Organize your workspace around pairing stations, locating people according to conversations they should overhear. Provide plenty of whiteboard space. Make sure there’s room for personal effects and a place for private conversations. Open workspaces are hard for some to accept. </li>
+<li>Adapt your visual management. If you are doing hardcore Scrum you might dive into Kanban now. There are different disciplines and roles in the room, working on on one thing. So the normal Scrum Board most likely will not cut it. A good place to start is Kanaban.</li>
+<li>Rituals! Rituals! Rituals!. I have heard of a “Disco Friday” where teams would play nice music all day long aloud on friday or seen hourly Nerf gun matches. These rituals help to firm groups and keep them in high cohesion.</li>
+<li>Style it. Invest some work in styling the place. Some lights, LED ambient illumination, posters on the wall etc. will really help teams to form and stick. Make sure to provide a budget.</li>
+<li>Clean it. Once a week/sprint: Clean the workplace and bring everything in order. Its a very short procedure for most places and it helps providing general order and cleanliness.</li>
+<li>Have the Meetings together .Do not let the “Backend Guy” bail the Grooming when you are working on Frontend Stories. Do not let the designer bail as well. Everyone has to learn what the other disciplines do. When someone sits there and does not get it: Help him understand. Re-Arrange Groomings so that there are Stories of any Kind. You know the vertical slicing thingie? You should do it. And no .. neither the designer nor the tester will bail the Retrospective. It takes disciplined and willing teams to practice it this way. But in my experience: The seasoned crafts(wo)men will happily participate.</li>
+<li>Have a extra room for “Discussions”. When different trades of craft work together, there is a lot of need to discuss things and talk about it. You will need a room for this since every discussion will be a interruption for everyone else in the room. Buy a set of high quality noise dampening head phones. I am working at a client here in Hamburg where you have small chambers for working 1on1 as well as meeting rooms that are general available for phone conferences etc.</li>
+<li>Have more than enough Space</li>
+</ol>
+<p>Even People with Computers need Space to work and think. Provide this. Don’t make cross-functional teams and cram them in a small room and be surprised you get a lot of complaints from the inhabitants of that room . If you cant afford space, maybe do not hire developers at all. There are regulations for how many office workers can be in a certain set of size here in Germany and I have seen several occasions where these laws where used as a common denominator of how many people fit in a room. This is not the way it works.</p>
+<p>So this is what I came up with. What are your Ideas?</p>    ]]></content>
+</entry>
+            <entry>
+    <id>https://my-jigsaw-blog.com/blog/ideas-on-pairprogramming</id>
+    <link type="text/html" rel="alternate" href="https://my-jigsaw-blog.com/blog/ideas-on-pairprogramming" />
+    <title>Ideas on Pairprogramming</title>
+    <published>2017-03-23T01:00:00+01:00</published>
+    <updated>2017-03-23T01:00:00+01:00</updated>
+    <author>
+        <name>Sebastian Schürmann</name>
+    </author>
+    <summary type="html">Over the last years, I got many good Ideas from teams on how to use pairing in their daily work. It is very interesting how the initial idea is “hacked”, changed and adapted. Some traditional and not so traditional approaches here in a blog post.......</summary>
+    <content type="html"><![CDATA[
+        <p>Over the last years, I got many good Ideas from teams on how to use pairing in their daily work. It is very interesting how the initial idea is “hacked”, changed and adapted. Some traditional and not so traditional approaches here in a blog post.</p>
+<h2>PAIR “PROMISCUOUSLY”</h2>
+<p>Everyone pairs with everybody else is a nice way to get knowhow shared in your team. Sometimes it is a hard start, but when you have completed this for the first time, there will be foundations of teamwork that are hard to achieve otherwise. Some of the advantages of doing so.</p>
+<ul>
+<li>Learn to know development setups of your colleagues</li>
+<li>Understand the reasoning behind that ‘quirky’ behavior everyone shows once in a while</li>
+<li>This is a good team building exercise</li>
+<li>You will probably lift the level of the person who is ‘the weakest link’ in your teams ‘chain’</li>
+<li>This is the number one way to reduce the bus factor</li>
+</ul>
+<h2>PAIR AND CHANGE ON RED-GREEN-REFACTOR</h2>
+<p>You can pair in a environment with Unit-Tests and make a change not based on time (although it is good to set a maximum time limit) but when you go forward in the re-green-refactor loop. Use the following Cycle when starting with a green lit unit test suite:</p>
+<ol>
+<li>Person A: Add a test that makes the suite go: red</li>
+<li>Person B: Implement code so that it goes to: green</li>
+<li>Person A: Refactor (all still green)</li>
+<li>Person B: Add a test that makes the suite go red:</li>
+<li>Remark Always on green tests and rector make a commit. Push to master if you are done</li>
+</ol>
+<p>This is very good to learn and internalize the way TDD in its purest form as in test first works. It will give you very good insight in the method and produce code. You can have a very fast cycle here as soon as the basics between the two persons pairing are sorted out.</p>
+<h2>PAIR RED-(GREEN-REFACTOR)</h2>
+<p>This is a variant of the above, but James Shore describes “Sit together” in his book as</p>
+<p>Sitting together fuels team communication. This has impressive results, cutting time-to-market by two thirds in one field study. It enables simultaneous phases, eliminates waste, and allows team members to contribute insights to others’ conversations.</p>
+<p>To sit together, create an open workspace. This takes longer than you expect. Organize your workspace around pairing stations, locating people according to conversations they should overhear. Provide plenty of whiteboard space. Make sure there’s room for personal effects and a place for private conversations.</p>
+<p>Open workspaces are hard for some to accept. Get team members’ permission before switching, or they may rebel.“</p>
+<ol>
+<li>Sit all the disciplines together.</li>
+</ol>
+<p>I often see designers skipping this one and staying with their designer teams. Not so good. Everyone should be on the product they are working on.</p>
+<ol start="2">
+<li>Agree to common rules explicitly</li>
+</ol>
+<p>Different people have different needs and desires. Talk about them and write them down. After a few weeks: rinse and repeat. make this explicit</p>
+<ol start="3">
+<li>Must not be in a room, but can be close</li>
+</ol>
+<p>A glass wall often does as well. If I can see my Product owner (a role that requests own rooms very often in my experience), I can approach him.</p>
+<ol start="4">
+<li>Adapt your visual management</li>
+</ol>
+<p>If you are doing hardcore Scrum you might dive into Kanban now. There are different disciplines and roles in the room, working on on one thing. So the normal Scrum Board most likely will not cut it. A good place to start is Kanaban.</p>
+<ol start="5">
+<li>Rituals! Rituals! Rituals!</li>
+</ol>
+<p>I have heard of a “Disco Friday” where teams would play nice music all day long aloud on friday or seen hourly Nerf gun matches. These rituals help to firm groups and keep them in high cohesion.</p>
+<ol start="6">
+<li>Style it</li>
+</ol>
+<p>Invest some work in styling the place. Some lights, LED ambient illumination, posters on the wall etc. will really help teams to form and stick. Make sure to provide a budget.</p>
+<ol start="7">
+<li>Clean it</li>
+</ol>
+<p>Once a week/sprint: Clean the workplace and bring everything in order. Its a very short procedure for most places and it helps providing general order and cleanliness.</p>
+<ol start="8">
+<li>Have the Meetings together</li>
+</ol>
+<p>Do not let the “Backend Guy” bail the Grooming when you are working on Frontend Stories. Do not let the designer bail as well. Everyone has to learn what the other disciplines do. When someone sits there and does not get it: Help him understand. Re-Arrange Groomings so that there are Stories of any Kind. You know the vertical slicing thingie? You should do it. And no .. neither the designer nor the tester will bail the Retrospective. It takes disciplined and willing teams to practice it this way. But in my experience: The seasoned crafts(wo)men will happily participate.</p>
+<ol start="9">
+<li>Have a extra room for “Discussions”</li>
+</ol>
+<p>When different trades of craft work together, there is a lot of need to discuss things and talk about it. You will need a room for this since every discussion will be a interruption for everyone else in the room. Buy a set of high quality noise dampening head phones. I am working at a client here in Hamburg where you have small chambers for working 1on1 as well as meeting rooms that are general available for phone conferences etc.</p>
+<ol start="10">
+<li>Have more than enough Space</li>
+</ol>
+<p>Even People with Computers need Space to work and think. Provide this. Don’t make cross-functional teams and cram them in a small room and be surprised you get a lot of complaints from the inhabitants of that room . If you cant afford space, maybe do not hire developers at all. There are regulations for how many office workers can be in a certain set of size here in Germany and I have seen several occasions where these laws where used as a common denominator of how many people fit in a room. This is not the way it works.</p>
+<p>So this is what I came up with. What are your Ideas?with the exception that one person makes the tests green and refactors them. This is a little more training oriented and can be used to teach a newbie essential skills in software development and TDD.</p>
+<p>Hint Even if it is hard for you as the expert: The newbie should write the code. Doing creates a way better understanding.</p>
+<h2>PAIR WITH THE NEW PERSON ON THE TEAM</h2>
+<p>Speaking of newbies how about this: The next time you onboard a new team member you do not make his setup for the development environment for a week. Instead you let him pair with every member of your team for a longer time.</p>
+<p>New colleagues in a company are still free from most of the organizational duty and are often stuck in a situation where they have to ask a lot of questions in order to be productive. Codebases are big and the details of implementations are specific: The new person will have a hard time to contribute to productive code and learn at once. By pairing with a experienced team member this problem can be solved. You do not even need a computer and this can be done from the moment a new person enters the office.</p>
+<pre><code>Remark This leads to a extremely lowered on boarding time. Additionally the person can actively bring his skills to the table.</code></pre>
+<h2>PAIR A RELEASE</h2>
+<p>Releases kinda suck. Always a bit. A little more when you do not have a complete Integration and Continuous Delivery pipeline set up and there is stuff to be made by “hand”. Often this “duty” will be on one person and thereby you create a single point of failure in many ways. It is hard to review a release. You just know if it worked or not. So working as a pair might be a good thing. Shitty duty gets more fun this way and the peer-pressure will keep the pair in line not to cross the many lines in a release process that can be harmful just for sloppiness. Releases suck. Been there done that.</p>
+<h2>PAIR A BUGFIX</h2>
+<p>Bug fixing kinda sucks too. At first something is not working. After it you will be looking for the source of the bug and then you will find out that you have made a very specific mistake (you as in team). This burden can be shared. It’s not that your colleagues have not made the same kind of errors (or worse) in the past. We are humans. So lets get this painful duty over with as a pair. The bugfixes will be more complete (because they are challenged by your navigator) and there will be less problem with regressions. Additionally: Two people learn at once what mistake not to make next time and two people can bring their knowhow to the table regarding this specific problem. It’s making a fail a win-win (as far as possible).</p>
+<h2>PAIR WRITING A USER-STORY</h2>
+<p>Writinglearning a User-story is often done by the product owner. And when the teams first re-views the story, a lot of technical remarks and constraints are added etc. In this situation, the product owner often resembles just to “write these informations down” and is not learning too much. Why? The amount of information that a team of developers generate in a grooming or estimation meeting is just to high in that moment very often. Change this a bit: Stay with the grooming meeting but let the product owner write down the User story together with one of the developers. Just use driver and navigator as in normal pairing and a blank text file. The story will be more dense of information and the additions that have to be made by the whole team a little less.</p>
+<h2>PAIR A SPIKE</h2>
+<p>Coding experimental features to prove that something works is called a spike in XP. Another name for that is a “Research Task”. This is one of the cooler thing and might be very good to do it as a pair. Why?</p>
+<p>It’s mainly a learning opportunity. Learning is important.
+I see that a wide range of knowledge is required for most of these. So two persons knowledge might help to make a successful spike happen (or just successfully find out it is not working how you anticipated).
+more than one person will have the freedom to work on a new thing. It is just motivating to “move fast and break stuff”.
+It would be nice to get some other ideas from you here in the comments section. What is your special way of Pairprogramming?</p>    ]]></content>
+</entry>
+            <entry>
+    <id>https://my-jigsaw-blog.com/blog/levels-of-crossfunctional-work</id>
+    <link type="text/html" rel="alternate" href="https://my-jigsaw-blog.com/blog/levels-of-crossfunctional-work" />
+    <title>Levels of crossfunctional work</title>
+    <published>2017-03-16T01:00:00+01:00</published>
+    <updated>2017-03-16T01:00:00+01:00</updated>
+    <author>
+        <name>Sebastian Schürmann</name>
+    </author>
+    <summary type="html">Interesting read:
+
+Intradisciplinary: working within a single discipline.
+Crossdisciplinary: viewing one discipline from the perspective of another.
+Multidisciplinary: people from different disciplines working together, each drawing on their disciplinary......</summary>
+    <content type="html"><![CDATA[
+        <p>Interesting <a href="http://www.arj.no/2012/03/12/disciplinarities-2/">read</a>:</p>
+<ul>
+<li>Intradisciplinary: working within a single discipline.</li>
+<li>Crossdisciplinary: viewing one discipline from the perspective of another.</li>
+<li>Multidisciplinary: people from different disciplines working together, each drawing on their disciplinary knowledge.</li>
+<li>Interdisciplinary: integrating knowledge and methods from different disciplines, using a real synthesis of approaches.</li>
+<li>Transdisciplinary: creating a unity of intellectual frameworks beyond the disciplinary perspectives.</li>
+</ul>
+<p>Just to highlight, why the expectations in that simple word “cross functional” might be so different.</p>    ]]></content>
+</entry>
+            <entry>
+    <id>https://my-jigsaw-blog.com/blog/reasons-to-build-a-pairing-station</id>
+    <link type="text/html" rel="alternate" href="https://my-jigsaw-blog.com/blog/reasons-to-build-a-pairing-station" />
+    <title>Reasons to build a pairing station</title>
+    <published>2016-11-19T01:00:00+01:00</published>
+    <updated>2016-11-19T01:00:00+01:00</updated>
+    <author>
+        <name>Sebastian Schürmann</name>
+    </author>
+    <summary type="html">Having a dedicated computer and desk for the effort of Pair programming is a great thing. It is a little counter intuitive to those who seek for efficient use of the workplace and try to use every inch of the office all the time. Creative people......</summary>
+    <content type="html"><![CDATA[
+        <p>Having a dedicated computer and desk for the effort of Pair programming is a great thing. It is a little counter intuitive to those who seek for efficient use of the workplace and try to use every inch of the office all the time. Creative people (programmers) are no laying hens and should not be treated this way. So why is it good to have a computer around that is just dedicated for Pair programming?</p>
+<h2>ONE BUTTON BUILD</h2>
+<p>You will have to set up the development environment easily and repeatable in order to develop. If that takes some hours or a day, you will be having not much productive output. So using a pairing station will force you to get something that is called “One button build”: A build that works as fast as checkout, setup some environment variables and start developing. Using docker, puppet and some other niceties make this is easily possible. A lot of other processes and tools like for example the CI benefit from this “One button build” as well.</p>
+<h2>ONE BUTTON SETUP</h2>
+<p>Same goes for your own development environment aka IDE and other tools that you require. Soon you will end up with a bunch of scripts in version control to (re-)build your IDE and configure it with the push of a button. One side effect: These re-configurations are so fast, you even can use them when you change driver and navigator.</p>
+<h2>UNDISTURBED WORKING</h2>
+<p>Soon everyone will know that a pair working on this particular desktop is not to be disturbed. Social pressure and a special place work together. “It must be important, there are 2 persons” comes together with that special desk where a team of two is to be observed very often.</p>
+<h2>CLEAN DESK</h2>
+<p>I personally like my mess on the table: Yesterdays coffee cup, a magazine and other things clutter up my desk and do not ask for “guests” literally. So before I start to pair the cleaning has to commence. This is not the case with the pairing station. It is just used for one purpose and multiple people work there. This makes it easy to keep it a clean place.</p>
+<h2>A BIG MACHINE</h2>
+<p>Most of us use laptops these days. Machines got better and you might not feel any limitation there. But in fact, laptops are pretty limited in terms of the amount of ram that you can install and the amount of displays you can use. The paring station is limited to one place and this way you can decide for a desktop machine. With a budget comparable to a developer notebook you can get a high performance machine that is just capable of a “little” more. Want to have 64 or even 128 gig of ram? Just buy it. SSD drives setup as raid to get you as much write and read speed as the controller allows? Easy. Most of these things will be pretty close to what a modern fully setup macbook pro retina costs.</p>
+<h2>THE WHITEBOARD</h2>
+<p>A lot of problems can be solved on a whiteboard even better and before starting to bruteforce a problem on the keyboard you might want to have a little session on the whiteboard. A good pairing station has a whiteboard close and accessible with all the tools required to use it.</p>
+<p>As soon as you got the basics of Pair programming sorted out, you should build a pairing station to make sure everyone has a perfect place to go to for a pairing session. One one hand it enforces some good behaviours (e.g. One button builds) and on the other it makes it easier to have a dedicated place to sit down and tinker over a coding problem.</p>    ]]></content>
+</entry>
+            <entry>
+    <id>https://my-jigsaw-blog.com/blog/codereviews-and-pairprogramming</id>
+    <link type="text/html" rel="alternate" href="https://my-jigsaw-blog.com/blog/codereviews-and-pairprogramming" />
+    <title>Codereviews and Pairprogramming</title>
+    <published>2016-04-10T02:00:00+02:00</published>
+    <updated>2016-04-10T02:00:00+02:00</updated>
+    <author>
+        <name>Sebastian Schürmann</name>
+    </author>
+    <summary type="html">Do do we still need Codereviews when we do Pairprogramming?
+This is a regular question posed at trainings and when the topic Pair programming in general is coming up in discussions.
+I actively advertise Pairing as a way of reducing the amount of time......</summary>
+    <content type="html"><![CDATA[
+        <p>Do do we still need Codereviews when we do Pairprogramming?</p>
+<p>This is a regular question posed at trainings and when the topic Pair programming in general is coming up in discussions.</p>
+<p>I actively advertise Pairing as a way of reducing the amount of time spent in Codereviews. However, there seems a notion to write blogposts that put these two things into a relation with a clear “vs.” apporach. A lot of them are named Codereviews vs. Pair programming. I have collected some of those that I found to be remarkable:</p>
+<p><a href="https://blog.codinghorror.com/pair-programming-vs-code-reviews/">Coding Horror - Jeff Attwood</a> - seems to be in favor of pairing, sees the value in both but prefers Pairing for the social factors. It is easier to critique and tak critique.</p>
+<p><a href="https://www.theodorenguyen-cao.com/2008/10/29/pair-programming-greater-than-code-reviews/#.XCz_VMtKg5k">Theodore Nguyen</a> seems to see the value of Pair programming greater than Code Reviews. I can understand that. But I would really add that it depends on the type of Codereview and applied technique.</p>
+<p>Here is another by <a href="https://blog.phinze.com/2013/12/08/pairing-vs-code-review.html">Paul Hinze</a> giving a lot of detail on how to use both “correctly” and calls for pragmatic choices. I would dare you to read it when ou do one and want to move from one to the other. Maybe you can stay with Pairing and just improve the way you are doing it</p>
+<p>Here is another one, <a href="https://www.jstorimer.com/blogs/workingwithcode/7766111-pairing-is-not-code-review">making the point that Codereview is not Pairing</a> (and vice versa). He seems to focus on the change of perspective that you have when you review code.</p>
+<p>Cockburn says “Pair programming is contiuous Codereviews in his landmark paper on the topic. If you dont know it yet: Read it.</p>
+<p><a href="http://williamcaputo.com/posts/000067.html">William Caputo</a> makes the point that you can choose none, both or any. I object this, on the other hand the point he is making with “Pairing is deep, Codereviews are wide” is pretty much on the spot.</p>
+<h2>SO WHAT IS MY TAKE ON THIS? PRETTY EASY!</h2>
+<p>First: The usage of vs. is just a provocation that might lead an uninformed person into the notion that one replaces the other. This is not the case.</p>
+<p>Second: Pairing will change the way you do Codereviews and vice versa. My take is: Start with one of these things. learn how to use it and then start experimenting with the next one. These two things are closely related and one thing ís highly probable: Codereview results will be much more about the “hard things” and less about coding conventions or other smaler things and less important things that seem to fill so much of them. They might get you less results then in the Nuber of findings, but you have ore time to discuss the harder problems. And this is why you do code reviews in the first place.</p>
+<p>A good chance to learn about this relation will be my Priprogramming Training in Munich on 03.+04.12.2014 in the Offices Mayflower. Come and see how this works together. Chance is: If you are using one og these techniques, the other can help you improve.</p>
+<h2>It is not Codereviews VS. Pair programming but CODEREVIEWS AND PAIR PROGRAMMING</h2>    ]]></content>
+</entry>
+            <entry>
+    <id>https://my-jigsaw-blog.com/blog/rules-of-mob-programming</id>
+    <link type="text/html" rel="alternate" href="https://my-jigsaw-blog.com/blog/rules-of-mob-programming" />
+    <title>The rules of mob programming</title>
+    <published>2016-02-06T01:00:00+01:00</published>
+    <updated>2016-02-06T01:00:00+01:00</updated>
+    <author>
+        <name>Sebastian Schürmann</name>
+    </author>
+    <summary type="html">A funny list of pseudo rules that apply to mob programming. Sometimes a laugh is a good thing
+
+Do talk /mob programming/ 
+Do talk while /mob programming/ 
+We are team. 
+Team is legion. 
+Team does forgive, Team does not forget. 
+Team can be a horrible,......</summary>
+    <content type="html"><![CDATA[
+        <p>A funny list of pseudo rules that apply to mob programming. Sometimes a laugh is a good thing</p>
+<ol>
+<li>Do talk /mob programming/ </li>
+<li>Do talk while /mob programming/ </li>
+<li>We are team. </li>
+<li>Team is legion. </li>
+<li>Team does forgive, Team does not forget. </li>
+<li>Team can be a horrible, senseless, uncaring monster. </li>
+<li>Team is still able to deliver. </li>
+<li>There are no real rules about Mob Programming. </li>
+<li>There are no real rules about moderation either — enjoy your flame. </li>
+<li>If you enjoy any rival sites — DON’T. Especially while mob programming. </li>
+<li>You can have pictures to prove your statement. Ugly pictures count equal.</li>
+<li>Lurk moar — it’s never enough. </li>
+<li>Nothing is Sacred. </li>
+<li>Do not argue with a troll — it means that they win. </li>
+<li>The more beautiful and pure a thing is, the more satisfying it is to build on it. </li>
+<li>There are NO girls on the internet. But in the room. Dont be a bunch of douches</li>
+<li>A cat is fine too. </li>
+<li>One cat leads to another. </li>
+<li>The more you hate it, the stronger it gets. In case of hatred: Use the law of 2 feet.</li>
+<li>It is delicious cake. You must eat it. Have a break. </li>
+<li>It is delicious trap. You must hit it. Don’t over extend the event. </li>
+<li>/programming/ sucks today. </li>
+<li>Ism goes in here. </li>
+<li>You will never have a good estimate. </li>
+<li>???? </li>
+<li>PROFIT! </li>
+<li>It needs more Desu. No exceptions. </li>
+<li>There will always be more fucked up shit than what you just saw. </li>
+<li>You can not divide by zero (just because the calculator says so). </li>
+<li>No real limits of any kind apply here — not even the sky </li>
+<li>CAPSLOCK IS CRUISE CONTROL FOR COOL. # is capslock for markdown. Write wiki while you are in the mob. </li>
+<li>EVEN WITH CRUISE CONTROL YOU STILL HAVE TO STEER. Decide whats next. </li>
+<li>Sexism isn’t funny. Seriously guys. </li>
+<li>There is porn of it. No exceptions. </li>
+<li>If no porn is found of it, it will be created. </li>
+<li>No matter what it is, it is somebody’s fetish. No exceptions. </li>
+<li>Even one positive comment about Japanese things can make you kaizen. </li>
+<li>When team sees a c-level executive, one wear a funny hat.</li>
+<li>There is furry porn of it. No exceptions. </li>
+<li>The pool is always closed due to everyone being at work (the 90ies want their startup legends back). </li>
+<li>If there isn’t enough Mob Programming just ask for Moar. </li>
+<li>Everything has been hacked, cargo culted and re-named. </li>
+<li>DISREGARD THAT I DO CARGOCULT </li>
+<li>The company is not your personal army. </li>
+<li>Rule 45 is a lie. </li>
+<li>The cake is a lie. </li>
+<li>If you post it on the wiki, they will read it. </li>
+<li>It will always need moar sauce. </li>
+<li>The internet (especially social media) makes you stupid. </li>
+<li>Anything can be a meme. </li>
+<li>Longcat is looooooooooong. </li>
+<li>If something goes wrong, doesnt matter who did it. You must get it right together. See rule 48 </li>
+<li>Everyone is root by default. </li>
+<li>Root has cat ears, even in real life. No exceptions. </li>
+<li>CP is awwwright, but DSFARGEG will get you b&amp;. </li>
+<li>Don’t mess with kaizen. </li>
+<li>Moderator has never been asked for his opinion so often. CROSSFUNCTIONAL. CROSSFUCKINGDISCIPLINARY. </li>
+<li>CFO does not “buy”, the users. Use your creativity, not web ads.</li>
+<li>The term “Scrum” does not refer to the american football. </li>
+<li>If you say Feedback, you be able to give it. </li>
+<li>You cannot divide by zero. Opinions will be different. </li>
+<li>The Mob Programming is SERIOUS FUCKING BUSINESS. </li>
+<li>If you do not believe it, then it wont work. </li>
+<li>Not even Scrum-Norris knows to create a perfect architecture. He gets ideas from stack overflow </li>
+<li>Snowden is a hero to us all. </li>
+<li>This is not “hanging out”, it’s MOBPROGRMAAAAAAAAAA. </li>
+<li>One does not simply shoop da whoop into Amazon instance limits. </li>
+<li>Katy is did PHP and Javascript, so deal w/it. </li>
+<li>LOL SIXTY NINE AMIRITE? </li>
+<li>There can be estimates of it. One exception: No Estimates. </li>
+<li>This is a showdown, a throwdown, hell no I can’t slow down, it’s gonna go. </li>
+<li>CXO did NOT, under any circumstances, tk him 2da bar|? </li>
+<li>If you express astonishment at someone’s claim, it is most likely just a clever ruse. </li>
+<li>If it hadn’t been for Cotton Eyed Joe, al MOb would have been married a long time ago. </li>
+<li>Around Snacks, Mob Programming is lax. </li>
+<li>All numbers are at least fibonacci but always OVER NINE THOUSAAAAAND. </li>
+<li>Racism definitely needs to gb2/hell/. </li>
+<li>Mods are root. No exceptions. </li>
+<li>All Caturday threads will be bombarded with Zippocat. No exceptions. </li>
+<li>No matter how cute it is, it will be probably the all-nighter of tomorrow. </li>
+<li>That’s not get shit done programming, but Mob Programming. </li>
+<li>The idea of flat hierarchies is really, really funny. </li>
+<li>The Mob Programming is SERIOUS BUSINESS. </li>
+<li>Rule 87 is true. </li>
+<li>Yes, it is some sourcecode. </li>
+<li>Bobba bobba is bobba. </li>
+<li>Rule 84 is false. OH SHI- </li>
+<li>If your statement is preceded by “Deine Mudda”, then you are not doing it right. </li>
+<li>If you cannot understand it, it is perl or closure or any other of 20 hipsterlangs out there. Grow a beard. </li>
+<li>Team still owes moderator a little courtesy. </li>
+<li>Spengbab Sqarpaint is luv Padtwick Zhstar iz fwend. </li>
+<li>Disregard Bigmike, he does waterfall. </li>
+<li>Secure tripcodes are for jerks. </li>
+<li>If someone herd u liek Mudkips, deny it constantly for the lulz. </li>
+<li>Off topic conversations are inevitable. If the whole thing works without moderation, it is boring and should have more off topic conversations.</li>
+<li>I am a huge fan of not zoning out to much here. </li>
+<li>All programming languages and lines of work suck equally and will never be fixed. </li>
+<li>Bricks must are required to be shat whenever team is surprised. </li>
+<li>If you have no bricks to shit, you prolly had nogood time together. </li>
+<li>ZOMG NONE</li>
+</ol>    ]]></content>
+</entry>
+            <entry>
+    <id>https://my-jigsaw-blog.com/blog/the-crux-of-done</id>
+    <link type="text/html" rel="alternate" href="https://my-jigsaw-blog.com/blog/the-crux-of-done" />
+    <title>The crux of done</title>
+    <published>2016-02-03T01:00:00+01:00</published>
+    <updated>2016-02-03T01:00:00+01:00</updated>
+    <author>
+        <name>Sebastian Schürmann</name>
+    </author>
+    <summary type="html">There are always big discussions revolving around when some piece of work is “done”: Often the discussion goes as far as defining different states of done and there is even the notion of “done done”. This stands for “it is really done now”.......</summary>
+    <content type="html"><![CDATA[
+        <p>There are always big discussions revolving around when some piece of work is “done”: Often the discussion goes as far as defining different states of done and there is even the notion of “done done”. This stands for “it is really done now”.</p>
+<p>Some definitions of done revolve around the following ideas:</p>
+<p>When Tests Pass: This is basically a fire and forget way of working that expects feedback at the and of a sprint. Then the piece of work is getting deployed and then you might have a good indicator if that works or not. When your app just has compiled and all tests are green: It has not yet been integrated with the system. Not done my friend.</p>
+<p>When Integrated: You might be a active reader or just had the experience, that a a piece of software not only must pass its (unit) tests, but needs to be integrated with other systems and live data in order to prove that it works. So integrate it, like your jenkins would do. Download all the dependencies, setup the system, use live data. Profit? Not yet, still the thing is lying around in a repo and no one is using it (apart from a mr Jenkins)</p>
+<p>When deployable build exists: If I had a nickel for every time I heard a discussion about “potential shippable”, sprints that end successfully without a deploy and all that yada yada. Simple truth: If you haven’t shipped, you are not done. Just that you integrated the system with a copy of all user data, on a 1 to 1 equal hardware setup, with automated acceptance and performance tests does not mean it will work on the live system. Admit it, there is not a 100% chance for this to work on live.</p>
+<p>When deployed: So your sprint ends on a Friday and you just    When measurably delivering value want to deploy, you deploy, all is fine. Just until something goes wrong. Especially deploys for multiple teams with different areas of expertise (mobile apps, backend, web) can get hairy. Its just that notion of “all at once, now” that makes it problematic. Deployed software always needs a little time to prove that it works. A green lit deploy is by no means a good indicator if your rollout was successful from the customer side. Customer does not care if the feature was rolled out, customer wants to use it!!! Big difference. ;) Not done when deployed.</p>
+<p>When measurably delivering value: It might be surprising, but this is the only thing I go by since I came by that definition for the first time. Its delivered and I have access to the tool that shows me the value in your business (e.g. Sales made) in any tracking tool (e.g. google analytics, salesforce, e-commerce backend) and I can see for myself. When the thing is deployed, I have observed it working and seen the tracking systems . I might have gone the extra mile to set up a piece of hardware or do a order on a online retail system for about 20.000 Euro (only to find out that the rollback did not rollback the expenses on my customer card account — free credits, not even part of the development I had done). After another change and deploy, the product manager got informed and we reviewed the change on the live systems and all was fine then.</p>
+<h2>Fail Forward</h2>
+<p>This is a thing to go by. Not every condition can be foreseen, not every plan can be made up. I do sport a extra round of automation tools and logging foo and I spend a extra amount of time on live systems. Just to be there and inform myself of the mishap that is going on. Isn’t it that always just the one test or test category was missing, just to find out 2 weeks later that another type of test would have avoided the problem. A failed (forward) deploy is just another fail, that leads to just another improvement of process and there are ways to make sure that this type of error will likely not happen again.</p>
+<p>That is normal operating procedure already in one or the other form. It just removes the need for a discussion about when done is done. The answer is: Not as long as the software runs on a live system.</p>
+<p>Its not that I am ignoring the learnings out of old DOD documents, but in the end, it boils down to one thing and other things got so internalized and do not need a entry on such a list (e.g. doing all the translation work before release, writing tests). The more I put on such a list, the more exemptions need to be done (e.g. no unit tests for UI features, just cucumber, no translations for CLI tools). There is a deep rabbit hole of arcane processes and deploy/build chains down this way.</p>
+<p>This is why I can live with a “Definition of done” with only one rule:</p>
+<pre><code>When measurably delivering value</code></pre>    ]]></content>
+</entry>
+            <entry>
+    <id>https://my-jigsaw-blog.com/blog/survive-your-frontend</id>
+    <link type="text/html" rel="alternate" href="https://my-jigsaw-blog.com/blog/survive-your-frontend" />
+    <title>Surive your Frontend</title>
+    <published>2014-04-10T02:00:00+02:00</published>
+    <updated>2014-04-10T02:00:00+02:00</updated>
+    <author>
+        <name>Sebastian Schürmann</name>
+    </author>
+    <summary type="html">I am building a talk on how to approach big/long running front end projects that was initially presented at the Berlin PHP User-group July 2014. I started to prepare it and want to nail down my thoughts.
+
+I have had the chance to get my hands on a lot of......</summary>
+    <content type="html"><![CDATA[
+        <p>I am building a talk on how to approach big/long running front end projects that was initially presented at the Berlin PHP User-group July 2014. I started to prepare it and want to nail down my thoughts.</p>
+<h2>WHERE I AM COMING FROM</h2>
+<p>I have had the chance to get my hands on a lot of Javascript projects and most of the were not small projects per se. It is not only the raw lines of code that let me speak of “big” projects but longevity and complexity that you find in a modern front-end to a web applicationmaking it “big”.</p>
+<p>A regular observation is that front-ends do not get the same level of love that a backend gets. Some examples I came across this year alone:</p>
+<p>Specifications are very roughly prepared for front-ends
+The crafty side of development, modularization and testing is neglected
+Standards are not set and/or followed
+The fact that a javascript front-end is the client to a server application is often overlooked
+Front-end code is often thought as throw away.
+Seriously guys. It would be good business to go on and on and on like this for years. It is already going on. You think your back-end code rots from greenfield to brownfield fast? Look at your front-end code. It always rots faster.</p>
+<p>“Code this fast. We can rewrite this next year.” and next year we are sitting on the same type of code for the same website, thinking about other things we could do, but re-write a bunch of front-end legacy crap. Yeah, just implement another slider. You like to work in one checkout with 20k lines of code? You want to implement just another self made inline validation for address data? Go for it, but just do not expect me to like this and help you failing.</p>
+<p>Sorry, I am too old for this. Been there, done that - 10 Years ago.</p>
+<h2>WHERE TO START?</h2>
+<p>When working out all the specific little hints and tipps for the talk I had to group them in order to create a flow for the presentation. All the little things and tricks go into 3 groups.</p>
+<ul>
+<li>Tools - Its 2014 and there are a lot of new toys. Lets use them.</li>
+<li>Craft - We must use the tools. This means pure development</li>
+<li>Process - Development is just a part of a larger process.</li>
+<li>It is just the first order I brought into the first set of ideas. It all might be subject to change.</li>
+</ul>
+<h2>TOOLS</h2>
+<p>There is a bunch of new tools to help with front-end development. A little sneak peak of the things I have used in the last weeks and months.</p>
+<p>Bower, Component.js or NPM - for modularization and re-use
+Gulp and Grunt for Builds
+Docker, Chef or Puppet to build a machine where it runs on
+Mock and Stub Servers
+GIT(hub), do you speak it?
+…..(more in the talk)
+You can still right click and download Jquery if you want to, but there is no need for it and if you’ve checked it into your version control I do think of this as a anti-pattern. We moved way beyond this.</p>
+<p>I do not mind using Jquery plugins as a basis for a project or React components, but please, can have consistency? I do not mind doing coffeescript for you (and learning another language while you pay me doing this) but please, can we have all the code consistent in like one langugae then?</p>
+<h2>CRAFT</h2>
+<p>The pure coding is the thing that I call craft. This has not changed much. But using tools alone will not help you.</p>
+<p>I mean we can go on for the next ten years like this in our code ….</p>
+<pre><code class="language-javascript">function validForm(formName) {
+    switch (formName) {
+
+        case "request_showing":
+            // Validate the first name
+            if (request_showing.first_name.value == "") {
+                alert("Please enter your first name.");
+                request_showing.first_name.value = "*** FIRST NAME";
+                request_showing.first_name.focus();
+                problem = true;
+            };
+            break;
+
+        case "email_friend":
+        // ....... 
+
+    }
+}</code></pre>
+<p>or we can grow up and use patterns and a little thinking to find some slick implementations that follow old concepts like coupling) and cohesion). It is not new and just because you have visited jsconf last week and took away the concepts from es5, rxJS or any other reactive variant these “rules” are not bollocks.</p>
+<p>Really, I have seen this pattern over and over. The Jquery guys told us all the stuff we did before was crap in 2004 with all the same arguments used today by the rxJS community. And seriously the language that we actually use has not really changed. It is still javascript and the browsers we target still ask for a pretty old ECMA Standard. IE8 anyone? ;)</p>
+<p>It is not that I do not care for the niceties of es5, but some old patterns do not get out of fashion and a DOM tree, the main target of any JS front-end project, is still a evented thing so event driven programming will get you very far.</p>
+<h2>PROCESS</h2>
+<p>The “best” thing I have seen in the last year was a code review tool giving a automated +1 for any checkin based on executing the tests of the codebase I was assigned to. So far so good. But the tests executed in this case were the ones for the backend codebase. Front-end tests did not get executed at all (they were broken at the time). This is how you subvert the basically pretty cool code review process (no I wont argue pairing vs. code reviews here - although I am a big proponent of paired code as you all know). A lot of the investments done (tests for the frontend code), but all the money invested thrown out of the window.</p>
+<p>With a non-modularized codebase, in the same repository like your backend you are pretty much set up to fail. It starts with the big codebase, goes on with a one size fits all test and release process where you are pretty much forced to check all the functionality all the time. Besides TDD and some integration testing you are pretty much bound to do most of your real testing in a explorative way. It is a very important way of testing but should be used as a an extra to show your blind spots, discover new areas to test and not be the most important source for bugs.</p>
+<p>This is what you do when you specify requirements. The checkouts address form does need a inline validation is not a requirement in my world. I am sorry. But starting coding will just get you into a long loop of trial and error that is inherently costly and as I started out: you will repeat this next year. To be constructive here, why not go down the road of <a href="http://www.wikiwand.com/en/Specification_by_example#/overview">specification by example</a>. Yeah I know, that sounds like a big hassle. If you calculate the cost of bugs in specific steps of the development process, you might change your thinking here.</p>
+<h2>MY POINT!</h2>
+<p>I think we now can stop repeating the fails of the last ten years (and more) over and over. We have evolved the tools, craft and process over the last 10 years in a way that really helps with this.</p>
+<ul>
+<li>Tools - Use the tools at hand. They are not toys and they are a pretty good investment. Use them with care, but use them.</li>
+<li>Craft - Front-end is hardcore software development. Accept it and learn it.</li>
+<li>Process - Process wise we learned a lot on how we can improve development and find errors and bugs early in development. CI, CD, Feedback and all this is not a joke. This is the new imperative.
+I am looking forward to the talk and as always I am looking for feedback in the comments section here.</li>
+</ul>    ]]></content>
+</entry>
+    </feed>

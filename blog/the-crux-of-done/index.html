@@ -1,0 +1,174 @@
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <meta name="description" content="1">
+
+        <meta property="og:title" content="The crux of done | sebs.github.io"/>
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://my-jigsaw-blog.com/blog/the-crux-of-done"/>
+        <meta property="og:description" content="Incremental &amp; Iterative Software Development" />
+
+        <title>sebs.github.io | The crux of done</title>
+
+        <link rel="home" href="https://my-jigsaw-blog.com">
+        <link rel="icon" href="/favicon.ico">
+        <link href="/blog/feed.atom" type="application/atom+xml" rel="alternate" title="sebs.github.io Atom Feed">
+
+            <meta property="og:title" content="The crux of done" />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://my-jigsaw-blog.com/blog/the-crux-of-done"/>
+    <meta property="og:description" content="What exactly is done" />
+
+                    <!-- Insert analytics code here -->
+        
+        <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:300,300i,400,400i,700,700i,800,800i" rel="stylesheet">
+        <link rel="stylesheet" href="/assets/build/css/main.css?id=d458cd4f41d39493630d">
+    </head>
+
+    <body class="flex flex-col justify-between min-h-screen bg-grey-lightest text-grey-darkest leading-normal font-sans">
+        <div id="vue-app">
+            <header class="flex items-center shadow bg-white border-b h-24 py-4" role="banner">
+                <div class="container flex items-center max-w-4xl mx-auto px-4 lg:px-8">
+                    <div class="flex items-center">
+                        <a href="/" title="sebs.github.io home" class="inline-flex items-center">
+                            <img class="h-8 md:h-10 mr-3" src="/assets/img/logo.svg" alt="sebs.github.io logo" />
+
+                            <h1 class="text-lg md:text-2xl text-blue-darkest font-semibold hover:text-blue-dark my-0">sebs.github.io</h1>
+                        </a>
+                    </div>
+
+                    <div class="flex flex-1 justify-end items-center">
+                        <search></search>
+
+                        <nav class="hidden lg:flex items-center justify-end text-lg">
+    <a title="sebs.github.io Blog" href="/blog"
+        class="ml-6 text-grey-darker hover:text-blue-dark ">
+        Blog
+    </a>
+
+    <a title="sebs.github.io About" href="/about"
+        class="ml-6 text-grey-darker hover:text-blue-dark ">
+        About
+    </a>
+
+    <a title="sebs.github.io Contact" href="/contact"
+        class="ml-6 text-grey-darker hover:text-blue-dark ">
+        Contact
+    </a>
+</nav>
+
+                        <button class="flex justify-center items-center bg-blue border border-blue h-10 px-5 rounded-full lg:hidden focus:outline-none"
+    onclick="navMenu.toggle()"
+>
+    <svg id="js-nav-menu-show" xmlns="http://www.w3.org/2000/svg"
+        class="fill-current text-white h-9 w-4" viewBox="0 0 32 32"
+    >
+        <path d="M4,10h24c1.104,0,2-0.896,2-2s-0.896-2-2-2H4C2.896,6,2,6.896,2,8S2.896,10,4,10z M28,14H4c-1.104,0-2,0.896-2,2  s0.896,2,2,2h24c1.104,0,2-0.896,2-2S29.104,14,28,14z M28,22H4c-1.104,0-2,0.896-2,2s0.896,2,2,2h24c1.104,0,2-0.896,2-2  S29.104,22,28,22z"/>
+    </svg>
+
+    <svg id="js-nav-menu-hide" xmlns="http://www.w3.org/2000/svg"
+        class="hidden fill-current text-white h-9 w-4" viewBox="0 0 36 30"
+    >
+        <polygon points="32.8,4.4 28.6,0.2 18,10.8 7.4,0.2 3.2,4.4 13.8,15 3.2,25.6 7.4,29.8 18,19.2 28.6,29.8 32.8,25.6 22.2,15 "/>
+    </svg>
+</button>
+
+                    </div>
+                </div>
+            </header>
+
+            <nav id="js-nav-menu" class="nav-menu hidden lg:hidden">
+    <ul class="list-reset my-0">
+        <li class="pl-4">
+            <a
+                title="sebs.github.io Blog"
+                href="/blog"
+                class="nav-menu__item hover:text-blue "
+            >Blog</a>
+        </li>
+        <li class="pl-4">
+            <a
+                title="sebs.github.io About"
+                href="/about"
+                class="nav-menu__item hover:text-blue "
+            >About</a>
+        </li>
+        <li class="pl-4">
+            <a
+                title="sebs.github.io Contact"
+                href="/contact"
+                class="nav-menu__item hover:text-blue "
+            >Contact</a>
+        </li>
+    </ul>
+</nav>
+
+            <main role="main" class="flex-auto w-full container max-w-xl mx-auto py-16 px-6">
+                            <img src="/assets/img/post-cover-image-2.png" alt="The crux of done cover image" class="mb-2">
+    
+    <h1 class="leading-none mb-2">The crux of done</h1>
+
+    <p class="text-grey-darker text-xl md:mt-0">Sebastian Schürmann  •  February 3, 2016</p>
+
+    
+    <div class="border-b border-blue-lighter mb-10 pb-4" v-pre>
+        <p>There are always big discussions revolving around when some piece of work is “done”: Often the discussion goes as far as defining different states of done and there is even the notion of “done done”. This stands for “it is really done now”.</p>
+<p>Some definitions of done revolve around the following ideas:</p>
+<p>When Tests Pass: This is basically a fire and forget way of working that expects feedback at the and of a sprint. Then the piece of work is getting deployed and then you might have a good indicator if that works or not. When your app just has compiled and all tests are green: It has not yet been integrated with the system. Not done my friend.</p>
+<p>When Integrated: You might be a active reader or just had the experience, that a a piece of software not only must pass its (unit) tests, but needs to be integrated with other systems and live data in order to prove that it works. So integrate it, like your jenkins would do. Download all the dependencies, setup the system, use live data. Profit? Not yet, still the thing is lying around in a repo and no one is using it (apart from a mr Jenkins)</p>
+<p>When deployable build exists: If I had a nickel for every time I heard a discussion about “potential shippable”, sprints that end successfully without a deploy and all that yada yada. Simple truth: If you haven’t shipped, you are not done. Just that you integrated the system with a copy of all user data, on a 1 to 1 equal hardware setup, with automated acceptance and performance tests does not mean it will work on the live system. Admit it, there is not a 100% chance for this to work on live.</p>
+<p>When deployed: So your sprint ends on a Friday and you just    When measurably delivering value want to deploy, you deploy, all is fine. Just until something goes wrong. Especially deploys for multiple teams with different areas of expertise (mobile apps, backend, web) can get hairy. Its just that notion of “all at once, now” that makes it problematic. Deployed software always needs a little time to prove that it works. A green lit deploy is by no means a good indicator if your rollout was successful from the customer side. Customer does not care if the feature was rolled out, customer wants to use it!!! Big difference. ;) Not done when deployed.</p>
+<p>When measurably delivering value: It might be surprising, but this is the only thing I go by since I came by that definition for the first time. Its delivered and I have access to the tool that shows me the value in your business (e.g. Sales made) in any tracking tool (e.g. google analytics, salesforce, e-commerce backend) and I can see for myself. When the thing is deployed, I have observed it working and seen the tracking systems . I might have gone the extra mile to set up a piece of hardware or do a order on a online retail system for about 20.000 Euro (only to find out that the rollback did not rollback the expenses on my customer card account — free credits, not even part of the development I had done). After another change and deploy, the product manager got informed and we reviewed the change on the live systems and all was fine then.</p>
+<h2>Fail Forward</h2>
+<p>This is a thing to go by. Not every condition can be foreseen, not every plan can be made up. I do sport a extra round of automation tools and logging foo and I spend a extra amount of time on live systems. Just to be there and inform myself of the mishap that is going on. Isn’t it that always just the one test or test category was missing, just to find out 2 weeks later that another type of test would have avoided the problem. A failed (forward) deploy is just another fail, that leads to just another improvement of process and there are ways to make sure that this type of error will likely not happen again.</p>
+<p>That is normal operating procedure already in one or the other form. It just removes the need for a discussion about when done is done. The answer is: Not as long as the software runs on a live system.</p>
+<p>Its not that I am ignoring the learnings out of old DOD documents, but in the end, it boils down to one thing and other things got so internalized and do not need a entry on such a list (e.g. doing all the translation work before release, writing tests). The more I put on such a list, the more exemptions need to be done (e.g. no unit tests for UI features, just cucumber, no translations for CLI tools). There is a deep rabbit hole of arcane processes and deploy/build chains down this way.</p>
+<p>This is why I can live with a “Definition of done” with only one rule:</p>
+<pre><code>When measurably delivering value</code></pre>    </div>
+
+    <nav class="flex justify-between text-sm md:text-base">
+        <div>
+                            <a href="https://my-jigsaw-blog.com/blog/survive-your-frontend" title="Older Post: Surive your Frontend">
+                    &LeftArrow; Surive your Frontend
+                </a>
+                    </div>
+
+        <div>
+                            <a href="https://my-jigsaw-blog.com/blog/rules-of-mob-programming" title="Newer Post: The rules of mob programming">
+                    The rules of mob programming &RightArrow;
+                </a>
+                    </div>
+    </nav>
+            </main>
+        </div>
+
+        <script src="/assets/build/js/main.js?id=e69137c6f1d8bca4b130"></script>
+
+        <script>
+    const navMenu = {
+        toggle() {
+            const menu = document.getElementById('js-nav-menu');
+            menu.classList.toggle('hidden');
+            menu.classList.toggle('lg:block');
+            document.getElementById('js-nav-menu-hide').classList.toggle('hidden');
+            document.getElementById('js-nav-menu-show').classList.toggle('hidden');
+        },
+    }
+</script>
+
+        <footer class="bg-white text-center text-sm mt-12 py-4" role="contentinfo">
+            <ul class="flex flex-col md:flex-row justify-center list-reset">
+                <li class="md:mr-2">
+                    &copy; <a href="https://tighten.co" title="Tighten website">Tighten</a> 2019.
+                </li>
+
+                <li>
+                    Built with <a href="http://jigsaw.tighten.co" title="Jigsaw by Tighten">Jigsaw</a>
+                    and <a href="https://tailwindcss.com" title="Tailwind CSS, a utility-first CSS framework">Tailwind CSS</a>.
+                </li>
+            </ul>
+        </footer>
+    </body>
+</html>
