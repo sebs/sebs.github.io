@@ -3,7 +3,7 @@
     <title>sebs.github.io</title>
     <link href="https://sebs.github.io" />
     <link type="application/atom+xml" rel="self" href="https://sebs.github.io/blog/feed.atom" />
-    <updated>2019-01-03T12:36:41+01:00</updated>
+    <updated>2019-01-03T13:24:58+01:00</updated>
     <id>https://sebs.github.io/blog/feed.atom</id>
     <author>
         <name>Sebastian Schürmann</name>
@@ -12,8 +12,8 @@
     <id>https://sebs.github.io/blog/no-more-servers-already</id>
     <link type="text/html" rel="alternate" href="https://sebs.github.io/blog/no-more-servers-already" />
     <title>No more servers already!</title>
-    <published>2018-02-06T01:00:00+01:00</published>
-    <updated>2018-02-06T01:00:00+01:00</updated>
+    <published>2018-07-06T02:00:00+02:00</published>
+    <updated>2018-07-06T02:00:00+02:00</updated>
     <author>
         <name>Sebastian Schürmann</name>
     </author>
@@ -55,66 +55,11 @@ Search: Very invisible. Apart from a well filled index, you just dont care —
 <p>For me it looks like I will be a bit more wary, with spinning up a container here, installing a database there and try to explore the “No more servers already” idea a bit more. I am starting to enjoy it being “serverless”</p>    ]]></content>
 </entry>
             <entry>
-    <id>https://sebs.github.io/blog/opsec-on-events</id>
-    <link type="text/html" rel="alternate" href="https://sebs.github.io/blog/opsec-on-events" />
-    <title>A piece on “OpSec” and Events/Hackathons/Barcamps</title>
-    <published>2018-02-06T01:00:00+01:00</published>
-    <updated>2018-02-06T01:00:00+01:00</updated>
-    <author>
-        <name>Sebastian Schürmann</name>
-    </author>
-    <summary type="html">I thought, everything that you could say has been said, about how to stay half assed secure on conferences and other nerdy events and environments. Let me tell you about some mistakes that I made. This is aimed on the half way tech savy from a half assed......</summary>
-    <content type="html"><![CDATA[
-        <p>I thought, everything that you could say has been said, about how to stay half assed secure on conferences and other nerdy events and environments. Let me tell you about some mistakes that I made. This is aimed on the half way tech savy from a half assed programmer. Please correct me in the comments if necessary</p>
-<p>Note: Writing this from first person view just for a more readable text and reader enjoyment. I am not endorsing or engaging in hacking at community events. My point is: get your shit together. It is easy.</p>
-<h2>Don’t bring your workbox.</h2>
-<p>Probably the Best advice, one can give here. Where is no data, there is no problem. On how many services are you connected? How many pieces of paper did you sign before you got access to X and downloaded it? I have news: The result of that signing is a cookie or other session auth thingie that you got after giving company Y’s server a username and password.     That is what I may want, to start reading your email, starting virtual machines or just writing to your team that you will come out, transform to what ever your gender is NOT atm and demand to be addressed with “Your Highness” in the future. SSD Drives get big, we developers are very not doing a good job at keeping them clean. This 200GIG dump of the user table you used last time to debug that problem? Publishing modules on npm? Same thing. npm remembers logins in a session. What stops me from publishing some exploit to your users labeled v2.0.0 G?. On the other side: What does a attacker really KNOW about that computer: That you, the human, will carry it to work, where you have perfect credentials in your home network. A infection to a computer is done in a very short time and if you are working in any kind of organization that handles money: leave your shit at home. To what ip(s) ports exactly is that well crafted software of yours trying to speak? In a public network, with not only a great community, but as well, contenders on markets. Leave that shit at home, if you work in a big company, go to your security aware ADMIN, tell him where you go and let him help out. Seriously, covering the risk on your devbox might justify for a smaller, more mobile computer (macbook pro replaced by air for conference). Btw: encryption will not help you. On a event or hackathon, your box will be up and running all the time. Filesystem encryption and a long password is implied. And dont leave the box unattended. Drive by exploits, totally CSI Cyber stlye, google this shit ;) its real and it is damn cheap.</p>
-<h2>Protocol Encryption and Auth</h2>
-<p>For all open ports and resources, of maybe your hackathon project have a username and password configured and use the S variants of protocols: https and a password for any port serving a website from your localhost. All dev servers, all REST endpoints, everything. Just don’t start a blank version of anything without auth. You are now safe from a lot of script kiddie attacks. And NO, localhost is not local. RTFM. Just make sure everything that uses IP and protocols to use usernames and passwords. Big in the Game: Redis for a remote code execution that writes to the known hosts SSH file or MongoDB with defaults with no password. Access to pgsql/mysql: data sinks open up. One just not simply Relational DB and store no data.</p>
-<h2>Traffic</h2>
-<p>All normal traffic should be encrypted and send via a SSH tunnel or proxy in order to avoid the sharing of local network resources with others. Except from ports that you WANT to share (see 2.) All traffic from local network is evil. If you find a way, to deploy the thing you are working on to a online service, even better. Do that via the tunnel, and et voila. As dangerous as before, but not 100 buddies in the same network and your application has a totally different “localhost” environment there. You can even stay on pure 4G if your local legislation allows for cheap mobile web access. ;)</p>
-<h2>Social</h2>
-<p>Do I need let everyone know that my deploy comes from docker cloud, I monitor metrics with a prometheus instance or I am a CircleCI user? I can look on both sides of the screen of your macbook: one side the stickers will tell me, the other ones the icons on the desktop or bookmarks (remember: it is a sharing thingie — you let me look at your screen). App wise: just bring what you need, make sure for easy “webaccess” with what ever the smart admin gave you. Knowing this is as effort rich as adding the tools of your choice and “CVE”. This will alarm me every time, when I might have another attempt at owning you. In general, since you brought another box, just access what you need and don’t put bigass icons in the middle of the screen of your “Outlook Express 2017” your company installed for you (the OTHER admin, who does not care as much). Opsec would contain as well, to know what you are allowed to tell others and what not. Have a good conversation with your superior or someone else from your environment. Just manage expectations here beforehand. I heard of hackathons ending up in bars and things getting funny. You better make a cut at what you are allowed to tell. No, exactly that Story … Everyone would find funny, but make sure you realize: This is not a team internal event. It’s easy to mistake easy bonding on community events for trust. Especially when I involve alcohol.</p>
-<p>TL:TR: I am just a developer of software, but even I find myself on a nice community event, that is just accompanied by a “hostile network environment” and needs to be treated this way. As developers, we should take care for our dev boxes and their contents.
-Bringing a big data bait, having services without authentication and encrypted traffic and telling everyone how to own you will not end with fun at all. 4 Ports got closed and 3 services completely deactivated during the production of this blog post.</p>    ]]></content>
-</entry>
-            <entry>
-    <id>https://sebs.github.io/blog/sit-together</id>
-    <link type="text/html" rel="alternate" href="https://sebs.github.io/blog/sit-together" />
-    <title>10 TIPS FOR THE XP PRACTICE &quot;SIT TOGETHER&quot;</title>
-    <published>2017-03-23T01:00:00+01:00</published>
-    <updated>2017-03-23T01:00:00+01:00</updated>
-    <author>
-        <name>Sebastian Schürmann</name>
-    </author>
-    <summary type="html">James Shore describes “Sit together” in his book as
-Sitting together fuels team communication. This has impressive results, cutting time-to-market by two thirds in one field study. It enables simultaneous phases, eliminates waste, and allows team......</summary>
-    <content type="html"><![CDATA[
-        <p>James Shore describes “Sit together” in his book as</p>
-<p>Sitting together fuels team communication. This has impressive results, cutting time-to-market by two thirds in one field study. It enables simultaneous phases, eliminates waste, and allows team members to contribute insights to others’ conversations.</p>
-<p>To sit together, create an open workspace. This takes longer than you expect. Organize your workspace around pairing stations, locating people according to conversations they should overhear. Provide plenty of whiteboard space. Make sure there’s room for personal effects and a place for private conversations.</p>
-<p>Open workspaces are hard for some to accept. Get team members’ permission before switching, or they may rebel.“</p>
-<ol>
-<li>Sit all the disciplines together. I often see designers skipping this one and staying with their designer teams. Not so good. Everyone should be on the product they are working on. </li>
-<li>Agree to common rules explicitly - Different people have different needs and desires. Talk about them and write them down. After a few weeks: rinse and repeat. make this explicit</li>
-<li>Must not be in one Room - BUT - Sitting together fuels team communication. This has impressive results, cutting time-to-market by two thirds in one field study. It enables simultaneous phases, eliminates waste, and allows team members to contribute insights to others’ conversations. To sit together, create an workspace. This takes longer than you expect. Organize your workspace around pairing stations, locating people according to conversations they should overhear. Provide plenty of whiteboard space. Make sure there’s room for personal effects and a place for private conversations. Open workspaces are hard for some to accept. </li>
-<li>Adapt your visual management. If you are doing hardcore Scrum you might dive into Kanban now. There are different disciplines and roles in the room, working on on one thing. So the normal Scrum Board most likely will not cut it. A good place to start is Kanaban.</li>
-<li>Rituals! Rituals! Rituals!. I have heard of a “Disco Friday” where teams would play nice music all day long aloud on friday or seen hourly Nerf gun matches. These rituals help to firm groups and keep them in high cohesion.</li>
-<li>Style it. Invest some work in styling the place. Some lights, LED ambient illumination, posters on the wall etc. will really help teams to form and stick. Make sure to provide a budget.</li>
-<li>Clean it. Once a week/sprint: Clean the workplace and bring everything in order. Its a very short procedure for most places and it helps providing general order and cleanliness.</li>
-<li>Have the Meetings together .Do not let the “Backend Guy” bail the Grooming when you are working on Frontend Stories. Do not let the designer bail as well. Everyone has to learn what the other disciplines do. When someone sits there and does not get it: Help him understand. Re-Arrange Groomings so that there are Stories of any Kind. You know the vertical slicing thingie? You should do it. And no .. neither the designer nor the tester will bail the Retrospective. It takes disciplined and willing teams to practice it this way. But in my experience: The seasoned crafts(wo)men will happily participate.</li>
-<li>Have a extra room for “Discussions”. When different trades of craft work together, there is a lot of need to discuss things and talk about it. You will need a room for this since every discussion will be a interruption for everyone else in the room. Buy a set of high quality noise dampening head phones. I am working at a client here in Hamburg where you have small chambers for working 1on1 as well as meeting rooms that are general available for phone conferences etc.</li>
-<li>Have more than enough Space</li>
-</ol>
-<p>Even People with Computers need Space to work and think. Provide this. Don’t make cross-functional teams and cram them in a small room and be surprised you get a lot of complaints from the inhabitants of that room . If you cant afford space, maybe do not hire developers at all. There are regulations for how many office workers can be in a certain set of size here in Germany and I have seen several occasions where these laws where used as a common denominator of how many people fit in a room. This is not the way it works.</p>
-<p>So this is what I came up with. What are your Ideas?</p>    ]]></content>
-</entry>
-            <entry>
     <id>https://sebs.github.io/blog/ideas-on-pairprogramming</id>
     <link type="text/html" rel="alternate" href="https://sebs.github.io/blog/ideas-on-pairprogramming" />
     <title>Ideas on Pairprogramming</title>
-    <published>2017-03-23T01:00:00+01:00</published>
-    <updated>2017-03-23T01:00:00+01:00</updated>
+    <published>2017-07-23T02:00:00+02:00</published>
+    <updated>2017-07-23T02:00:00+02:00</updated>
     <author>
         <name>Sebastian Schürmann</name>
     </author>
@@ -205,6 +150,37 @@ more than one person will have the freedom to work on a new thing. It is just mo
 It would be nice to get some other ideas from you here in the comments section. What is your special way of Pairprogramming?</p>    ]]></content>
 </entry>
             <entry>
+    <id>https://sebs.github.io/blog/sit-together</id>
+    <link type="text/html" rel="alternate" href="https://sebs.github.io/blog/sit-together" />
+    <title>10 TIPS FOR THE XP PRACTICE &quot;SIT TOGETHER&quot;</title>
+    <published>2017-03-23T01:00:00+01:00</published>
+    <updated>2017-03-23T01:00:00+01:00</updated>
+    <author>
+        <name>Sebastian Schürmann</name>
+    </author>
+    <summary type="html">James Shore describes “Sit together” in his book as
+Sitting together fuels team communication. This has impressive results, cutting time-to-market by two thirds in one field study. It enables simultaneous phases, eliminates waste, and allows team......</summary>
+    <content type="html"><![CDATA[
+        <p>James Shore describes “Sit together” in his book as</p>
+<p>Sitting together fuels team communication. This has impressive results, cutting time-to-market by two thirds in one field study. It enables simultaneous phases, eliminates waste, and allows team members to contribute insights to others’ conversations.</p>
+<p>To sit together, create an open workspace. This takes longer than you expect. Organize your workspace around pairing stations, locating people according to conversations they should overhear. Provide plenty of whiteboard space. Make sure there’s room for personal effects and a place for private conversations.</p>
+<p>Open workspaces are hard for some to accept. Get team members’ permission before switching, or they may rebel.“</p>
+<ol>
+<li>Sit all the disciplines together. I often see designers skipping this one and staying with their designer teams. Not so good. Everyone should be on the product they are working on. </li>
+<li>Agree to common rules explicitly - Different people have different needs and desires. Talk about them and write them down. After a few weeks: rinse and repeat. make this explicit</li>
+<li>Must not be in one Room - BUT - Sitting together fuels team communication. This has impressive results, cutting time-to-market by two thirds in one field study. It enables simultaneous phases, eliminates waste, and allows team members to contribute insights to others’ conversations. To sit together, create an workspace. This takes longer than you expect. Organize your workspace around pairing stations, locating people according to conversations they should overhear. Provide plenty of whiteboard space. Make sure there’s room for personal effects and a place for private conversations. Open workspaces are hard for some to accept. </li>
+<li>Adapt your visual management. If you are doing hardcore Scrum you might dive into Kanban now. There are different disciplines and roles in the room, working on on one thing. So the normal Scrum Board most likely will not cut it. A good place to start is Kanaban.</li>
+<li>Rituals! Rituals! Rituals!. I have heard of a “Disco Friday” where teams would play nice music all day long aloud on friday or seen hourly Nerf gun matches. These rituals help to firm groups and keep them in high cohesion.</li>
+<li>Style it. Invest some work in styling the place. Some lights, LED ambient illumination, posters on the wall etc. will really help teams to form and stick. Make sure to provide a budget.</li>
+<li>Clean it. Once a week/sprint: Clean the workplace and bring everything in order. Its a very short procedure for most places and it helps providing general order and cleanliness.</li>
+<li>Have the Meetings together .Do not let the “Backend Guy” bail the Grooming when you are working on Frontend Stories. Do not let the designer bail as well. Everyone has to learn what the other disciplines do. When someone sits there and does not get it: Help him understand. Re-Arrange Groomings so that there are Stories of any Kind. You know the vertical slicing thingie? You should do it. And no .. neither the designer nor the tester will bail the Retrospective. It takes disciplined and willing teams to practice it this way. But in my experience: The seasoned crafts(wo)men will happily participate.</li>
+<li>Have a extra room for “Discussions”. When different trades of craft work together, there is a lot of need to discuss things and talk about it. You will need a room for this since every discussion will be a interruption for everyone else in the room. Buy a set of high quality noise dampening head phones. I am working at a client here in Hamburg where you have small chambers for working 1on1 as well as meeting rooms that are general available for phone conferences etc.</li>
+<li>Have more than enough Space</li>
+</ol>
+<p>Even People with Computers need Space to work and think. Provide this. Don’t make cross-functional teams and cram them in a small room and be surprised you get a lot of complaints from the inhabitants of that room . If you cant afford space, maybe do not hire developers at all. There are regulations for how many office workers can be in a certain set of size here in Germany and I have seen several occasions where these laws where used as a common denominator of how many people fit in a room. This is not the way it works.</p>
+<p>So this is what I came up with. What are your Ideas?</p>    ]]></content>
+</entry>
+            <entry>
     <id>https://sebs.github.io/blog/levels-of-crossfunctional-work</id>
     <link type="text/html" rel="alternate" href="https://sebs.github.io/blog/levels-of-crossfunctional-work" />
     <title>Levels of crossfunctional work</title>
@@ -254,6 +230,30 @@ Multidisciplinary: people from different disciplines working together, each draw
 <h2>THE WHITEBOARD</h2>
 <p>A lot of problems can be solved on a whiteboard even better and before starting to bruteforce a problem on the keyboard you might want to have a little session on the whiteboard. A good pairing station has a whiteboard close and accessible with all the tools required to use it.</p>
 <p>As soon as you got the basics of Pair programming sorted out, you should build a pairing station to make sure everyone has a perfect place to go to for a pairing session. One one hand it enforces some good behaviours (e.g. One button builds) and on the other it makes it easier to have a dedicated place to sit down and tinker over a coding problem.</p>    ]]></content>
+</entry>
+            <entry>
+    <id>https://sebs.github.io/blog/opsec-on-events</id>
+    <link type="text/html" rel="alternate" href="https://sebs.github.io/blog/opsec-on-events" />
+    <title>A piece on “OpSec” and Events/Hackathons/Barcamps</title>
+    <published>2016-07-10T02:00:00+02:00</published>
+    <updated>2016-07-10T02:00:00+02:00</updated>
+    <author>
+        <name>Sebastian Schürmann</name>
+    </author>
+    <summary type="html">I thought, everything that you could say has been said, about how to stay half assed secure on conferences and other nerdy events and environments. Let me tell you about some mistakes that I made. This is aimed on the half way tech savy from a half assed......</summary>
+    <content type="html"><![CDATA[
+        <p>I thought, everything that you could say has been said, about how to stay half assed secure on conferences and other nerdy events and environments. Let me tell you about some mistakes that I made. This is aimed on the half way tech savy from a half assed programmer. Please correct me in the comments if necessary</p>
+<p>Note: Writing this from first person view just for a more readable text and reader enjoyment. I am not endorsing or engaging in hacking at community events. My point is: get your shit together. It is easy.</p>
+<h2>Don’t bring your workbox.</h2>
+<p>Probably the Best advice, one can give here. Where is no data, there is no problem. On how many services are you connected? How many pieces of paper did you sign before you got access to X and downloaded it? I have news: The result of that signing is a cookie or other session auth thingie that you got after giving company Y’s server a username and password.     That is what I may want, to start reading your email, starting virtual machines or just writing to your team that you will come out, transform to what ever your gender is NOT atm and demand to be addressed with “Your Highness” in the future. SSD Drives get big, we developers are very not doing a good job at keeping them clean. This 200GIG dump of the user table you used last time to debug that problem? Publishing modules on npm? Same thing. npm remembers logins in a session. What stops me from publishing some exploit to your users labeled v2.0.0 G?. On the other side: What does a attacker really KNOW about that computer: That you, the human, will carry it to work, where you have perfect credentials in your home network. A infection to a computer is done in a very short time and if you are working in any kind of organization that handles money: leave your shit at home. To what ip(s) ports exactly is that well crafted software of yours trying to speak? In a public network, with not only a great community, but as well, contenders on markets. Leave that shit at home, if you work in a big company, go to your security aware ADMIN, tell him where you go and let him help out. Seriously, covering the risk on your devbox might justify for a smaller, more mobile computer (macbook pro replaced by air for conference). Btw: encryption will not help you. On a event or hackathon, your box will be up and running all the time. Filesystem encryption and a long password is implied. And dont leave the box unattended. Drive by exploits, totally CSI Cyber stlye, google this shit ;) its real and it is damn cheap.</p>
+<h2>Protocol Encryption and Auth</h2>
+<p>For all open ports and resources, of maybe your hackathon project have a username and password configured and use the S variants of protocols: https and a password for any port serving a website from your localhost. All dev servers, all REST endpoints, everything. Just don’t start a blank version of anything without auth. You are now safe from a lot of script kiddie attacks. And NO, localhost is not local. RTFM. Just make sure everything that uses IP and protocols to use usernames and passwords. Big in the Game: Redis for a remote code execution that writes to the known hosts SSH file or MongoDB with defaults with no password. Access to pgsql/mysql: data sinks open up. One just not simply Relational DB and store no data.</p>
+<h2>Traffic</h2>
+<p>All normal traffic should be encrypted and send via a SSH tunnel or proxy in order to avoid the sharing of local network resources with others. Except from ports that you WANT to share (see 2.) All traffic from local network is evil. If you find a way, to deploy the thing you are working on to a online service, even better. Do that via the tunnel, and et voila. As dangerous as before, but not 100 buddies in the same network and your application has a totally different “localhost” environment there. You can even stay on pure 4G if your local legislation allows for cheap mobile web access. ;)</p>
+<h2>Social</h2>
+<p>Do I need let everyone know that my deploy comes from docker cloud, I monitor metrics with a prometheus instance or I am a CircleCI user? I can look on both sides of the screen of your macbook: one side the stickers will tell me, the other ones the icons on the desktop or bookmarks (remember: it is a sharing thingie — you let me look at your screen). App wise: just bring what you need, make sure for easy “webaccess” with what ever the smart admin gave you. Knowing this is as effort rich as adding the tools of your choice and “CVE”. This will alarm me every time, when I might have another attempt at owning you. In general, since you brought another box, just access what you need and don’t put bigass icons in the middle of the screen of your “Outlook Express 2017” your company installed for you (the OTHER admin, who does not care as much). Opsec would contain as well, to know what you are allowed to tell others and what not. Have a good conversation with your superior or someone else from your environment. Just manage expectations here beforehand. I heard of hackathons ending up in bars and things getting funny. You better make a cut at what you are allowed to tell. No, exactly that Story … Everyone would find funny, but make sure you realize: This is not a team internal event. It’s easy to mistake easy bonding on community events for trust. Especially when I involve alcohol.</p>
+<p>TL:TR: I am just a developer of software, but even I find myself on a nice community event, that is just accompanied by a “hostile network environment” and needs to be treated this way. As developers, we should take care for our dev boxes and their contents.
+Bringing a big data bait, having services without authentication and encrypted traffic and telling everyone how to own you will not end with fun at all. 4 Ports got closed and 3 services completely deactivated during the production of this blog post.</p>    ]]></content>
 </entry>
             <entry>
     <id>https://sebs.github.io/blog/codereviews-and-pairprogramming</id>
