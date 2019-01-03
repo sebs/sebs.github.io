@@ -3,12 +3,39 @@
     <title>sebs.github.io</title>
     <link href="https://sebs.github.io" />
     <link type="application/atom+xml" rel="self" href="https://sebs.github.io/blog/feed.atom" />
-    <updated>2019-01-03T13:24:58+01:00</updated>
+    <updated>2019-01-03T14:23:46+01:00</updated>
     <id>https://sebs.github.io/blog/feed.atom</id>
     <author>
         <name>Sebastian Schürmann</name>
     </author>
                 <entry>
+    <id>https://sebs.github.io/blog/managing-a-webcomponent-zoo</id>
+    <link type="text/html" rel="alternate" href="https://sebs.github.io/blog/managing-a-webcomponent-zoo" />
+    <title>Managing a (webcomponent) Zoo</title>
+    <published>2019-01-03T01:00:00+01:00</published>
+    <updated>2019-01-03T01:00:00+01:00</updated>
+    <author>
+        <name>Sebastian Schürmann</name>
+    </author>
+    <summary type="html">Developing and shipping  webcomponents seems simple at first, but modern frontend stacks come with their own set of challenges: A wide set of browsers implements relatively new specs and not everything is set in stone yet and the framework codebases seem......</summary>
+    <content type="html"><![CDATA[
+        <p>Developing and shipping  webcomponents seems simple at first, but modern frontend stacks come with their own set of challenges: A wide set of browsers implements relatively new specs and not everything is set in stone yet and the framework codebases seem to drift, one faster than the other, towards a  set of es-x features that allow easy creation and deployment of custom web components with the same architecture. If you set out to create and ship your own set of custom elements this eventually needs organization and strategies to deploy the code with documentation as easy as possible and continuously while adapting to changes in the underlying frameworks and your own set of features.</p>
+<p>In this blog post series I will provide you with all the examples and docs to do so yourself.</p>
+<p>We will make use of NPM to manage dependencies and publish our own elements while we automatically deploy documentation. API resources will be accessed with OpenAPI clients and can be updated via npm as well if the underlying API changes. Lerna.js will help us to keep the repository count small, speed up development and servers as a general access point for a &quot;one button install&quot; and &quot;one button build&quot;. A component catalogue provides &quot;End-User&quot; documentation to show the components in different contexts. Test Automation helps to keep these old and new browsers at check and keep an eye on a11y issues. Look at a set of self created templates that helps the components to be uniformly structured and dependencies fit your environment.</p>
+<p>We will develop a set of web components which will be extracted from 2 demo applications that I provided over the last weeks. One is a simple Crypto Coin Price viewer and the other one a web app that supports writing user stories and bdd examples. API dependencies will be managed with OpenAPI and we will look into the nuts and bolts of these abstractions.</p>
+<p>Lerna.js will help with the managing part and we will use a small amount of git repositories to build a great number of components and elements. Thus we make sure to use resources scaled over multiple CPU cores which will speed up the build and test times drastically.</p>
+<p>A special issue of the series will be looking into documentation and deployment of it. Multiple versions of documentation and examples can and should be easily accessible to multiple groups of recepients with different needs. There are several tools helping the documentation process of web component catalogues and we will pick one to document the usage of our components in different environments while cutting short the development dependency tree.</p>
+<p>NPM is the main goal for releases of this project and all packages will end up there. A look into good practices of these processes and which to automate is a integral part of a single issue of this series.</p>
+<p>Lets see where this is going. </p>
+<p>In the mean time you might want to have a look on the source material </p>
+<ul>
+<li>The <a href="https://hiherto-elements.github.io/gherkin-editor/">Gherkin Editor </a> <a href="https://github.com/hiherto-elements/gherkin-editor">(Polymer Application Source)</a></li>
+<li>The <a href="https://hiherto-elements.github.io/test-app/">Crypto Coin Test App</a></li>
+<li>Some of the underlying, <a href="https://github.com/hiherto-elements/es-next-modules">pure es6 modules</a> that are used</li>
+</ul>
+<p>It will be interesting to see where this ends up. </p>    ]]></content>
+</entry>
+            <entry>
     <id>https://sebs.github.io/blog/no-more-servers-already</id>
     <link type="text/html" rel="alternate" href="https://sebs.github.io/blog/no-more-servers-already" />
     <title>No more servers already!</title>
