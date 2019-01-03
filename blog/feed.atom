@@ -1,16 +1,16 @@
 <?xml version="1.0"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
     <title>sebs.github.io</title>
-    <link href="https://my-jigsaw-blog.com" />
-    <link type="application/atom+xml" rel="self" href="https://my-jigsaw-blog.com/blog/feed.atom" />
-    <updated>2019-01-03T11:43:03+01:00</updated>
-    <id>https://my-jigsaw-blog.com/blog/feed.atom</id>
+    <link href="https://sebs.github.io" />
+    <link type="application/atom+xml" rel="self" href="https://sebs.github.io/blog/feed.atom" />
+    <updated>2019-01-03T12:14:52+01:00</updated>
+    <id>https://sebs.github.io/blog/feed.atom</id>
     <author>
         <name>Sebastian Schürmann</name>
     </author>
                 <entry>
-    <id>https://my-jigsaw-blog.com/blog/no-more-servers-already</id>
-    <link type="text/html" rel="alternate" href="https://my-jigsaw-blog.com/blog/no-more-servers-already" />
+    <id>https://sebs.github.io/blog/no-more-servers-already</id>
+    <link type="text/html" rel="alternate" href="https://sebs.github.io/blog/no-more-servers-already" />
     <title>No more servers already!</title>
     <published>2018-02-06T01:00:00+01:00</published>
     <updated>2018-02-06T01:00:00+01:00</updated>
@@ -55,8 +55,8 @@ Search: Very invisible. Apart from a well filled index, you just dont care —
 <p>For me it looks like I will be a bit more wary, with spinning up a container here, installing a database there and try to explore the “No more servers already” idea a bit more. I am starting to enjoy it being “serverless”</p>    ]]></content>
 </entry>
             <entry>
-    <id>https://my-jigsaw-blog.com/blog/opsec-on-events</id>
-    <link type="text/html" rel="alternate" href="https://my-jigsaw-blog.com/blog/opsec-on-events" />
+    <id>https://sebs.github.io/blog/opsec-on-events</id>
+    <link type="text/html" rel="alternate" href="https://sebs.github.io/blog/opsec-on-events" />
     <title>A piece on “OpSec” and Events/Hackathons/Barcamps</title>
     <published>2018-02-06T01:00:00+01:00</published>
     <updated>2018-02-06T01:00:00+01:00</updated>
@@ -79,8 +79,8 @@ Search: Very invisible. Apart from a well filled index, you just dont care —
 Bringing a big data bait, having services without authentication and encrypted traffic and telling everyone how to own you will not end with fun at all. 4 Ports got closed and 3 services completely deactivated during the production of this blog post.</p>    ]]></content>
 </entry>
             <entry>
-    <id>https://my-jigsaw-blog.com/blog/sit-together</id>
-    <link type="text/html" rel="alternate" href="https://my-jigsaw-blog.com/blog/sit-together" />
+    <id>https://sebs.github.io/blog/sit-together</id>
+    <link type="text/html" rel="alternate" href="https://sebs.github.io/blog/sit-together" />
     <title>10 TIPS FOR THE XP PRACTICE &quot;SIT TOGETHER&quot;</title>
     <published>2017-03-23T01:00:00+01:00</published>
     <updated>2017-03-23T01:00:00+01:00</updated>
@@ -110,8 +110,8 @@ Sitting together fuels team communication. This has impressive results, cutting 
 <p>So this is what I came up with. What are your Ideas?</p>    ]]></content>
 </entry>
             <entry>
-    <id>https://my-jigsaw-blog.com/blog/ideas-on-pairprogramming</id>
-    <link type="text/html" rel="alternate" href="https://my-jigsaw-blog.com/blog/ideas-on-pairprogramming" />
+    <id>https://sebs.github.io/blog/ideas-on-pairprogramming</id>
+    <link type="text/html" rel="alternate" href="https://sebs.github.io/blog/ideas-on-pairprogramming" />
     <title>Ideas on Pairprogramming</title>
     <published>2017-03-23T01:00:00+01:00</published>
     <updated>2017-03-23T01:00:00+01:00</updated>
@@ -205,8 +205,8 @@ more than one person will have the freedom to work on a new thing. It is just mo
 It would be nice to get some other ideas from you here in the comments section. What is your special way of Pairprogramming?</p>    ]]></content>
 </entry>
             <entry>
-    <id>https://my-jigsaw-blog.com/blog/levels-of-crossfunctional-work</id>
-    <link type="text/html" rel="alternate" href="https://my-jigsaw-blog.com/blog/levels-of-crossfunctional-work" />
+    <id>https://sebs.github.io/blog/levels-of-crossfunctional-work</id>
+    <link type="text/html" rel="alternate" href="https://sebs.github.io/blog/levels-of-crossfunctional-work" />
     <title>Levels of crossfunctional work</title>
     <published>2017-03-16T01:00:00+01:00</published>
     <updated>2017-03-16T01:00:00+01:00</updated>
@@ -230,8 +230,8 @@ Multidisciplinary: people from different disciplines working together, each draw
 <p>Just to highlight, why the expectations in that simple word “cross functional” might be so different.</p>    ]]></content>
 </entry>
             <entry>
-    <id>https://my-jigsaw-blog.com/blog/reasons-to-build-a-pairing-station</id>
-    <link type="text/html" rel="alternate" href="https://my-jigsaw-blog.com/blog/reasons-to-build-a-pairing-station" />
+    <id>https://sebs.github.io/blog/reasons-to-build-a-pairing-station</id>
+    <link type="text/html" rel="alternate" href="https://sebs.github.io/blog/reasons-to-build-a-pairing-station" />
     <title>Reasons to build a pairing station</title>
     <published>2016-11-19T01:00:00+01:00</published>
     <updated>2016-11-19T01:00:00+01:00</updated>
@@ -256,8 +256,8 @@ Multidisciplinary: people from different disciplines working together, each draw
 <p>As soon as you got the basics of Pair programming sorted out, you should build a pairing station to make sure everyone has a perfect place to go to for a pairing session. One one hand it enforces some good behaviours (e.g. One button builds) and on the other it makes it easier to have a dedicated place to sit down and tinker over a coding problem.</p>    ]]></content>
 </entry>
             <entry>
-    <id>https://my-jigsaw-blog.com/blog/codereviews-and-pairprogramming</id>
-    <link type="text/html" rel="alternate" href="https://my-jigsaw-blog.com/blog/codereviews-and-pairprogramming" />
+    <id>https://sebs.github.io/blog/codereviews-and-pairprogramming</id>
+    <link type="text/html" rel="alternate" href="https://sebs.github.io/blog/codereviews-and-pairprogramming" />
     <title>Codereviews and Pairprogramming</title>
     <published>2016-04-10T02:00:00+02:00</published>
     <updated>2016-04-10T02:00:00+02:00</updated>
@@ -284,8 +284,8 @@ I actively advertise Pairing as a way of reducing the amount of time......</summ
 <h2>It is not Codereviews VS. Pair programming but CODEREVIEWS AND PAIR PROGRAMMING</h2>    ]]></content>
 </entry>
             <entry>
-    <id>https://my-jigsaw-blog.com/blog/rules-of-mob-programming</id>
-    <link type="text/html" rel="alternate" href="https://my-jigsaw-blog.com/blog/rules-of-mob-programming" />
+    <id>https://sebs.github.io/blog/rules-of-mob-programming</id>
+    <link type="text/html" rel="alternate" href="https://sebs.github.io/blog/rules-of-mob-programming" />
     <title>The rules of mob programming</title>
     <published>2016-02-06T01:00:00+01:00</published>
     <updated>2016-02-06T01:00:00+01:00</updated>
@@ -406,8 +406,8 @@ Team can be a horrible,......</summary>
 </ol>    ]]></content>
 </entry>
             <entry>
-    <id>https://my-jigsaw-blog.com/blog/the-crux-of-done</id>
-    <link type="text/html" rel="alternate" href="https://my-jigsaw-blog.com/blog/the-crux-of-done" />
+    <id>https://sebs.github.io/blog/the-crux-of-done</id>
+    <link type="text/html" rel="alternate" href="https://sebs.github.io/blog/the-crux-of-done" />
     <title>The crux of done</title>
     <published>2016-02-03T01:00:00+01:00</published>
     <updated>2016-02-03T01:00:00+01:00</updated>
@@ -431,8 +431,8 @@ Team can be a horrible,......</summary>
 <pre><code>When measurably delivering value</code></pre>    ]]></content>
 </entry>
             <entry>
-    <id>https://my-jigsaw-blog.com/blog/survive-your-frontend</id>
-    <link type="text/html" rel="alternate" href="https://my-jigsaw-blog.com/blog/survive-your-frontend" />
+    <id>https://sebs.github.io/blog/survive-your-frontend</id>
+    <link type="text/html" rel="alternate" href="https://sebs.github.io/blog/survive-your-frontend" />
     <title>Surive your Frontend</title>
     <published>2014-04-10T02:00:00+02:00</published>
     <updated>2014-04-10T02:00:00+02:00</updated>
