@@ -3,7 +3,7 @@
     <title>sebs.github.io</title>
     <link href="https://sebs.github.io" />
     <link type="application/atom+xml" rel="self" href="https://sebs.github.io/blog/feed.atom" />
-    <updated>2019-01-04T13:45:44+01:00</updated>
+    <updated>2019-01-04T13:49:04+01:00</updated>
     <id>https://sebs.github.io/blog/feed.atom</id>
     <author>
         <name>Sebastian Schürmann</name>
@@ -60,7 +60,7 @@ When approaching a web components project you will end up will a lot of reposito
 <h2>Links</h2>
 <ul>
 <li><a href="https://sebs.github.io/blog/managing-a-webcomponent-zoo/">Blog Post Overview</a></li>
-<li><a href="https://sebs.github.io/component-zoo">Example Git Repo</a></li>
+<li><a href="https://github.com/sebs/component-zoo">Example Git Repo</a></li>
 <li><a href="https://lernajs.io/">Lerna js</a></li>
 </ul>    ]]></content>
 </entry>
