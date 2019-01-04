@@ -114,7 +114,13 @@
 
     
     <div class="border-b border-blue-lighter mb-10 pb-4" v-pre>
-        <p>Developing and shipping  webcomponents seems simple at first, but modern frontend stacks come with their own set of challenges: A wide set of browsers implements relatively new specs and not everything is set in stone yet and the framework codebases seem to drift, one faster than the other, towards a  set of es-x features that allow easy creation and deployment of custom web components with the same architecture. If you set out to create and ship your own set of custom elements this eventually needs organization and strategies to deploy the code with documentation as easy as possible and continuously while adapting to changes in the underlying frameworks and your own set of features.</p>
+        <ul>
+<li><a href="https://sebs.github.io/blog/managing-a-webcomponent-zoo-multirepo/">Part 1: Multirepos with learna.js</a></li>
+<li>Part 2: Anatomy of an improved polymer3 component</li>
+<li>Part 3: Scaffolding </li>
+<li>Part 4: TBD</li>
+</ul>
+<p>Developing and shipping  webcomponents seems simple at first, but modern frontend stacks come with their own set of challenges: A wide set of browsers implements relatively new specs and not everything is set in stone yet and the framework codebases seem to drift, one faster than the other, towards a  set of es-x features that allow easy creation and deployment of custom web components with the same architecture. If you set out to create and ship your own set of custom elements this eventually needs organization and strategies to deploy the code with documentation as easy as possible and continuously while adapting to changes in the underlying frameworks and your own set of features.</p>
 <p>In this blog post series I will provide you with all the examples and docs to do so yourself.</p>
 <p>We will make use of NPM to manage dependencies and publish our own elements while we automatically deploy documentation. API resources will be accessed with OpenAPI clients and can be updated via npm as well if the underlying API changes. Lerna.js will help us to keep the repository count small, speed up development and servers as a general access point for a &quot;one button install&quot; and &quot;one button build&quot;. A component catalogue provides &quot;End-User&quot; documentation to show the components in different contexts. Test Automation helps to keep these old and new browsers at check and keep an eye on a11y issues. Look at a set of self created templates that helps the components to be uniformly structured and dependencies fit your environment.</p>
 <p>We will develop a set of web components which will be extracted from 2 demo applications that I provided over the last weeks. One is a simple Crypto Coin Price viewer and the other one a web app that supports writing user stories and bdd examples. API dependencies will be managed with OpenAPI and we will look into the nuts and bolts of these abstractions.</p>
@@ -132,12 +138,15 @@
 
     <nav class="flex justify-between text-sm md:text-base">
         <div>
-                            <a href="https://sebs.github.io/blog/managing-a-webcomponent-zoo-multirepo" title="Older Post: Murltirepos with Lerna - Managing a (webcomponent) Zoo">
-                    &LeftArrow; Murltirepos with Lerna - Managing a (webcomponent) Zoo
+                            <a href="https://sebs.github.io/blog/no-more-servers-already" title="Older Post: No more servers already!">
+                    &LeftArrow; No more servers already!
                 </a>
                     </div>
 
         <div>
+                            <a href="https://sebs.github.io/blog/managing-a-webcomponent-zoo-multirepo" title="Newer Post: Murltirepos with Lerna - Managing a (webcomponent) Zoo">
+                    Murltirepos with Lerna - Managing a (webcomponent) Zoo &RightArrow;
+                </a>
                     </div>
     </nav>
             </main>
