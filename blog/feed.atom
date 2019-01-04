@@ -3,15 +3,15 @@
     <title>sebs.github.io</title>
     <link href="https://sebs.github.io" />
     <link type="application/atom+xml" rel="self" href="https://sebs.github.io/blog/feed.atom" />
-    <updated>2019-01-04T13:43:29+01:00</updated>
+    <updated>2019-01-04T13:45:44+01:00</updated>
     <id>https://sebs.github.io/blog/feed.atom</id>
     <author>
         <name>Sebastian Schürmann</name>
     </author>
                 <entry>
-    <id>https://sebs.github.io/blog/managing-a-webcomponent-zoo-multirepo</id>
-    <link type="text/html" rel="alternate" href="https://sebs.github.io/blog/managing-a-webcomponent-zoo-multirepo" />
-    <title>Murltirepos with Lerna - Managing a (webcomponent) Zoo</title>
+    <id>https://sebs.github.io/blog/managing-a-webcomponent-zoo-monorepo</id>
+    <link type="text/html" rel="alternate" href="https://sebs.github.io/blog/managing-a-webcomponent-zoo-monorepo" />
+    <title>Monorepos with Lerna - Managing a (webcomponent) Zoo</title>
     <published>2019-01-04T01:00:00+01:00</published>
     <updated>2019-01-04T01:00:00+01:00</updated>
     <author>
@@ -74,7 +74,7 @@ When approaching a web components project you will end up will a lot of reposito
         <name>Sebastian Schürmann</name>
     </author>
     <summary type="html">
-Part 1: Multirepos with learna.js
+Part 1: Monorepos with learna.js
 Part 2: Anatomy of an improved polymer3 component
 Part 3: Scaffolding 
 Part 4: TBD
@@ -82,7 +82,7 @@ Part 4: TBD
 Developing and shipping  webcomponents seems simple at first, but modern frontend stacks come with their own set of challenges: A wide......</summary>
     <content type="html"><![CDATA[
         <ul>
-<li><a href="https://sebs.github.io/blog/managing-a-webcomponent-zoo-multirepo/">Part 1: Multirepos with learna.js</a></li>
+<li><a href="https://sebs.github.io/blog/managing-a-webcomponent-zoo-monorepo/">Part 1: Monorepos with learna.js</a></li>
 <li>Part 2: Anatomy of an improved polymer3 component</li>
 <li>Part 3: Scaffolding </li>
 <li>Part 4: TBD</li>

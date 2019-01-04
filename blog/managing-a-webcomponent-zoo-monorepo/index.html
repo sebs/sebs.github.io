@@ -1,0 +1,201 @@
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <meta name="description" content="1">
+
+        <meta property="og:title" content="Monorepos with Lerna - Managing a (webcomponent) Zoo | sebs.github.io"/>
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://sebs.github.io/blog/managing-a-webcomponent-zoo-monorepo"/>
+        <meta property="og:description" content="Incremental &amp; Iterative Software Development" />
+
+        <title>sebs.github.io | Monorepos with Lerna - Managing a (webcomponent) Zoo</title>
+
+        <link rel="home" href="https://sebs.github.io">
+        <link rel="icon" href="/favicon.ico">
+        <link href="/blog/feed.atom" type="application/atom+xml" rel="alternate" title="sebs.github.io Atom Feed">
+
+            <meta property="og:title" content="Monorepos with Lerna - Managing a (webcomponent) Zoo" />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://sebs.github.io/blog/managing-a-webcomponent-zoo-monorepo"/>
+    <meta property="og:description" content="A bit more insight to a individual lerna setup" />
+
+                    <!-- Insert analytics code here -->
+        
+        <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:300,300i,400,400i,700,700i,800,800i" rel="stylesheet">
+        <link rel="stylesheet" href="/assets/build/css/main.css?id=9b9eca3748589a9f834e">
+    </head>
+
+    <body class="flex flex-col justify-between min-h-screen bg-grey-lightest text-grey-darkest leading-normal font-sans">
+        <div id="vue-app">
+            <header class="flex items-center shadow bg-white border-b h-24 py-4" role="banner">
+                <div class="container flex items-center max-w-4xl mx-auto px-4 lg:px-8">
+                    <div class="flex items-center">
+                        <a href="/" title="sebs.github.io home" class="inline-flex items-center">
+                            <img class="h-8 md:h-10 mr-3" src="/assets/img/logo.svg" alt="sebs.github.io logo" />
+
+                            <h1 class="text-lg md:text-2xl text-blue-darkest font-semibold hover:text-blue-dark my-0">sebs.github.io</h1>
+                        </a>
+                    </div>
+
+                    <div class="flex flex-1 justify-end items-center">
+                        <search></search>
+
+                        <nav class="hidden lg:flex items-center justify-end text-lg">
+    <a title="sebs.github.io Blog" href="/blog"
+        class="ml-6 text-grey-darker hover:text-blue-dark ">
+        Blog
+    </a>
+
+    <a title="sebs.github.io About" href="/about"
+        class="ml-6 text-grey-darker hover:text-blue-dark ">
+        About
+    </a>
+
+    <a title="sebs.github.io Contact" href="/contact"
+        class="ml-6 text-grey-darker hover:text-blue-dark ">
+        Contact
+    </a>
+</nav>
+
+                        <button class="flex justify-center items-center bg-blue border border-blue h-10 px-5 rounded-full lg:hidden focus:outline-none"
+    onclick="navMenu.toggle()"
+>
+    <svg id="js-nav-menu-show" xmlns="http://www.w3.org/2000/svg"
+        class="fill-current text-white h-9 w-4" viewBox="0 0 32 32"
+    >
+        <path d="M4,10h24c1.104,0,2-0.896,2-2s-0.896-2-2-2H4C2.896,6,2,6.896,2,8S2.896,10,4,10z M28,14H4c-1.104,0-2,0.896-2,2  s0.896,2,2,2h24c1.104,0,2-0.896,2-2S29.104,14,28,14z M28,22H4c-1.104,0-2,0.896-2,2s0.896,2,2,2h24c1.104,0,2-0.896,2-2  S29.104,22,28,22z"/>
+    </svg>
+
+    <svg id="js-nav-menu-hide" xmlns="http://www.w3.org/2000/svg"
+        class="hidden fill-current text-white h-9 w-4" viewBox="0 0 36 30"
+    >
+        <polygon points="32.8,4.4 28.6,0.2 18,10.8 7.4,0.2 3.2,4.4 13.8,15 3.2,25.6 7.4,29.8 18,19.2 28.6,29.8 32.8,25.6 22.2,15 "/>
+    </svg>
+</button>
+
+                    </div>
+                </div>
+            </header>
+
+            <nav id="js-nav-menu" class="nav-menu hidden lg:hidden">
+    <ul class="list-reset my-0">
+        <li class="pl-4">
+            <a
+                title="sebs.github.io Blog"
+                href="/blog"
+                class="nav-menu__item hover:text-blue "
+            >Blog</a>
+        </li>
+        <li class="pl-4">
+            <a
+                title="sebs.github.io About"
+                href="/about"
+                class="nav-menu__item hover:text-blue "
+            >About</a>
+        </li>
+        <li class="pl-4">
+            <a
+                title="sebs.github.io Contact"
+                href="/contact"
+                class="nav-menu__item hover:text-blue "
+            >Contact</a>
+        </li>
+    </ul>
+</nav>
+
+            <main role="main" class="flex-auto w-full container max-w-xl mx-auto py-16 px-6">
+                            <img src="/assets/img/post-cover-image-2.png" alt="Monorepos with Lerna - Managing a (webcomponent) Zoo cover image" class="mb-2">
+    
+    <h1 class="leading-none mb-2">Monorepos with Lerna - Managing a (webcomponent) Zoo</h1>
+
+    <p class="text-grey-darker text-xl md:mt-0">Sebastian Schürmann  •  January 4, 2019</p>
+
+    
+    <div class="border-b border-blue-lighter mb-10 pb-4" v-pre>
+        <h1>One repo to rule them all</h1>
+<p>When approaching a web components project you will end up will a lot of repositories: In our case these are at least 2 apps, the components used in these apps and a bunch of self developed es6 modules. All these are related to each other and can depend on each other. Normally there would be one repository per component and all these could be put under a git user/project. In practice there is repo management getting in your way and becoming a bit of a behemoth, when you try to give many users access to these lots of small repos. Plus bug tracking is all over the place. </p>
+<h2>Hello lerna.js</h2>
+<p>This is where lerna.js comes into play. The nimble helper for node js projects basically allows you to manage multiple dependencies and NPM releasable modules in ONE repositories /packages directory. It provides the nuts and bolts that allows you to use dependencies directly from the /packages directory instead of installing the from npm as long as the package local version numbers matches your needs. Lerna can run npm lifecycle scripts and thus trigger tests and other processes in your modules giving you a rather powerful 'test and build it all' button. The fact that multiple modules share build and test infrastructure can be used to your advantage by sharing this infrastructure via the repository and npm infrastructure to all contents of /packages. </p>
+<h2>Features</h2>
+<p>One thing I rely heavily on is a 'one button install' - A way to install all child packages dependencies in one go. As soon as the basic dependencies are installed for the main repository a 'postinstall' hook gets used that simply triggers lernas 'bootstrap' commando. 'lerna bootstrap' triggers npm install for all subsequent packages with one twist: Whatever is installed locally and matches versioning gets installed from this source.</p>
+<p>The child packages are a bit differently structured though, they rarely contain development dependencies, as those are installed in the main package that allows for sharing. Here is an example of a package.json triggering the bootstrap and containing everything to test polymer.js code. </p>
+<pre><code class="language-javascript">{
+  "name": "component-zoo",
+  "private": true,
+  "devDependencies": {
+    "lerna": "^3.4.3",
+    "polymer-cli": "^1.9.4",
+    "wct-headless": "^2.2.2",
+    "web-component-tester": "^6.9.2"
+  },
+  "scripts": {
+    "test": "lerna run test",
+    "postinstall": "lerna bootstrap"
+  },
+  "dependencies": {}
+}
+</code></pre>
+<p>Another feature is triggering the 'test' script of each installed child package aka a 'one button test'. This is as easy as calling 'lerna run test'. You can make work concurrent, but you better bring a computer that allows for that. Your goto notebook processor and IO might not be the right architecture to bank on when building and testing 2 applications, some ja modules and a bunch of web components. A full blown desktop, with enough ram and CPU cores (12 cores/24 threads) is less &quot;glitchy&quot;. We will have a look into speed improvements later and will try to sort out some of the problems by design. </p>
+<h2>Challenges</h2>
+<p>One thing is not to overestimate the concurrency flag and the capabilities of your frameworks. Alone polymer takes a toll of 20 seconds to delete its build directory when re-building. Even when that said directory is empty its blocking a thread just to wait exactly for this. Starting a headless chrome browser for a test uses a thread as well and building all those little packages with babel is not free of cost either. I just wanted to issue this statement of fair warning and avoid later optimizing a setup that was never created to do that. The default framework setups mostly need some tuning and building this is neither easy, nor has someone write many manuals for it. These setups are very individual. My message here is: The build tools and code to build must be fine in the first place, errors and problems will stack up and what was a little wait for one package is a very long wait for about 20 …. or even 100 single elements in /packages. </p>
+<p>So if your calculation is to get max(t) instead of sum(t), while t being the time used for tests, when using concurrency in lerna, you are very wrong. Keep this in mind. You will have to provide CPU cores, RAM in order to make this stack of tests fast. Running all tests all time is not the right strategy as well. </p>
+<p>When integrating everything with everything it will take time ... you better find way to do this in stages. Splitting unit and functional tests is one thing, anotherone is to split the types of modules you test: some being es6 code, others complete framework based webcomponents.  But in general: Buy the cores you need and stop optimizing here. The services are many and all of them are happy to sell (!) you the service. </p>
+<p>Another challenge is in managed Windows setups: On one hand Windows often indexes the many sub directories, created by npm install, and all subsequent test and even json files for faster text search. Then there is Anti Virus, which is basically taking a hash of each new file and compare it with a list of other hashes to be known a virus. Both can be forced on you by the &quot;IT department&quot; managing your box. Another special Windows challenge is the 'Linux Subsystem', a set of extensions for your terminal that makes it basically linux compatible in syntax and functionality to a point where everything works without a patch for windows. </p>
+<p>It might be a special quirk of me, trying to use terminal commands (e.g. rm) where pm modules exist that can use both platforms (rimraf replacing rm for example) but the effort is just to much. If you have developers insisting on using windows, just manage the Anti Virus for your node modules, the full text indexer and get the linux subsystem. Otherwise you are in for a long and boring development project with a lot of 'wait time'. I am not saying Windows is slow per se, but I am saying you need to set it up in a way that works.   </p>
+<h2>Takeaways</h2>
+<ul>
+<li>Lerna can save install time with shared infrastructure </li>
+<li>Lerna can use local modules over external npm </li>
+<li>Lerna can manage test and bootstrapping dependencies</li>
+<li>Lerna is heavy lifting, make sure you bring the tools</li>
+</ul>
+<h2>Links</h2>
+<ul>
+<li><a href="https://sebs.github.io/blog/managing-a-webcomponent-zoo/">Blog Post Overview</a></li>
+<li><a href="https://sebs.github.io/component-zoo">Example Git Repo</a></li>
+<li><a href="https://lernajs.io/">Lerna js</a></li>
+</ul>    </div>
+
+    <nav class="flex justify-between text-sm md:text-base">
+        <div>
+                            <a href="https://sebs.github.io/blog/managing-a-webcomponent-zoo" title="Older Post: Managing a (webcomponent) Zoo">
+                    &LeftArrow; Managing a (webcomponent) Zoo
+                </a>
+                    </div>
+
+        <div>
+                    </div>
+    </nav>
+            </main>
+        </div>
+
+        <script src="/assets/build/js/main.js?id=e69137c6f1d8bca4b130"></script>
+
+        <script>
+    const navMenu = {
+        toggle() {
+            const menu = document.getElementById('js-nav-menu');
+            menu.classList.toggle('hidden');
+            menu.classList.toggle('lg:block');
+            document.getElementById('js-nav-menu-hide').classList.toggle('hidden');
+            document.getElementById('js-nav-menu-show').classList.toggle('hidden');
+        },
+    }
+</script>
+
+        <footer class="bg-white text-center text-sm mt-12 py-4" role="contentinfo">
+            <ul class="flex flex-col md:flex-row justify-center list-reset">
+                <li class="md:mr-2">
+                    &copy; <a href="https://tighten.co" title="Tighten website">Tighten</a> 2019.
+                </li>
+
+                <li>
+                    Built with <a href="http://jigsaw.tighten.co" title="Jigsaw by Tighten">Jigsaw</a>
+                    and <a href="https://tailwindcss.com" title="Tailwind CSS, a utility-first CSS framework">Tailwind CSS</a>.
+                </li>
+            </ul>
+        </footer>
+    </body>
+</html>
