@@ -10,10 +10,7 @@
 
     <!--Description-->
     
-        <meta name="description" content="Monorepos with Lerna - Managing a (webcomponent) Zoo cover image
-
-
-Monorepos with Lerna - Managing a (webcomponent) ZooSebastian Schürmann • January 4">
+        <meta name="description" content="One repo to rule them allWhen approaching a web components project you will end up will a lot of repositories: In our case these are at least 2 apps, ">
     
 
     <!--Author-->
@@ -120,15 +117,15 @@ Monorepos with Lerna - Managing a (webcomponent) ZooSebastian Schürmann • Jan
                 <div class="fl w-100 w-70-l mw7 left fw3 lh-copy pr4-ns pr0-m post-content">
                     <!-- Tags Vertical -->
                     
+                        <div class="tags-container-vertical">
+                            <div class="tags-sub-container">
+                                <a class="fw3 ph1 dib" href="/tags/monorepos/">#monorepos</a> <a class="fw3 ph1 dib" href="/tags/javascript/">#javascript</a> <a class="fw3 ph1 dib" href="/tags/frontend/">#frontend</a>
+                            </div>
+                        </div>
+                    
 
                     <!-- Main Post Content -->
-                    <figure>
-
-  <figcaption>Monorepos with Lerna - Managing a (webcomponent) Zoo cover image</figcaption>
-</figure>
-
-<h1 id="Monorepos-with-Lerna-Managing-a-webcomponent-Zoo"><a href="#Monorepos-with-Lerna-Managing-a-webcomponent-Zoo" class="headerlink" title="Monorepos with Lerna - Managing a (webcomponent) Zoo"></a>Monorepos with Lerna - Managing a (webcomponent) Zoo</h1><p>Sebastian Schürmann • January 4, 2019</p>
-<h1 id="One-repo-to-rule-them-all"><a href="#One-repo-to-rule-them-all" class="headerlink" title="One repo to rule them all"></a>One repo to rule them all</h1><p>When approaching a web components project you will end up will a lot of repositories: In our case these are at least 2 apps, the components used in these apps and a bunch of self developed es6 modules. All these are related to each other and can depend on each other. Normally there would be one repository per component and all these could be put under a git user/project. In practice there is repo management getting in your way and becoming a bit of a behemoth, when you try to give many users access to these lots of small repos. Plus bug tracking is all over the place.</p>
+                    <h2 id="One-repo-to-rule-them-all"><a href="#One-repo-to-rule-them-all" class="headerlink" title="One repo to rule them all"></a>One repo to rule them all</h2><p>When approaching a web components project you will end up will a lot of repositories: In our case these are at least 2 apps, the components used in these apps and a bunch of self developed es6 modules. All these are related to each other and can depend on each other. Normally there would be one repository per component and all these could be put under a git user/project. In practice there is repo management getting in your way and becoming a bit of a behemoth, when you try to give many users access to these lots of small repos. Plus bug tracking is all over the place.</p>
 <h2 id="Hello-lerna-js"><a href="#Hello-lerna-js" class="headerlink" title="Hello lerna.js"></a>Hello lerna.js</h2><p>This is where lerna.js comes into play. The nimble helper for node js projects basically allows you to manage multiple dependencies and NPM releasable modules in ONE repositories /packages directory. It provides the nuts and bolts that allows you to use dependencies directly from the /packages directory instead of installing the from npm as long as the package local version numbers matches your needs. Lerna can run npm lifecycle scripts and thus trigger tests and other processes in your modules giving you a rather powerful ‘test and build it all’ button. The fact that multiple modules share build and test infrastructure can be used to your advantage by sharing this infrastructure via the repository and npm infrastructure to all contents of /packages.</p>
 <h2 id="Features"><a href="#Features" class="headerlink" title="Features"></a>Features</h2><p>One thing I rely heavily on is a ‘one button install’ - A way to install all child packages dependencies in one go. As soon as the basic dependencies are installed for the main repository a ‘postinstall’ hook gets used that simply triggers lernas ‘bootstrap’ commando. ‘lerna bootstrap’ triggers npm install for all subsequent packages with one twist: Whatever is installed locally and matches versioning gets installed from this source.</p>
 <p>The child packages are a bit differently structured though, they rarely contain development dependencies, as those are installed in the main package that allows for sharing. Here is an example of a package.json triggering the bootstrap and containing everything to test polymer.js code.</p>
@@ -154,6 +151,10 @@ Monorepos with Lerna - Managing a (webcomponent) ZooSebastian Schürmann • Jan
 
                     
                     <!-- Tags Bottom -->
+                    
+                        <div class="tags-container-bottom">
+                            <i class="fa fa-tag pr3 text-main-color"></i><a class="fw3 ph1 dib" href="/tags/monorepos/">#monorepos</a> <a class="fw3 ph1 dib" href="/tags/javascript/">#javascript</a> <a class="fw3 ph1 dib" href="/tags/frontend/">#frontend</a>
+                        </div>
                     
 
                     <!-- Comments -->

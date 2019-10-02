@@ -10,11 +10,7 @@
 
     <!--Description-->
     
-        <meta name="description" content="A piece on “OpSec” and Events/Hackathons/Barcamps cover image
-
-
-A piece on “OpSec” and Events/Hackathons/BarcampsSebastian Schürmann • July 10, 2016
-I">
+        <meta name="description" content="I thought, everything that you could say has been said, about how to stay half assed secure on conferences and other nerdy events and environments. Le">
     
 
     <!--Author-->
@@ -121,15 +117,15 @@ I">
                 <div class="fl w-100 w-70-l mw7 left fw3 lh-copy pr4-ns pr0-m post-content">
                     <!-- Tags Vertical -->
                     
+                        <div class="tags-container-vertical">
+                            <div class="tags-sub-container">
+                                <a class="fw3 ph1 dib" href="/tags/events/">#events</a> <a class="fw3 ph1 dib" href="/tags/barcamp/">#barcamp</a>
+                            </div>
+                        </div>
+                    
 
                     <!-- Main Post Content -->
-                    <figure>
-
-  <figcaption>A piece on “OpSec” and Events/Hackathons/Barcamps cover image</figcaption>
-</figure>
-
-<h1 id="A-piece-on-“OpSec”-and-Events-Hackathons-Barcamps"><a href="#A-piece-on-“OpSec”-and-Events-Hackathons-Barcamps" class="headerlink" title="A piece on “OpSec” and Events/Hackathons/Barcamps"></a>A piece on “OpSec” and Events/Hackathons/Barcamps</h1><p>Sebastian Schürmann • July 10, 2016</p>
-<p>I thought, everything that you could say has been said, about how to stay half assed secure on conferences and other nerdy events and environments. Let me tell you about some mistakes that I made. This is aimed on the half way tech savy from a half assed programmer. Please correct me in the comments if necessary</p>
+                    <p>I thought, everything that you could say has been said, about how to stay half assed secure on conferences and other nerdy events and environments. Let me tell you about some mistakes that I made. This is aimed on the half way tech savy from a half assed programmer. Please correct me in the comments if necessary</p>
 <p>Note: Writing this from first person view just for a more readable text and reader enjoyment. I am not endorsing or engaging in hacking at community events. My point is: get your shit together. It is easy.</p>
 <h2 id="Don’t-bring-your-workbox"><a href="#Don’t-bring-your-workbox" class="headerlink" title="Don’t bring your workbox."></a>Don’t bring your workbox.</h2><p>Probably the Best advice, one can give here. Where is no data, there is no problem. On how many services are you connected? How many pieces of paper did you sign before you got access to X and downloaded it? I have news: The result of that signing is a cookie or other session auth thingie that you got after giving company Y’s server a username and password. That is what I may want, to start reading your email, starting virtual machines or just writing to your team that you will come out, transform to what ever your gender is NOT atm and demand to be addressed with “Your Highness” in the future. SSD Drives get big, we developers are very not doing a good job at keeping them clean. This 200GIG dump of the user table you used last time to debug that problem? Publishing modules on npm? Same thing. npm remembers logins in a session. What stops me from publishing some exploit to your users labeled v2.0.0 G?. On the other side: What does a attacker really KNOW about that computer: That you, the human, will carry it to work, where you have perfect credentials in your home network. A infection to a computer is done in a very short time and if you are working in any kind of organization that handles money: leave your shit at home. To what ip(s) ports exactly is that well crafted software of yours trying to speak? In a public network, with not only a great community, but as well, contenders on markets. Leave that shit at home, if you work in a big company, go to your security aware ADMIN, tell him where you go and let him help out. Seriously, covering the risk on your devbox might justify for a smaller, more mobile computer (macbook pro replaced by air for conference). Btw: encryption will not help you. On a event or hackathon, your box will be up and running all the time. Filesystem encryption and a long password is implied. And dont leave the box unattended. Drive by exploits, totally CSI Cyber stlye, google this shit ;) its real and it is damn cheap.</p>
 <h2 id="Protocol-Encryption-and-Auth"><a href="#Protocol-Encryption-and-Auth" class="headerlink" title="Protocol Encryption and Auth"></a>Protocol Encryption and Auth</h2><p>For all open ports and resources, of maybe your hackathon project have a username and password configured and use the S variants of protocols: https and a password for any port serving a website from your localhost. All dev servers, all REST endpoints, everything. Just don’t start a blank version of anything without auth. You are now safe from a lot of script kiddie attacks. And NO, localhost is not local. RTFM. Just make sure everything that uses IP and protocols to use usernames and passwords. Big in the Game: Redis for a remote code execution that writes to the known hosts SSH file or MongoDB with defaults with no password. Access to pgsql/mysql: data sinks open up. One just not simply Relational DB and store no data.</p>
@@ -139,6 +135,10 @@ I">
 
                     
                     <!-- Tags Bottom -->
+                    
+                        <div class="tags-container-bottom">
+                            <i class="fa fa-tag pr3 text-main-color"></i><a class="fw3 ph1 dib" href="/tags/events/">#events</a> <a class="fw3 ph1 dib" href="/tags/barcamp/">#barcamp</a>
+                        </div>
                     
 
                     <!-- Comments -->
