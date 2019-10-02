@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head><meta name="generator" content="Hexo 3.9.0">
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--Description-->
+    
+        <meta name="description" content="Surive your Frontend cover image
+
+
+Surive your FrontendSebastian Schürmann • April 10, 2014
+I am building a talk on how to approach big/long running f">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="Sebastian Schürmann">
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="Surive your Frontend">
+    
+
+    <!--Open Graph Description-->
+    
+
+    <!--Open Graph Site Name-->
+    <meta property="og:site_name" content="Fullstack Developer &amp; Coach for technical Teams">
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="article">
+    
+
+    <!--Page Cover-->
+    
+
+    <meta name="twitter:card" content="summary">
+    
+
+    <!-- Title -->
+    
+    <title>Surive your Frontend - Fullstack Developer &amp; Coach for technical Teams</title>
+
+    <!-- Tachyons Core CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/tachyons/css/tachyons.min.css">
+
+    <!-- Custom Fonts -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- Google Analytics -->
+    
+
+
+</head>
+
+
+<body>
+
+<!-- Main Content -->
+<!-- Banner -->
+<!-- Banner -->
+<div class="w-100 bg-1 ph5-ns ph3 text-light">
+    
+    <nav class="db dt-l w-100 mw8 center border-box pv3">
+        <a class="db dtc-l v-mid link dim w-100 w-25-l tc tl-l mb2 mb0-l white" href="/" title="Fullstack Developer & Coach for technical Teams">
+            <img src="http://www.codeblocq.com/assets/projects/hexo-theme-anodyne/assets/anodyne.svg" class="dib h3" alt="Fullstack Developer & Coach for technical Teams">
+        </a>
+        <div class="db dtc-l v-mid w-100 w-75-l tc tr-l">
+            
+                <a class="link dim f6 f5-l dib mr3 mr4-l white" 
+                    href="/" 
+                    title="Home">
+                    Home
+                </a>
+            
+                <a class="link dim f6 f5-l dib mr3 mr4-l white" 
+                    href="/archives" 
+                    title="Archives">
+                    Archives
+                </a>
+            
+        </div>
+    </nav>
+
+    <!-- Title -->
+    <div class="w-100 mw8 center vh-40 dt">
+        <div class="dtc v-mid white">
+            <h1 class="f1-l f2-m tc tc-m tl-ns">Surive your Frontend</h1>
+            <p class="f4 fw3 pab-100px tc tc-m tl-ns">2014-04-10</p>
+        </div>
+    </div>
+
+    <!-- Icon -->
+    <div class="relative w-100 mw8 center white dn dn-m db-ns">
+        <i class="header-icon fa fa-file-text-o"></i>
+    </div>
+</div>
+
+<!-- Content -->
+<div class="w-100 ph2 ph4-m ph5-l mv5 mv6-l">
+    <div class="content">
+        <div class="mw8 center">
+            <div class="cf">
+                <div class="fl w-100 w-70-l mw7 left fw3 lh-copy pr4-ns pr0-m post-content">
+                    <!-- Tags Vertical -->
+                    
+
+                    <!-- Main Post Content -->
+                    <figure>
+
+  <figcaption>Surive your Frontend cover image</figcaption>
+</figure>
+
+<h1 id="Surive-your-Frontend"><a href="#Surive-your-Frontend" class="headerlink" title="Surive your Frontend"></a>Surive your Frontend</h1><p>Sebastian Schürmann • April 10, 2014</p>
+<p>I am building a talk on how to approach big/long running front end projects that was initially presented at the Berlin PHP User-group July 2014. I started to prepare it and want to nail down my thoughts.</p>
+<h2 id="WHERE-I-AM-COMING-FROM"><a href="#WHERE-I-AM-COMING-FROM" class="headerlink" title="WHERE I AM COMING FROM"></a>WHERE I AM COMING FROM</h2><p>I have had the chance to get my hands on a lot of Javascript projects and most of the were not small projects per se. It is not only the raw lines of code that let me speak of “big” projects but longevity and complexity that you find in a modern front-end to a web applicationmaking it “big”.</p>
+<p>A regular observation is that front-ends do not get the same level of love that a backend gets. Some examples I came across this year alone:</p>
+<p>Specifications are very roughly prepared for front-ends The crafty side of development, modularization and testing is neglected Standards are not set and/or followed The fact that a javascript front-end is the client to a server application is often overlooked Front-end code is often thought as throw away. Seriously guys. It would be good business to go on and on and on like this for years. It is already going on. You think your back-end code rots from greenfield to brownfield fast? Look at your front-end code. It always rots faster.</p>
+<p>“Code this fast. We can rewrite this next year.” and next year we are sitting on the same type of code for the same website, thinking about other things we could do, but re-write a bunch of front-end legacy crap. Yeah, just implement another slider. You like to work in one checkout with 20k lines of code? You want to implement just another self made inline validation for address data? Go for it, but just do not expect me to like this and help you failing.</p>
+<p>Sorry, I am too old for this. Been there, done that - 10 Years ago.</p>
+<h2 id="WHERE-TO-START"><a href="#WHERE-TO-START" class="headerlink" title="WHERE TO START?"></a>WHERE TO START?</h2><p>When working out all the specific little hints and tipps for the talk I had to group them in order to create a flow for the presentation. All the little things and tricks go into 3 groups.</p>
+<ul>
+<li>Tools - Its 2014 and there are a lot of new toys. Lets use them.</li>
+<li>Craft - We must use the tools. This means pure development</li>
+<li>Process - Development is just a part of a larger process.</li>
+<li>It is just the first order I brought into the first set of ideas. It all might be subject to change.</li>
+</ul>
+<h2 id="TOOLS"><a href="#TOOLS" class="headerlink" title="TOOLS"></a>TOOLS</h2><p>There is a bunch of new tools to help with front-end development. A little sneak peak of the things I have used in the last weeks and months.</p>
+<p>Bower, Component.js or NPM - for modularization and re-use Gulp and Grunt for Builds Docker, Chef or Puppet to build a machine where it runs on Mock and Stub Servers GIT(hub), do you speak it? …..(more in the talk) You can still right click and download Jquery if you want to, but there is no need for it and if you’ve checked it into your version control I do think of this as a anti-pattern. We moved way beyond this.</p>
+<p>I do not mind using Jquery plugins as a basis for a project or React components, but please, can have consistency? I do not mind doing coffeescript for you (and learning another language while you pay me doing this) but please, can we have all the code consistent in like one langugae then?</p>
+<h2 id="CRAFT"><a href="#CRAFT" class="headerlink" title="CRAFT"></a>CRAFT</h2><p>The pure coding is the thing that I call craft. This has not changed much. But using tools alone will not help you.</p>
+<p>I mean we can go on for the next ten years like this in our code ….</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">validForm</span>(<span class="params">formName</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">switch</span> (formName) &#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">case</span> <span class="string">"request_showing"</span>:</span><br><span class="line">            <span class="comment">// Validate the first name</span></span><br><span class="line">            <span class="keyword">if</span> (request_showing.first_name.value == <span class="string">""</span>) &#123;</span><br><span class="line">                alert(<span class="string">"Please enter your first name."</span>);</span><br><span class="line">                request_showing.first_name.value = <span class="string">"*** FIRST NAME"</span>;</span><br><span class="line">                request_showing.first_name.focus();</span><br><span class="line">                problem = <span class="literal">true</span>;</span><br><span class="line">            &#125;;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">case</span> <span class="string">"email_friend"</span>:</span><br><span class="line">        <span class="comment">// ....... </span></span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>or we can grow up and use patterns and a little thinking to find some slick implementations that follow old concepts like coupling) and cohesion). It is not new and just because you have visited jsconf last week and took away the concepts from es5, rxJS or any other reactive variant these “rules” are not bollocks.</p>
+<p>Really, I have seen this pattern over and over. The Jquery guys told us all the stuff we did before was crap in 2004 with all the same arguments used today by the rxJS community. And seriously the language that we actually use has not really changed. It is still javascript and the browsers we target still ask for a pretty old ECMA Standard. IE8 anyone? ;)</p>
+<p>It is not that I do not care for the niceties of es5, but some old patterns do not get out of fashion and a DOM tree, the main target of any JS front-end project, is still a evented thing so event driven programming will get you very far.</p>
+<h2 id="PROCESS"><a href="#PROCESS" class="headerlink" title="PROCESS"></a>PROCESS</h2><p>The “best” thing I have seen in the last year was a code review tool giving a automated +1 for any checkin based on executing the tests of the codebase I was assigned to. So far so good. But the tests executed in this case were the ones for the backend codebase. Front-end tests did not get executed at all (they were broken at the time). This is how you subvert the basically pretty cool code review process (no I wont argue pairing vs. code reviews here - although I am a big proponent of paired code as you all know). A lot of the investments done (tests for the frontend code), but all the money invested thrown out of the window.</p>
+<p>With a non-modularized codebase, in the same repository like your backend you are pretty much set up to fail. It starts with the big codebase, goes on with a one size fits all test and release process where you are pretty much forced to check all the functionality all the time. Besides TDD and some integration testing you are pretty much bound to do most of your real testing in a explorative way. It is a very important way of testing but should be used as a an extra to show your blind spots, discover new areas to test and not be the most important source for bugs.</p>
+<p>This is what you do when you specify requirements. The checkouts address form does need a inline validation is not a requirement in my world. I am sorry. But starting coding will just get you into a long loop of trial and error that is inherently costly and as I started out: you will repeat this next year. To be constructive here, why not go down the road of <a href="http://www.wikiwand.com/en/Specification_by_example#/overview" target="_blank" rel="noopener">specification by example</a>. Yeah I know, that sounds like a big hassle. If you calculate the cost of bugs in specific steps of the development process, you might change your thinking here.</p>
+<h2 id="MY-POINT"><a href="#MY-POINT" class="headerlink" title="MY POINT!"></a>MY POINT!</h2><p>I think we now can stop repeating the fails of the last ten years (and more) over and over. We have evolved the tools, craft and process over the last 10 years in a way that really helps with this.</p>
+<ul>
+<li>Tools - Use the tools at hand. They are not toys and they are a pretty good investment. Use them with care, but use them.</li>
+<li>Craft - Front-end is hardcore software development. Accept it and learn it.</li>
+<li>Process - Process wise we learned a lot on how we can improve development and find errors and bugs early in development. CI, CD, Feedback and all this is not a joke. This is the new imperative. I am looking forward to the talk and as always I am looking for feedback in the comments section here.</li>
+</ul>
+<p><a href="https://sebs.github.io/blog/the-crux-of-done" title="Newer Post: The crux of done" target="_blank" rel="noopener">The crux of done →</a></p>
+
+                    
+                    <!-- Tags Bottom -->
+                    
+
+                    <!-- Comments -->
+                    
+
+
+
+                </div>
+                <div class="fl w-100 w-30-l center fw3 lh-copy pl4-ns tl black-50">
+                    
+                    <hr class="dn-l mw4 black-50 mt5" />
+                    
+                    <!-- Widget 1: About -->
+                    <div class="mt5 mt0-l">
+    <article class="dt db-l mw8 mw8-m mw5-ns center ml0-l bg-white mv3">
+        <div class="dn dtc-m db-l v-mid tc pr4 pr0-l" style="min-width: 6rem;">
+            <img src="https://avatars0.githubusercontent.com/u/55102?s=460&v=4" class="mb4-l br-100 h3 w3 h4-l w4-l dib" title="Sebastian Schürmann">
+        </div>
+        <div class="dtc db-l v-mid lh-copy measure center f6 black-50 tj">
+            My name is Sebastian Schürmann and this is my blog.<br>I am a full stack software engineer and coach for technical teams<br> I currently live and work in Hamburg, hit me up if you are in the region.
+        </div>
+    </article>
+</div>
+
+                    <hr class="dn-l mw4 black-50 mt5" />
+                    
+                    <!-- Widget 2: Categories -->
+                    
+
+                    <!-- Widget 3: Recent Posts -->
+                    <div class="mt5 tc tl-l">
+    <h3>Recent Posts</h3>
+    
+        <p>
+            <a href="/2019/04/10/Codereviews-and-Pairprogramming/">Codereviews and Pairprogramming</a>
+        </p>
+    
+        <p>
+            <a href="/2019/03/16/Levels-of-crossfunctional-work/">Levels of crossfunctional work</a>
+        </p>
+    
+        <p>
+            <a href="/2019/02/03/The-crux-of-done/">The crux of done</a>
+        </p>
+    
+        <p>
+            <a href="/2019/01/04/Monorepos-with-Lerna/">Monorepos with Lerna</a>
+        </p>
+    
+        <p>
+            <a href="/2019/01/03/Managing-a-(webcomponent)-Zoo/">Managing a (webcomponent) Zoo</a>
+        </p>
+    
+</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Footer -->
+<div class="bg-1 ph2 ph5-ns pv5">
+        <div class="mv8">
+            <div class="center tc">
+                
+                    <div class="dib mh3">
+                        <a class="f3 f2-ns white dim" href="https://github.com/sebs" target="_blank">
+                            <i class="fa fa-github"></i>
+                        </a>
+                    </div>
+                
+                    <div class="dib mh3">
+                        <a class="f3 f2-ns white dim" href="https://www.linkedin.com/in/sebastian-sch%C3%BCrmann-7a642011/" target="_blank">
+                            <i class="fa fa-linkedin"></i>
+                        </a>
+                    </div>
+                
+                    <div class="dib mh3">
+                        <a class="f3 f2-ns white dim" href="mailto:sebs@2xs.org" target="_blank">
+                            <i class="fa fa-envelope"></i>
+                        </a>
+                    </div>
+                
+            </div>
+            <div class="f6 f5-ns center tc white pt5 fw3">
+                @Untitled. All right reserved | Design & Hexo <a class="link dim white" href="http://www.codeblocq.com/">Jonathan Klughertz</a>
+            </div>
+        </div>
+    </div>
+
+<!-- After Footer -->
+<!-- Disqus Comments -->
+
+
+
+</body>
+
+</html>

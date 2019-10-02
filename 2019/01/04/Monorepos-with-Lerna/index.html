@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head><meta name="generator" content="Hexo 3.9.0">
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--Description-->
+    
+        <meta name="description" content="Monorepos with Lerna - Managing a (webcomponent) Zoo cover image
+
+
+Monorepos with Lerna - Managing a (webcomponent) ZooSebastian Schürmann • January 4">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="Sebastian Schürmann">
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="Monorepos with Lerna">
+    
+
+    <!--Open Graph Description-->
+    
+
+    <!--Open Graph Site Name-->
+    <meta property="og:site_name" content="Fullstack Developer &amp; Coach for technical Teams">
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="article">
+    
+
+    <!--Page Cover-->
+    
+
+    <meta name="twitter:card" content="summary">
+    
+
+    <!-- Title -->
+    
+    <title>Monorepos with Lerna - Fullstack Developer &amp; Coach for technical Teams</title>
+
+    <!-- Tachyons Core CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/tachyons/css/tachyons.min.css">
+
+    <!-- Custom Fonts -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- Google Analytics -->
+    
+
+
+</head>
+
+
+<body>
+
+<!-- Main Content -->
+<!-- Banner -->
+<!-- Banner -->
+<div class="w-100 bg-1 ph5-ns ph3 text-light">
+    
+    <nav class="db dt-l w-100 mw8 center border-box pv3">
+        <a class="db dtc-l v-mid link dim w-100 w-25-l tc tl-l mb2 mb0-l white" href="/" title="Fullstack Developer & Coach for technical Teams">
+            <img src="http://www.codeblocq.com/assets/projects/hexo-theme-anodyne/assets/anodyne.svg" class="dib h3" alt="Fullstack Developer & Coach for technical Teams">
+        </a>
+        <div class="db dtc-l v-mid w-100 w-75-l tc tr-l">
+            
+                <a class="link dim f6 f5-l dib mr3 mr4-l white" 
+                    href="/" 
+                    title="Home">
+                    Home
+                </a>
+            
+                <a class="link dim f6 f5-l dib mr3 mr4-l white" 
+                    href="/archives" 
+                    title="Archives">
+                    Archives
+                </a>
+            
+        </div>
+    </nav>
+
+    <!-- Title -->
+    <div class="w-100 mw8 center vh-40 dt">
+        <div class="dtc v-mid white">
+            <h1 class="f1-l f2-m tc tc-m tl-ns">Monorepos with Lerna</h1>
+            <p class="f4 fw3 pab-100px tc tc-m tl-ns">2019-01-04</p>
+        </div>
+    </div>
+
+    <!-- Icon -->
+    <div class="relative w-100 mw8 center white dn dn-m db-ns">
+        <i class="header-icon fa fa-file-text-o"></i>
+    </div>
+</div>
+
+<!-- Content -->
+<div class="w-100 ph2 ph4-m ph5-l mv5 mv6-l">
+    <div class="content">
+        <div class="mw8 center">
+            <div class="cf">
+                <div class="fl w-100 w-70-l mw7 left fw3 lh-copy pr4-ns pr0-m post-content">
+                    <!-- Tags Vertical -->
+                    
+
+                    <!-- Main Post Content -->
+                    <figure>
+
+  <figcaption>Monorepos with Lerna - Managing a (webcomponent) Zoo cover image</figcaption>
+</figure>
+
+<h1 id="Monorepos-with-Lerna-Managing-a-webcomponent-Zoo"><a href="#Monorepos-with-Lerna-Managing-a-webcomponent-Zoo" class="headerlink" title="Monorepos with Lerna - Managing a (webcomponent) Zoo"></a>Monorepos with Lerna - Managing a (webcomponent) Zoo</h1><p>Sebastian Schürmann • January 4, 2019</p>
+<h1 id="One-repo-to-rule-them-all"><a href="#One-repo-to-rule-them-all" class="headerlink" title="One repo to rule them all"></a>One repo to rule them all</h1><p>When approaching a web components project you will end up will a lot of repositories: In our case these are at least 2 apps, the components used in these apps and a bunch of self developed es6 modules. All these are related to each other and can depend on each other. Normally there would be one repository per component and all these could be put under a git user/project. In practice there is repo management getting in your way and becoming a bit of a behemoth, when you try to give many users access to these lots of small repos. Plus bug tracking is all over the place.</p>
+<h2 id="Hello-lerna-js"><a href="#Hello-lerna-js" class="headerlink" title="Hello lerna.js"></a>Hello lerna.js</h2><p>This is where lerna.js comes into play. The nimble helper for node js projects basically allows you to manage multiple dependencies and NPM releasable modules in ONE repositories /packages directory. It provides the nuts and bolts that allows you to use dependencies directly from the /packages directory instead of installing the from npm as long as the package local version numbers matches your needs. Lerna can run npm lifecycle scripts and thus trigger tests and other processes in your modules giving you a rather powerful ‘test and build it all’ button. The fact that multiple modules share build and test infrastructure can be used to your advantage by sharing this infrastructure via the repository and npm infrastructure to all contents of /packages.</p>
+<h2 id="Features"><a href="#Features" class="headerlink" title="Features"></a>Features</h2><p>One thing I rely heavily on is a ‘one button install’ - A way to install all child packages dependencies in one go. As soon as the basic dependencies are installed for the main repository a ‘postinstall’ hook gets used that simply triggers lernas ‘bootstrap’ commando. ‘lerna bootstrap’ triggers npm install for all subsequent packages with one twist: Whatever is installed locally and matches versioning gets installed from this source.</p>
+<p>The child packages are a bit differently structured though, they rarely contain development dependencies, as those are installed in the main package that allows for sharing. Here is an example of a package.json triggering the bootstrap and containing everything to test polymer.js code.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="string">"name"</span>: <span class="string">"component-zoo"</span>,</span><br><span class="line">  <span class="string">"private"</span>: <span class="literal">true</span>,</span><br><span class="line">  <span class="string">"devDependencies"</span>: &#123;</span><br><span class="line">    <span class="string">"lerna"</span>: <span class="string">"^3.4.3"</span>,</span><br><span class="line">    <span class="string">"polymer-cli"</span>: <span class="string">"^1.9.4"</span>,</span><br><span class="line">    <span class="string">"wct-headless"</span>: <span class="string">"^2.2.2"</span>,</span><br><span class="line">    <span class="string">"web-component-tester"</span>: <span class="string">"^6.9.2"</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="string">"scripts"</span>: &#123;</span><br><span class="line">    <span class="string">"test"</span>: <span class="string">"lerna run test"</span>,</span><br><span class="line">    <span class="string">"postinstall"</span>: <span class="string">"lerna bootstrap"</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="string">"dependencies"</span>: &#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Another feature is triggering the ‘test’ script of each installed child package aka a ‘one button test’. This is as easy as calling ‘lerna run test’. You can make work concurrent, but you better bring a computer that allows for that. Your goto notebook processor and IO might not be the right architecture to bank on when building and testing 2 applications, some ja modules and a bunch of web components. A full blown desktop, with enough ram and CPU cores (12 cores/24 threads) is less “glitchy”. We will have a look into speed improvements later and will try to sort out some of the problems by design.</p>
+<h2 id="Challenges"><a href="#Challenges" class="headerlink" title="Challenges"></a>Challenges</h2><p>One thing is not to overestimate the concurrency flag and the capabilities of your frameworks. Alone polymer takes a toll of 20 seconds to delete its build directory when re-building. Even when that said directory is empty its blocking a thread just to wait exactly for this. Starting a headless chrome browser for a test uses a thread as well and building all those little packages with babel is not free of cost either. I just wanted to issue this statement of fair warning and avoid later optimizing a setup that was never created to do that. The default framework setups mostly need some tuning and building this is neither easy, nor has someone write many manuals for it. These setups are very individual. My message here is: The build tools and code to build must be fine in the first place, errors and problems will stack up and what was a little wait for one package is a very long wait for about 20 …. or even 100 single elements in /packages.</p>
+<p>So if your calculation is to get max(t) instead of sum(t), while t being the time used for tests, when using concurrency in lerna, you are very wrong. Keep this in mind. You will have to provide CPU cores, RAM in order to make this stack of tests fast. Running all tests all time is not the right strategy as well.</p>
+<p>When integrating everything with everything it will take time … you better find way to do this in stages. Splitting unit and functional tests is one thing, anotherone is to split the types of modules you test: some being es6 code, others complete framework based webcomponents. But in general: Buy the cores you need and stop optimizing here. The services are many and all of them are happy to sell (!) you the service.</p>
+<p>Another challenge is in managed Windows setups: On one hand Windows often indexes the many sub directories, created by npm install, and all subsequent test and even json files for faster text search. Then there is Anti Virus, which is basically taking a hash of each new file and compare it with a list of other hashes to be known a virus. Both can be forced on you by the “IT department” managing your box. Another special Windows challenge is the ‘Linux Subsystem’, a set of extensions for your terminal that makes it basically linux compatible in syntax and functionality to a point where everything works without a patch for windows.</p>
+<p>It might be a special quirk of me, trying to use terminal commands (e.g. rm) where pm modules exist that can use both platforms (rimraf replacing rm for example) but the effort is just to much. If you have developers insisting on using windows, just manage the Anti Virus for your node modules, the full text indexer and get the linux subsystem. Otherwise you are in for a long and boring development project with a lot of ‘wait time’. I am not saying Windows is slow per se, but I am saying you need to set it up in a way that works.</p>
+<h2 id="Takeaways"><a href="#Takeaways" class="headerlink" title="Takeaways"></a>Takeaways</h2><ul>
+<li>Lerna can save install time with shared infrastructure</li>
+<li>Lerna can use local modules over external npm</li>
+<li>Lerna can manage test and bootstrapping dependencies</li>
+<li>Lerna is heavy lifting, make sure you bring the tools</li>
+</ul>
+<h2 id="Links"><a href="#Links" class="headerlink" title="Links"></a>Links</h2><ul>
+<li><a href="https://sebs.github.io/blog/managing-a-webcomponent-zoo/" target="_blank" rel="noopener">Blog Post Overview</a></li>
+<li><a href="https://github.com/sebs/component-zoo" target="_blank" rel="noopener">Example Git Repo</a></li>
+<li><a href="https://lernajs.io/" target="_blank" rel="noopener">Lerna js</a></li>
+</ul>
+<p><a href="https://sebs.github.io/blog/managing-a-webcomponent-zoo" title="Older Post: Managing a (webcomponent) Zoo" target="_blank" rel="noopener">← Managing a (webcomponent) Zoo</a></p>
+
+                    
+                    <!-- Tags Bottom -->
+                    
+
+                    <!-- Comments -->
+                    
+
+
+
+                </div>
+                <div class="fl w-100 w-30-l center fw3 lh-copy pl4-ns tl black-50">
+                    
+                    <hr class="dn-l mw4 black-50 mt5" />
+                    
+                    <!-- Widget 1: About -->
+                    <div class="mt5 mt0-l">
+    <article class="dt db-l mw8 mw8-m mw5-ns center ml0-l bg-white mv3">
+        <div class="dn dtc-m db-l v-mid tc pr4 pr0-l" style="min-width: 6rem;">
+            <img src="https://avatars0.githubusercontent.com/u/55102?s=460&v=4" class="mb4-l br-100 h3 w3 h4-l w4-l dib" title="Sebastian Schürmann">
+        </div>
+        <div class="dtc db-l v-mid lh-copy measure center f6 black-50 tj">
+            My name is Sebastian Schürmann and this is my blog.<br>I am a full stack software engineer and coach for technical teams<br> I currently live and work in Hamburg, hit me up if you are in the region.
+        </div>
+    </article>
+</div>
+
+                    <hr class="dn-l mw4 black-50 mt5" />
+                    
+                    <!-- Widget 2: Categories -->
+                    
+
+                    <!-- Widget 3: Recent Posts -->
+                    <div class="mt5 tc tl-l">
+    <h3>Recent Posts</h3>
+    
+        <p>
+            <a href="/2019/04/10/Codereviews-and-Pairprogramming/">Codereviews and Pairprogramming</a>
+        </p>
+    
+        <p>
+            <a href="/2019/03/16/Levels-of-crossfunctional-work/">Levels of crossfunctional work</a>
+        </p>
+    
+        <p>
+            <a href="/2019/02/03/The-crux-of-done/">The crux of done</a>
+        </p>
+    
+        <p>
+            <a href="/2019/01/04/Monorepos-with-Lerna/">Monorepos with Lerna</a>
+        </p>
+    
+        <p>
+            <a href="/2019/01/03/Managing-a-(webcomponent)-Zoo/">Managing a (webcomponent) Zoo</a>
+        </p>
+    
+</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Footer -->
+<div class="bg-1 ph2 ph5-ns pv5">
+        <div class="mv8">
+            <div class="center tc">
+                
+                    <div class="dib mh3">
+                        <a class="f3 f2-ns white dim" href="https://github.com/sebs" target="_blank">
+                            <i class="fa fa-github"></i>
+                        </a>
+                    </div>
+                
+                    <div class="dib mh3">
+                        <a class="f3 f2-ns white dim" href="https://www.linkedin.com/in/sebastian-sch%C3%BCrmann-7a642011/" target="_blank">
+                            <i class="fa fa-linkedin"></i>
+                        </a>
+                    </div>
+                
+                    <div class="dib mh3">
+                        <a class="f3 f2-ns white dim" href="mailto:sebs@2xs.org" target="_blank">
+                            <i class="fa fa-envelope"></i>
+                        </a>
+                    </div>
+                
+            </div>
+            <div class="f6 f5-ns center tc white pt5 fw3">
+                @Untitled. All right reserved | Design & Hexo <a class="link dim white" href="http://www.codeblocq.com/">Jonathan Klughertz</a>
+            </div>
+        </div>
+    </div>
+
+<!-- After Footer -->
+<!-- Disqus Comments -->
+
+
+
+</body>
+
+</html>

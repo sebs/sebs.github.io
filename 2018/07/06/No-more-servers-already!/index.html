@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head><meta name="generator" content="Hexo 3.9.0">
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--Description-->
+    
+        <meta name="description" content="No more servers already! cover image
+
+
+No more servers already!Sebastian Schürmann • July 6, 2018
+I am working a lot with clients who pay me to extend">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="Sebastian Schürmann">
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="No more servers already!">
+    
+
+    <!--Open Graph Description-->
+    
+
+    <!--Open Graph Site Name-->
+    <meta property="og:site_name" content="Fullstack Developer &amp; Coach for technical Teams">
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="article">
+    
+
+    <!--Page Cover-->
+    
+
+    <meta name="twitter:card" content="summary">
+    
+
+    <!-- Title -->
+    
+    <title>No more servers already! - Fullstack Developer &amp; Coach for technical Teams</title>
+
+    <!-- Tachyons Core CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/tachyons/css/tachyons.min.css">
+
+    <!-- Custom Fonts -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- Google Analytics -->
+    
+
+
+</head>
+
+
+<body>
+
+<!-- Main Content -->
+<!-- Banner -->
+<!-- Banner -->
+<div class="w-100 bg-1 ph5-ns ph3 text-light">
+    
+    <nav class="db dt-l w-100 mw8 center border-box pv3">
+        <a class="db dtc-l v-mid link dim w-100 w-25-l tc tl-l mb2 mb0-l white" href="/" title="Fullstack Developer & Coach for technical Teams">
+            <img src="http://www.codeblocq.com/assets/projects/hexo-theme-anodyne/assets/anodyne.svg" class="dib h3" alt="Fullstack Developer & Coach for technical Teams">
+        </a>
+        <div class="db dtc-l v-mid w-100 w-75-l tc tr-l">
+            
+                <a class="link dim f6 f5-l dib mr3 mr4-l white" 
+                    href="/" 
+                    title="Home">
+                    Home
+                </a>
+            
+                <a class="link dim f6 f5-l dib mr3 mr4-l white" 
+                    href="/archives" 
+                    title="Archives">
+                    Archives
+                </a>
+            
+        </div>
+    </nav>
+
+    <!-- Title -->
+    <div class="w-100 mw8 center vh-40 dt">
+        <div class="dtc v-mid white">
+            <h1 class="f1-l f2-m tc tc-m tl-ns">No more servers already!</h1>
+            <p class="f4 fw3 pab-100px tc tc-m tl-ns">2018-07-06</p>
+        </div>
+    </div>
+
+    <!-- Icon -->
+    <div class="relative w-100 mw8 center white dn dn-m db-ns">
+        <i class="header-icon fa fa-file-text-o"></i>
+    </div>
+</div>
+
+<!-- Content -->
+<div class="w-100 ph2 ph4-m ph5-l mv5 mv6-l">
+    <div class="content">
+        <div class="mw8 center">
+            <div class="cf">
+                <div class="fl w-100 w-70-l mw7 left fw3 lh-copy pr4-ns pr0-m post-content">
+                    <!-- Tags Vertical -->
+                    
+
+                    <!-- Main Post Content -->
+                    <figure>
+
+  <figcaption>No more servers already! cover image</figcaption>
+</figure>
+
+<h1 id="No-more-servers-already"><a href="#No-more-servers-already" class="headerlink" title="No more servers already!"></a>No more servers already!</h1><p>Sebastian Schürmann • July 6, 2018</p>
+<p>I am working a lot with clients who pay me to extend software they have created themselves or let others write it for them. A web shop here, a custom CRM there. Nothing crazy. I fix broken dependencies often and add features where ever my work is required. Me and the previous Hackers on these codebases seem too have the same approach to code/style and documentation (fancy/questionable and documentation minimal). Its ok to build things like this, but over the years, it is hard to keep all the elements up and running as if it were “day 1” (or besser said bugfix release 1.14)</p>
+<p>However, such software is in use for a while updates and security fixes come around the corner, hearts bleed and processors melt down. And while these projects do what every they are supposed to do, the maintenance of old code and updates create a drag on goals my customers try to reach. In the end, I am paid to fix mistakes, that other developers already made and fixed in their own (often open source) code bases. Reinventing the Wheel for a living. Why is that?</p>
+<h2 id="Times-are-changing"><a href="#Times-are-changing" class="headerlink" title="Times are changing"></a>Times are changing</h2><p>When these projects were created, there was neither a server less, nor a movement for micro services. In one case, the main Framework was to be updated 3 major versions, just to hint at the day of the creation. Plus there is the cost of being a first mover: Given todays standards, INSERTFRAMEWORKHERE, back then had totally different ideas of clean code etc.</p>
+<p>Other things got just way simpler: Where a version of Elasticsearch was used, nowadays a simple postgres extension will do. Where contact attempts got stored in a JSON Database again Postgres can handle this now.</p>
+<p>But if I look beyond the horizon of this specific vendor locked box I have my self shut in: With CDN, DNS, Email, Monitoring: There are already a lot of different external services used. Just not the main job at hand: In this case selling things and receiving contact attempts about products.</p>
+<p>The customers site has a login, but he has no desire to use any data beyond order data at any time in future. So even this could be put to a external service. There are a bunch of content elements like Videos/Blog posts etc.</p>
+<p>All these services are out there as a service these days.</p>
+<p>Most of them are easy scalable beyond what one can achieve with small server setups or small teams</p>
+<p>Shop: Snipcart provides a shopping backend charging 2% by purchase plus handling for payment. Search: Multiple providers Allow for simple indexing and add the metadata that Snipcart can not provide CMS: Aerobatic provides everything to deploy and static stack of sites. Or use Amazons infra to get cheaper rates. however. Contact: In 2018, there are several simple Services to do this. Contact management and CMS in SAAS is already a commodity, available widely and provide several products to pick from. In the case of shopping and search, the amount of companies coming into closer consideration is not so big anymore.</p>
+<h2 id="Wardley"><a href="#Wardley" class="headerlink" title="Wardley"></a>Wardley</h2><figure>
+
+  <figcaption>Wardley</figcaption>
+</figure>
+
+<p>All this code is custom controllers on top of a framework. This is how things got done, when there was no big collection of gems, ready to do anything for you. If I would replace the DIY shop codebase with a predefined gem or framework, a mode towards the “Product” is in order. Search is a good example.</p>
+<p>Lets assume 2 user groups for a eShop: Owner and Customer . And now lets think of some some Basic needs.</p>
+<p>Customer Needs: Search, Order and being informed about products</p>
+<p>Owner Needs: Process orders; Provide Information and Products</p>
+<p>Another thing is to think about how visible these features are to the customer.</p>
+<p>Shop: 50% lots of things “under the hood” Contact: Code handles a message, delivers it. There is not even an admin part 90% CMS 40%: With image handling etc. Not so visible to the user. Search: Very invisible. Apart from a well filled index, you just dont care — as long as it works.</p>
+<p>Mapping alls this we get</p>
+<figure>
+
+  <figcaption>Wardley 2</figcaption>
+</figure>
+
+<p>So what happens, when we start refactoring as proposed before? Host only static content from a base website service, fully CDN backed! Search is a configurable service that needs monitoring of requests/day and success of imports. CMS is as simple as “github” pages and the shop integration done on “deploy” time! Contacts are done with any of the services out there.</p>
+<figure>
+
+  <figcaption>Wardley 3</figcaption>
+</figure>
+
+<p>Nowadays one can rent most of these services and it seems, this is a very good visual representation if where I want to go.</p>
+<p>There are many nice things about commodity services and one of them being widely available, normally high quality and a good bang for the buck. Why? Markets make sure of that in most cases. When a service sucks: Users Change it. In markets like this: Money buys you features and I heavily doubt, I can beat my providers on their own game (aka build a better shop than Snipcart e.g.)</p>
+<p>Conclusion</p>
+<p>I can not wait to see more commodity services available for general tasks and I enjoy every announcement about it. And the great thing about it is: Scaling and Distribution of load is not a secret to these companies anymore and their core business (e.g. providing a eCart) is completely different to mine (adding functionality) and my customers (selling things). So we are all winning so far.</p>
+<p>For me it looks like I will be a bit more wary, with spinning up a container here, installing a database there and try to explore the “No more servers already” idea a bit more. I am starting to enjoy it being “serverless”</p>
+<p><a href="https://sebs.github.io/blog/ideas-on-pairprogramming" title="Older Post: Ideas on Pairprogramming" target="_blank" rel="noopener">← Ideas on Pairprogramming</a></p>
+<p><a href="https://sebs.github.io/blog/managing-a-webcomponent-zoo" title="Newer Post: Managing a (webcomponent) Zoo" target="_blank" rel="noopener">Managing a (webcomponent) Zoo →</a></p>
+
+                    
+                    <!-- Tags Bottom -->
+                    
+
+                    <!-- Comments -->
+                    
+
+
+
+                </div>
+                <div class="fl w-100 w-30-l center fw3 lh-copy pl4-ns tl black-50">
+                    
+                    <hr class="dn-l mw4 black-50 mt5" />
+                    
+                    <!-- Widget 1: About -->
+                    <div class="mt5 mt0-l">
+    <article class="dt db-l mw8 mw8-m mw5-ns center ml0-l bg-white mv3">
+        <div class="dn dtc-m db-l v-mid tc pr4 pr0-l" style="min-width: 6rem;">
+            <img src="https://avatars0.githubusercontent.com/u/55102?s=460&v=4" class="mb4-l br-100 h3 w3 h4-l w4-l dib" title="Sebastian Schürmann">
+        </div>
+        <div class="dtc db-l v-mid lh-copy measure center f6 black-50 tj">
+            My name is Sebastian Schürmann and this is my blog.<br>I am a full stack software engineer and coach for technical teams<br> I currently live and work in Hamburg, hit me up if you are in the region.
+        </div>
+    </article>
+</div>
+
+                    <hr class="dn-l mw4 black-50 mt5" />
+                    
+                    <!-- Widget 2: Categories -->
+                    
+
+                    <!-- Widget 3: Recent Posts -->
+                    <div class="mt5 tc tl-l">
+    <h3>Recent Posts</h3>
+    
+        <p>
+            <a href="/2019/04/10/Codereviews-and-Pairprogramming/">Codereviews and Pairprogramming</a>
+        </p>
+    
+        <p>
+            <a href="/2019/03/16/Levels-of-crossfunctional-work/">Levels of crossfunctional work</a>
+        </p>
+    
+        <p>
+            <a href="/2019/02/03/The-crux-of-done/">The crux of done</a>
+        </p>
+    
+        <p>
+            <a href="/2019/01/04/Monorepos-with-Lerna/">Monorepos with Lerna</a>
+        </p>
+    
+        <p>
+            <a href="/2019/01/03/Managing-a-(webcomponent)-Zoo/">Managing a (webcomponent) Zoo</a>
+        </p>
+    
+</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Footer -->
+<div class="bg-1 ph2 ph5-ns pv5">
+        <div class="mv8">
+            <div class="center tc">
+                
+                    <div class="dib mh3">
+                        <a class="f3 f2-ns white dim" href="https://github.com/sebs" target="_blank">
+                            <i class="fa fa-github"></i>
+                        </a>
+                    </div>
+                
+                    <div class="dib mh3">
+                        <a class="f3 f2-ns white dim" href="https://www.linkedin.com/in/sebastian-sch%C3%BCrmann-7a642011/" target="_blank">
+                            <i class="fa fa-linkedin"></i>
+                        </a>
+                    </div>
+                
+                    <div class="dib mh3">
+                        <a class="f3 f2-ns white dim" href="mailto:sebs@2xs.org" target="_blank">
+                            <i class="fa fa-envelope"></i>
+                        </a>
+                    </div>
+                
+            </div>
+            <div class="f6 f5-ns center tc white pt5 fw3">
+                @Untitled. All right reserved | Design & Hexo <a class="link dim white" href="http://www.codeblocq.com/">Jonathan Klughertz</a>
+            </div>
+        </div>
+    </div>
+
+<!-- After Footer -->
+<!-- Disqus Comments -->
+
+
+
+</body>
+
+</html>
