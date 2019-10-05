@@ -133,19 +133,16 @@
 <p>One shortcoming of the old release was the missing set of fixtures and mocked api calls. Every test hit the API and that made releases unstable at best. The used mocha test framework can be configured to do test repeats on failing tests and has configurable timeouts, but that is not fixing the main issue of depending on external servers for development.</p>
 <p>The project now has a certain age, and I’d rather do things right than much longer half way. Tests, API docs and Examples must all be there. Developers new to the project should be able to grasp everything easily and not be required to read the (pretty readable) source code to find out how things work.</p>
 <p>So there was need for a bit of refactoring</p>
-<h2 id="Assumptions"><a href="#Assumptions" class="headerlink" title="Assumptions"></a>Assumptions</h2><p>I had some assumptions when I started out</p>
-<ul>
-<li>typescript will speed up the process</li>
-<li>ava ts will speed up many tests</li>
-<li>putting everything in a monorepo makes sense, as there are many little use cases and features that would clutter the main repository</li>
-<li>building everything in typescript will make it easy to export readable es6 code</li>
-</ul>
-<h2 id="Learnings"><a href="#Learnings" class="headerlink" title="Learnings"></a>Learnings</h2><ul>
-<li>ava is pretty slow, once you have many tests</li>
-<li>lots of different tools make it hard</li>
-<li>Working on all the infrastructure is costly</li>
-<li>typescript actually does speed up development</li>
-</ul>
+<h2 id="Assumptions-and-expectations"><a href="#Assumptions-and-expectations" class="headerlink" title="Assumptions and expectations"></a>Assumptions and expectations</h2><p>I had some assumptions when I started out.</p>
+<p>One thing I was expecting is a decent speedup in development when using typescript. Typings make for good auto complete and refactoring should be easier to do and be less error prone to execute.</p>
+<p>Using the ava test framework, I was expecting a decent speed up for unit test suite run times (more on that in learnings) and a decent integration into typescript and the resulting compiled Javascript code.</p>
+<p>Using a monorepo provided a way to put everything into smaller and simpler components in order to keep the dependencies of the original client codebase small and its lifecycle scripts small.</p>
+<p>I wanted 3 ways to use the codebase: Directly in typescript, as a module for node.js using commonJs and as a bundled version in es6. </p>
+<h2 id="Learnings"><a href="#Learnings" class="headerlink" title="Learnings"></a>Learnings</h2><p>The typescript development speedup is there, as soon as everything is in place and everything is set up. I  tried to use self thought out ‘value objects’ in order to get parameters of classes away from the old strings and numbers patterns and allow for deeper better validation. This turned out to be kind of successful and helps greatly when you want to be sure a parameter is an address on the ethereum network instead of a random string. I quite like this and I am sure the codebase can get a bit more ‘typescripty’.</p>
+<p>The toolbox got a bit out of hand I guess. There are at least 3 different test frameworks involved, taking the demo app and the integration tests for the browser into consideration. All that infrastructure work was a bigger upfront investment and took some toll on the performance. However, now it is easy to add a feature and a little more work to add integration tests and a piece of documentation. This allows for a new feature with all documentation in one push.</p>
+<p>Ava is pretty slow when it comes to big tests suites, regardless if you track changes on the file system (which would be a good reason for things getting slow) or not. I wrote about 200 tests in small files and I can not see any reason why all this is getting slower and slower to a state where everything feels like a fast integration test suite. Surely there are improvements to find in configuration and setup of the test suite, but this is new to me as a avid user of the mocha framework and I am kind of sure that ava gets kicked in the butt by it’s architecture a bit.</p>
+<p>All in all this was a pretty interesting experience: It added some long thought after pieces of testing and documentation additionally to the typescript setup that helps with development. As always, not all tools are as good as the reviews by the respective communities would make you expect. </p>
+<p>Bundling was another issue, where not even the authors of the respective bundlers could answer simple questions like how do I transpile a typescript codebase with feature x (x being using global fetch) to a es codebase that just works. I ended up with using es6ify, which is surely a tool that works, but nothing that is really ‘hip’ these days. Maybe this is the best takeaway to close this blogpost with: Even on the ‘hipsterstack’ with latest ‘tech’, sometimes things just need to work. Sometimes I would wish, people would just patch existing tools and not rewrite tools for must being better tools. Get back into your bikesheds and keep the Llamas there.</p>
 
                     
                     <!-- Tags Bottom -->
