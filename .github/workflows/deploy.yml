@@ -4,8 +4,9 @@ name: Build & deploy site
 # Unlike the native Pages build, this runs with network access, so it can:
 #   1. fetch the live dev.to writing feed at build time, and
 #   2. rasterize the social OG image (SVG -> PNG).
-# The Hexo-generated archive (no front matter) is copied through verbatim,
-# so every existing /YYYY/MM/DD/... permalink is preserved.
+# The legacy posts are now markdown in _posts/ (each pins its original
+# /YYYY/MM/DD/... permalink), so Jekyll builds everything — nothing is copied
+# verbatim, and jekyll-archives regenerates the tag/date listing pages.
 #
 # ONE-TIME SETUP: in the repo, Settings -> Pages -> Build and deployment ->
 # Source must be set to "GitHub Actions" for this workflow to publish.
@@ -55,9 +56,6 @@ jobs:
         run: bundle exec jekyll build --trace
         env:
           JEKYLL_ENV: production
-
-      - name: Assemble legacy archive into _site (verbatim)
-        run: bash scripts/assemble.sh _site
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3

@@ -9,11 +9,15 @@ projects + talks.
 
 - **Static site, built with Jekyll, deployed via GitHub Actions.**
   A full Actions build (not the native Pages build) is used so the dev.to
-  writing feed can be fetched at deploy time and the OG image rasterized.
-- **The legacy archive is preserved verbatim.** The old Hexo-generated posts
-  (`/2014/…` … `/2019/…`, plus `/archives/`, `/tags/`, `/page/`) have no YAML
-  front matter, so Jekyll copies them through untouched — every existing
-  permalink still resolves. Don't add front matter to those files.
+  writing feed can be fetched at deploy time, the OG image rasterized, and the
+  `jekyll-archives` plugin run.
+- **The legacy posts are markdown in `_posts/`.** The old Hexo posts were
+  converted to clean markdown (see `scripts/extract_posts.py` for how). Each
+  post pins its **original URL** via `permalink:` in front matter
+  (e.g. `/2019/01/04/Monorepos-with-Lerna/`), so every existing link still
+  resolves. The `post` layout renders them; `jekyll-archives` regenerates the
+  `/tags/:name/` and `/archives/:year/[:month/]` listing pages, and
+  `archives.html` is the top-level `/archives/` index.
 
 ## One-time setup (required to publish)
 
@@ -27,7 +31,7 @@ dev.to feed), and on manual dispatch.
 
 ## Editing content (no templates to touch)
 
-All content lives in `_data/`:
+Most content lives in `_data/`:
 
 | File                  | Drives                                                    |
 | --------------------- | -------------------------------------------------------- |
@@ -38,6 +42,12 @@ All content lives in `_data/`:
 
 Talk slides go in `assets/talks/` (PDF) or as a SpeakerDeck embed URL — see the
 comments in `_data/talks.yml`.
+
+Long-form posts are markdown in `_posts/`, named `YYYY-MM-DD-slug.md`. Front
+matter sets `title`, `date`, `tags`, an optional `description`, and a
+`permalink` (the file's slug doesn't affect the URL — the permalink does). The
+`post` layout, `nav: writing` highlight, and `og_type: article` are applied
+automatically via `defaults` in `_config.yml`.
 
 ## Local development
 

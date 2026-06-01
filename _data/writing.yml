@@ -1,12 +1,129 @@
-# Writing — links OUT to dev.to (the hub owns identity, dev.to keeps the reach).
-#
-# This file is a SEED / FALLBACK. The deploy workflow
-# (.github/workflows/deploy.yml) fetches https://dev.to/api/articles?username=sebs
-# at build time and OVERWRITES this file with the live feed (title, date,
-# reactions, url). If the fetch fails, the build falls back to whatever is here,
-# so the section never disappears.
-#
-# Shape of each item (matches what the workflow writes):
-#   title, url, date (ISO yyyy-mm-dd), reactions (int), comments (int), tags (list)
-
-posts: []
+{
+  "posts": [
+    {
+      "title": "Let the ORM fight begin!",
+      "url": "https://dev.to/sebs/let-the-orm-fight-begin-392e",
+      "date": "2026-04-28",
+      "tags": [
+        "typescript",
+        "database",
+        "cicd",
+        "experiment"
+      ]
+    },
+    {
+      "title": "From Vibecoding to Vibelaunching: Building the ecosystems-cli",
+      "url": "https://dev.to/sebs/from-vibecoding-to-vibelaunching-building-the-ecosystems-cli-nje",
+      "date": "2026-04-20",
+      "tags": [
+        "vibecoding",
+        "python",
+        "programming",
+        "ai"
+      ]
+    },
+    {
+      "title": "Local AI Will Save Us All (The Math Says So, Trust Me)",
+      "url": "https://dev.to/sebs/local-ai-will-save-us-all-the-math-says-so-trust-me-4m22",
+      "date": "2026-04-15",
+      "tags": [
+        "ai",
+        "mba",
+        "operations"
+      ]
+    },
+    {
+      "title": "Down the Rabbit Hole: Building the Reference List for the Pair-Programming Book",
+      "url": "https://dev.to/sebs/down-the-rabbit-hole-building-the-reference-list-for-the-pair-programming-book-367n",
+      "date": "2026-04-13",
+      "tags": [
+        "pairprogramming",
+        "writing",
+        "research"
+      ]
+    },
+    {
+      "title": "From Cardboard to Code",
+      "url": "https://dev.to/sebs/from-cardboard-to-code-29d5",
+      "date": "2026-04-10",
+      "tags": [
+        "ai",
+        "gamedev",
+        "gamedesign"
+      ]
+    },
+    {
+      "title": "Leading With \"I Don't Know\"",
+      "url": "https://dev.to/sebs/leading-with-i-dont-know-324h",
+      "date": "2026-03-30",
+      "tags": [
+        "ai",
+        "leadership",
+        "crisismode"
+      ]
+    },
+    {
+      "title": "Your build pipeline is not your trust boundary",
+      "url": "https://dev.to/sebs/your-build-pipeline-is-not-your-trust-boundary-1bnn",
+      "date": "2026-03-24",
+      "tags": [
+        "devops",
+        "bulkhead",
+        "wellarchitected",
+        "aws"
+      ]
+    },
+    {
+      "title": "From Idea to Implementation-Ready: A Six-Phase Pipeline with Rewelo",
+      "url": "https://dev.to/sebs/from-idea-to-implementation-ready-a-six-phase-pipeline-with-rewelo-42lp",
+      "date": "2026-03-17",
+      "tags": [
+        "ai",
+        "agenticagile",
+        "agile",
+        "productivity"
+      ]
+    },
+    {
+      "title": "I Was So Angry, I Actually Shipped It",
+      "url": "https://dev.to/sebs/i-was-so-angry-i-actually-shipped-it-2m19",
+      "date": "2026-03-13",
+      "tags": [
+        "ai",
+        "vibecoding",
+        "agile",
+        "mcp"
+      ]
+    },
+    {
+      "title": "Generator Generator",
+      "url": "https://dev.to/sebs/generator-generator-1m0h",
+      "date": "2026-03-10",
+      "tags": [
+        "llm",
+        "nanobanana",
+        "generativeart",
+        "ai"
+      ]
+    },
+    {
+      "title": "Distributed Transaction Tango: Why Your Microservices Need Sagas",
+      "url": "https://dev.to/sebs/distributed-transaction-tango-why-your-microservices-need-sagas-4lh3",
+      "date": "2026-02-18",
+      "tags": [
+        "devops",
+        "distributedsystems",
+        "acid"
+      ]
+    },
+    {
+      "title": "The Build vs. Buy Trap: Why You Should Be Assembling Instead",
+      "url": "https://dev.to/sebs/the-build-vs-buy-trap-why-you-should-be-assembling-instead-29f4",
+      "date": "2026-02-17",
+      "tags": [
+        "devops",
+        "tco"
+      ]
+    }
+  ]
+}

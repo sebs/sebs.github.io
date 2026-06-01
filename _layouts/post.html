@@ -1,0 +1,28 @@
+---
+layout: default
+---
+<article class="container post">
+  <header class="post__head">
+    <p class="post__meta">
+      <a class="post__back" href="{{ '/archives/' | relative_url }}">Writing</a>
+      <span aria-hidden="true">/</span>
+      <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%B %-d, %Y" }}</time>
+    </p>
+    <h1 class="post__title">{{ page.title }}</h1>
+    {%- if page.tags and page.tags.size > 0 -%}
+    <p class="post__tags">
+      {%- for tag in page.tags -%}
+      <a class="tag" href="{{ '/tags/' | append: tag | append: '/' | relative_url }}">#{{ tag }}</a>
+      {%- endfor -%}
+    </p>
+    {%- endif -%}
+  </header>
+
+  <div class="prose">
+    {{ content }}
+  </div>
+
+  <footer class="post__foot">
+    <a class="link-arrow" href="{{ '/archives/' | relative_url }}">{% include icon.html name="arrow-up-right" %} All writing</a>
+  </footer>
+</article>
