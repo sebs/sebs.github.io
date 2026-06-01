@@ -10,7 +10,7 @@
     Fuzzy logic and sets for JavaScript & TypeScript. Robust mathematical
     foundations with full TS types — the mature flagship.
   tags: [TypeScript, npm]
-  active: false
+  active: true
   stars: 50
   downloads: "2k/mo"        # TODO: confirm current npm download rate
   license: MIT
@@ -30,3 +30,28 @@
   license:                  # TODO: confirm license
   links:
     github: "https://github.com/sebs/claude-ecosystems-skills"
+
+- name: ecosyste_ms_cli
+  description: >-
+    Command-line interface to the ecosyste.ms APIs — package, repository, and
+    dependency data across open-source ecosystems. Subject of the "Building
+    Open Source with LLMs" talk.
+  tags: [Python, CLI]
+  active: true
+  stars: 3
+  last_activity: "actively developed"
+  license: MIT
+  links:
+    github: "https://github.com/ecosyste-ms/ecosyste_ms_cli"
+
+- name: dada-tbd-tui
+  description: >-
+    A terminal-based wizard for updating the dadamachines TBD-16 — a friendly
+    TUI front-end for the hardware's firmware/config flow.
+  tags: [Python, CLI]
+  active: true
+  stars: 2
+  last_activity: "actively developed"
+  license:                  # TODO: confirm license (none detected on GitHub)
+  links:
+    github: "https://github.com/dadamachines/dada-tbd-tui"
