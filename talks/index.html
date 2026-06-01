@@ -27,17 +27,6 @@ permalink: /talks/
         <h2>{{ talk.title }}</h2>
         {%- if talk.venue -%}<span class="talk__venue">{% include icon.html name="location" %}{{ talk.venue }}</span>{%- endif -%}
 
-        {%- if talk.slides_url and talk.slides_embed -%}
-        <div class="deck"><iframe src="{{ talk.slides_url }}" title="{{ talk.title }} — slides" loading="lazy" allowfullscreen></iframe></div>
-        {%- elsif talk.slides_url -%}
-        <div class="deck"><object class="deck__pdf" data="{{ talk.slides_url }}" type="application/pdf"><p>Slides: <a href="{{ talk.slides_url }}">download PDF</a></p></object></div>
-        {%- else -%}
-        <div class="deck">
-          {% include icon.html name="slides" %}
-          <span class="mono">Slides coming soon</span>
-        </div>
-        {%- endif -%}
-
         {%- if talk.description -%}<p class="talk__desc">{{ talk.description }}</p>{%- endif -%}
 
         {%- if talk.video_url or talk.slides_url -%}
