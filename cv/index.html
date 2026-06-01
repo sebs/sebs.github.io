@@ -1,0 +1,86 @@
+---
+layout: default
+title: CV
+description: >-
+  Sebastian Schürmann — CV. Twenty-plus years building distributed software and
+  leading teams: cloud architecture, agile coaching, and developer tooling.
+nav: cv
+og_type: website
+permalink: /cv/
+---
+
+<section class="container page-head">
+  <h1>CV</h1>
+  <p class="lead">
+    I develop distributed software with teams — and help teams get better at
+    doing it. Twenty-plus years from developer to team lead, Scrum Master, and
+    architect, across e-commerce, insurance, e-learning, and consulting.
+  </p>
+</section>
+
+<section class="container" style="padding-bottom: var(--section-gap);">
+  <div class="prose">
+    <p>
+      My focus is agile, test-oriented development, distributed systems, and
+      cloud/serverless architecture (AWS/CDK, Lambda, TypeScript) — building
+      tools and processes teams can depend on. Earlier stacks ran on PHP,
+      JavaScript, and Perl. Based in Hamburg.
+    </p>
+  </div>
+
+  <!-- Experience -->
+  <div style="margin-top: var(--section-gap);">
+    <div class="divider-head">
+      <span class="eyebrow">Experience</span>
+    </div>
+    <div class="log">
+      <div class="log__row log__row--head">
+        <span class="log__year">YEAR</span>
+        <span class="log__title log__title--head">ROLE</span>
+        <span class="log__venue log__venue--head">COMPANY</span>
+      </div>
+      {%- for job in site.data.cv.experience -%}
+      <div class="log__row">
+        <span class="log__year">{{ job.year }}</span>
+        <span class="log__title">{{ job.role }}</span>
+        <span class="log__venue">{{ job.company }}</span>
+      </div>
+      {%- endfor -%}
+    </div>
+  </div>
+
+  <!-- Skills -->
+  <div class="cards" style="margin-top: var(--section-gap);">
+    <article class="card">
+      <div>
+        <div class="card__top"><h3 class="h-card">Process</h3></div>
+        <div class="card__tags">
+          {%- for item in site.data.cv.process -%}<span class="tag">{{ item }}</span>{%- endfor -%}
+        </div>
+      </div>
+    </article>
+    <article class="card">
+      <div>
+        <div class="card__top"><h3 class="h-card">Technical</h3></div>
+        <div class="card__tags">
+          {%- for item in site.data.cv.technical -%}<span class="tag">{{ item }}</span>{%- endfor -%}
+        </div>
+      </div>
+    </article>
+  </div>
+
+  <!-- Languages -->
+  <div style="margin-top: var(--section-gap);">
+    <div class="divider-head">
+      <span class="eyebrow">Languages</span>
+    </div>
+    <div class="log">
+      {%- for lang in site.data.cv.languages -%}
+      <div class="log__row">
+        <span class="log__title">{{ lang.name }}</span>
+        <span class="log__venue" style="grid-column: span 2;">{{ lang.note }}</span>
+      </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>

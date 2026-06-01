@@ -1,0 +1,60 @@
+# Career history, presented in the homepage "About" section as a timeline.
+# Sourced from https://resume.schuermann.cloud/cv/ — newest first.
+
+experience:
+  - year: 2025
+    role: "Unit Head, Webservices & TypeScript Backends"
+    company: "MaibornWolff"
+  - year: 2023
+    role: "Principal Cloud Architect"
+    company: "MaibornWolff"
+  - year: 2020
+    role: "Head of IT"
+    company: "Jura Online"
+  - year: 2014
+    role: "Self-employed Coach & Developer"
+    company: "Independent"
+  - year: 2012
+    role: "Scrum Master"
+    company: "MyTaxi"
+  - year: 2006
+    role: "Head of Price Comparison"
+    company: "Chip Online"
+  - year: 2004
+    role: "Software Developer"
+    company: "Mayflower"
+  - year: 2003
+    role: "Self-employed Developer"
+    company: "Independent"
+  - year: 2001
+    role: "Software Developer"
+    company: "WWL Internet AG"
+
+# Process & methodology.
+process:
+  - Scrum
+  - Extreme Programming
+  - Kanban
+  - Team leadership & hiring
+  - Talent acquisition & retention
+  - Project management
+
+# Current technical stack.
+technical:
+  - AWS / CDK
+  - Lambda & Serverless
+  - TypeScript
+  - MySQL / Postgres
+  - DynamoDB
+  - CouchDB / MongoDB
+
+# Programming languages, with a note in my own words.
+languages:
+  - { name: "TypeScript", note: "Favourite web language — my whole stack, if I can get away with it." }
+  - { name: "JavaScript", note: "The first language I ever used." }
+  - { name: "Python", note: "A staple for tooling and backends." }
+  - { name: "Ruby", note: "E-commerce and insuretech work." }
+  - { name: "PHP", note: "Ran it at scale for one of Germany's Top-10 websites." }
+  - { name: "Perl", note: "The first backend language I learned end to end." }
+  - { name: "Java", note: "Used for CMS projects; no longer consider myself proficient." }
+  - { name: "Zig", note: "Currently learning it — and enjoying it." }

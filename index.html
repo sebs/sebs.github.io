@@ -47,23 +47,37 @@ nav: home
   <div class="section__head">
     <div>
       <h2 class="h-section">About</h2>
+      <p class="lead">Twenty-plus years building distributed software and leading teams — from developer to architect.</p>
     </div>
+    <a class="link-arrow" href="{{ '/cv/' | relative_url }}">Full CV {% include icon.html name="arrow-right" %}</a>
   </div>
   <div class="prose">
     <p>
       I develop distributed software with teams — and help teams get better at
-      doing it. Across more than twenty years I've worked as a developer, team
-      lead, Scrum Master, and coach: Head of IT at Jura Online, Scrum Master at
-      MyTaxi, and Head of Price Comparison at Chip Online, alongside years of
-      self-employed coaching and project firefighting across e-commerce,
-      insurance, and product companies.
+      doing it. My focus is agile, test-oriented development, distributed
+      systems, and cloud/serverless architecture (AWS/CDK, Lambda, TypeScript) —
+      building tools and processes teams can depend on. Based in Hamburg.
     </p>
-    <p>
-      My focus is agile, test-oriented development, distributed systems, and
-      cloud/serverless architecture — building tools and processes teams can
-      depend on. Based in Hamburg.
-      <a href="https://resume.schuermann.cloud/cv/index.html" target="_blank" rel="noopener">Full CV →</a>
-    </p>
+  </div>
+
+  <div style="margin-top: var(--section-gap);">
+    <div class="divider-head">
+      <span class="eyebrow">Recent roles</span>
+    </div>
+    <div class="log">
+      <div class="log__row log__row--head">
+        <span class="log__year">YEAR</span>
+        <span class="log__title log__title--head">ROLE</span>
+        <span class="log__venue log__venue--head">COMPANY</span>
+      </div>
+      {%- for job in site.data.cv.experience limit: 4 -%}
+      <div class="log__row">
+        <span class="log__year">{{ job.year }}</span>
+        <span class="log__title">{{ job.role }}</span>
+        <span class="log__venue">{{ job.company }}</span>
+      </div>
+      {%- endfor -%}
+    </div>
   </div>
 </section>
 
