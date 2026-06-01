@@ -1,0 +1,17 @@
+# Standalone project sites — workshops, games, and other published work that
+# lives at its own URL. Rendered in the homepage "Projects" section.
+# Each item: name, description, tags (optional list), url.
+
+- name: Pair Programming Workshop
+  description: >-
+    A two-day workshop on pair programming — collaborate, share knowledge, and
+    grow together. Open source and Creative Commons licensed.
+  tags: [Workshop, "Creative Commons"]
+  url: "https://pair-programming-workshop.github.io/"
+
+- name: Sauglump Games
+  description: >-
+    Where I publish my game experiments and demos — like match3-rpg, blending
+    classic mechanics with new ideas.
+  tags: [Games, Indie]
+  url: "https://sauglump-games.github.io/"

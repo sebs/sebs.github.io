@@ -45,8 +45,8 @@ nav: home
 <section class="container section" id="projects">
   <div class="section__head">
     <div>
-      <h2 class="h-section">Curated Projects</h2>
-      <p class="lead">Core maintenance and active development — not every repo, the ones worth depending on.</p>
+      <h2 class="h-section">Open Source</h2>
+      <p class="lead">Projects I maintain and actively develop — not every repo, the ones worth depending on.</p>
     </div>
     <a class="link-arrow" href="https://github.com/sebs?tab=repositories" target="_blank" rel="noopener">
       All repositories {% include icon.html name="arrow-right" %}
@@ -92,6 +92,37 @@ nav: home
           <a href="{{ project.links.docs }}" target="_blank" rel="noopener" aria-label="{{ project.name }} documentation">{% include icon.html name="link" %}</a>
           {%- endif -%}
         </div>
+      </div>
+    </article>
+    {%- endfor -%}
+  </div>
+</section>
+
+<!-- Projects -->
+<section class="container section" id="sites">
+  <div class="section__head">
+    <div>
+      <h2 class="h-section">Projects</h2>
+      <p class="lead">Things I build and run beyond the libraries — workshops, games, and other published work.</p>
+    </div>
+  </div>
+
+  <div class="cards">
+    {%- for site in site.data.sites -%}
+    <article class="card">
+      <div>
+        <div class="card__top">
+          <h3 class="h-card">{{ site.name }}</h3>
+          {%- if site.tags -%}
+          <div class="card__tags">
+            {%- for t in site.tags -%}<span class="tag">{{ t }}</span>{%- endfor -%}
+          </div>
+          {%- endif -%}
+        </div>
+        <p class="card__desc">{{ site.description }}</p>
+      </div>
+      <div class="card__foot">
+        <a class="link-arrow" href="{{ site.url }}" target="_blank" rel="noopener">Visit site {% include icon.html name="arrow-up-right" %}</a>
       </div>
     </article>
     {%- endfor -%}
