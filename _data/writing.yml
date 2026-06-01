@@ -1,0 +1,12 @@
+# Writing — links OUT to dev.to (the hub owns identity, dev.to keeps the reach).
+#
+# This file is a SEED / FALLBACK. The deploy workflow
+# (.github/workflows/deploy.yml) fetches https://dev.to/api/articles?username=sebs
+# at build time and OVERWRITES this file with the live feed (title, date,
+# reactions, url). If the fetch fails, the build falls back to whatever is here,
+# so the section never disappears.
+#
+# Shape of each item (matches what the workflow writes):
+#   title, url, date (ISO yyyy-mm-dd), reactions (int), comments (int), tags (list)
+
+posts: []

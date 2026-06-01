@@ -1,361 +1,165 @@
-<!DOCTYPE html>
-<html lang="en">
+---
+layout: default
+title: Sebastian Schürmann
+description: >-
+  Sebastian Schürmann — TypeScript & Python developer and open-source
+  maintainer building developer tooling and LLM/AI workflows. Based in Hamburg.
+nav: home
+---
 
-<!-- Head tag -->
-<head><meta name="generator" content="Hexo 3.9.0">
+{%- assign primary = site.data.profiles.links | where: "primary", true -%}
 
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <!--Description-->
-    
-
-    <!--Author-->
-    
-        <meta name="author" content="Sebastian Schürmann">
-    
-
-    <!--Open Graph Title-->
-    
-        <meta property="og:title" content="Fullstack Developer &amp; Coach for technical Teams">
-    
-
-    <!--Open Graph Description-->
-    
-
-    <!--Open Graph Site Name-->
-    <meta property="og:site_name" content="Fullstack Developer &amp; Coach for technical Teams">
-
-    <!--Type page-->
-    
-        <meta property="og:type" content="website">
-    
-
-    <!--Page Cover-->
-    
-
-    <meta name="twitter:card" content="summary">
-    
-
-    <!-- Title -->
-    
-    <title>Fullstack Developer &amp; Coach for technical Teams</title>
-
-    <!-- Tachyons Core CSS -->
-    <link rel="stylesheet" href="https://unpkg.com/tachyons/css/tachyons.min.css">
-
-    <!-- Custom Fonts -->
-    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="/css/style.css">
-
-    <!-- Google Analytics -->
-    
-
-
-</head>
-
-
-<body>
-
-<!-- Main Content -->
-<!-- Banner -->
-<!-- Banner -->
-<div class="w-100 bg-1 ph5-ns ph3 text-light">
-    
-    <nav class="db dt-l w-100 mw8 center border-box pv3">
-        <a class="db dtc-l v-mid link dim w-100 w-25-l tc tl-l mb2 mb0-l white" href="/" title="Fullstack Developer & Coach for technical Teams">
-            <img src="http://www.codeblocq.com/assets/projects/hexo-theme-anodyne/assets/anodyne.svg" class="dib h3" alt="Fullstack Developer & Coach for technical Teams">
-        </a>
-        <div class="db dtc-l v-mid w-100 w-75-l tc tr-l">
-            
-                <a class="link dim f6 f5-l dib mr3 mr4-l white" 
-                    href="/" 
-                    title="Home">
-                    Home
-                </a>
-            
-                <a class="link dim f6 f5-l dib mr3 mr4-l white" 
-                    href="/archives" 
-                    title="Archives">
-                    Archives
-                </a>
-            
-        </div>
-    </nav>
-
-    <!-- Title -->
-    <div class="w-100 mw8 center vh-40 dt">
-        <div class="dtc v-mid white">
-            <h1 class="f1-l f2-m tc tc-m tl-ns">Sebastian Schürmann</h1>
-            <p class="f4 fw3 pab-100px tc tc-m tl-ns">Software Development & Technical Team Coaching</p>
-        </div>
+<!-- Hero -->
+<section class="container hero">
+  <span class="hero__glow" aria-hidden="true"></span>
+  <div class="hero__content">
+    <h1>Sebastian Schürmann</h1>
+    <p class="hero__identity">
+      TypeScript &amp; Python developer. Open-source maintainer.
+      I build developer tooling and write about it.
+    </p>
+    <p class="hero__known">
+      Maintainer of npm packages, focused on developer tooling and LLM/AI
+      workflows. I care about tools that teams can depend on. Based in Hamburg.
+    </p>
+    <div class="hero__ctas">
+      {%- if site.data.profiles.sponsor.enabled -%}
+      <a class="btn btn--solid" href="{{ site.data.profiles.sponsor.url }}">
+        {% include icon.html name="heart" %} Sponsor
+      </a>
+      {%- endif -%}
+      {%- for p in primary -%}
+      <a class="btn btn--ghost" href="{{ p.url }}" target="_blank" rel="noopener me">
+        {% include icon.html name=p.icon %} {{ p.name }}
+      </a>
+      {%- endfor -%}
     </div>
+  </div>
+  <div class="hero__visual" aria-hidden="true">
+    <span class="hero__mark">&lt;/&gt;</span>
+    <span class="hero__coords mono">HAMBURG, DE — 53.55° N, 9.99° E</span>
+  </div>
+</section>
 
-    <!-- Icon -->
-    <div class="relative w-100 mw8 center white dn dn-m db-ns">
-        <i class="header-icon fa fa fa-magic"></i>
+<!-- Projects -->
+<section class="container section" id="projects">
+  <div class="section__head">
+    <div>
+      <h2 class="h-section">Curated Projects</h2>
+      <p class="lead">Core maintenance and active development — not every repo, the ones worth depending on.</p>
     </div>
-</div>
+    <a class="link-arrow" href="https://github.com/sebs?tab=repositories" target="_blank" rel="noopener">
+      All repositories {% include icon.html name="arrow-right" %}
+    </a>
+  </div>
 
-<!-- Content -->
-<div class="w-100 ph2 ph4-m ph5-l mv5 mv6-l">
-    <div class="content">
-        <div class="mw8 center">
-            
-                <a href="/2019/10/02/etherscan-api-next-a-look-into-the-refactoring/">
-    <div class="dt w-100 hover-border-main-color pointer pa3 border-color bl mv4">
-        <div class="dtc v-mid w-90 black-70">
-            <div>
-                
-                    <span class="f5 fw3 lh-copy pr4">2019-10-02</span> 
-                
-                
-                <span class="fake-link fw3 ph1 dib" onclick="location.href = '/tags/refactoring/'; return false;">#refactoring</span> <span class="fake-link fw3 ph1 dib" onclick="location.href = '/tags/typescript/'; return false;">#typescript</span> <span class="fake-link fw3 ph1 dib" onclick="location.href = '/tags/monorepo/'; return false;">#monorepo</span> <span class="fake-link fw3 ph1 dib" onclick="location.href = '/tags/lerna/'; return false;">#lerna</span> <span class="fake-link fw3 ph1 dib" onclick="location.href = '/tags/etherscan/'; return false;">#etherscan</span>
-                
-            </div>
-            <span class="f3 fw3 lh-copy">etherscan-api@next - a look into the refactoring<span>
+  <div class="cards">
+    {%- for project in site.data.projects -%}
+    <article class="card">
+      <div>
+        <div class="card__top">
+          <h3 class="h-card">{{ project.name }}</h3>
+          <div class="card__tags">
+            {%- if project.active -%}<span class="tag tag--active">Active</span>{%- endif -%}
+            {%- for t in project.tags -%}<span class="tag">{{ t }}</span>{%- endfor -%}
+          </div>
         </div>
-        <div class="dtc v-mid w-10 f1 black-50 tr">
-            <i class="fa fa-file-text-o"></i>
+        <p class="card__desc">{{ project.description }}</p>
+      </div>
+      <div class="card__foot">
+        <div class="card__signals">
+          {%- if project.stars -%}
+          <span class="signal">{% include icon.html name="star" %}{{ project.stars }}</span>
+          {%- endif -%}
+          {%- if project.downloads -%}
+          <span class="signal">{% include icon.html name="download" %}{{ project.downloads }}</span>
+          {%- endif -%}
+          {%- if project.last_activity -%}
+          <span class="signal signal--accent">{% include icon.html name="history" %}{{ project.last_activity }}</span>
+          {%- endif -%}
+          {%- if project.license -%}
+          <span class="signal">{{ project.license }}</span>
+          {%- endif -%}
         </div>
-    </div>
-</a>
-            
-                <a href="/2019/04/10/Codereviews-and-Pairprogramming/">
-    <div class="dt w-100 hover-border-main-color pointer pa3 border-color bl mv4">
-        <div class="dtc v-mid w-90 black-70">
-            <div>
-                
-                    <span class="f5 fw3 lh-copy pr4">2019-04-10</span> 
-                
-                
-                <span class="fake-link fw3 ph1 dib" onclick="location.href = '/tags/extremeprogramming/'; return false;">#extremeprogramming</span> <span class="fake-link fw3 ph1 dib" onclick="location.href = '/tags/practices/'; return false;">#practices</span>
-                
-            </div>
-            <span class="f3 fw3 lh-copy">Codereviews and Pairprogramming<span>
+        <div class="card__links">
+          {%- if project.links.github -%}
+          <a href="{{ project.links.github }}" target="_blank" rel="noopener" aria-label="{{ project.name }} on GitHub">{% include icon.html name="terminal" %}</a>
+          {%- endif -%}
+          {%- if project.links.npm -%}
+          <a href="{{ project.links.npm }}" target="_blank" rel="noopener" aria-label="{{ project.name }} on npm">{% include icon.html name="npm" %}</a>
+          {%- endif -%}
+          {%- if project.links.docs -%}
+          <a href="{{ project.links.docs }}" target="_blank" rel="noopener" aria-label="{{ project.name }} documentation">{% include icon.html name="link" %}</a>
+          {%- endif -%}
         </div>
-        <div class="dtc v-mid w-10 f1 black-50 tr">
-            <i class="fa fa-file-text-o"></i>
-        </div>
-    </div>
-</a>
-            
-                <a href="/2019/03/16/Levels-of-crossfunctional-work/">
-    <div class="dt w-100 hover-border-main-color pointer pa3 border-color bl mv4">
-        <div class="dtc v-mid w-90 black-70">
-            <div>
-                
-                    <span class="f5 fw3 lh-copy pr4">2019-03-16</span> 
-                
-                
-                <span class="fake-link fw3 ph1 dib" onclick="location.href = '/tags/teamwork/'; return false;">#teamwork</span> <span class="fake-link fw3 ph1 dib" onclick="location.href = '/tags/scrum/'; return false;">#scrum</span>
-                
-            </div>
-            <span class="f3 fw3 lh-copy">Levels of crossfunctional work<span>
-        </div>
-        <div class="dtc v-mid w-10 f1 black-50 tr">
-            <i class="fa fa-file-text-o"></i>
-        </div>
-    </div>
-</a>
-            
-                <a href="/2019/02/03/The-crux-of-done/">
-    <div class="dt w-100 hover-border-main-color pointer pa3 border-color bl mv4">
-        <div class="dtc v-mid w-90 black-70">
-            <div>
-                
-                    <span class="f5 fw3 lh-copy pr4">2019-02-03</span> 
-                
-                
-                <span class="fake-link fw3 ph1 dib" onclick="location.href = '/tags/teamwork/'; return false;">#teamwork</span>
-                
-            </div>
-            <span class="f3 fw3 lh-copy">The crux of done<span>
-        </div>
-        <div class="dtc v-mid w-10 f1 black-50 tr">
-            <i class="fa fa-file-text-o"></i>
-        </div>
-    </div>
-</a>
-            
-                <a href="/2019/01/04/Monorepos-with-Lerna/">
-    <div class="dt w-100 hover-border-main-color pointer pa3 border-color bl mv4">
-        <div class="dtc v-mid w-90 black-70">
-            <div>
-                
-                    <span class="f5 fw3 lh-copy pr4">2019-01-04</span> 
-                
-                
-                <span class="fake-link fw3 ph1 dib" onclick="location.href = '/tags/monorepos/'; return false;">#monorepos</span> <span class="fake-link fw3 ph1 dib" onclick="location.href = '/tags/javascript/'; return false;">#javascript</span> <span class="fake-link fw3 ph1 dib" onclick="location.href = '/tags/frontend/'; return false;">#frontend</span>
-                
-            </div>
-            <span class="f3 fw3 lh-copy">Monorepos with Lerna<span>
-        </div>
-        <div class="dtc v-mid w-10 f1 black-50 tr">
-            <i class="fa fa-file-text-o"></i>
-        </div>
-    </div>
-</a>
-            
-                <a href="/2019/01/03/Managing-a-(webcomponent)-Zoo/">
-    <div class="dt w-100 hover-border-main-color pointer pa3 border-color bl mv4">
-        <div class="dtc v-mid w-90 black-70">
-            <div>
-                
-                    <span class="f5 fw3 lh-copy pr4">2019-01-03</span> 
-                
-                
-                <span class="fake-link fw3 ph1 dib" onclick="location.href = '/tags/monorepos/'; return false;">#monorepos</span> <span class="fake-link fw3 ph1 dib" onclick="location.href = '/tags/javascript/'; return false;">#javascript</span> <span class="fake-link fw3 ph1 dib" onclick="location.href = '/tags/frontend/'; return false;">#frontend</span>
-                
-            </div>
-            <span class="f3 fw3 lh-copy">Managing a (webcomponent) Zoo<span>
-        </div>
-        <div class="dtc v-mid w-10 f1 black-50 tr">
-            <i class="fa fa-file-text-o"></i>
-        </div>
-    </div>
-</a>
-            
-                <a href="/2018/07/06/No-more-servers-already!/">
-    <div class="dt w-100 hover-border-main-color pointer pa3 border-color bl mv4">
-        <div class="dtc v-mid w-90 black-70">
-            <div>
-                
-                    <span class="f5 fw3 lh-copy pr4">2018-07-06</span> 
-                
-                
-                <span class="fake-link fw3 ph1 dib" onclick="location.href = '/tags/serverless/'; return false;">#serverless</span>
-                
-            </div>
-            <span class="f3 fw3 lh-copy">No more servers already!<span>
-        </div>
-        <div class="dtc v-mid w-10 f1 black-50 tr">
-            <i class="fa fa-file-text-o"></i>
-        </div>
-    </div>
-</a>
-            
-                <a href="/2017/07/23/Ideas-on-Pairprogramming/">
-    <div class="dt w-100 hover-border-main-color pointer pa3 border-color bl mv4">
-        <div class="dtc v-mid w-90 black-70">
-            <div>
-                
-                    <span class="f5 fw3 lh-copy pr4">2017-07-23</span> 
-                
-                
-                <span class="fake-link fw3 ph1 dib" onclick="location.href = '/tags/extremeprogramming/'; return false;">#extremeprogramming</span> <span class="fake-link fw3 ph1 dib" onclick="location.href = '/tags/practices/'; return false;">#practices</span> <span class="fake-link fw3 ph1 dib" onclick="location.href = '/tags/pairprogramming/'; return false;">#pairprogramming</span>
-                
-            </div>
-            <span class="f3 fw3 lh-copy">Ideas on Pairprogramming<span>
-        </div>
-        <div class="dtc v-mid w-10 f1 black-50 tr">
-            <i class="fa fa-file-text-o"></i>
-        </div>
-    </div>
-</a>
-            
-                <a href="/2017/03/23/10-TIPS-FOR-THE-XP-PRACTICE-SIT-TOGETHER-/">
-    <div class="dt w-100 hover-border-main-color pointer pa3 border-color bl mv4">
-        <div class="dtc v-mid w-90 black-70">
-            <div>
-                
-                    <span class="f5 fw3 lh-copy pr4">2017-03-23</span> 
-                
-                
-                <span class="fake-link fw3 ph1 dib" onclick="location.href = '/tags/extremeprogramming/'; return false;">#extremeprogramming</span> <span class="fake-link fw3 ph1 dib" onclick="location.href = '/tags/practices/'; return false;">#practices</span>
-                
-            </div>
-            <span class="f3 fw3 lh-copy">10 TIPS FOR THE XP PRACTICE "SIT TOGETHER"<span>
-        </div>
-        <div class="dtc v-mid w-10 f1 black-50 tr">
-            <i class="fa fa-file-text-o"></i>
-        </div>
-    </div>
-</a>
-            
-                <a href="/2016/11/19/Reasons-to-build-a-pairing-station/">
-    <div class="dt w-100 hover-border-main-color pointer pa3 border-color bl mv4">
-        <div class="dtc v-mid w-90 black-70">
-            <div>
-                
-                    <span class="f5 fw3 lh-copy pr4">2016-11-19</span> 
-                
-                
-                <span class="fake-link fw3 ph1 dib" onclick="location.href = '/tags/extremeprogramming/'; return false;">#extremeprogramming</span> <span class="fake-link fw3 ph1 dib" onclick="location.href = '/tags/pairprogramming/'; return false;">#pairprogramming</span>
-                
-            </div>
-            <span class="f3 fw3 lh-copy">Reasons to build a pairing station<span>
-        </div>
-        <div class="dtc v-mid w-10 f1 black-50 tr">
-            <i class="fa fa-file-text-o"></i>
-        </div>
-    </div>
-</a>
-            
-        </div>
-    </div>
-    
-    <div class="flex items-center justify-center pa4">
-        <a href="/" 
-            class="f5 no-underline inline-flex items-center pa3 ba border-box mr4 light-gray cursor-default">
-            <i class="w1 pr2 fa fa-chevron-left" aria-hidden="true"></i>
-            <span class="pl1">Previous</span>
-        </a>
-        <a href="/page/2/" 
-            class="f5 no-underline inline-flex items-center pa3 ba border-box gray hover-border-main-color hover-text-main-color">
-            <span class="pr1">Next</span>
-            <i class="w1 pl2 fa fa-chevron-right" aria-hidden="true"></i>
-        </a>
-    </div>
+      </div>
+    </article>
+    {%- endfor -%}
+  </div>
+</section>
 
-</div>
-
-
-<!-- Footer -->
-<div class="bg-1 ph2 ph5-ns pv5">
-        <div class="mv8">
-            <div class="center tc">
-                
-                    <div class="dib mh3">
-                        <a class="f3 f2-ns white dim" href="https://github.com/sebs" target="_blank">
-                            <i class="fa fa-github"></i>
-                        </a>
-                    </div>
-                
-                    <div class="dib mh3">
-                        <a class="f3 f2-ns white dim" href="https://www.linkedin.com/in/sebastian-sch%C3%BCrmann-7a642011/" target="_blank">
-                            <i class="fa fa-linkedin"></i>
-                        </a>
-                    </div>
-                
-                    <div class="dib mh3">
-                        <a class="f3 f2-ns white dim" href="mailto:sebs@2xs.org" target="_blank">
-                            <i class="fa fa-envelope"></i>
-                        </a>
-                    </div>
-                
-            </div>
-            <div class="f6 f5-ns center tc white pt5 fw3">
-                @Untitled. All right reserved | Design & Hexo <a class="link dim white" href="http://www.codeblocq.com/">Jonathan Klughertz</a>
-            </div>
-        </div>
+<!-- Writing -->
+<section class="container section" id="writing">
+  <div class="section__head">
+    <div>
+      <h2 class="h-section">Writing</h2>
+      <p class="lead">Latest posts live on dev.to — the hub links out, the posts live where the readers are.</p>
     </div>
+    <a class="link-arrow" href="https://dev.to/sebs" target="_blank" rel="noopener">
+      Read on dev.to {% include icon.html name="arrow-up-right" %}
+    </a>
+  </div>
 
-<!-- After Footer -->
-<!-- Disqus Comments -->
+  <div class="rows">
+    {%- assign posts = site.data.writing.posts -%}
+    {%- if posts and posts.size > 0 -%}
+      {%- for post in posts limit: 6 -%}
+      <a class="row" href="{{ post.url }}" target="_blank" rel="noopener">
+        <span class="row__date">{{ post.date | date: "%b %Y" }}</span>
+        <span class="row__title">{{ post.title }}</span>
+        <span class="row__meta">
+          {%- if post.reactions -%}<span>{% include icon.html name="heart" %} {{ post.reactions }}</span>{%- endif -%}
+          <span class="row__arrow">{% include icon.html name="arrow-up-right" %}</span>
+        </span>
+      </a>
+      {%- endfor -%}
+    {%- else -%}
+      <p class="writing__empty">
+        Latest posts load at deploy time from the dev.to feed.
+        Meanwhile, read everything at <a href="https://dev.to/sebs" style="color:var(--accent)" target="_blank" rel="noopener">dev.to/sebs</a>.
+      </p>
+    {%- endif -%}
+  </div>
 
+  <div class="callout">
+    <div>
+      <h3>Earlier writing &middot; 2014–2021</h3>
+      <p>Agile, XP, mob programming, and team coaching — earlier work, kept for the record.</p>
+    </div>
+    <a class="callout__link" href="{{ '/archives/' | relative_url }}">Explore archive</a>
+  </div>
+</section>
 
+<!-- Talks teaser -->
+<section class="container section" id="talks">
+  <div class="section__head">
+    <div>
+      <h2 class="h-section">Talks</h2>
+      <p class="lead">Selected presentations on tooling, architecture, and team dynamics.</p>
+    </div>
+    <a class="link-arrow" href="{{ '/talks/' | relative_url }}">All talks {% include icon.html name="arrow-right" %}</a>
+  </div>
 
-</body>
-
-</html>
+  <div class="talks">
+    {%- for talk in site.data.talks.featured limit: 3 -%}
+    <article class="talk">
+      <div class="talk__year">{{ talk.year }}</div>
+      <div class="talk__body">
+        <h3>{{ talk.title }}</h3>
+        <span class="talk__venue">{% include icon.html name="location" %}{{ talk.venue }}</span>
+      </div>
+    </article>
+    {%- unless forloop.last -%}<hr class="talk-divider">{%- endunless -%}
+    {%- endfor -%}
+  </div>
+</section>

@@ -1,0 +1,19 @@
+{%- comment -%} Fixed top app bar. `active` (passed via include) marks the current nav item. {%- endcomment -%}
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="appbar">
+  <div class="appbar__inner">
+    <a class="appbar__brand" href="{{ '/' | relative_url }}">Sebastian Schürmann</a>
+    <nav class="appbar__nav" aria-label="Primary">
+      <a href="{{ '/#projects' | relative_url }}"{% if include.active == 'projects' %} aria-current="page"{% endif %}>Projects</a>
+      <a href="{{ '/#writing' | relative_url }}"{% if include.active == 'writing' %} aria-current="page"{% endif %}>Writing</a>
+      <a href="{{ '/talks/' | relative_url }}"{% if include.active == 'talks' %} aria-current="page"{% endif %}>Talks</a>
+      {%- if site.data.profiles.sponsor.enabled -%}
+      <a class="btn btn--solid btn--sm" href="{{ site.data.profiles.sponsor.url }}">Sponsor</a>
+      {%- endif -%}
+    </nav>
+    <button class="theme-toggle" type="button" aria-label="Toggle colour theme" data-theme-toggle>
+      <span class="theme-toggle__dark">{% include icon.html name="moon" %}</span>
+      <span class="theme-toggle__light">{% include icon.html name="sun" %}</span>
+    </button>
+  </div>
+</header>

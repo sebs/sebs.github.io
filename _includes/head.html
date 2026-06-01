@@ -1,0 +1,93 @@
+{%- comment -%}
+  <head> — SEO + identity hardening. JSON-LD Person.sameAs is built from
+  _data/profiles.yml (the disambiguation anchor, critical given name collisions).
+{%- endcomment -%}
+{%- assign page_title = page.title | default: site.title -%}
+{%- if page.title and page.title != site.title -%}
+  {%- assign full_title = page.title | append: " | " | append: site.title -%}
+{%- else -%}
+  {%- assign full_title = site.title | append: " — " | append: site.tagline -%}
+{%- endif -%}
+{%- assign page_desc = page.description | default: site.description -%}
+{%- assign page_url = page.url | default: "/" | absolute_url -%}
+{%- assign og_image = page.image | default: site.image | absolute_url -%}
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+<title>{{ full_title | escape }}</title>
+<meta name="description" content="{{ page_desc | strip_newlines | escape }}">
+<meta name="author" content="{{ site.author | escape }}">
+<link rel="canonical" href="{{ page_url }}">
+
+{%- comment -%} No-flash theme: set data-theme before first paint. {%- endcomment -%}
+<script>
+  (function () {
+    try {
+      var stored = localStorage.getItem('theme');
+      var theme = stored || (matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+      document.documentElement.setAttribute('data-theme', theme);
+    } catch (e) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+  })();
+</script>
+
+<!-- Open Graph -->
+<meta property="og:type" content="{{ page.og_type | default: 'website' }}">
+<meta property="og:site_name" content="{{ site.title | escape }}">
+<meta property="og:title" content="{{ full_title | escape }}">
+<meta property="og:description" content="{{ page_desc | strip_newlines | escape }}">
+<meta property="og:url" content="{{ page_url }}">
+<meta property="og:image" content="{{ og_image }}">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{{ full_title | escape }}">
+<meta name="twitter:description" content="{{ page_desc | strip_newlines | escape }}">
+<meta name="twitter:image" content="{{ og_image }}">
+
+<!-- Fonts: preconnected + display=swap to stay off the critical path -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style"
+      href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap">
+<link rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap"
+      media="print" onload="this.media='all'">
+<noscript>
+  <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap">
+</noscript>
+
+<link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
+<link rel="icon" href="{{ '/assets/favicon.svg' | relative_url }}" type="image/svg+xml">
+
+{%- comment -%} JSON-LD Person — identity disambiguation anchor. {%- endcomment -%}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Sebastian Schürmann",
+  "jobTitle": "Developer Tooling & Open Source Maintainer",
+  "url": "{{ site.url }}",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Hamburg",
+    "addressCountry": "DE"
+  },
+  "knowsAbout": ["TypeScript", "Python", "Developer Tooling", "LLM", "AI", "Open Source"],
+  "sameAs": [
+    {%- assign links = "" | split: "" -%}
+    {%- for p in site.data.profiles.links -%}
+      {%- unless p.url contains "mailto:" -%}{%- assign links = links | push: p.url -%}{%- endunless -%}
+    {%- endfor -%}
+    {%- for u in links -%}"{{ u }}"{%- unless forloop.last -%}, {%- endunless -%}{%- endfor -%}
+  ]
+}
+</script>
+
+{%- if page.jsonld -%}{{ page.jsonld }}{%- endif -%}

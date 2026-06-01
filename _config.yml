@@ -1,0 +1,48 @@
+# Jekyll configuration for sebs.github.io
+# Built and deployed via GitHub Actions (.github/workflows/deploy.yml) so the
+# dev.to writing feed can be fetched at build time. The legacy Hexo archive
+# (e.g. /2019/01/04/Monorepos-with-Lerna/) is excluded below and copied into
+# _site verbatim after the build, so every existing permalink is preserved.
+
+title: "Sebastian Schürmann"
+tagline: "TypeScript & Python developer · Open-source maintainer · Developer tooling"
+description: >-
+  Personal hub of Sebastian Schürmann: TypeScript & Python developer,
+  open-source maintainer, and builder of developer tooling and LLM/AI workflows.
+  Based in Hamburg.
+author: "Sebastian Schürmann"
+url: "https://sebs.github.io"
+baseurl: ""
+lang: "en"
+
+# Default OG/Twitter image (relative to url)
+image: "/assets/og/og-default.png"
+
+plugins:
+  - jekyll-sitemap
+
+# Don't let Jekyll touch build/source files OR the legacy Hexo archive. The
+# archive is copied into _site verbatim after the build (scripts/assemble.sh)
+# so its permalinks ship byte-for-byte — Jekyll never re-encodes the old paths
+# (some contain non-ASCII characters that Jekyll's URL handling chokes on).
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - vendor
+  - README.md
+  - scripts
+  - .github
+  # legacy Hexo output (shipped verbatim, not processed):
+  - "2014"
+  - "2016"
+  - "2017"
+  - "2018"
+  - "2019"
+  - archives
+  - page
+  - tags
+  - css
+
+# Faithful, fast output.
+sass:
+  style: compressed

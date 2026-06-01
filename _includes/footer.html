@@ -1,0 +1,25 @@
+<footer class="footer">
+  <div class="footer__inner">
+    <div class="footer__brand">
+      <span class="footer__name mono">Sebastian Schürmann</span>
+      <p class="footer__tag">Developer tooling &amp; open source · Hamburg, DE</p>
+      {%- if site.data.profiles.sponsor.enabled -%}
+      <p class="footer__pitch">{{ site.data.profiles.sponsor.pitch }}</p>
+      {%- endif -%}
+    </div>
+    <nav class="footer__links" aria-label="Profiles">
+      {%- for p in site.data.profiles.links -%}
+        {%- assign is_mail = p.url | slice: 0, 7 -%}
+        {%- capture rel -%}{% if p.rel_me %}me {% endif %}{% unless is_mail == 'mailto:' %}noopener{% endunless %}{%- endcapture -%}
+        {%- assign rel = rel | strip -%}
+      <a href="{{ p.url }}"{% unless rel == '' %} rel="{{ rel }}"{% endunless %}{% unless is_mail == 'mailto:' %} target="_blank"{% endunless %}>{{ p.name }}</a>
+      {%- endfor -%}
+      {%- if site.data.profiles.sponsor.enabled -%}
+      <a class="footer__sponsor" href="{{ site.data.profiles.sponsor.url }}">Sponsor</a>
+      {%- endif -%}
+    </nav>
+  </div>
+  <div class="footer__legal">
+    <span class="mono">© {{ 'now' | date: "%Y" }} Sebastian Schürmann</span>
+  </div>
+</footer>

@@ -1,0 +1,80 @@
+---
+layout: default
+title: Talks
+description: >-
+  Talks by Sebastian Schürmann — presentations, keynotes, and workshops on
+  developer tooling, software architecture, and team dynamics.
+nav: talks
+og_type: website
+permalink: /talks/
+---
+
+<section class="container page-head">
+  <h1>Talks</h1>
+  <p class="lead">
+    A curated archive of presentations, keynotes, and workshops on developer
+    tooling, software architecture, and team dynamics. Slides are self-hosted
+    here — owned, indexable, and permanent.
+  </p>
+</section>
+
+<section class="container" style="padding-bottom: var(--section-gap);">
+  <div class="talks">
+    {%- for talk in site.data.talks.featured -%}
+    <article class="talk">
+      <div class="talk__year">{{ talk.year }}</div>
+      <div class="talk__body">
+        <h2>{{ talk.title }}</h2>
+        <span class="talk__venue">{% include icon.html name="location" %}{{ talk.venue }}</span>
+
+        {%- if talk.slides_url and talk.slides_embed -%}
+        <div class="deck"><iframe src="{{ talk.slides_url }}" title="{{ talk.title }} — slides" loading="lazy" allowfullscreen></iframe></div>
+        {%- elsif talk.slides_url -%}
+        <div class="deck"><object class="deck__pdf" data="{{ talk.slides_url }}" type="application/pdf"><p>Slides: <a href="{{ talk.slides_url }}">download PDF</a></p></object></div>
+        {%- else -%}
+        <div class="deck">
+          {% include icon.html name="slides" %}
+          <span class="mono">Slides coming soon</span>
+        </div>
+        {%- endif -%}
+
+        {%- if talk.description -%}<p class="talk__desc">{{ talk.description }}</p>{%- endif -%}
+
+        {%- if talk.video_url or talk.slides_url -%}
+        <div class="talk__links">
+          {%- if talk.video_url -%}
+          <a class="btn btn--ghost btn--sm" href="{{ talk.video_url }}" target="_blank" rel="noopener">{% include icon.html name="play" %} Watch video</a>
+          {%- endif -%}
+          {%- if talk.slides_url -%}
+          <a class="btn btn--ghost btn--sm" href="{{ talk.slides_url }}" target="_blank" rel="noopener">{% include icon.html name="doc" %} Slides</a>
+          {%- endif -%}
+        </div>
+        {%- endif -%}
+      </div>
+    </article>
+    {%- unless forloop.last -%}<hr class="talk-divider">{%- endunless -%}
+    {%- endfor -%}
+  </div>
+
+  {%- if site.data.talks.history and site.data.talks.history.size > 0 -%}
+  <div style="margin-top: var(--section-gap);">
+    <div class="divider-head">
+      <span class="eyebrow">Historical log</span>
+    </div>
+    <div class="log">
+      <div class="log__row log__row--head">
+        <span class="log__year">YEAR</span>
+        <span class="log__title log__title--head">TITLE</span>
+        <span class="log__venue log__venue--head">VENUE</span>
+      </div>
+      {%- for item in site.data.talks.history -%}
+      <div class="log__row">
+        <span class="log__year">{{ item.year }}</span>
+        <span class="log__title">{{ item.title }}</span>
+        <span class="log__venue">{{ item.venue }}</span>
+      </div>
+      {%- endfor -%}
+    </div>
+  </div>
+  {%- endif -%}
+</section>

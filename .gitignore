@@ -1,0 +1,12 @@
+# Jekyll build output & caches (built fresh in CI)
+_site/
+.jekyll-cache/
+.jekyll-metadata
+.sass-cache/
+
+# Ruby
+vendor/
+.bundle/
+
+# Generated at deploy time
+assets/og/og-default.png

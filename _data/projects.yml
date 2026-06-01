@@ -1,0 +1,32 @@
+# Curated projects (quality over completeness — do NOT dump all repos).
+# Each card surfaces a "this is maintained, depend on it" signal: stars,
+# downloads, last release / activity, license, and links to GitHub / npm / docs.
+#
+# `active: true` renders the "ACTIVE" badge. Leave numeric signals blank to
+# hide that chip.
+
+- name: es6-fuzz
+  description: >-
+    Fuzzy logic and sets for JavaScript & TypeScript. Robust mathematical
+    foundations with full TS types — the mature flagship.
+  tags: [TypeScript, npm]
+  active: false
+  stars: 50
+  downloads: "2k/mo"        # TODO: confirm current npm download rate
+  license: MIT
+  links:
+    github: "https://github.com/sebs/es6-fuzz"
+    npm: "https://www.npmjs.com/package/es6-fuzz"
+    # docs: "https://..."   # add when a docs site exists
+
+- name: claude-ecosystems-skills
+  description: >-
+    Specialized skills for LLM agents — file-system operations and codebase
+    analysis within the Claude ecosystem. Actively developed.
+  tags: [TypeScript, "LLM / AI"]
+  active: true
+  stars:
+  last_activity: "actively developed"
+  license:                  # TODO: confirm license
+  links:
+    github: "https://github.com/sebs/claude-ecosystems-skills"

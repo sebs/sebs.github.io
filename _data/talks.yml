@@ -1,0 +1,51 @@
+# Talks — drives the /talks page and the homepage "Talks" teaser (first 3).
+#
+# Adding a talk later is a one-line block. Each item supports:
+#   title       (required)
+#   venue       (required)
+#   year        (required)
+#   description (optional)
+#   slides_url  (optional) — SpeakerDeck/SlideShare embed URL, or a PDF in
+#                            /assets/talks/<file>.pdf
+#   slides_embed(optional) — true if slides_url is an iframe-embeddable deck
+#   video_url   (optional)
+#
+# ┌─────────────────────────────────────────────────────────────────────────┐
+# │ TODO (Sebastian): these are PLACEHOLDERS from the design mockup.         │
+# │ Replace with real talks. Export each deck from LinkedIn to PDF (drop in  │
+# │ /assets/talks/) or upload to SpeakerDeck and paste the embed URL.        │
+# └─────────────────────────────────────────────────────────────────────────┘
+
+featured:
+  - title: "Tooling for Modern Dev Workflows"     # TODO: real title
+    venue: "Tech Berlin"                          # TODO: real venue
+    year: 2023
+    description: >-
+      Placeholder — replace with the real abstract.
+    slides_url:        # e.g. /assets/talks/tooling-modern-dev-workflows.pdf
+    slides_embed: false
+    video_url:         # e.g. https://www.youtube.com/watch?v=...
+
+  - title: "Architecture as a Conversation"       # TODO: real title
+    venue: "JS Conf Remote"                       # TODO: real venue
+    year: 2021
+    description: >-
+      Placeholder — exploring architectural decisions as social constructs.
+    slides_url:
+    slides_embed: false
+    video_url:
+
+  - title: "Mob Programming: Sit Together"        # TODO: real title
+    venue: "Agile Hamburg"                         # TODO: real venue
+    year: 2018
+    description: >-
+      Placeholder — replace with the real abstract.
+    slides_url:
+    slides_embed: false
+    video_url:
+
+# Compact historical log (no slides/video needed).
+history:
+  - { year: 2017, title: "The State of Frontend Tooling",   venue: "DevDay London" }            # TODO: verify
+  - { year: 2016, title: "Microservices for the Rest of Us", venue: "Clean Code Days" }         # TODO: verify
+  - { year: 2015, title: "Dockerizing Your Monolith",        venue: "Container Solutions Meetup" } # TODO: verify

@@ -1,0 +1,48 @@
+# Canonical identity links. `links` feeds the hero, footer, and the JSON-LD
+# `sameAs` array (the search-disambiguation anchor). One edit updates all three.
+#
+# `rel_me: true` emits rel="me" on the footer link for Mastodon/Bluesky
+# verification and identity hardening.
+# `primary: true` also surfaces the link as a hero CTA.
+
+links:
+  - name: GitHub
+    handle: "@sebs"
+    url: "https://github.com/sebs"
+    icon: terminal
+    rel_me: true
+    primary: true
+
+  - name: dev.to
+    handle: "@sebs"
+    url: "https://dev.to/sebs"
+    icon: article
+    rel_me: true
+    primary: true
+
+  - name: LinkedIn
+    handle: "Sebastian Schürmann"
+    url: "https://www.linkedin.com/in/sebastianschuermann/"   # TODO: confirm exact LinkedIn slug
+    icon: work
+    rel_me: true
+
+  - name: schuermann.cloud
+    handle: "schuermann.cloud"
+    url: "https://schuermann.cloud"
+    icon: cloud
+    rel_me: true
+
+  - name: Email
+    handle: "sebs@2xs.org"
+    url: "mailto:sebs@2xs.org"
+    icon: mail
+
+# --- Sponsorship -------------------------------------------------------------
+# GitHub Sponsors is not yet enabled on the `sebs` profile, so Sponsor CTAs are
+# intentionally hidden site-wide. To turn them on later: enable GitHub Sponsors,
+# then set `enabled: true` and confirm the URL below. The layout is already
+# sponsorship-ready (hero + footer + nav slots are wired to this flag).
+sponsor:
+  enabled: false
+  url: "https://github.com/sponsors/sebs"
+  pitch: "I maintain tools that teams depend on — sponsorship funds continued maintenance."

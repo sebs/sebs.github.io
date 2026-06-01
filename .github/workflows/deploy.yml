@@ -1,0 +1,76 @@
+name: Build & deploy site
+
+# Builds the Jekyll site and deploys to GitHub Pages.
+# Unlike the native Pages build, this runs with network access, so it can:
+#   1. fetch the live dev.to writing feed at build time, and
+#   2. rasterize the social OG image (SVG -> PNG).
+# The Hexo-generated archive (no front matter) is copied through verbatim,
+# so every existing /YYYY/MM/DD/... permalink is preserved.
+#
+# ONE-TIME SETUP: in the repo, Settings -> Pages -> Build and deployment ->
+# Source must be set to "GitHub Actions" for this workflow to publish.
+
+on:
+  push:
+    branches: [master, main]
+  workflow_dispatch:
+  schedule:
+    - cron: "0 6 * * *"   # daily — refresh the dev.to writing feed
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Allow one concurrent deployment; let in-progress runs finish.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Fetch dev.to writing feed (falls back to committed seed)
+        run: python3 scripts/fetch_devto.py
+        continue-on-error: true
+
+      - name: Rasterize OG image (SVG -> PNG)
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends librsvg2-bin fonts-dejavu-core
+          rsvg-convert -w 1200 -h 630 assets/og/og-default.svg -o assets/og/og-default.png
+        continue-on-error: true
+
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "3.3"
+          bundler-cache: true
+
+      - name: Build with Jekyll
+        run: bundle exec jekyll build --trace
+        env:
+          JEKYLL_ENV: production
+
+      - name: Assemble legacy archive into _site (verbatim)
+        run: bash scripts/assemble.sh _site
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
