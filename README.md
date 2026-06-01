@@ -62,5 +62,5 @@ CI; safe to run locally if you have network access).
 ## TODOs left in the data files
 
 Search for `TODO` in `_data/*.yml`: confirm the LinkedIn slug, npm download
-figure, the `claude-ecosystems-skills` license, and replace the placeholder
-talks with real titles/venues/slides.
+figure, and the `claude-ecosystems-skills` license. (Most talks are missing a
+venue — fill in `venue:` in `_data/talks.yml` if you track those down.)

@@ -2,7 +2,7 @@
 #
 # Adding a talk later is a one-line block. Each item supports:
 #   title       (required)
-#   venue       (required)
+#   venue       (optional)
 #   year        (required)
 #   description (optional)
 #   slides_url  (optional) — SpeakerDeck/SlideShare embed URL, or a PDF in
@@ -10,42 +10,122 @@
 #   slides_embed(optional) — true if slides_url is an iframe-embeddable deck
 #   video_url   (optional)
 #
-# ┌─────────────────────────────────────────────────────────────────────────┐
-# │ TODO (Sebastian): these are PLACEHOLDERS from the design mockup.         │
-# │ Replace with real talks. Export each deck from LinkedIn to PDF (drop in  │
-# │ /assets/talks/) or upload to SpeakerDeck and paste the embed URL.        │
-# └─────────────────────────────────────────────────────────────────────────┘
+# Slides live in /assets/talks/ as PDFs (these are the original decks, kept
+# self-hosted so the links are permanent). To add a new talk, drop a PDF in
+# /assets/talks/ and add a block below — or paste a SpeakerDeck embed URL and
+# set slides_embed: true.
 
 featured:
-  - title: "Tooling for Modern Dev Workflows"     # TODO: real title
-    venue: "Tech Berlin"                          # TODO: real venue
+  - title: "All AI Art Is **** — and the Consequences for Gen-AI-Enhanced Software Development"
+    venue:
+    year: 2026
+    description: >-
+      Offensive opinions, a Godwin's Law warning, and an unapologetic take on
+      what generative AI art means for how we build software.
+    slides_url: /assets/talks/all-ai-art.pdf
+    slides_embed: false
+    video_url:
+
+  - title: "Building Open Source with LLMs"
+    venue:
+    year: 2026
+    description: >-
+      From purl-patrol to the ecosyste.ms CLI — developing and releasing
+      open-source projects with agentic LLM workflows.
+    slides_url: /assets/talks/llm_vs_ecosystems.pdf
+    slides_embed: false
+    video_url:
+
+  - title: "Of Chameleons, Pipelines, Compliance, and Open Source"
+    venue: "Bitkom"
+    year: 2025
+    description: >-
+      SBOMs, package URLs, and purl-patrol — keeping open-source supply chains
+      compliant without losing the plot.
+    slides_url: /assets/talks/bitkom_mw_sebastian_sbom_purl_patrol.pdf
+    slides_embed: false
+    video_url:
+
+  - title: "10 Experiments, 10 Learnings"
+    venue:
+    year: 2025
+    description: >-
+      Picking the interesting examples out of 200 prototypes built with
+      ChatGPT, Claude, Gemini, and Windsurf — what actually held up.
+    slides_url: /assets/talks/10-protos-10-learnings.pdf
+    slides_embed: false
+    video_url:
+
+  - title: "Observability Worst Practices: A Measured Tier List"
+    venue:
+    year: 2025
+    description: >-
+      A tier list of the ways teams get observability wrong — ranked, with
+      receipts.
+    slides_url: /assets/talks/o11y-worst-practices-tierlist-v1.2.pdf
+    slides_embed: false
+    video_url:
+
+  - title: "Agile — How Much of a Cult Is It?"
+    venue:
     year: 2023
     description: >-
-      Placeholder — replace with the real abstract.
-    slides_url:        # e.g. /assets/talks/tooling-modern-dev-workflows.pdf
-    slides_embed: false
-    video_url:         # e.g. https://www.youtube.com/watch?v=...
-
-  - title: "Architecture as a Conversation"       # TODO: real title
-    venue: "JS Conf Remote"                       # TODO: real venue
-    year: 2021
-    description: >-
-      Placeholder — exploring architectural decisions as social constructs.
-    slides_url:
+      A frank look at where agile practice tips over into ritual and belief —
+      and what to keep when it does.
+    slides_url: /assets/talks/agile_cults_annotated.pdf
     slides_embed: false
     video_url:
 
-  - title: "Mob Programming: Sit Together"        # TODO: real title
-    venue: "Agile Hamburg"                         # TODO: real venue
-    year: 2018
+  - title: "Surviving Your Front-End"
+    venue:
+    year: 2014
     description: >-
-      Placeholder — replace with the real abstract.
-    slides_url:
+      What millions of lines of HTML and JS taught me about keeping large
+      front-end codebases alive and maintainable.
+    slides_url: /assets/talks/surviving-your-frontend.pdf
     slides_embed: false
     video_url:
 
-# Compact historical log (no slides/video needed).
-history:
-  - { year: 2017, title: "The State of Frontend Tooling",   venue: "DevDay London" }            # TODO: verify
-  - { year: 2016, title: "Microservices for the Rest of Us", venue: "Clean Code Days" }         # TODO: verify
-  - { year: 2015, title: "Dockerizing Your Monolith",        venue: "Container Solutions Meetup" } # TODO: verify
+  - title: "Nonviolent Communication: A Rather Violent Introduction"
+    venue: "XP Days"
+    year: 2014
+    description: >-
+      An introduction to Nonviolent Communication for developers and agile
+      teams — and why it matters when people work this closely together.
+    slides_url: /assets/talks/nonviolent-communication.pdf
+    slides_embed: false
+    video_url:
+
+  - title: "Design Thinking & Scrum"
+    venue:
+    year: 2014
+    description: >-
+      Bringing design thinking and mobile UX into the Scrum process to keep
+      delivery anchored in real user needs.
+    slides_url: /assets/talks/design-thinking-and-scrum.pdf
+    slides_embed: false
+    video_url:
+
+  - title: "Pair Programming"
+    venue:
+    year: 2014
+    description: >-
+      Theory, practice, and the critics — from promiscuous pairing and pair
+      hinging to test-first pairing, dojos, flow, and group flow.
+    slides_url: /assets/talks/pair-programming.pdf
+    slides_embed: false
+    video_url:
+
+  - title: "Social Human Architecture for Beginners"
+    venue:
+    year: 2014
+    description: >-
+      On the social architecture of teams, from a developer-turned-Scrum-Master
+      working across five teams.
+    slides_url: /assets/talks/social-human-architecture.pdf
+    slides_embed: false
+    video_url:
+
+# Compact historical log (no slides/video needed). Empty for now — every talk
+# above carries its own deck, so there is nothing extra to list here yet.
+history: []

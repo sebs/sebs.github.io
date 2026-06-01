@@ -25,7 +25,7 @@ permalink: /talks/
       <div class="talk__year">{{ talk.year }}</div>
       <div class="talk__body">
         <h2>{{ talk.title }}</h2>
-        <span class="talk__venue">{% include icon.html name="location" %}{{ talk.venue }}</span>
+        {%- if talk.venue -%}<span class="talk__venue">{% include icon.html name="location" %}{{ talk.venue }}</span>{%- endif -%}
 
         {%- if talk.slides_url and talk.slides_embed -%}
         <div class="deck"><iframe src="{{ talk.slides_url }}" title="{{ talk.title }} — slides" loading="lazy" allowfullscreen></iframe></div>

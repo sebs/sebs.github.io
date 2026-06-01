@@ -156,7 +156,7 @@ nav: home
       <div class="talk__year">{{ talk.year }}</div>
       <div class="talk__body">
         <h3>{{ talk.title }}</h3>
-        <span class="talk__venue">{% include icon.html name="location" %}{{ talk.venue }}</span>
+        {%- if talk.venue -%}<span class="talk__venue">{% include icon.html name="location" %}{{ talk.venue }}</span>{%- endif -%}
       </div>
     </article>
     {%- unless forloop.last -%}<hr class="talk-divider">{%- endunless -%}
