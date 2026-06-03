@@ -44,6 +44,32 @@
   links:
     github: "https://github.com/ecosyste-ms/ecosyste_ms_cli"
 
+- name: etherscan-api
+  description: >-
+    API to Etherscan with a simple interface — Etherscan V2, multichain.
+    A long-running, widely depended-on library with a fresh release.
+  tags: [JavaScript, npm]
+  active: true
+  stars: 552
+  downloads: "13k/mo"
+  license: MIT
+  links:
+    github: "https://github.com/sebs/etherscan-api"
+    npm: "https://www.npmjs.com/package/etherscan-api"
+
+- name: banira
+  description: >-
+    A toolchain for developing web components using vanilla JavaScript.
+    Actively developed, with recent npm releases.
+  tags: [TypeScript, npm]
+  active: true
+  stars: 1
+  downloads: "500/mo"
+  license: MIT
+  links:
+    github: "https://github.com/sebs/banira"
+    npm: "https://www.npmjs.com/package/banira"
+
 - name: dada-tbd-tui
   description: >-
     A terminal-based wizard for updating the dadamachines TBD-16 — a friendly
