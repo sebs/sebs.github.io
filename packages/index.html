@@ -1,0 +1,120 @@
+---
+layout: default
+title: Packages
+description: >-
+  npm download statistics for the packages Sebastian Schürmann maintains —
+  combined download trend plus per-package figures, refreshed on every deploy.
+nav: packages
+og_type: website
+permalink: /packages/
+---
+
+{%- assign stats = site.data.npm_stats -%}
+{%- assign packages = stats.packages -%}
+
+<section class="container page-head">
+  <h1>Packages</h1>
+  <p class="lead">
+    npm download metrics for the packages I maintain, compiled from the public
+    npm registry.
+  </p>
+  {%- if stats.generated -%}
+  <p class="mono" style="color: var(--text-faint); margin-top: 12px;">
+    {% include icon.html name="download" %} Last refreshed {{ stats.generated }}
+    &middot; source: registry.npmjs.org
+  </p>
+  {%- endif -%}
+</section>
+
+{%- if packages and packages.size > 0 -%}
+{%- assign totals = stats.totals -%}
+{%- assign chart = stats.chart -%}
+
+<!-- Totals band -->
+<section class="container" style="padding-bottom: var(--gutter);">
+  <div class="statband">
+    <div class="statbig">
+      <span class="statbig__value">{{ totals.packages }}</span>
+      <span class="statbig__label">Packages</span>
+    </div>
+    <div class="statbig">
+      <span class="statbig__value">{% include thousands.html n=totals.dl_month %}</span>
+      <span class="statbig__label">Downloads / 30 days</span>
+    </div>
+    <div class="statbig">
+      <span class="statbig__value">{% include thousands.html n=totals.dl_year %}</span>
+      <span class="statbig__label">Downloads / 12 months</span>
+    </div>
+    <div class="statbig">
+      <span class="statbig__value">{% include thousands.html n=totals.releases %}</span>
+      <span class="statbig__label">Releases shipped</span>
+    </div>
+  </div>
+</section>
+
+{%- if chart -%}
+<!-- Combined download trend -->
+<section class="container" style="padding-bottom: var(--gutter);">
+  <div class="aggchart-wrap">
+    <div class="aggchart-head">
+      <span class="eyebrow">Weekly downloads &middot; all packages combined</span>
+      <span class="aggchart-peak mono">peak {% include thousands.html n=chart.peak_week %} / wk</span>
+    </div>
+    <svg class="aggchart" viewBox="0 0 100 40" preserveAspectRatio="none" role="img"
+         aria-label="Combined weekly npm downloads across all packages over the last 12 months">
+      <polygon class="aggchart__area" points="{{ chart.area_points }}" />
+      <polyline class="aggchart__line" points="{{ chart.line_points }}" />
+    </svg>
+    <div class="aggchart-axis mono">
+      <span>{{ chart.start | date: "%b %Y" }}</span>
+      <span>{{ chart.end | date: "%b %Y" }}</span>
+    </div>
+  </div>
+</section>
+{%- endif -%}
+
+<!-- Compact per-package list -->
+<section class="container section" style="border-top: none; padding-top: var(--gutter);">
+  <div class="divider-head">
+    <span class="eyebrow">By package &middot; ranked by 30-day downloads</span>
+  </div>
+
+  {%- assign top = packages[0].dl_month | default: 0 -%}
+  <div class="pkg-compact">
+    <div class="crow crow--head mono">
+      <span class="crow__name">Package</span>
+      <span class="crow__bar"></span>
+      <span class="crow__num">30 days</span>
+      <span class="crow__num">12 months</span>
+    </div>
+    {%- for p in packages -%}
+    {%- assign month = p.dl_month | default: 0 -%}
+    {%- if top > 0 -%}{%- assign w = month | times: 100 | divided_by: top -%}{%- else -%}{%- assign w = 0 -%}{%- endif -%}
+    <a class="crow" href="{{ p.npm_url }}" target="_blank" rel="noopener">
+      <span class="crow__name">
+        {{ p.name }}{% if p.version and p.version != "" %}<span class="crow__ver">v{{ p.version }}</span>{% endif %}
+        {%- if p.error -%}<span class="crow__ver crow__ver--err">{{ p.error }}</span>{%- endif -%}
+      </span>
+      <span class="crow__bar" aria-hidden="true"><span style="width: {{ w }}%;"></span></span>
+      <span class="crow__num">{% include thousands.html n=month %}<span class="crow__unit">/mo</span></span>
+      <span class="crow__num crow__num--faint">{% include thousands.html n=p.dl_year %}<span class="crow__unit">/yr</span></span>
+    </a>
+    {%- endfor -%}
+  </div>
+
+  <p class="mono" style="color: var(--text-faint); margin-top: var(--gutter); font-size: 13px;">
+    Figures from the public npm downloads API. Recently published packages may
+    show no counts until npm aggregates a full period. Bars are relative to the
+    most-downloaded package.
+  </p>
+</section>
+
+{%- else -%}
+<section class="container section" style="border-top: none;">
+  <p class="writing__empty">
+    Package statistics load at deploy time from the npm registry. Meanwhile,
+    browse everything at
+    <a href="https://www.npmjs.com/~sebs" style="color:var(--accent)" target="_blank" rel="noopener">npmjs.com/~sebs</a>.
+  </p>
+</section>
+{%- endif -%}

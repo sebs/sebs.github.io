@@ -26,12 +26,6 @@ links:
     icon: work
     rel_me: true
 
-  - name: schuermann.cloud
-    handle: "schuermann.cloud"
-    url: "https://schuermann.cloud"
-    icon: cloud
-    rel_me: true
-
 # --- Sponsorship -------------------------------------------------------------
 # GitHub Sponsors is not yet enabled on the `sebs` profile, so Sponsor CTAs are
 # intentionally hidden site-wide. To turn them on later: enable GitHub Sponsors,

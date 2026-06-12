@@ -6,6 +6,7 @@
     <nav class="appbar__nav" aria-label="Primary">
       <a href="{{ '/cv/' | relative_url }}"{% if include.active == 'cv' %} aria-current="page"{% endif %}>CV</a>
       <a href="{{ '/#projects' | relative_url }}"{% if include.active == 'projects' %} aria-current="page"{% endif %}>Projects</a>
+      <a href="{{ '/packages/' | relative_url }}"{% if include.active == 'packages' %} aria-current="page"{% endif %}>Packages</a>
       <a href="{{ '/#writing' | relative_url }}"{% if include.active == 'writing' %} aria-current="page"{% endif %}>Writing</a>
       <a href="{{ '/talks/' | relative_url }}"{% if include.active == 'talks' %} aria-current="page"{% endif %}>Talks</a>
       {%- if site.data.profiles.sponsor.enabled -%}

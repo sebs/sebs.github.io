@@ -460,6 +460,136 @@ main { padding-top: 70px; }
 .divider-head .eyebrow { white-space: nowrap; }
 .divider-head::after { content: ""; flex: 1; height: 1px; background: var(--border); }
 
+/* ---- Packages / npm stats ---------------------------------------------- */
+/* Totals band — a few headline numbers above the per-package list. */
+.statband {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  background: var(--border);
+  border: 1px solid var(--border);
+}
+@media (min-width: 768px) { .statband { grid-template-columns: repeat(4, 1fr); } }
+.statbig {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 24px var(--gutter);
+  background: var(--surface);
+}
+.statbig__value {
+  font-family: var(--font-display);
+  font-size: clamp(28px, 4.5vw, 40px);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  color: var(--accent);
+}
+.statbig__label {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+}
+
+/* Combined download trend — one area chart for all packages */
+.aggchart-wrap {
+  border: 1px solid var(--border);
+  background: var(--surface);
+  padding: var(--gutter);
+}
+.aggchart-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 18px;
+}
+.aggchart-peak { font-size: 13px; color: var(--accent); }
+.aggchart {
+  width: 100%;
+  height: 200px;
+  display: block;
+  overflow: visible;
+}
+@media (min-width: 768px) { .aggchart { height: 240px; } }
+.aggchart__area { fill: color-mix(in srgb, var(--accent) 14%, transparent); stroke: none; }
+.aggchart__line {
+  fill: none;
+  stroke: var(--accent);
+  stroke-width: 1.5;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+  vector-effect: non-scaling-stroke;
+}
+.aggchart-axis {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 12px;
+  font-size: 12px;
+  color: var(--text-faint);
+}
+
+/* Compact per-package list */
+.pkg-compact { border-top: 1px solid var(--border); }
+.crow {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 4px 16px;
+  align-items: center;
+  padding: 16px 8px;
+  border-bottom: 1px solid var(--border);
+  transition: background 0.2s var(--ease);
+}
+.crow:not(.crow--head):hover { background: var(--surface); }
+@media (min-width: 768px) {
+  .crow { grid-template-columns: minmax(0, 1.6fr) 1fr auto auto; gap: 24px; padding-inline: 12px; }
+}
+.crow--head {
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+  background: var(--surface-2);
+}
+.crow--head:hover { background: var(--surface-2); }
+.crow__name {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  color: var(--text);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 8px;
+  min-width: 0;
+  word-break: break-word;
+}
+.crow:hover .crow__name { color: var(--accent); }
+.crow--head .crow__name { color: var(--text-faint); }
+.crow__ver { font-size: 11px; color: var(--text-faint); }
+.crow__ver--err { color: var(--accent); }
+
+/* Share bar — relative to the most-downloaded package */
+.crow__bar { display: none; height: 6px; background: var(--surface-3); overflow: hidden; }
+@media (min-width: 768px) { .crow__bar { display: block; } }
+.crow--head .crow__bar { background: none; }
+.crow__bar > span { display: block; height: 100%; background: var(--accent); min-width: 1px; }
+
+.crow__num {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  color: var(--text);
+  text-align: right;
+  white-space: nowrap;
+}
+.crow--head .crow__num { color: var(--text-faint); }
+.crow__num--faint { color: var(--text-muted); }
+.crow__unit { color: var(--text-faint); font-size: 11px; margin-left: 3px; }
+.crow--head .crow__unit { display: none; }
+@media (max-width: 767px) { .crow__num--faint { display: none; } }
+
 /* ---- Footer ------------------------------------------------------------ */
 .footer { border-top: 1px solid var(--border); }
 .footer__inner {

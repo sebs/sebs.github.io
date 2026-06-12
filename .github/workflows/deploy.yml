@@ -39,6 +39,10 @@ jobs:
         run: python3 scripts/fetch_devto.py
         continue-on-error: true
 
+      - name: Fetch npm download stats (falls back to committed seed)
+        run: python3 scripts/fetch_npm_stats.py
+        continue-on-error: true
+
       - name: Rasterize OG image (SVG -> PNG)
         run: |
           sudo apt-get update -qq

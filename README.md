@@ -9,8 +9,12 @@ projects + talks.
 
 - **Static site, built with Jekyll, deployed via GitHub Actions.**
   A full Actions build (not the native Pages build) is used so the dev.to
-  writing feed can be fetched at deploy time, the OG image rasterized, and the
-  `jekyll-archives` plugin run.
+  writing feed and npm download stats can be fetched at deploy time, the OG
+  image rasterized, and the `jekyll-archives` plugin run.
+- **The `/packages/` page is data-driven from a PURL config.** List package
+  URLs in `_data/packages.yml`; `scripts/fetch_npm_stats.py` resolves the npm
+  download counts and release metadata at build time into `_data/npm_stats.yml`
+  (committed as a seed, refreshed on every deploy).
 - **The legacy posts are markdown in `_posts/`.** The old Hexo posts were
   converted to clean markdown (see `scripts/extract_posts.py` for how). Each
   post pins its **original URL** via `permalink:` in front matter
@@ -39,6 +43,8 @@ Most content lives in `_data/`:
 | `_data/projects.yml`  | Project cards                                             |
 | `_data/talks.yml`     | `/talks` page + homepage teaser (`featured` + `history`)  |
 | `_data/writing.yml`   | Seed/fallback for Writing (overwritten by the dev.to feed at deploy) |
+| `_data/packages.yml`  | PURLs for the `/packages/` npm-stats page                 |
+| `_data/npm_stats.yml` | Seed/fallback for `/packages/` (overwritten by the npm registry at deploy) |
 
 Talk slides go in `assets/talks/` (PDF) or as a SpeakerDeck embed URL — see the
 comments in `_data/talks.yml`.
@@ -56,7 +62,8 @@ bundle install
 bundle exec jekyll serve   # http://localhost:4000
 ```
 
-`scripts/fetch_devto.py` populates the live writing feed (run automatically in
+`scripts/fetch_devto.py` populates the live writing feed and
+`scripts/fetch_npm_stats.py` the npm download stats (both run automatically in
 CI; safe to run locally if you have network access).
 
 ## TODOs left in the data files

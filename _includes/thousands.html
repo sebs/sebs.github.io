@@ -1,0 +1,14 @@
+{%- comment -%}
+  Format an integer with thousands separators. Usage: {% include thousands.html n=12345 %} -> 12,345
+  Pure Liquid (no Rails number filters in Jekyll): reverse the digits, insert a
+  comma before every third, reverse back.
+{%- endcomment -%}
+{%- assign _s = include.n | round | append: "" -%}
+{%- assign _rev = _s | split: "" | reverse -%}
+{%- assign _out = "" -%}
+{%- for _d in _rev -%}
+  {%- assign _mod = forloop.index0 | modulo: 3 -%}
+  {%- if forloop.index0 > 0 and _mod == 0 -%}{%- assign _out = _out | append: "," -%}{%- endif -%}
+  {%- assign _out = _out | append: _d -%}
+{%- endfor -%}
+{{- _out | split: "" | reverse | join: "" -}}

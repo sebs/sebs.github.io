@@ -1,0 +1,34 @@
+# Configuration for the Packages page (/packages/) — npm download statistics.
+#
+# List one Package URL (PURL — https://github.com/package-url/purl-spec) per
+# published package. Only `pkg:npm/...` is supported today; a version, scope,
+# qualifiers, or subpath are all tolerated and ignored (e.g.
+# `pkg:npm/%40scope/name@1.2.3` resolves to the `@scope/name` package).
+#
+# Statistics are fetched at BUILD TIME by scripts/fetch_npm_stats.py and written
+# to _data/npm_stats.yml (which is committed as a seed and refreshed on every
+# deploy). To add a package, drop its PURL below and rebuild.
+purls:
+  # Standalone packages
+  - pkg:npm/es6-fuzz
+  - pkg:npm/etherscan-api
+  - pkg:npm/banira
+
+  # maschinenlesbar.org — TypeScript API clients & CLIs for open German
+  # government / public-data APIs (https://github.com/orgs/maschinenlesbar-org)
+  - pkg:npm/@maschinenlesbar.org/fim-portal-cli
+  - pkg:npm/@maschinenlesbar.org/ausbildungssuche-cli
+  - pkg:npm/@maschinenlesbar.org/autobahn-cli
+  - pkg:npm/@maschinenlesbar.org/bundeshaushalt-cli
+  - pkg:npm/@maschinenlesbar.org/dip-bundestag-cli
+  - pkg:npm/@maschinenlesbar.org/dwd-cli
+  - pkg:npm/@maschinenlesbar.org/govdata-cli
+  - pkg:npm/@maschinenlesbar.org/jobsuche-cli
+  - pkg:npm/@maschinenlesbar.org/lobbyregister-cli
+  - pkg:npm/@maschinenlesbar.org/luftqualitaet-cli
+  - pkg:npm/@maschinenlesbar.org/nina-warnungen-cli
+  - pkg:npm/@maschinenlesbar.org/pegel-online-cli
+  - pkg:npm/@maschinenlesbar.org/reisewarnungen-cli
+  - pkg:npm/@maschinenlesbar.org/smard-cli
+  - pkg:npm/@maschinenlesbar.org/strahlenschutz-cli
+  - pkg:npm/@maschinenlesbar.org/tagesschau-cli
