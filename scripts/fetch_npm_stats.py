@@ -11,13 +11,16 @@ recorded with an `error` field rather than aborting the run. Only the stdlib is
 used (no PyYAML / requests), so it runs anywhere Python 3 does.
 
 Data sources (no auth required):
-  - https://api.npmjs.org/downloads/point/<period>/<pkg>   point totals
-  - https://api.npmjs.org/downloads/range/last-year/<pkg>  daily series (sparkline)
+  - https://api.npmjs.org/downloads/range/last-year/<pkg>  daily series — the
+        day/week/month/year totals are all summed from this one response, so we
+        make a single download request per package (see `_get_json` on why).
   - https://registry.npmjs.org/<pkg>                        registry metadata
 """
 import json
 import re
 import sys
+import time
+import urllib.error
 import urllib.parse
 import urllib.request
 from datetime import date
@@ -26,15 +29,31 @@ CONFIG = "_data/packages.yml"
 OUT = "_data/npm_stats.yml"
 UA = {"User-Agent": "sebs.github.io build (npm stats)"}
 TIMEOUT = 30
+RETRIES = 4   # api.npmjs.org answers bursts of requests with HTTP 429
 
 # Aggregate-chart geometry (inline SVG viewBox is "0 0 100 40" in the template).
 CHART_W, CHART_H, CHART_WEEKS = 100, 40, 52
 
 
 def _get_json(url):
-    req = urllib.request.Request(url, headers=UA)
-    with urllib.request.urlopen(req, timeout=TIMEOUT) as resp:
-        return json.load(resp)
+    """GET + parse JSON, retrying on 429/5xx with backoff (honours Retry-After).
+
+    api.npmjs.org rate-limits bursty traffic with HTTP 429. With one download
+    request per package this is rarely hit, but a retry keeps a transient 429
+    from zeroing out a package's numbers for the whole build.
+    """
+    for attempt in range(RETRIES):
+        req = urllib.request.Request(url, headers=UA)
+        try:
+            with urllib.request.urlopen(req, timeout=TIMEOUT) as resp:
+                return json.load(resp)
+        except urllib.error.HTTPError as exc:
+            if exc.code not in (429, 500, 502, 503, 504) or attempt == RETRIES - 1:
+                raise
+            retry_after = (exc.headers.get("Retry-After") or "").strip()
+            delay = int(retry_after) if retry_after.isdigit() else 2 ** attempt
+            time.sleep(min(delay, 30))
+    raise RuntimeError(f"exhausted retries for {url}")   # unreachable
 
 
 def parse_npm_purl(purl):
@@ -83,12 +102,17 @@ def _api_name(pkg):
     return pkg.replace("/", "%2f") if pkg.startswith("@") else pkg
 
 
-def downloads_point(pkg, period):
-    try:
-        data = _get_json(f"https://api.npmjs.org/downloads/point/{period}/{_api_name(pkg)}")
-        return int(data.get("downloads") or 0)
-    except Exception:  # noqa: BLE001
+def _tail_sum(daily, days):
+    """Sum the most recent `days` of a {date: count} series; None if unavailable.
+
+    Replaces the per-period api.npmjs.org `point` calls: the last-year daily
+    series (already fetched for the chart) contains every period, so one request
+    per package covers day/week/month/year and keeps us under the rate cap.
+    """
+    if not daily:
         return None
+    ordered = sorted(daily)                       # oldest -> newest
+    return sum(daily[d] for d in ordered[-days:])
 
 
 def daily_series(pkg):
@@ -173,13 +197,12 @@ def metadata(pkg):
 def collect(pkg):
     meta = metadata(pkg)
     daily = daily_series(pkg)
-    dl_month = downloads_point(pkg, "last-month")
     rec = {
         "name": pkg,
         "npm_url": f"https://www.npmjs.com/package/{pkg}",
-        "dl_day": downloads_point(pkg, "last-day"),
-        "dl_week": downloads_point(pkg, "last-week"),
-        "dl_month": dl_month,
+        "dl_day": _tail_sum(daily, 1),
+        "dl_week": _tail_sum(daily, 7),
+        "dl_month": _tail_sum(daily, 30),
         "dl_year": sum(daily.values()) if daily else None,
         "error": None,
         # `_daily` is consumed to build the aggregate chart, then dropped before
