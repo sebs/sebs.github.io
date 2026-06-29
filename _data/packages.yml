@@ -32,3 +32,5 @@ purls:
   - pkg:npm/@maschinenlesbar.org/smard-cli
   - pkg:npm/@maschinenlesbar.org/strahlenschutz-cli
   - pkg:npm/@maschinenlesbar.org/tagesschau-cli
+  - pkg:npm/@maschinenlesbar.org/fit-connect-cli
+  - pkg:npm/@maschinenlesbar.org/abgeordnetenwatch-cli
