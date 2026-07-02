@@ -135,6 +135,27 @@ def daily_series(pkg):
     return {d["day"]: int(d.get("downloads") or 0) for d in days if d.get("day")}
 
 
+def _trim_incomplete_tail(dates, daily):
+    """Drop trailing days npm hasn't finished aggregating yet.
+
+    npm's download counts for the most recent day or two are partial — the data
+    lags — so the final days sit far below normal volume (today is usually 0).
+    Left in, they drag the last weekly bucket toward zero and the chart looks
+    like it falls off a cliff. Compare each trailing day to the typical recent
+    daily volume and drop it while it looks partial, so the series ends on the
+    last day that has complete data.
+    """
+    if len(dates) < 30:
+        return dates
+    window = sorted(daily[d] for d in dates[-30:-3])   # exclude the maybe-partial tail
+    baseline = window[len(window) // 2]                # median daily volume
+    cutoff = baseline * 0.4
+    end = len(dates)
+    while end and daily[dates[end - 1]] < cutoff:
+        end -= 1
+    return dates[:end]
+
+
 def aggregate_chart(daily_by_date):
     """Bucket a {date: total} series into ~52 weekly totals and pre-render the
     SVG geometry for one combined area chart. Returns a dict the template drops
@@ -142,11 +163,18 @@ def aggregate_chart(daily_by_date):
     dates = sorted(daily_by_date)
     if len(dates) < 14:
         return None
+    dates = _trim_incomplete_tail(dates, daily_by_date)
+    if len(dates) < 14:
+        return None
 
-    # Oldest -> newest weekly buckets (sum 7 consecutive days).
+    # Weekly buckets of 7 consecutive days, anchored at the *newest* day so the
+    # final bucket is always a complete week; the short remainder falls at the
+    # old end and is dropped. (Bucketing from the oldest day instead leaves a
+    # 1-6 day final bucket that dips to near-zero.)
     weeks = []
-    for i in range(0, len(dates), 7):
-        weeks.append(sum(daily_by_date[d] for d in dates[i:i + 7]))
+    for stop in range(len(dates), 6, -7):
+        weeks.append(sum(daily_by_date[d] for d in dates[stop - 7:stop]))
+    weeks.reverse()                                    # oldest -> newest
     weeks = weeks[-CHART_WEEKS:]
     if len(weeks) < 2:
         return None
@@ -165,7 +193,7 @@ def aggregate_chart(daily_by_date):
         "area_points": area,
         "peak_week": peak,
         "weeks": n,
-        "start": dates[0],
+        "start": dates[len(dates) - n * 7],            # first day of the first plotted week
         "end": dates[-1],
     }
 
