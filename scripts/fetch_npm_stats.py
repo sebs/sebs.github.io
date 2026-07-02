@@ -23,7 +23,7 @@ import time
 import urllib.error
 import urllib.parse
 import urllib.request
-from datetime import date
+from datetime import date, timedelta
 
 CONFIG = "_data/packages.yml"
 OUT = "_data/npm_stats.yml"
@@ -116,9 +116,19 @@ def _tail_sum(daily, days):
 
 
 def daily_series(pkg):
-    """Last year of downloads as a {date: count} dict (empty on failure)."""
+    """Last year of downloads as a {date: count} dict (empty on failure).
+
+    Uses an *explicit* `<start>:<end>` range rather than the `last-year`
+    relative window on purpose: npm's relative-period endpoints
+    (last-week/last-year) lag several days behind the explicit range. A package
+    published in the last few days therefore reports an all-zero series under
+    `last-year` even though its downloads are already visible via an explicit
+    range (and on npmjs.com), zeroing out every dl_* figure for that package.
+    """
+    end = date.today()
+    start = end - timedelta(days=365)
     try:
-        data = _get_json(f"https://api.npmjs.org/downloads/range/last-year/{_api_name(pkg)}")
+        data = _get_json(f"https://api.npmjs.org/downloads/range/{start}:{end}/{_api_name(pkg)}")
         days = data.get("downloads") or []
     except Exception:  # noqa: BLE001
         return {}
