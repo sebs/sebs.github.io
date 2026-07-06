@@ -33,5 +33,4 @@ purls:
   - pkg:npm/@maschinenlesbar.org/abgeordnetenwatch-cli
   - pkg:npm/@maschinenlesbar.org/fragdenstaat-cli
   - pkg:npm/@maschinenlesbar.org/destatis-genesis-cli
-
-  
+  - pkg:npm/@maschinenlesbar.org/ladesaeulenregister-cli
