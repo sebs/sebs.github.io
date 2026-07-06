@@ -3,12 +3,14 @@
 
 Input : _data/packages.yml — a `purls:` list of Package URLs (pkg:npm/...).
 Output: _data/npm_stats.yml — JSON (a valid subset of YAML), so Jekyll parses it
-        the same as the committed seed.
+        as a data file. This is a build-time artifact: it is regenerated on every
+        deploy and is NOT committed to the repo (it is gitignored).
 
-Like scripts/fetch_devto.py, this never fails the build: on a total failure we
-leave the existing committed seed in place, and a single package that errors is
-recorded with an `error` field rather than aborting the run. Only the stdlib is
-used (no PyYAML / requests), so it runs anywhere Python 3 does.
+Unlike scripts/fetch_devto.py (which keeps a committed seed), there is no seed
+here — the daily figures would drift and mislead. On a total failure we write
+nothing and the /packages/ page falls back to its empty state; a single package
+that errors is recorded with an `error` field rather than aborting the run. Only
+the stdlib is used (no PyYAML / requests), so it runs anywhere Python 3 does.
 
 Data sources (no auth required):
   - https://api.npmjs.org/downloads/range/last-year/<pkg>  daily series — the
@@ -244,7 +246,7 @@ def collect(pkg):
         "dl_year": sum(daily.values()) if daily else None,
         "error": None,
         # `_daily` is consumed to build the aggregate chart, then dropped before
-        # the file is written (it would bloat the committed seed otherwise).
+        # the file is written (it would bloat the output file otherwise).
         "_daily": daily,
         **meta,
     }
@@ -257,7 +259,7 @@ def main():
     purls = read_purls(CONFIG)
     npm_pkgs = [p for p in (parse_npm_purl(x) for x in purls) if p]
     if not npm_pkgs:
-        print(f"no npm purls in {CONFIG}, keeping committed seed", file=sys.stderr)
+        print(f"no npm purls in {CONFIG}, writing nothing", file=sys.stderr)
         return 0
 
     packages, ok = [], 0
@@ -274,7 +276,8 @@ def main():
         packages.append(rec)
 
     if ok == 0:
-        print("every package fetch failed, keeping committed seed", file=sys.stderr)
+        print("every package fetch failed, writing nothing "
+              "(the /packages/ page will show its empty state)", file=sys.stderr)
         return 0
 
     def s(key):
@@ -298,7 +301,7 @@ def main():
 
     packages.sort(key=lambda p: p.get("dl_month") or 0, reverse=True)
     for p in packages:
-        p.pop("_daily", None)   # keep the committed seed small
+        p.pop("_daily", None)   # keep the output file small
 
     payload = {
         "generated": date.today().isoformat(),

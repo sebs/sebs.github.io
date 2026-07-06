@@ -6,8 +6,8 @@
 # `pkg:npm/%40scope/name@1.2.3` resolves to the `@scope/name` package).
 #
 # Statistics are fetched at BUILD TIME by scripts/fetch_npm_stats.py and written
-# to _data/npm_stats.yml (which is committed as a seed and refreshed on every
-# deploy). To add a package, drop its PURL below and rebuild.
+# to _data/npm_stats.yml (a build-time artifact, regenerated on every deploy and
+# not committed to the repo). To add a package, drop its PURL below and rebuild.
 purls:
   # Standalone packages
   - pkg:npm/es6-fuzz

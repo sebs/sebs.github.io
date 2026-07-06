@@ -39,7 +39,7 @@ jobs:
         run: python3 scripts/fetch_devto.py
         continue-on-error: true
 
-      - name: Fetch npm download stats (falls back to committed seed)
+      - name: Fetch npm download stats (page shows empty state if unavailable)
         run: python3 scripts/fetch_npm_stats.py
         continue-on-error: true
 

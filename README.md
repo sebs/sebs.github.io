@@ -14,7 +14,8 @@ projects + talks.
 - **The `/packages/` page is data-driven from a PURL config.** List package
   URLs in `_data/packages.yml`; `scripts/fetch_npm_stats.py` resolves the npm
   download counts and release metadata at build time into `_data/npm_stats.yml`
-  (committed as a seed, refreshed on every deploy).
+  (a build-time artifact, regenerated on every deploy — not committed, so the
+  live figures never go stale in git).
 - **The legacy posts are markdown in `_posts/`.** The old Hexo posts were
   converted to clean markdown (see `scripts/extract_posts.py` for how). Each
   post pins its **original URL** via `permalink:` in front matter
@@ -44,7 +45,6 @@ Most content lives in `_data/`:
 | `_data/talks.yml`     | `/talks` page + homepage teaser (`featured` + `history`)  |
 | `_data/writing.yml`   | Seed/fallback for Writing (overwritten by the dev.to feed at deploy) |
 | `_data/packages.yml`  | PURLs for the `/packages/` npm-stats page                 |
-| `_data/npm_stats.yml` | Seed/fallback for `/packages/` (overwritten by the npm registry at deploy) |
 
 Talk slides go in `assets/talks/` (PDF) or as a SpeakerDeck embed URL — see the
 comments in `_data/talks.yml`.
