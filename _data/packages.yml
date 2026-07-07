@@ -37,6 +37,13 @@ purls:
   - pkg:npm/@maschinenlesbar.org/deutsche-digitale-bibliothek-cli
   - pkg:npm/@maschinenlesbar.org/mudab-cli
   - pkg:npm/@maschinenlesbar.org/ladesaeulenregister-cli
+  - pkg:npm/@maschinenlesbar.org/marktstammdatenregister-cli
+  - pkg:npm/@maschinenlesbar.org/deutsche-digitale-bibliothek-cli
+  - pkg:npm/@maschinenlesbar.org/mudab-cli
+  - pkg:npm/@maschinenlesbar.org/entgeltatlas-cli
+  - pkg:npm/@maschinenlesbar.org/bundesrat-cli
+  - pkg:npm/@maschinenlesbar.org/bundeswahlleiterin-cli
+  - pkg:npm/@maschinenlesbar.org/regionalatlas-cli
   
   
 
