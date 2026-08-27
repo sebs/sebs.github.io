@@ -13,6 +13,7 @@ purls:
   - pkg:npm/es6-fuzz
   - pkg:npm/etherscan-api
   - pkg:npm/banira
+  - pkg:npm/gurkencheck
   - pkg:npm/@maschinenlesbar.org/fim-portal-cli
   - pkg:npm/@maschinenlesbar.org/ausbildungssuche-cli
   - pkg:npm/@maschinenlesbar.org/autobahn-cli
