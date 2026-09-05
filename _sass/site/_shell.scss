@@ -1,0 +1,51 @@
+// UI Shell -----------------------------------------------------------------
+// Carbon's Header + SideNav supply the chrome. The overrides here are limited
+// to the two things a marketing/portfolio site needs and the product shell
+// does not: a brand name that reads as a wordmark, and a side nav that only
+// exists below `lg` (Carbon's shell assumes a persistent product nav).
+@use "@carbon/styles/scss/theme";
+@use "@carbon/styles/scss/type";
+@use "@carbon/styles/scss/spacing";
+@use "@carbon/styles/scss/breakpoint";
+@use "@carbon/styles/scss/config" as *;
+
+.#{$prefix}--header__name {
+  font-weight: 600;
+  // The shell reserves room for a menu trigger; reclaim it once the
+  // hamburger is hidden at `lg`.
+  @include breakpoint.breakpoint(lg) {
+    padding-inline-start: spacing.$spacing-05;
+  }
+}
+
+// The hamburger and the side nav are mobile-only here.
+.#{$prefix}--header__menu-trigger {
+  @include breakpoint.breakpoint(lg) {
+    display: none;
+  }
+}
+
+.site-side-nav {
+  @include breakpoint.breakpoint(lg) {
+    display: none;
+  }
+}
+
+// Carbon renders the shell's nav from `lg` up; match that with the trigger.
+.#{$prefix}--header__nav {
+  @include breakpoint.breakpoint(lg) {
+    display: block;
+  }
+}
+
+// Sponsor button sits inside the header's global bar; align it to the 3rem row.
+.site-header__cta {
+  align-self: center;
+  margin-inline: spacing.$spacing-03;
+}
+
+// The theme toggle shows one icon per mode.
+[data-theme="dark"] .site-theme-toggle__to-dark,
+[data-theme="light"] .site-theme-toggle__to-light {
+  display: none;
+}

@@ -1,0 +1,119 @@
+// Tiles --------------------------------------------------------------------
+// Project / site / skill cards are Carbon Tiles. Carbon's tile is a plain
+// surface, so the only additions are the internal composition (header row,
+// signal row, footer rule) — no restyling of the tile itself.
+@use "@carbon/styles/scss/theme";
+@use "@carbon/styles/scss/type";
+@use "@carbon/styles/scss/spacing";
+@use "@carbon/styles/scss/motion";
+@use "@carbon/styles/scss/breakpoint";
+@use "@carbon/styles/scss/config" as *;
+
+// A tile that has to stretch to the height of its grid row.
+.site-tile {
+  block-size: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.site-tile__head {
+  display: flex;
+  gap: spacing.$spacing-04;
+  justify-content: space-between;
+  margin-block-end: spacing.$spacing-04;
+}
+
+.site-tile__title {
+  @include type.type-style("productive-heading-03");
+}
+
+.site-tile__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: spacing.$spacing-02;
+  // Carbon Tags carry their own margin for form contexts; drop it here.
+  .#{$prefix}--tag { margin: 0; }
+}
+
+.site-tile__body {
+  @include type.type-style("body-01");
+
+  color: theme.$text-secondary;
+  flex: 1;
+  margin-block-end: spacing.$spacing-06;
+}
+
+.site-tile__foot {
+  align-items: center;
+  border-block-start: 1px solid theme.$border-subtle-01;
+  display: flex;
+  flex-wrap: wrap;
+  gap: spacing.$spacing-04;
+  justify-content: space-between;
+  margin-block-start: auto;
+  padding-block-start: spacing.$spacing-05;
+}
+
+// Maintenance signals — stars, downloads, licence, last activity.
+.site-signals {
+  display: flex;
+  flex-wrap: wrap;
+  gap: spacing.$spacing-05;
+}
+
+.site-signal {
+  @include type.type-style("label-01");
+
+  align-items: center;
+  color: theme.$text-secondary;
+  display: inline-flex;
+  gap: spacing.$spacing-02;
+}
+
+.site-signal--active { color: theme.$link-primary; }
+
+// Icon-only outbound links (GitHub, npm, docs).
+.site-tile__links {
+  display: flex;
+  gap: spacing.$spacing-02;
+}
+
+.site-icon-link {
+  align-items: center;
+  block-size: spacing.$spacing-07;
+  color: theme.$icon-secondary;
+  display: inline-flex;
+  inline-size: spacing.$spacing-07;
+  justify-content: center;
+  transition: color motion.$duration-fast-02 motion.motion(standard, productive);
+
+  &:hover {
+    background: theme.$layer-hover-01;
+    color: theme.$icon-primary;
+  }
+}
+
+// Callout: a tile-backed prompt with an action on the right.
+.site-callout {
+  display: flex;
+  flex-direction: column;
+  gap: spacing.$spacing-05;
+
+  @include breakpoint.breakpoint(md) {
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
+
+.site-callout__title {
+  @include type.type-style("productive-heading-03");
+
+  margin-block-end: spacing.$spacing-02;
+}
+
+.site-callout__body {
+  @include type.type-style("body-01");
+
+  color: theme.$text-secondary;
+}

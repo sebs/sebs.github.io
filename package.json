@@ -1,0 +1,15 @@
+{
+  "name": "sebs.github.io",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Design-system dependency for sebs.github.io. The site is built by Jekyll; this manifest exists only so Jekyll's Sass converter can @use the IBM Carbon Design System sources from node_modules (see _config.yml -> sass.load_paths and assets/css/main.scss).",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sebs/sebs.github.io.git"
+  },
+  "license": "MIT",
+  "scripts": {},
+  "devDependencies": {
+    "@carbon/styles": "^1.114.0"
+  }
+}

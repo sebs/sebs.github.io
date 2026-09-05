@@ -35,7 +35,6 @@ purls:
   - pkg:npm/@maschinenlesbar.org/fragdenstaat-cli
   - pkg:npm/@maschinenlesbar.org/destatis-genesis-cli
   - pkg:npm/@maschinenlesbar.org/entgeltatlas-cli
-  - pkg:npm/@maschinenlesbar.org/ladesaeulenregister-cli
   - pkg:npm/@maschinenlesbar.org/marktstammdatenregister-cli
   - pkg:npm/@maschinenlesbar.org/deutsche-digitale-bibliothek-cli
   - pkg:npm/@maschinenlesbar.org/mudab-cli

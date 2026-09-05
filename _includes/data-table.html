@@ -1,0 +1,48 @@
+{%- comment -%}
+  Carbon Data Table, driven from a _data/*.yml collection.
+
+  Usage:
+    {% include data-table.html
+         caption="Recent roles"
+         columns="Year,Role,Company"
+         fields="year,role,company"
+         rows=site.data.cv.experience
+         limit=4 %}
+
+  `columns` are the visible headers, `fields` the matching keys on each row —
+  same order, same count. `limit` is optional. `hide_from` optionally names a
+  1-based column index that is dropped below the `md` breakpoint (the site
+  layer's .site-table__col--optional), which is how the wide tables stay
+  readable on a phone without a horizontal scroller.
+{%- endcomment -%}
+{%- assign cols = include.columns | split: "," -%}
+{%- assign flds = include.fields | split: "," -%}
+{%- assign rows = include.rows -%}
+{%- if include.limit -%}{%- assign rows = rows | slice: 0, include.limit -%}{%- endif -%}
+
+<div class="cds--data-table-container">
+  <table class="cds--data-table cds--data-table--sm">
+    {%- if include.caption -%}<caption class="cds--visually-hidden">{{ include.caption }}</caption>{%- endif -%}
+    <thead>
+      <tr>
+        {%- for col in cols -%}
+        {%- assign idx = forloop.index -%}
+        <th scope="col"{% if include.hide_from and idx >= include.hide_from %} class="site-table__col--optional"{% endif %}>
+          <div class="cds--table-header-label">{{ col | strip }}</div>
+        </th>
+        {%- endfor -%}
+      </tr>
+    </thead>
+    <tbody>
+      {%- for row in rows -%}
+      <tr>
+        {%- for fld in flds -%}
+        {%- assign key = fld | strip -%}
+        {%- assign idx = forloop.index -%}
+        <td{% if include.hide_from and idx >= include.hide_from %} class="site-table__col--optional"{% endif %}>{{ row[key] }}</td>
+        {%- endfor -%}
+      </tr>
+      {%- endfor -%}
+    </tbody>
+  </table>
+</div>

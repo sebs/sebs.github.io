@@ -1,0 +1,80 @@
+// Base ---------------------------------------------------------------------
+// Carbon's reset already handles box-sizing, margins and body type. This adds
+// only what a content site needs on top of it.
+@use "@carbon/styles/scss/theme";
+@use "@carbon/styles/scss/type";
+@use "@carbon/styles/scss/spacing";
+@use "@carbon/styles/scss/motion";
+@use "@carbon/styles/scss/config" as *;
+
+html {
+  scroll-behavior: smooth;
+  // Carbon's header is 3rem tall and fixed; keep anchored sections clear of it.
+  scroll-padding-top: spacing.$spacing-10;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+// Carbon's `.cds--link` covers real links; bare anchors in composed blocks
+// (tiles, rows, the shell) inherit instead of picking up a browser blue.
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+::selection {
+  background: theme.$highlight;
+}
+
+// Carbon focuses with a 2px inset ring in $focus.
+:focus-visible {
+  outline: 2px solid theme.$focus;
+  outline-offset: -2px;
+}
+
+// Inline SVG icons follow the surrounding text colour.
+.icon {
+  flex: none;
+  block-size: 1rem;
+  fill: currentColor;
+  inline-size: 1rem;
+}
+
+.icon--sm { block-size: 0.875rem; inline-size: 0.875rem; }
+.icon--lg { block-size: 1.25rem; inline-size: 1.25rem; }
+.icon--xl { block-size: 2rem; inline-size: 2rem; }
+
+// Small caps label used above section headings. Carbon has no "eyebrow"
+// component; this is heading-compact-01 with Carbon's label letter-spacing.
+.site-eyebrow {
+  @include type.type-style("heading-compact-01");
+
+  color: theme.$text-secondary;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.site-mono {
+  @include type.type-style("code-02");
+}
+
+.site-muted { color: theme.$text-secondary; }
+.site-helper { color: theme.$text-helper; }
+
+// Constrain body copy to a readable measure regardless of column span.
+.site-measure { max-inline-size: 60ch; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

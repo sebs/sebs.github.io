@@ -1,21 +1,101 @@
-{%- comment -%} Fixed top app bar. `active` (passed via include) marks the current nav item. {%- endcomment -%}
-<a class="skip-link" href="#main">Skip to content</a>
-<header class="appbar">
-  <div class="appbar__inner">
-    <a class="appbar__brand" href="{{ '/' | relative_url }}">Sebastian Schürmann</a>
-    <nav class="appbar__nav" aria-label="Primary">
-      <a href="{{ '/cv/' | relative_url }}"{% if include.active == 'cv' %} aria-current="page"{% endif %}>CV</a>
-      <a href="{{ '/#projects' | relative_url }}"{% if include.active == 'projects' %} aria-current="page"{% endif %}>Projects</a>
-      <a href="{{ '/packages/' | relative_url }}"{% if include.active == 'packages' %} aria-current="page"{% endif %}>Packages</a>
-      <a href="{{ '/#writing' | relative_url }}"{% if include.active == 'writing' %} aria-current="page"{% endif %}>Writing</a>
-      <a href="{{ '/talks/' | relative_url }}"{% if include.active == 'talks' %} aria-current="page"{% endif %}>Talks</a>
-      {%- if site.data.profiles.sponsor.enabled -%}
-      <a class="btn btn--solid btn--sm" href="{{ site.data.profiles.sponsor.url }}">Sponsor</a>
-      {%- endif -%}
-    </nav>
-    <button class="theme-toggle" type="button" aria-label="Toggle colour theme" data-theme-toggle>
-      <span class="theme-toggle__dark">{% include icon.html name="moon" %}</span>
-      <span class="theme-toggle__light">{% include icon.html name="sun" %}</span>
+{%- comment -%}
+  Carbon UI Shell header. `active` (passed via include) marks the current item
+  with aria-current, which is also what Carbon's --current modifier keys off.
+
+  The nav renders twice, as Carbon's shell does: a horizontal menu bar from the
+  `lg` breakpoint up, and a SideNav behind the hamburger below it. Both are
+  driven from the same list so they can't drift apart.
+{%- endcomment -%}
+{%- assign nav_items =
+  "CV,/cv/,cv|Projects,/#projects,projects|Packages,/packages/,packages|Writing,/#writing,writing|Talks,/talks/,talks"
+  | split: "|" -%}
+
+<header class="cds--header" aria-label="Sebastian Schürmann — site header">
+  <a class="cds--skip-to-content" href="#main" tabindex="0">Skip to main content</a>
+
+  <button
+    class="cds--header__action cds--header__menu-trigger cds--header__menu-toggle"
+    type="button"
+    aria-label="Open menu"
+    aria-expanded="false"
+    aria-controls="site-side-nav"
+    data-nav-toggle
+  >
+    <span data-nav-icon="open">{% include icon.html name="menu" class="icon--lg" %}</span>
+    <span data-nav-icon="close" hidden>{% include icon.html name="close" class="icon--lg" %}</span>
+  </button>
+
+  <a class="cds--header__name" href="{{ '/' | relative_url }}">
+    <span class="cds--header__name--prefix">Sebastian&nbsp;</span>Schürmann
+  </a>
+
+  <nav class="cds--header__nav" aria-label="Primary">
+    <ul class="cds--header__menu-bar">
+      {%- for entry in nav_items -%}
+      {%- assign parts = entry | split: "," -%}
+      {%- assign is_current = false -%}
+      {%- if include.active == parts[2] %}{% assign is_current = true %}{% endif -%}
+      <li>
+        <a
+          class="cds--header__menu-item{% if is_current %} cds--header__menu-item--current{% endif %}"
+          href="{{ parts[1] | relative_url }}"
+          {%- if is_current %} aria-current="page"{% endif %}
+        >
+          <span class="cds--text-truncate-end">{{ parts[0] }}</span>
+        </a>
+      </li>
+      {%- endfor -%}
+    </ul>
+  </nav>
+
+  <div class="cds--header__global">
+    {%- if site.data.profiles.sponsor.enabled -%}
+    <a class="cds--btn cds--btn--primary cds--btn--sm site-header__cta" href="{{ site.data.profiles.sponsor.url }}">
+      Sponsor
+      {% include icon.html name="heart" class="cds--btn__icon" %}
+    </a>
+    {%- endif -%}
+    <button
+      class="cds--header__action site-theme-toggle"
+      type="button"
+      aria-label="Switch colour theme"
+      data-theme-toggle
+    >
+      <span class="site-theme-toggle__to-light">{% include icon.html name="sun" class="icon--lg" %}</span>
+      <span class="site-theme-toggle__to-dark">{% include icon.html name="moon" class="icon--lg" %}</span>
     </button>
   </div>
 </header>
+
+{%- comment -%} Mobile navigation panel, below `lg` only. {%- endcomment -%}
+<nav
+  id="site-side-nav"
+  class="cds--side-nav cds--side-nav--ux cds--side-nav__navigation site-side-nav"
+  aria-label="Primary (mobile)"
+  aria-hidden="true"
+>
+  <ul class="cds--side-nav__items">
+    {%- for entry in nav_items -%}
+    {%- assign parts = entry | split: "," -%}
+    {%- assign is_current = false -%}
+    {%- if include.active == parts[2] %}{% assign is_current = true %}{% endif -%}
+    <li class="cds--side-nav__item">
+      <a
+        class="cds--side-nav__link{% if is_current %} cds--side-nav__link--current{% endif %}"
+        href="{{ parts[1] | relative_url }}"
+        {%- if is_current %} aria-current="page"{% endif %}
+      >
+        <span class="cds--side-nav__link-text">{{ parts[0] }}</span>
+      </a>
+    </li>
+    {%- endfor -%}
+    {%- if site.data.profiles.sponsor.enabled -%}
+    <li class="cds--side-nav__item">
+      <a class="cds--side-nav__link" href="{{ site.data.profiles.sponsor.url }}">
+        <span class="cds--side-nav__link-text">Sponsor</span>
+      </a>
+    </li>
+    {%- endif -%}
+  </ul>
+</nav>
+<div class="cds--side-nav__overlay" data-nav-overlay></div>

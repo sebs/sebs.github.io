@@ -1,0 +1,19 @@
+// Colour modes ------------------------------------------------------------
+// Carbon ships four themes; the site uses the two endpoints — Gray 100 for
+// dark (the default here) and White for light. `theme.theme()` emits the whole
+// --cds-* custom-property set, which every Carbon component reads, so the
+// toggle needs to swap nothing but the attribute on <html>.
+//
+// Both selectors have specificity (0,1,0), so source order decides the winner:
+// light must stay last.
+@use "@carbon/styles/scss/theme";
+@use "@carbon/styles/scss/themes";
+
+:root,
+[data-theme="dark"] {
+  @include theme.theme(themes.$g100);
+}
+
+[data-theme="light"] {
+  @include theme.theme(themes.$white);
+}

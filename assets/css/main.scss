@@ -1,0 +1,68 @@
+---
+# Front matter (intentionally empty) — makes Jekyll run this file through its
+# Sass converter (jekyll-sass-converter 3.x / dart-sass) and emit
+# /assets/css/main.css.
+---
+
+// =========================================================================
+// sebs.github.io — IBM Carbon Design System
+//
+// The UI is built on the real Carbon stylesheets (@carbon/styles, Apache-2.0),
+// compiled from source rather than copied: Carbon owns the tokens, type scale,
+// 2x Grid, motion curves and component CSS. The `site/*` layer only adds the
+// page compositions Carbon does not ship a component for (hero, download
+// chart, footer) and always in terms of Carbon tokens — no raw hex values.
+//
+// Only the components the site actually renders are pulled in, so the bundle
+// stays a fraction of full Carbon. Adding a component = one more `@use` here.
+// =========================================================================
+
+// ---- 1. Configure Carbon ------------------------------------------------
+// Must be the first load of `config` in the whole compilation.
+// IBM Plex is served from Google Fonts (see _includes/head.html), so Carbon's
+// own @font-face emission is disabled — it would otherwise expect the
+// @ibm/plex font files to be co-deployed.
+@use "@carbon/styles/scss/config" with (
+  $css--font-face: false,
+  $css--reset: true,
+  $css--body: true,
+  $prefix: "cds"
+);
+
+// ---- 2. Carbon foundations ----------------------------------------------
+@use "@carbon/styles/scss/reset";
+@use "@carbon/styles/scss/type";
+@use "@carbon/styles/scss/grid";
+@use "@carbon/styles/scss/layer";
+// `layout` emits the :root size/density custom properties that Buttons, Tags
+// and Data Tables clamp their height and padding against. Without it those
+// components collapse — it is not optional.
+@use "@carbon/styles/scss/layout";
+
+// ---- 3. Carbon components (only what the site renders) -------------------
+@use "@carbon/styles/scss/components/button";
+@use "@carbon/styles/scss/components/tag";
+@use "@carbon/styles/scss/components/tile";
+@use "@carbon/styles/scss/components/link";
+@use "@carbon/styles/scss/components/list";
+@use "@carbon/styles/scss/components/data-table";
+@use "@carbon/styles/scss/components/structured-list";
+@use "@carbon/styles/scss/components/contained-list";
+@use "@carbon/styles/scss/components/progress-bar";
+@use "@carbon/styles/scss/components/breadcrumb";
+@use "@carbon/styles/scss/components/ui-shell";
+
+// ---- 4. Site layer -------------------------------------------------------
+// Themes first: emits the --cds-* custom properties for both colour modes.
+@use "site/themes";
+@use "site/base";
+@use "site/shell";
+// Aliased: `layout` is already taken by Carbon's own module above.
+@use "site/layout" as site-layout;
+@use "site/hero";
+@use "site/tiles";
+@use "site/writing";
+@use "site/talks";
+@use "site/packages";
+@use "site/prose";
+@use "site/footer";

@@ -1,0 +1,120 @@
+// Writing & archives -------------------------------------------------------
+// The dev.to feed is a Carbon Contained List; the self-hosted archives are a
+// Structured List. Both ship most of what is needed — these rules add the
+// date/meta columns and the clickable-row affordance.
+@use "@carbon/styles/scss/theme";
+@use "@carbon/styles/scss/type";
+@use "@carbon/styles/scss/spacing";
+@use "@carbon/styles/scss/motion";
+@use "@carbon/styles/scss/breakpoint";
+@use "@carbon/styles/scss/config" as *;
+
+// --- dev.to feed (Contained List) ---
+.site-post-link {
+  align-items: baseline;
+  display: grid;
+  gap: spacing.$spacing-02;
+  grid-template-columns: 1fr auto;
+  inline-size: 100%;
+
+  @include breakpoint.breakpoint(md) {
+    align-items: center;
+    grid-template-columns: 7rem 1fr auto;
+    gap: spacing.$spacing-06;
+  }
+}
+
+.site-post-link__date {
+  @include type.type-style("label-01");
+
+  color: theme.$text-helper;
+  grid-column: 1 / -1;
+  text-transform: uppercase;
+
+  @include breakpoint.breakpoint(md) {
+    grid-column: auto;
+  }
+}
+
+.site-post-link__title {
+  @include type.type-style("body-compact-02");
+
+  color: theme.$text-primary;
+  min-inline-size: 0;
+}
+
+.site-post-link__meta {
+  @include type.type-style("label-01");
+
+  align-items: center;
+  color: theme.$text-helper;
+  display: inline-flex;
+  gap: spacing.$spacing-04;
+}
+
+.#{$prefix}--contained-list-item--clickable:hover .site-post-link__title {
+  color: theme.$link-primary;
+}
+
+.site-post-link__launch {
+  transition: transform motion.$duration-fast-02 motion.motion(standard, productive);
+}
+
+.#{$prefix}--contained-list-item--clickable:hover .site-post-link__launch {
+  transform: translate(2px, -2px);
+}
+
+.site-empty {
+  @include type.type-style("body-01");
+
+  color: theme.$text-secondary;
+  padding-block: spacing.$spacing-06;
+}
+
+// --- Archives (Structured List) ---
+.site-archive-year + .site-archive-year {
+  margin-block-start: spacing.$spacing-09;
+}
+
+.site-archive-year__label {
+  @include type.type-style("productive-heading-03");
+
+  border-block-end: 1px solid theme.$border-subtle-01;
+  color: theme.$text-secondary;
+  margin-block-end: spacing.$spacing-03;
+  padding-block-end: spacing.$spacing-03;
+}
+
+// Carbon's structured list rows are not links by default.
+.site-archive-row {
+  color: inherit;
+  display: contents;
+}
+
+.site-archive-date {
+  @include type.type-style("label-01");
+
+  color: theme.$text-helper;
+  inline-size: 6rem;
+  white-space: nowrap;
+}
+
+.site-archive-tags {
+  @include type.type-style("label-01");
+
+  color: theme.$text-helper;
+  display: none;
+  text-align: end;
+
+  @include breakpoint.breakpoint(md) {
+    display: table-cell;
+  }
+}
+
+.#{$prefix}--structured-list-row:hover .site-archive-title {
+  color: theme.$link-primary;
+}
+
+.site-archive-tag + .site-archive-tag {
+  margin-inline-start: spacing.$spacing-03;
+}

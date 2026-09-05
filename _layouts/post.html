@@ -1,28 +1,43 @@
 ---
 layout: default
 ---
-<article class="container post">
-  <header class="post__head">
-    <p class="post__meta">
-      <a class="post__back" href="{{ '/archives/' | relative_url }}">Writing</a>
-      <span aria-hidden="true">/</span>
-      <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%B %-d, %Y" }}</time>
-    </p>
-    <h1 class="post__title">{{ page.title }}</h1>
-    {%- if page.tags and page.tags.size > 0 -%}
-    <p class="post__tags">
-      {%- for tag in page.tags -%}
-      <a class="tag" href="{{ '/tags/' | append: tag | append: '/' | relative_url }}">#{{ tag }}</a>
-      {%- endfor -%}
-    </p>
-    {%- endif -%}
-  </header>
+<article class="cds--css-grid site-post">
+  <div class="cds--css-grid-column cds--sm:col-span-4 cds--md:col-span-7 cds--lg:col-span-8">
+    <header class="site-post__head">
+      <nav class="cds--breadcrumb cds--breadcrumb--sm cds--breadcrumb--no-trailing-slash" aria-label="Breadcrumb">
+        <div class="cds--breadcrumb-item">
+          <a class="cds--link" href="{{ '/' | relative_url }}">Home</a>
+        </div>
+        <div class="cds--breadcrumb-item">
+          <a class="cds--link" href="{{ '/archives/' | relative_url }}">Writing</a>
+        </div>
+      </nav>
 
-  <div class="prose">
-    {{ content }}
+      <time class="site-post__date" datetime="{{ page.date | date_to_xmlschema }}">
+        {{ page.date | date: "%B %-d, %Y" }}
+      </time>
+
+      <h1 class="site-post__title">{{ page.title }}</h1>
+
+      {%- if page.tags and page.tags.size > 0 -%}
+      <div class="site-post__tags">
+        {%- for tag in page.tags -%}
+        <a class="cds--tag cds--tag--sm cds--tag--outline cds--tag--operational" href="{{ '/tags/' | append: tag | append: '/' | relative_url }}">
+          <span class="cds--tag__label">#{{ tag }}</span>
+        </a>
+        {%- endfor -%}
+      </div>
+      {%- endif -%}
+    </header>
+
+    <div class="site-prose">
+      {{ content }}
+    </div>
+
+    <footer class="site-post__foot">
+      <a class="cds--link cds--link--lg" href="{{ '/archives/' | relative_url }}">
+        All writing {% include icon.html name="arrow-right" class="cds--link__icon" %}
+      </a>
+    </footer>
   </div>
-
-  <footer class="post__foot">
-    <a class="link-arrow" href="{{ '/archives/' | relative_url }}">{% include icon.html name="arrow-up-right" %} All writing</a>
-  </footer>
 </article>

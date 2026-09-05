@@ -57,7 +57,21 @@ exclude:
   - README.md
   - scripts
   - .github
+  # The Carbon Design System sources. Jekyll's Sass converter reads them via
+  # the `load_paths` below; nothing here is copied into the built site.
+  - node_modules
+  - package.json
+  - package-lock.json
 
-# Faithful, fast output.
+# The UI is built on the IBM Carbon Design System. Jekyll 4.4 ships
+# jekyll-sass-converter 3.x (dart-sass via sass-embedded), which supports Sass
+# modules — so `assets/css/main.scss` can `@use` Carbon's own sources directly
+# and no separate JS bundler is needed. `npm ci` must run before the Jekyll
+# build (see .github/workflows/deploy.yml) to populate node_modules/.
 sass:
   style: compressed
+  # Carbon compiles to ~340 KB; the source map would be another ~500 KB of
+  # dead weight on a static site, and Carbon's sources aren't deployed anyway.
+  sourcemap: never
+  load_paths:
+    - node_modules

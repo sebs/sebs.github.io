@@ -1,0 +1,157 @@
+// Packages -----------------------------------------------------------------
+// The npm figures render as Carbon Tiles (the totals band) and a Carbon Data
+// Table (per-package), with a Progress Bar in the share column. Only the
+// download chart is bespoke — and it is drawn in theme tokens.
+@use "@carbon/styles/scss/theme";
+@use "@carbon/styles/scss/type";
+@use "@carbon/styles/scss/spacing";
+@use "@carbon/styles/scss/breakpoint";
+@use "@carbon/styles/scss/config" as *;
+
+// --- Totals band: four tiles sharing one hairline grid ---
+.site-statband {
+  background: theme.$border-subtle-01;
+  display: grid;
+  gap: 1px;
+  grid-template-columns: repeat(2, 1fr);
+
+  @include breakpoint.breakpoint(md) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.site-stat {
+  display: flex;
+  flex-direction: column;
+  gap: spacing.$spacing-02;
+}
+
+.site-stat__value {
+  @include type.type-style("productive-heading-05");
+
+  color: theme.$text-primary;
+  line-height: 1;
+}
+
+.site-stat__label {
+  @include type.type-style("label-01");
+
+  color: theme.$text-secondary;
+}
+
+// --- Combined download trend ---
+.site-chart__head {
+  align-items: baseline;
+  display: flex;
+  flex-wrap: wrap;
+  gap: spacing.$spacing-03;
+  justify-content: space-between;
+  margin-block-end: spacing.$spacing-06;
+}
+
+.site-chart__peak {
+  @include type.type-style("label-01");
+
+  color: theme.$text-secondary;
+}
+
+.site-chart {
+  block-size: 12.5rem;
+  display: block;
+  inline-size: 100%;
+  overflow: visible;
+
+  @include breakpoint.breakpoint(md) {
+    block-size: 15rem;
+  }
+}
+
+// Carbon has no chart palette in @carbon/styles (that lives in @carbon/charts);
+// the trend uses the interactive token so it tracks the theme.
+.site-chart__area {
+  fill: theme.$layer-accent-01;
+  stroke: none;
+}
+
+.site-chart__line {
+  fill: none;
+  stroke: theme.$interactive;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.5;
+  vector-effect: non-scaling-stroke;
+}
+
+.site-chart__axis {
+  @include type.type-style("label-01");
+
+  color: theme.$text-helper;
+  display: flex;
+  justify-content: space-between;
+  margin-block-start: spacing.$spacing-04;
+}
+
+// --- Per-package data table ---
+.site-pkg__name {
+  align-items: baseline;
+  display: flex;
+  flex-wrap: wrap;
+  gap: spacing.$spacing-03;
+  // Scoped names like @maschinenlesbar.org/marktstammdatenregister-cli have no
+  // break opportunity, and Carbon's table has no min-width — without this they
+  // push the whole page wider than a phone viewport.
+  min-inline-size: 0;
+  overflow-wrap: anywhere;
+}
+
+.site-pkg__version {
+  @include type.type-style("label-01");
+
+  color: theme.$text-helper;
+}
+
+.site-pkg__version--error { color: theme.$text-error; }
+
+// The share column is a Carbon Progress Bar with its label visually hidden.
+.site-pkg__share {
+  display: none;
+  inline-size: 8rem;
+
+  @include breakpoint.breakpoint(md) {
+    display: block;
+  }
+}
+
+.site-pkg__num {
+  font-variant-numeric: tabular-nums;
+  text-align: end;
+  white-space: nowrap;
+}
+
+.site-pkg__unit {
+  @include type.type-style("label-01");
+
+  color: theme.$text-helper;
+  margin-inline-start: spacing.$spacing-02;
+}
+
+// The 12-month column is secondary; drop it on narrow screens.
+.site-pkg__col--secondary {
+  display: none;
+
+  @include breakpoint.breakpoint(md) {
+    display: table-cell;
+  }
+}
+
+// The share cell is vertically centred against the row's text.
+.site-pkg__share .#{$prefix}--progress-bar__track {
+  margin-block: spacing.$spacing-02;
+}
+
+// Safety net: any table that still cannot fit scrolls inside its own
+// container rather than widening the page.
+.#{$prefix}--data-table-container {
+  max-inline-size: 100%;
+  overflow-x: auto;
+}

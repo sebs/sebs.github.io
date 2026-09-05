@@ -1,0 +1,97 @@
+// Hero ---------------------------------------------------------------------
+// Carbon has no hero component; this is a grid composition using Carbon's
+// expressive type scale (the scale Carbon reserves for exactly this kind of
+// editorial moment) and the layer/border tokens for the accompanying panel.
+@use "@carbon/styles/scss/theme";
+@use "@carbon/styles/scss/type";
+@use "@carbon/styles/scss/spacing";
+@use "@carbon/styles/scss/breakpoint";
+@use "@carbon/styles/scss/config" as *;
+
+.site-hero {
+  padding-block: spacing.$spacing-09;
+
+  @include breakpoint.breakpoint(md) {
+    padding-block: spacing.$spacing-11 spacing.$spacing-10;
+  }
+}
+
+.site-hero__name {
+  @include type.type-style("fluid-display-01", true);
+
+  margin-block-end: spacing.$spacing-05;
+}
+
+.site-hero__identity {
+  @include type.type-style("fluid-heading-03", true);
+
+  color: theme.$text-primary;
+  margin-block-end: spacing.$spacing-05;
+  max-inline-size: 36ch;
+}
+
+.site-hero__summary {
+  @include type.type-style("body-02");
+
+  color: theme.$text-secondary;
+  margin-block-end: spacing.$spacing-07;
+  max-inline-size: 52ch;
+}
+
+.site-hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: spacing.$spacing-03;
+}
+
+// Companion panel: Carbon's grid texture over a layer surface. Decorative.
+.site-hero__panel {
+  align-items: center;
+  aspect-ratio: 4 / 3;
+  background: theme.$layer-01;
+  border: 1px solid theme.$border-subtle-01;
+  display: grid;
+  justify-items: center;
+  overflow: hidden;
+  position: relative;
+
+  @include breakpoint.breakpoint(lg) {
+    aspect-ratio: 1 / 1;
+  }
+
+  // 16px Carbon grid, faded out at the edges.
+  &::before {
+    background-image:
+      linear-gradient(theme.$border-subtle-01 1px, transparent 1px),
+      linear-gradient(90deg, theme.$border-subtle-01 1px, transparent 1px);
+    background-size: spacing.$spacing-06 spacing.$spacing-06;
+    content: "";
+    inset: 0;
+    mask-image: radial-gradient(circle at 50% 50%, #000 25%, transparent 72%);
+    position: absolute;
+  }
+}
+
+.site-hero__mark {
+  @include type.type-style("code-02");
+
+  color: theme.$text-secondary;
+  font-size: clamp(2.5rem, 9vw, 5rem);
+  font-weight: 600;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  position: relative;
+  user-select: none;
+}
+
+.site-hero__coords {
+  @include type.type-style("code-01");
+
+  background: theme.$background;
+  border: 1px solid theme.$border-subtle-01;
+  color: theme.$text-secondary;
+  inset-block-end: spacing.$spacing-05;
+  inset-inline-end: spacing.$spacing-05;
+  padding: spacing.$spacing-02 spacing.$spacing-04;
+  position: absolute;
+}

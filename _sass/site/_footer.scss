@@ -1,0 +1,60 @@
+// Footer -------------------------------------------------------------------
+@use "@carbon/styles/scss/theme";
+@use "@carbon/styles/scss/type";
+@use "@carbon/styles/scss/spacing";
+@use "@carbon/styles/scss/breakpoint";
+@use "@carbon/styles/scss/config" as *;
+
+.site-footer {
+  background: theme.$layer-01;
+  border-block-start: 1px solid theme.$border-subtle-01;
+}
+
+.site-footer__inner {
+  display: flex;
+  flex-direction: column;
+  gap: spacing.$spacing-07;
+  padding-block: spacing.$spacing-09 spacing.$spacing-07;
+
+  @include breakpoint.breakpoint(md) {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
+
+.site-footer__name {
+  @include type.type-style("heading-compact-01");
+
+  display: block;
+  letter-spacing: 0.16em;
+  margin-block-end: spacing.$spacing-03;
+  text-transform: uppercase;
+}
+
+.site-footer__tag {
+  @include type.type-style("body-01");
+
+  color: theme.$text-secondary;
+}
+
+.site-footer__pitch {
+  @include type.type-style("body-01");
+
+  color: theme.$text-helper;
+  margin-block-start: spacing.$spacing-03;
+  max-inline-size: 40ch;
+}
+
+.site-footer__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: spacing.$spacing-05;
+}
+
+.site-footer__legal {
+  @include type.type-style("label-01");
+
+  border-block-start: 1px solid theme.$border-subtle-01;
+  color: theme.$text-helper;
+  padding-block: spacing.$spacing-05;
+}

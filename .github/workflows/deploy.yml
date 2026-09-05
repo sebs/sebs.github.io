@@ -2,8 +2,10 @@ name: Build & deploy site
 
 # Builds the Jekyll site and deploys to GitHub Pages.
 # Unlike the native Pages build, this runs with network access, so it can:
-#   1. fetch the live dev.to writing feed at build time, and
-#   2. rasterize the social OG image (SVG -> PNG).
+#   1. fetch the live dev.to writing feed at build time,
+#   2. rasterize the social OG image (SVG -> PNG), and
+#   3. install the IBM Carbon Design System, whose Sass sources Jekyll compiles
+#      into assets/css/main.css (see _config.yml -> sass.load_paths).
 # The legacy posts are now markdown in _posts/ (each pins its original
 # /YYYY/MM/DD/... permalink), so Jekyll builds everything — nothing is copied
 # verbatim, and jekyll-archives regenerates the tag/date listing pages.
@@ -46,7 +48,9 @@ jobs:
       - name: Rasterize OG image (SVG -> PNG)
         run: |
           sudo apt-get update -qq
-          sudo apt-get install -y --no-install-recommends librsvg2-bin fonts-dejavu-core
+          # fonts-ibm-plex is Carbon's typeface — without it the card falls
+          # back to DejaVu and stops matching the site.
+          sudo apt-get install -y --no-install-recommends librsvg2-bin fonts-ibm-plex fonts-dejavu-core
           rsvg-convert -w 1200 -h 630 assets/og/og-default.svg -o assets/og/og-default.png
         continue-on-error: true
 
@@ -55,6 +59,18 @@ jobs:
         with:
           ruby-version: "3.3"
           bundler-cache: true
+
+      # The UI is built on @carbon/styles. Jekyll's Sass converter (dart-sass)
+      # resolves `@use "@carbon/styles/..."` out of node_modules, so this must
+      # succeed before the Jekyll build — it is not continue-on-error.
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: npm
+
+      - name: Install design system (Carbon)
+        run: npm ci
 
       - name: Build with Jekyll
         run: bundle exec jekyll build --trace

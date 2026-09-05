@@ -11,3 +11,4 @@ vendor/
 # Generated at deploy time
 _data/npm_stats.yml
 assets/og/og-default.png
+node_modules

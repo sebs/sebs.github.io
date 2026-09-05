@@ -1,0 +1,27 @@
+{%- comment -%}
+  Carbon Structured List of self-hosted posts. Shared by /archives/ and the
+  jekyll-archives tag/year/month listings so they stay identical.
+
+  Usage: {% include post-list.html posts=year.items date_format="%b %-d" %}
+{%- endcomment -%}
+{%- assign fmt = include.date_format | default: "%b %-d, %Y" -%}
+<div class="cds--structured-list cds--structured-list--condensed cds--structured-list--flush">
+  <div class="cds--structured-list-tbody">
+    {%- for post in include.posts -%}
+    <a class="cds--structured-list-row" href="{{ post.url | relative_url }}">
+      <div class="cds--structured-list-td site-archive-date">
+        <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: fmt }}</time>
+      </div>
+      <div class="cds--structured-list-td site-archive-title">{{ post.title }}</div>
+      {%- if post.tags and post.tags.size > 0 -%}
+      <div class="cds--structured-list-td site-archive-tags">
+        {%- assign shown = post.tags | slice: 0, 3 -%}
+        {%- for tag in shown -%}<span class="site-archive-tag">#{{ tag }}</span>{%- endfor -%}
+      </div>
+      {%- else -%}
+      <div class="cds--structured-list-td site-archive-tags"></div>
+      {%- endif -%}
+    </a>
+    {%- endfor -%}
+  </div>
+</div>

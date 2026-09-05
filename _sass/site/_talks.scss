@@ -1,0 +1,64 @@
+// Talks --------------------------------------------------------------------
+// A year-gutter list. Carbon has no equivalent component, so this is a grid
+// composition on Carbon's type scale and dividers.
+@use "@carbon/styles/scss/theme";
+@use "@carbon/styles/scss/type";
+@use "@carbon/styles/scss/spacing";
+@use "@carbon/styles/scss/breakpoint";
+@use "@carbon/styles/scss/config" as *;
+
+.site-talks > * + * {
+  border-block-start: 1px solid theme.$border-subtle-01;
+  margin-block-start: spacing.$spacing-08;
+  padding-block-start: spacing.$spacing-08;
+}
+
+.site-talk {
+  display: grid;
+  gap: spacing.$spacing-04;
+
+  @include breakpoint.breakpoint(md) {
+    gap: spacing.$spacing-07;
+    grid-template-columns: 6rem 1fr;
+  }
+}
+
+.site-talk__year {
+  @include type.type-style("label-01");
+
+  color: theme.$text-helper;
+  letter-spacing: 0.12em;
+  padding-block-start: spacing.$spacing-02;
+}
+
+.site-talk__body {
+  display: flex;
+  flex-direction: column;
+  gap: spacing.$spacing-05;
+}
+
+.site-talk__title {
+  @include type.type-style("productive-heading-04");
+}
+
+.site-talk__venue {
+  @include type.type-style("label-01");
+
+  align-items: center;
+  color: theme.$text-secondary;
+  display: inline-flex;
+  gap: spacing.$spacing-02;
+}
+
+.site-talk__desc {
+  @include type.type-style("body-01");
+
+  color: theme.$text-secondary;
+  max-inline-size: 62ch;
+}
+
+.site-talk__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: spacing.$spacing-03;
+}

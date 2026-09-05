@@ -50,17 +50,16 @@
 <meta name="twitter:description" content="{{ page_desc | strip_newlines | escape }}">
 <meta name="twitter:image" content="{{ og_image }}">
 
-<!-- Fonts: preconnected + display=swap to stay off the critical path -->
+<!-- Fonts: IBM Plex, the Carbon Design System typeface. Served from Google
+     Fonts rather than bundling @ibm/plex, and loaded off the critical path.
+     Weights match Carbon's type scale: 300 (expressive/display), 400, 600. -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preload" as="style"
-      href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap">
-<link rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap"
-      media="print" onload="this.media='all'">
+{%- assign plex = "https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@300;400;600&display=swap" -%}
+<link rel="preload" as="style" href="{{ plex }}">
+<link rel="stylesheet" href="{{ plex }}" media="print" onload="this.media='all'">
 <noscript>
-  <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap">
+  <link rel="stylesheet" href="{{ plex }}">
 </noscript>
 
 <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">

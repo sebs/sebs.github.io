@@ -1,0 +1,121 @@
+// Prose --------------------------------------------------------------------
+// Rendered markdown. Carbon's type scale, link and list components do the
+// work; this maps them onto the plain HTML kramdown emits.
+@use "@carbon/styles/scss/theme";
+@use "@carbon/styles/scss/type";
+@use "@carbon/styles/scss/spacing";
+@use "@carbon/styles/scss/config" as *;
+
+.site-post { padding-block: spacing.$spacing-07 spacing.$spacing-10; }
+
+.site-post__head { margin-block-end: spacing.$spacing-07; }
+
+.site-post__date {
+  @include type.type-style("label-01");
+
+  color: theme.$text-helper;
+  display: block;
+  margin-block: spacing.$spacing-05 spacing.$spacing-03;
+}
+
+.site-post__title {
+  @include type.type-style("fluid-heading-05", true);
+}
+
+.site-post__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: spacing.$spacing-02;
+  margin-block-start: spacing.$spacing-05;
+
+  .#{$prefix}--tag { margin: 0; }
+}
+
+.site-post__foot {
+  border-block-start: 1px solid theme.$border-subtle-01;
+  margin-block-start: spacing.$spacing-09;
+  padding-block-start: spacing.$spacing-06;
+}
+
+.site-prose {
+  @include type.type-style("body-02");
+
+  color: theme.$text-primary;
+
+  > * + * { margin-block-start: spacing.$spacing-06; }
+
+  h2 {
+    @include type.type-style("productive-heading-04");
+
+    margin-block-start: spacing.$spacing-09;
+  }
+
+  h3 {
+    @include type.type-style("productive-heading-03");
+
+    margin-block-start: spacing.$spacing-07;
+  }
+
+  a {
+    color: theme.$link-primary;
+    text-decoration: underline;
+
+    &:hover { color: theme.$link-primary-hover; }
+    &:visited { color: theme.$link-visited; }
+  }
+
+  ul,
+  ol { padding-inline-start: spacing.$spacing-06; }
+
+  ul { list-style: disc; }
+  ol { list-style: decimal; }
+
+  li + li { margin-block-start: spacing.$spacing-02; }
+
+  strong { font-weight: 600; }
+
+  blockquote {
+    @include type.type-style("quotation-01", true);
+
+    border-inline-start: 2px solid theme.$border-strong-01;
+    color: theme.$text-secondary;
+    padding-inline-start: spacing.$spacing-05;
+  }
+
+  hr {
+    background: theme.$border-subtle-01;
+    block-size: 1px;
+    border: 0;
+    margin-block: spacing.$spacing-08;
+  }
+
+  figcaption {
+    @include type.type-style("label-01");
+
+    color: theme.$text-helper;
+    margin-block-start: spacing.$spacing-03;
+  }
+
+  // Inline code and code blocks use Carbon's mono scale and layer surfaces.
+  :not(pre) > code {
+    @include type.type-style("code-01");
+
+    background: theme.$layer-01;
+    padding: 0.125rem spacing.$spacing-02;
+  }
+
+  pre {
+    @include type.type-style("code-02");
+
+    background: theme.$layer-01;
+    border: 1px solid theme.$border-subtle-01;
+    overflow-x: auto;
+    padding: spacing.$spacing-05;
+
+    code {
+      background: none;
+      color: theme.$text-primary;
+      padding: 0;
+    }
+  }
+}
