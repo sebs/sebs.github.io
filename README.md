@@ -20,7 +20,14 @@ projects + talks.
   URLs in `_data/packages.yml`; `scripts/fetch_npm_stats.py` resolves the npm
   download counts and release metadata at build time into `_data/npm_stats.yml`
   (a build-time artifact, regenerated on every deploy — not committed, so the
-  live figures never go stale in git).
+  live figures never go stale in git). It is a catalogue of command-line tools
+  rather than a download table: the same two registry responses per package
+  also yield each one's `bin` command, its keywords (which sort it into a
+  domain group), real example invocations lifted from its README, and the
+  publish history behind the release heatmap. `assets/js/packages.js` adds the
+  behaviour on top — the typing terminal, the guessing game, table sorting and
+  filtering, and the chart readouts — and the page degrades to its static
+  render without it.
 - **The legacy posts are markdown in `_posts/`.** The old Hexo posts were
   converted to clean markdown (see `scripts/extract_posts.py` for how). Each
   post pins its **original URL** via `permalink:` in front matter
@@ -86,6 +93,7 @@ CI; safe to run locally if you have network access).
 | `_includes/icon.html`     | ~24 icons vendored from `@carbon/icons` as raw 32×32 path data |
 | `_includes/data-table.html` | Reusable Carbon Data Table driven from a `_data/*.yml` list  |
 | `_includes/post-list.html`  | Reusable Carbon Structured List of posts                     |
+| `assets/js/*.js`            | Progressive enhancement only — `theme.js` (mode toggle), `shell.js` (mobile nav), `packages.js` (the `/packages/` catalogue) |
 
 Rules of thumb:
 
@@ -98,8 +106,9 @@ Rules of thumb:
 - **Themes** are Carbon's Gray 100 (dark, the default) and White (light),
   swapped by the `data-theme` attribute on `<html>` — see `_sass/site/_themes.scss`.
 - **Adding an icon:** copy the `<path>` out of
-  `node_modules/@carbon/icons/svg/32/<name>.svg` into `_includes/icon.html`.
-  (`@carbon/icons` is not a dependency — it is 126 MB for ~24 icons.)
+  `https://cdn.jsdelivr.net/npm/@carbon/icons@11/svg/32/<name>.svg` into
+  `_includes/icon.html`. (`@carbon/icons` is not a dependency — it is 126 MB
+  for ~30 icons — so there is no local copy to read it from.)
 
 ## TODOs left in the data files
 

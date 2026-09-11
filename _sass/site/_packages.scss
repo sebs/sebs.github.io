@@ -1,12 +1,104 @@
 // Packages -----------------------------------------------------------------
-// The npm figures render as Carbon Tiles (the totals band) and a Carbon Data
-// Table (per-package), with a Progress Bar in the share column. Only the
-// download chart is bespoke — and it is drawn in theme tokens.
+// The /packages/ page is a catalogue of command-line tools: a terminal that
+// types out real README commands, a guessing game, a release heatmap and the
+// download figures. Carbon supplies the Tiles, Data Table (expandable rows,
+// sortable headers), Tags, Search and Buttons; this file adds the four
+// compositions Carbon has no component for — the terminal, the game cards,
+// the heatmap and the two plot readouts — always in theme tokens, never in
+// raw colour.
 @use "@carbon/styles/scss/theme";
 @use "@carbon/styles/scss/type";
 @use "@carbon/styles/scss/spacing";
+@use "@carbon/styles/scss/motion";
 @use "@carbon/styles/scss/breakpoint";
 @use "@carbon/styles/scss/config" as *;
+
+// --- Page head: copy on the left, terminal on the right ---
+.site-pkg-head {
+  row-gap: spacing.$spacing-07;
+}
+
+// --- Terminal -------------------------------------------------------------
+// Styled as a Carbon code surface (layer + hairline), not as a chrome-less
+// macOS window: the page is Carbon everywhere else.
+.site-term {
+  background: theme.$layer-01;
+  block-size: 100%;
+  border: 1px solid theme.$border-subtle-01;
+  display: flex;
+  flex-direction: column;
+}
+
+.site-term__bar {
+  align-items: center;
+  border-block-end: 1px solid theme.$border-subtle-01;
+  display: flex;
+  gap: spacing.$spacing-03;
+  justify-content: space-between;
+  padding-inline-start: spacing.$spacing-05;
+}
+
+.site-term__title {
+  @include type.type-style("code-01");
+
+  color: theme.$text-helper;
+}
+
+.site-term__actions {
+  display: flex;
+}
+
+.site-term__screen {
+  @include type.type-style("code-02");
+
+  color: theme.$text-primary;
+  flex: 1;
+  margin: 0;
+  // Three lines plus padding, so a shorter command never collapses the box
+  // and the page does not jump while one is being typed.
+  min-block-size: 9rem;
+  overflow-wrap: anywhere;
+  padding: spacing.$spacing-05;
+  white-space: pre-wrap;
+}
+
+.site-term__comment,
+.site-term__prompt {
+  color: theme.$text-helper;
+}
+
+.site-term__install {
+  color: theme.$text-secondary;
+}
+
+.site-term__cursor {
+  animation: site-term-blink 1.1s steps(1) infinite;
+  background: theme.$interactive;
+  block-size: 1em;
+  display: inline-block;
+  inline-size: 0.5em;
+  margin-inline-start: 0.1em;
+  vertical-align: text-bottom;
+}
+
+@keyframes site-term-blink {
+  50% { opacity: 0; }
+}
+
+// --- Install odometer -----------------------------------------------------
+.site-odometer {
+  @include type.type-style("body-01");
+
+  color: theme.$text-secondary;
+  margin-block-start: spacing.$spacing-06;
+}
+
+.site-odometer__value {
+  color: theme.$text-primary;
+  // Ticking digits, so equal widths keep the line from shivering.
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+}
 
 // --- Totals band: four tiles sharing one hairline grid ---
 .site-statband {
@@ -37,6 +129,486 @@
   @include type.type-style("label-01");
 
   color: theme.$text-secondary;
+}
+
+// --- Top Trumps -----------------------------------------------------------
+.site-trumps__score {
+  @include type.type-style("body-01");
+
+  align-items: center;
+  color: theme.$text-secondary;
+  display: flex;
+  gap: spacing.$spacing-03;
+  white-space: nowrap;
+
+  strong { color: theme.$text-primary; }
+}
+
+.site-trumps__question {
+  @include type.type-style("productive-heading-03");
+
+  margin-block-end: spacing.$spacing-06;
+}
+
+.site-trumps__cards {
+  align-items: stretch;
+  display: grid;
+  gap: spacing.$spacing-05;
+
+  @include breakpoint.breakpoint(md) {
+    grid-template-columns: 1fr auto 1fr;
+  }
+}
+
+.site-trumps__vs {
+  @include type.type-style("productive-heading-03");
+
+  align-self: center;
+  color: theme.$text-helper;
+  justify-self: center;
+}
+
+.site-trumps__card {
+  background: theme.$layer-01;
+  border: 1px solid theme.$border-subtle-01;
+  color: inherit;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  font: inherit;
+  gap: spacing.$spacing-03;
+  inline-size: 100%;
+  padding: spacing.$spacing-06;
+  text-align: start;
+  transition: background-color motion.$duration-fast-02 motion.motion(standard, productive);
+
+  &:hover { background: theme.$layer-hover-01; }
+
+  &[aria-disabled="true"] {
+    cursor: default;
+
+    &:hover { background: theme.$layer-01; }
+  }
+}
+
+// The verdict is a real status (right / wrong), so it carries a status colour —
+// always with the badge's own words beside it, never colour alone.
+.site-trumps__card--win { border-color: theme.$support-success; }
+.site-trumps__card--lose { border-color: theme.$border-strong-01; }
+
+.site-trumps__cmd {
+  @include type.type-style("productive-heading-04");
+  @include type.font-family("mono");
+
+  overflow-wrap: anywhere;
+}
+
+.site-trumps__name {
+  @include type.type-style("label-01");
+
+  color: theme.$text-helper;
+  overflow-wrap: anywhere;
+}
+
+.site-trumps__desc {
+  @include type.type-style("body-01");
+
+  color: theme.$text-secondary;
+}
+
+.site-trumps__stat {
+  align-items: baseline;
+  border-block-start: 1px solid theme.$border-subtle-01;
+  display: flex;
+  gap: spacing.$spacing-04;
+  justify-content: space-between;
+  margin-block-start: auto;
+  padding-block-start: spacing.$spacing-05;
+}
+
+.site-trumps__stat-label {
+  @include type.type-style("label-01");
+
+  color: theme.$text-secondary;
+}
+
+.site-trumps__stat-value {
+  @include type.type-style("productive-heading-04");
+}
+
+.site-trumps__badge {
+  @include type.type-style("label-01");
+
+  color: theme.$text-secondary;
+
+  .site-trumps__card--win & { color: theme.$support-success; }
+}
+
+.site-trumps__foot {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: spacing.$spacing-05;
+  justify-content: space-between;
+  margin-block-start: spacing.$spacing-06;
+  min-block-size: spacing.$spacing-08;
+}
+
+.site-trumps__verdict {
+  @include type.type-style("body-01");
+
+  color: theme.$text-secondary;
+}
+
+// --- Catalogue toolbar ----------------------------------------------------
+// One filter row above everything it scopes: search, then the domain chips.
+.site-pkg-toolbar {
+  display: flex;
+  flex-direction: column;
+  gap: spacing.$spacing-05;
+  margin-block-end: spacing.$spacing-06;
+
+  .#{$prefix}--search { max-inline-size: 24rem; }
+}
+
+.site-pkg-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: spacing.$spacing-03;
+
+  // Carbon Tags carry margin for form contexts; the row owns the gaps here.
+  .#{$prefix}--tag { margin: 0; }
+}
+
+// --- Per-package data table -----------------------------------------------
+.site-pkg-table {
+  // Group headings sit inside the table body, one per domain, and must read
+  // as a divider rather than as a second column header.
+  .site-pkg__group th {
+    @include type.type-style("heading-compact-01");
+
+    background: theme.$background;
+    border-block-end: 1px solid theme.$border-subtle-01;
+    color: theme.$text-secondary;
+    padding-block: spacing.$spacing-05 spacing.$spacing-03;
+  }
+}
+
+.site-pkg__group-count {
+  color: theme.$text-helper;
+}
+
+.site-pkg__name {
+  align-items: baseline;
+  display: flex;
+  flex-wrap: wrap;
+  gap: spacing.$spacing-03;
+  // Scoped names like @maschinenlesbar.org/marktstammdatenregister-cli have no
+  // break opportunity, and Carbon's table has no min-width — without this they
+  // push the whole page wider than a phone viewport.
+  min-inline-size: 0;
+  overflow-wrap: anywhere;
+}
+
+// Carbon's link is `display: inline-flex`, so the dimmed scope and the package
+// name inside it become two flex items that wrap independently — on a phone the
+// name tears into two ragged columns. Here the link is one run of text.
+.site-pkg__name .#{$prefix}--link {
+  display: inline;
+}
+
+// The command a package installs — the thing you actually type.
+.site-pkg__cmd {
+  @include type.type-style("code-01");
+
+  background: theme.$layer-accent-01;
+  color: theme.$text-primary;
+  padding-inline: spacing.$spacing-02;
+}
+
+.site-pkg__scope {
+  color: theme.$text-helper;
+}
+
+.site-pkg__version {
+  @include type.type-style("label-01");
+
+  color: theme.$text-helper;
+}
+
+.site-pkg__version--error { color: theme.$text-error; }
+
+.site-pkg__desc {
+  @include type.type-style("helper-text-01");
+
+  color: theme.$text-secondary;
+  display: block;
+  margin-block-start: spacing.$spacing-02;
+  max-inline-size: 70ch;
+}
+
+.site-pkg__num {
+  font-variant-numeric: tabular-nums;
+  text-align: end;
+  white-space: nowrap;
+}
+
+.site-pkg__unit {
+  @include type.type-style("label-01");
+
+  color: theme.$text-helper;
+  margin-inline-start: spacing.$spacing-02;
+}
+
+// Per-package sparkline: 26 weekly totals, drawn small and quiet so a column
+// of them reads as texture, with only the last week picked out.
+.site-spark {
+  block-size: 1.5rem;
+  display: block;
+  inline-size: 6.25rem;
+  overflow: visible;
+}
+
+.site-spark__line {
+  fill: none;
+  stroke: theme.$icon-secondary;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.5;
+  vector-effect: non-scaling-stroke;
+}
+
+.site-spark__end {
+  fill: theme.$interactive;
+}
+
+// --- Expanded row ---------------------------------------------------------
+.site-pkg-detail {
+  display: grid;
+  gap: spacing.$spacing-07;
+
+  @include breakpoint.breakpoint(lg) {
+    grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+  }
+}
+
+.site-pkg-detail__main {
+  display: flex;
+  flex-direction: column;
+  gap: spacing.$spacing-03;
+  min-inline-size: 0;
+}
+
+.site-pkg-detail__examples {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  list-style: none;
+}
+
+.site-snippet {
+  align-items: center;
+  background: theme.$layer-02;
+  display: flex;
+  gap: spacing.$spacing-03;
+  justify-content: space-between;
+  padding-inline-start: spacing.$spacing-04;
+
+  code {
+    @include type.type-style("code-01");
+
+    overflow-wrap: anywhere;
+    padding-block: spacing.$spacing-02;
+  }
+}
+
+.site-snippet__prompt {
+  color: theme.$text-helper;
+}
+
+.site-pkg-detail__meta {
+  @include type.type-style("body-compact-01");
+
+  column-gap: spacing.$spacing-05;
+  display: grid;
+  grid-template-columns: max-content minmax(0, 1fr);
+  margin: 0;
+  row-gap: spacing.$spacing-03;
+
+  dt {
+    @include type.type-style("label-01");
+
+    color: theme.$text-helper;
+  }
+
+  dd {
+    margin: 0;
+    overflow-wrap: anywhere;
+  }
+}
+
+.site-pkg-detail__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: spacing.$spacing-05;
+}
+
+// Copy buttons swap their icon for a tick while the clipboard holds the text.
+.site-copy__done { display: none; }
+
+.site-copy.is-copied {
+  .site-copy__idle { display: none; }
+  .site-copy__done { display: block; }
+}
+
+// --- Release heatmap ------------------------------------------------------
+// One row per year, one square per week. Sequential magnitude, so it is a
+// single hue stepped light to dark against the tile it sits on.
+.site-heat__scroll {
+  overflow-x: auto;
+}
+
+.site-heat {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  // Below this the squares stop being clickable, so the grid scrolls instead.
+  min-inline-size: 46rem;
+}
+
+.site-heat__row,
+.site-heat__months {
+  align-items: center;
+  display: grid;
+  gap: 2px;
+  // Year label · 53 weeks · year total. Capped so the squares stay squares on
+  // a wide screen instead of stretching into bricks.
+  grid-template-columns: 2.75rem repeat(53, minmax(0, 1.25rem)) 2.5rem;
+}
+
+.site-heat__months span {
+  @include type.type-style("label-01");
+
+  color: theme.$text-helper;
+  grid-row: 1;
+  white-space: nowrap;
+}
+
+.site-heat__year,
+.site-heat__total {
+  @include type.type-style("label-01");
+
+  // Pinned to the edges of the scroller: on a phone the grid is scrolled
+  // sideways, and a row whose year has scrolled away says nothing.
+  background: theme.$layer-01;
+  color: theme.$text-helper;
+  font-variant-numeric: tabular-nums;
+  position: sticky;
+  z-index: 1;
+}
+
+.site-heat__year {
+  inset-inline-start: 0;
+}
+
+.site-heat__total {
+  inset-inline-end: 0;
+  text-align: end;
+}
+
+.site-heat__cell {
+  aspect-ratio: 1;
+  background: theme.$border-subtle-01;
+
+  &[data-n] {
+    cursor: pointer;
+  }
+
+  // The hovered or focused week lifts out of the grid.
+  &.is-active,
+  &:focus-visible {
+    outline: 2px solid theme.$focus;
+    outline-offset: 1px;
+  }
+}
+
+// A week that has not happened yet — the current year stops at this week
+// rather than trailing twenty empty squares.
+.site-heat__cell[data-future] {
+  background: transparent;
+}
+
+// Intensity steps mirror HEAT_STEPS in scripts/fetch_npm_stats.py: 1, 2-3,
+// 4-9, 10+. Mixed against the tile surface so every step stays one hue.
+// The flat fallback comes first: where `color-mix` is not understood (before
+// Chrome 111 / Safari 16.2 / Firefox 113) the steps collapse into one shade,
+// which reads as released-or-not — the grid stays legible instead of blending
+// into the empty weeks.
+@each $level, $amount in (1: 32%, 2: 55%, 3: 78%) {
+  .site-heat__cell[data-l="#{$level}"] {
+    background: theme.$interactive;
+    background: color-mix(in srgb, #{theme.$interactive} $amount, #{theme.$layer-01});
+  }
+}
+
+.site-heat__cell[data-l="4"] {
+  background: theme.$interactive;
+}
+
+.site-heat__foot {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: spacing.$spacing-05;
+  justify-content: space-between;
+  margin-block-start: spacing.$spacing-05;
+}
+
+.site-heat__legend {
+  @include type.type-style("label-01");
+
+  align-items: center;
+  color: theme.$text-helper;
+  display: flex;
+  gap: spacing.$spacing-02;
+
+  .site-heat__cell {
+    block-size: 0.75rem;
+    inline-size: 0.75rem;
+  }
+}
+
+// --- Plot readouts (heatmap + download chart) ------------------------------
+// The positioning context for both tooltips. The heatmap scrolls sideways, so
+// a tooltip inside that scroller would be clipped at the first row.
+.site-plot {
+  position: relative;
+}
+
+.site-tip {
+  @include type.type-style("label-01");
+
+  background: theme.$background-inverse;
+  color: theme.$text-inverse;
+  inset-block-start: 0;
+  inset-inline-start: 0;
+  max-inline-size: 20rem;
+  padding: spacing.$spacing-03 spacing.$spacing-04;
+  pointer-events: none;
+  position: absolute;
+  z-index: 2;
+
+  // Value first, label after — the reader has the week and wants the number.
+  strong {
+    @include type.type-style("heading-compact-01");
+
+    display: block;
+  }
+
+  span {
+    display: block;
+    overflow-wrap: anywhere;
+  }
 }
 
 // --- Combined download trend ---
@@ -82,6 +654,26 @@
   vector-effect: non-scaling-stroke;
 }
 
+.site-chart__cursor {
+  background: theme.$border-strong-01;
+  inline-size: 1px;
+  inset-block: 0;
+  pointer-events: none;
+  position: absolute;
+}
+
+.site-chart__dot {
+  background: theme.$interactive;
+  block-size: 0.5rem;
+  border-radius: 50%;
+  // A ring in the surface colour, so the dot reads over the area fill.
+  box-shadow: 0 0 0 2px theme.$layer-01;
+  inline-size: 0.5rem;
+  pointer-events: none;
+  position: absolute;
+  transform: translate(-50%, -50%);
+}
+
 .site-chart__axis {
   @include type.type-style("label-01");
 
@@ -91,62 +683,62 @@
   margin-block-start: spacing.$spacing-04;
 }
 
-// --- Per-package data table ---
-.site-pkg__name {
-  align-items: baseline;
+// --- Movers ---------------------------------------------------------------
+.site-movers {
+  background: theme.$border-subtle-01;
   display: flex;
   flex-wrap: wrap;
-  gap: spacing.$spacing-03;
-  // Scoped names like @maschinenlesbar.org/marktstammdatenregister-cli have no
-  // break opportunity, and Carbon's table has no min-width — without this they
-  // push the whole page wider than a phone viewport.
-  min-inline-size: 0;
-  overflow-wrap: anywhere;
+  gap: 1px;
+  list-style: none;
 }
 
-.site-pkg__version {
+.site-mover {
+  display: flex;
+  flex: 1 1 14rem;
+  flex-direction: column;
+  gap: spacing.$spacing-02;
+}
+
+.site-mover__pct {
+  @include type.type-style("productive-heading-03");
+
+  align-items: center;
+  display: flex;
+  gap: spacing.$spacing-02;
+}
+
+.site-mover__who code {
+  @include type.type-style("code-01");
+}
+
+.site-mover__note {
   @include type.type-style("label-01");
 
   color: theme.$text-helper;
 }
 
-.site-pkg__version--error { color: theme.$text-error; }
+// --- Table twins ----------------------------------------------------------
+// Every plot on the page has a plain-table equivalent behind a disclosure, so
+// no figure is reachable only by hovering.
+.site-details {
+  border-block-end: 1px solid theme.$border-subtle-01;
+  margin-block-start: spacing.$spacing-05;
 
-// The share column is a Carbon Progress Bar with its label visually hidden.
-.site-pkg__share {
-  display: none;
-  inline-size: 8rem;
+  summary {
+    @include type.type-style("label-01");
 
-  @include breakpoint.breakpoint(md) {
-    display: block;
+    color: theme.$text-secondary;
+    cursor: pointer;
+    padding-block: spacing.$spacing-04;
+
+    &:hover { color: theme.$text-primary; }
   }
-}
 
-.site-pkg__num {
-  font-variant-numeric: tabular-nums;
-  text-align: end;
-  white-space: nowrap;
-}
-
-.site-pkg__unit {
-  @include type.type-style("label-01");
-
-  color: theme.$text-helper;
-  margin-inline-start: spacing.$spacing-02;
-}
-
-// The 12-month column is secondary; drop it on narrow screens.
-.site-pkg__col--secondary {
-  display: none;
-
-  @include breakpoint.breakpoint(md) {
-    display: table-cell;
+  .#{$prefix}--data-table-container {
+    margin-block-end: spacing.$spacing-05;
+    max-block-size: 24rem;
+    overflow-y: auto;
   }
-}
-
-// The share cell is vertically centred against the row's text.
-.site-pkg__share .#{$prefix}--progress-bar__track {
-  margin-block: spacing.$spacing-02;
 }
 
 // Safety net: any table that still cannot fit scrolls inside its own

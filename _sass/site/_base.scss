@@ -18,6 +18,14 @@ img {
   max-width: 100%;
 }
 
+// `hidden` has to win. The attribute's `display: none` lives in the UA
+// stylesheet, so any class that sets `display` — Carbon's buttons, flex rows,
+// tiles — outranks it, and elements the markup ships hidden (the /packages/
+// toolbar, its game) would show up before their script ever ran.
+[hidden] {
+  display: none !important;
+}
+
 // Carbon's `.cds--link` covers real links; bare anchors in composed blocks
 // (tiles, rows, the shell) inherit instead of picking up a browser blue.
 a {

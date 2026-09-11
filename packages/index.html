@@ -2,8 +2,9 @@
 layout: default
 title: Packages
 description: >-
-  npm download statistics for the packages Sebastian Schürmann maintains —
-  combined download trend plus per-package figures, refreshed on every deploy.
+  Command-line tools for German federal open data and the developer tools
+  Sebastian Schürmann maintains on npm — runnable examples, release history
+  and download trends, refreshed on every deploy.
 nav: packages
 og_type: website
 permalink: /packages/
@@ -11,14 +12,37 @@ permalink: /packages/
 
 {%- assign stats = site.data.npm_stats -%}
 {%- assign packages = stats.packages -%}
+{%- assign totals = stats.totals -%}
+{%- assign has_data = false -%}
+{%- if packages and packages.size > 0 -%}{%- assign has_data = true -%}{%- endif -%}
 
-<section class="cds--css-grid site-page-head">
-  <div class="cds--css-grid-column cds--sm:col-span-4 cds--md:col-span-6 cds--lg:col-span-8">
+{%- comment -%}
+  The first package with README examples seeds the terminal, so it reads as a
+  real command before (or without) any JavaScript.
+{%- endcomment -%}
+{%- assign demo = nil -%}
+{%- for p in packages -%}
+  {%- if p.examples and p.examples.size > 0 -%}{%- assign demo = p -%}{%- break -%}{%- endif -%}
+{%- endfor -%}
+{%- capture nl %}
+{% endcapture -%}
+
+<section class="cds--css-grid site-page-head site-pkg-head">
+  <div class="cds--css-grid-column cds--sm:col-span-4 cds--md:col-span-8 cds--lg:col-span-7">
     <h1 class="site-page-head__title">Packages</h1>
     <p class="site-section__lead">
-      npm download metrics for the packages I maintain, compiled from the public
-      npm registry.
+      Command-line tools I maintain on npm. Most of them wrap a German federal
+      open-data API &mdash; the Bundestag, the weather service, the energy
+      market, the job board &mdash; so the data is one command away. The rest
+      are developer tools.
     </p>
+    {%- if has_data and totals.rate -%}
+    <p class="site-odometer" data-odometer data-rate="{{ totals.rate }}" hidden>
+      &asymp; <span class="site-odometer__value" data-odometer-value>0.00</span>
+      downloads since you opened this page
+      <span class="site-helper">&middot; one every <span data-odometer-every></span>, at the current rate</span>
+    </p>
+    {%- endif -%}
     {%- if stats.generated -%}
     <p class="site-helper site-mt-07">
       {% include icon.html name="history" %} Last refreshed {{ stats.generated }}
@@ -26,19 +50,62 @@ permalink: /packages/
     </p>
     {%- endif -%}
   </div>
+
+  {%- if demo -%}
+  {%- assign demo_ex = demo.examples | first -%}
+  {%- assign demo_npx = demo_ex | slice: 0, 4 -%}
+  <div class="cds--css-grid-column cds--sm:col-span-4 cds--md:col-span-8 cds--lg:col-span-9">
+    {%- comment -%}
+      `group` rather than a label on the <pre>: <pre> maps to a generic role,
+      which carries no accessible name.
+    {%- endcomment -%}
+    <div class="site-term" data-term role="group" aria-label="Example commands">
+      <div class="site-term__bar">
+        <span class="site-term__title">~/try-one</span>
+        <div class="site-term__actions">
+          <button type="button" class="cds--btn cds--btn--ghost cds--btn--sm" data-term-pause aria-pressed="false" hidden>Pause</button>
+          <button type="button" class="cds--btn cds--btn--ghost cds--btn--sm" data-term-next hidden>Next</button>
+          {%- comment -%}
+            Pause, Next and Copy all need JavaScript, so they ship hidden and
+            packages.js reveals them — a dead button is worse than none.
+          {%- endcomment -%}
+          <button type="button" class="cds--btn cds--btn--ghost cds--btn--sm site-copy" data-term-copy hidden
+                  data-copy="{% if demo_npx != 'npx ' %}npm i -g {{ demo.name | escape }}{{ nl }}{% endif %}{{ demo_ex | escape }}">
+            <span data-copy-label>Copy</span>
+            {% include icon.html name="copy" class="cds--btn__icon site-copy__idle" %}
+            {% include icon.html name="checkmark" class="cds--btn__icon site-copy__done" %}
+          </button>
+        </div>
+      </div>
+      <pre class="site-term__screen"><code><span class="site-term__comment" data-term-comment># {{ demo.command | escape }} &mdash; {{ demo.description | truncate: 90 | escape }}</span>
+<span data-term-install-line{% if demo_npx == 'npx ' %} hidden{% endif %}><span class="site-term__prompt" aria-hidden="true">$ </span><span class="site-term__install" data-term-install>npm i -g {{ demo.name | escape }}</span>
+</span><span class="site-term__prompt" aria-hidden="true">$ </span><span data-term-cmd>{{ demo_ex | escape }}</span><span class="site-term__cursor" aria-hidden="true"></span></code></pre>
+      <ul hidden data-term-list>
+        {%- for p in packages -%}
+        {%- if p.examples and p.examples.size > 0 -%}
+        <li data-name="{{ p.name | escape }}" data-command="{{ p.command | escape }}"
+            data-desc="{{ p.description | truncate: 90 | escape }}"
+            data-examples="{{ p.examples | join: nl | escape }}"></li>
+        {%- endif -%}
+        {%- endfor -%}
+      </ul>
+    </div>
+  </div>
+  {%- endif -%}
 </section>
 
-{%- if packages and packages.size > 0 -%}
-{%- assign totals = stats.totals -%}
+{%- if has_data -%}
 {%- assign chart = stats.chart -%}
+{%- assign heat = stats.heatmap -%}
+{%- assign movers = stats.movers -%}
 
 <!-- Totals -->
 <section class="cds--css-grid">
   <div class="cds--css-grid-column cds--col-span-100">
     <div class="site-statband">
       <div class="cds--tile site-stat">
-        <span class="site-stat__value">{{ totals.packages }}</span>
-        <span class="site-stat__label">Packages</span>
+        <span class="site-stat__value">{{ totals.clis }}</span>
+        <span class="site-stat__label">Command-line tools</span>
       </div>
       <div class="cds--tile site-stat">
         <span class="site-stat__value">{% include thousands.html n=totals.dl_month %}</span>
@@ -50,102 +117,437 @@ permalink: /packages/
       </div>
       <div class="cds--tile site-stat">
         <span class="site-stat__value">{% include thousands.html n=totals.releases %}</span>
-        <span class="site-stat__label">Releases shipped</span>
+        <span class="site-stat__label">Releases{% if totals.since %} since {{ totals.since }}{% endif %}</span>
       </div>
     </div>
   </div>
 </section>
 
-{%- if chart -%}
-<!-- Combined download trend -->
-<section class="cds--css-grid site-mt-07">
+<!-- Top Trumps: needs JavaScript, so it stays hidden until packages.js deals a round. -->
+<section class="cds--css-grid site-section site-section--flush site-mt-09" data-trumps hidden>
   <div class="cds--css-grid-column cds--col-span-100">
-    <div class="cds--tile">
-      <div class="site-chart__head">
-        <span class="site-eyebrow">Weekly downloads &middot; all packages combined</span>
-        <span class="site-chart__peak">peak {% include thousands.html n=chart.peak_week %} / wk</span>
+    <div class="site-section__head">
+      <div>
+        <h2 class="site-section__title">Top Trumps</h2>
+        <p class="site-section__lead">Two packages, one question. Pick the winner and keep the streak alive.</p>
       </div>
-      <svg class="site-chart" viewBox="0 0 100 40" preserveAspectRatio="none" role="img"
-           aria-label="Combined weekly npm downloads across all packages over the last 12 months">
-        <polygon class="site-chart__area" points="{{ chart.area_points }}" />
-        <polyline class="site-chart__line" points="{{ chart.line_points }}" />
-      </svg>
-      <div class="site-chart__axis">
-        <span>{{ chart.start | date: "%b %Y" }}</span>
-        <span>{{ chart.end | date: "%b %Y" }}</span>
-      </div>
+      <p class="site-trumps__score">
+        {% include icon.html name="trophy" %}
+        Streak <strong data-trumps-streak>0</strong> &middot; best <strong data-trumps-best>0</strong>
+      </p>
+    </div>
+    <p class="site-trumps__question" data-trumps-question></p>
+    <div class="site-trumps__cards">
+      {%- for i in (0..1) -%}
+      <button type="button" class="site-trumps__card" data-trumps-card>
+        <span class="site-eyebrow" data-trumps-domain></span>
+        <span class="site-trumps__cmd" data-trumps-cmd></span>
+        <span class="site-trumps__name" data-trumps-name></span>
+        <span class="site-trumps__desc" data-trumps-desc></span>
+        <span class="site-trumps__stat">
+          <span class="site-trumps__stat-label" data-trumps-label></span>
+          <span class="site-trumps__stat-value" data-trumps-value>?</span>
+        </span>
+        <span class="site-trumps__badge" data-trumps-badge hidden></span>
+      </button>
+      {%- if forloop.first -%}<span class="site-trumps__vs" aria-hidden="true">vs</span>{%- endif -%}
+      {%- endfor -%}
+    </div>
+    <div class="site-trumps__foot">
+      <p class="site-trumps__verdict" data-trumps-verdict aria-live="polite"></p>
+      <button type="button" class="cds--btn cds--btn--primary cds--btn--sm" data-trumps-next hidden>
+        Next round {% include icon.html name="arrow-right" class="cds--btn__icon" %}
+      </button>
     </div>
   </div>
 </section>
-{%- endif -%}
 
-<!-- Per package -->
-<section class="cds--css-grid site-section site-section--flush site-pb-10 site-mt-09">
+<!-- Catalogue -->
+<section class="cds--css-grid site-section site-mt-09" id="catalogue">
   <div class="cds--css-grid-column cds--col-span-100">
-    <div class="site-rule-head">
-      <span class="site-eyebrow">By package &middot; ranked by 30-day downloads</span>
+    <div class="site-section__head">
+      <div>
+        <h2 class="site-section__title">Catalogue</h2>
+        <p class="site-section__lead">
+          Grouped by what they cover. Sort a column to rank everything instead,
+          and open a row for install commands, examples and details.
+        </p>
+      </div>
     </div>
 
-    {%- assign top = packages[0].dl_month | default: 0 -%}
+    <div class="site-pkg-toolbar" data-pkg-toolbar hidden>
+      <div class="cds--search cds--search--md" role="search">
+        <div class="cds--search-magnifier" aria-hidden="true">
+          {% include icon.html name="search" class="cds--search-magnifier-icon" %}
+        </div>
+        <label class="cds--label" for="pkg-search">Search packages</label>
+        <input class="cds--search-input" id="pkg-search" type="text" role="searchbox"
+               placeholder="Search commands, packages, keywords" autocomplete="off" data-pkg-search>
+        <button type="button" class="cds--search-close cds--search-close--hidden"
+                aria-label="Clear search" data-pkg-clear>
+          {% include icon.html name="close" %}
+        </button>
+      </div>
+      <div class="site-pkg-filters" role="group" aria-label="Filter by domain">
+        <button type="button" class="cds--tag cds--tag--selectable cds--tag--selectable-selected"
+                aria-pressed="true" data-domain-filter=""><span>All {{ packages.size }}</span></button>
+        {%- for d in stats.domains -%}
+        <button type="button" class="cds--tag cds--tag--selectable" aria-pressed="false"
+                data-domain-filter="{{ d.id }}"><span>{{ d.name }} {{ d.count }}</span></button>
+        {%- endfor -%}
+      </div>
+      <p class="site-helper" data-pkg-count aria-live="polite"></p>
+    </div>
+
     <div class="cds--data-table-container">
-      <table class="cds--data-table cds--data-table--sm">
-        <caption class="cds--visually-hidden">npm downloads per package</caption>
+      <table class="cds--data-table cds--data-table--expandable site-pkg-table" data-pkg-table>
+        <caption class="cds--visually-hidden">npm packages, grouped by domain</caption>
         <thead>
           <tr>
-            <th scope="col"><div class="cds--table-header-label">Package</div></th>
-            <th scope="col" class="site-pkg__share"><div class="cds--table-header-label">Share</div></th>
-            <th scope="col"><div class="cds--table-header-label">30 days</div></th>
-            <th scope="col" class="site-table__col--optional"><div class="cds--table-header-label">12 months</div></th>
+            <th scope="col" class="cds--table-expand"><span class="cds--visually-hidden">Details</span></th>
+            {%- comment -%}
+              Carbon sortable headers. Unsorted is the grouped view; sorting
+              flattens the table (see packages.js).
+            {%- endcomment -%}
+            <th scope="col" class="cds--table-sort__header" aria-sort="none" data-sort="name">
+              <button type="button" class="cds--table-sort">
+                <span class="cds--table-sort__flex">
+                  <span class="cds--table-header-label">Package</span>
+                  {% include icon.html name="arrow-up" class="cds--table-sort__icon" %}
+                  {% include icon.html name="arrows-vertical" class="cds--table-sort__icon-unsorted" %}
+                </span>
+              </button>
+            </th>
+            <th scope="col" class="site-table__col--optional"><div class="cds--table-header-label">Last {{ totals.spark_weeks }} weeks</div></th>
+            <th scope="col" class="cds--table-sort__header" aria-sort="none" data-sort="month">
+              <button type="button" class="cds--table-sort">
+                <span class="cds--table-sort__flex">
+                  <span class="cds--table-header-label">30 days</span>
+                  {% include icon.html name="arrow-up" class="cds--table-sort__icon" %}
+                  {% include icon.html name="arrows-vertical" class="cds--table-sort__icon-unsorted" %}
+                </span>
+              </button>
+            </th>
+            <th scope="col" class="cds--table-sort__header site-table__col--optional" aria-sort="none" data-sort="year">
+              <button type="button" class="cds--table-sort">
+                <span class="cds--table-sort__flex">
+                  <span class="cds--table-header-label">12 months</span>
+                  {% include icon.html name="arrow-up" class="cds--table-sort__icon" %}
+                  {% include icon.html name="arrows-vertical" class="cds--table-sort__icon-unsorted" %}
+                </span>
+              </button>
+            </th>
           </tr>
         </thead>
-        <tbody>
-          {%- for p in packages -%}
-          {%- assign month = p.dl_month | default: 0 -%}
-          {%- if top > 0 -%}{%- assign w = month | times: 100 | divided_by: top -%}{%- else -%}{%- assign w = 0 -%}{%- endif -%}
-          <tr>
+        {%- for d in stats.domains -%}
+        {%- assign members = packages | where: "domain", d.name -%}
+        <tbody data-group="{{ d.id }}">
+          <tr class="site-pkg__group">
+            <th scope="colgroup" colspan="5">{{ d.name }} <span class="site-pkg__group-count">{{ d.count }}</span></th>
+          </tr>
+          {%- for p in members -%}
+          {%- assign row_id = "pkg-" | append: d.id | append: "-" | append: forloop.index -%}
+          {%- assign scope_parts = p.name | split: "/" -%}
+          {%- capture haystack -%}{{ p.name }} {{ p.command }} {{ p.description }} {{ p.keywords | join: " " }} {{ p.domain }}{%- endcapture -%}
+          <tr class="cds--parent-row" data-parent-row data-pkg
+              data-name="{{ p.name | escape }}" data-command="{{ p.command | escape }}"
+              data-short="{{ scope_parts | last | escape }}"
+              data-domain="{{ p.domain_id }}" data-domain-name="{{ p.domain | escape }}"
+              data-desc="{{ p.description | escape }}"
+              data-month="{{ p.dl_month | default: 0 }}" data-year="{{ p.dl_year | default: 0 }}"
+              data-versions="{{ p.versions | default: 0 }}" data-first="{{ p.first_publish }}"
+              data-size="{{ p.size_kb }}" data-search="{{ haystack | downcase | escape }}">
+            <td class="cds--table-expand">
+              {%- comment -%} Revealed by packages.js: without it there is nothing to expand. {%- endcomment -%}
+              <button type="button" class="cds--table-expand__button" aria-expanded="false" hidden
+                      aria-controls="{{ row_id }}" aria-label="Show details for {{ p.name | escape }}">
+                {% include icon.html name="chevron-right" class="cds--table-expand__svg" %}
+              </button>
+            </td>
             <td>
               <span class="site-pkg__name">
-                <a class="cds--link" href="{{ p.npm_url }}" target="_blank" rel="noopener">{{ p.name }}</a>
+                {%- comment -%}
+                  The command chip is what you type. Packages whose command is
+                  simply their own name (gurkencheck, banira) would read as the
+                  same word twice, so there the name carries it.
+                {%- endcomment -%}
+                {%- assign short_name = scope_parts | last -%}
+                {%- if p.command and p.command != "" and p.command != short_name -%}<code class="site-pkg__cmd">{{ p.command | escape }}</code>{%- endif -%}
+                <a class="cds--link" href="{{ p.npm_url | escape }}" target="_blank" rel="noopener">
+                  {%- if scope_parts.size > 1 -%}<span class="site-pkg__scope">{{ scope_parts | first | escape }}/</span>{%- endif -%}
+                  {{- scope_parts | last | escape -}}
+                </a>
                 {%- if p.version and p.version != "" -%}
-                <span class="site-pkg__version">v{{ p.version }}</span>
+                <span class="site-pkg__version">v{{ p.version | escape }}</span>
                 {%- endif -%}
                 {%- if p.error -%}
-                <span class="site-pkg__version site-pkg__version--error">{{ p.error }}</span>
+                <span class="site-pkg__version site-pkg__version--error">{{ p.error | escape }}</span>
                 {%- endif -%}
               </span>
+              {%- if p.description and p.description != "" -%}
+              <span class="site-pkg__desc">{{ p.description | escape }}</span>
+              {%- endif -%}
             </td>
-            <td class="site-pkg__share">
-              {%- comment -%}
-                Carbon Progress Bar, indented variant, used here as a share
-                indicator relative to the most-downloaded package.
-              {%- endcomment -%}
-              <div class="cds--progress-bar cds--progress-bar--small"
-                   role="progressbar" aria-label="Share of downloads for {{ p.name }}"
-                   aria-valuemin="0" aria-valuemax="100" aria-valuenow="{{ w }}">
-                <div class="cds--progress-bar__track">
-                  <div class="cds--progress-bar__bar" style="transform: scaleX({{ w }}%);"></div>
-                </div>
-              </div>
+            <td class="site-table__col--optional">
+              {%- if p.spark -%}
+              <svg class="site-spark" viewBox="0 0 100 24" role="img"
+                   aria-label="Weekly downloads over the last {{ p.spark.weeks }} weeks: peak {{ p.spark.peak }}, last week {{ p.spark.last }}">
+                <title>Peak {{ p.spark.peak }} / week &middot; last week {{ p.spark.last }}</title>
+                <polyline class="site-spark__line" points="{{ p.spark.points }}" />
+                <circle class="site-spark__end" cx="{{ p.spark.end_x }}" cy="{{ p.spark.end_y }}" r="2.5" />
+              </svg>
+              {%- endif -%}
             </td>
             <td class="site-pkg__num">
-              {% include thousands.html n=month %}<span class="site-pkg__unit">/mo</span>
+              {% include thousands.html n=p.dl_month %}<span class="site-pkg__unit">/mo</span>
             </td>
             <td class="site-pkg__num site-table__col--optional">
               {% include thousands.html n=p.dl_year %}<span class="site-pkg__unit">/yr</span>
             </td>
           </tr>
+          <tr class="cds--expandable-row" data-child-row id="{{ row_id }}" inert>
+            <td colspan="5">
+              <div class="cds--child-row-inner-container">
+                {%- if p.bin and p.bin.size > 0 -%}
+                  {%- assign install = "npm i -g " | append: p.name -%}
+                {%- else -%}
+                  {%- assign install = "npm i " | append: p.name -%}
+                {%- endif -%}
+                <div class="site-pkg-detail">
+                  <div class="site-pkg-detail__main">
+                    <span class="site-eyebrow">Install</span>
+                    {%- comment -%}
+                      The copy buttons are cloned in by packages.js: the
+                      clipboard needs JavaScript anyway, and inlining two icons
+                      per snippet cost more than the rest of the page put
+                      together.
+                    {%- endcomment -%}
+                    <div class="site-snippet" data-copy-text="{{ install | escape }}"><code>{{ install | escape }}</code></div>
+                    {%- if p.examples and p.examples.size > 0 -%}
+                    <span class="site-eyebrow">Try</span>
+                    <ul class="site-pkg-detail__examples">
+                      {%- for e in p.examples -%}
+                      <li class="site-snippet" data-copy-text="{{ e | escape }}"><code><span class="site-snippet__prompt" aria-hidden="true">$ </span>{{ e | escape }}</code></li>
+                      {%- endfor -%}
+                    </ul>
+                    {%- endif -%}
+                    {%- if p.keywords and p.keywords.size > 0 -%}
+                    <div class="site-tile__tags">
+                      {%- for k in p.keywords -%}<span class="cds--tag cds--tag--gray cds--tag--sm">{{ k | escape }}</span>{%- endfor -%}
+                    </div>
+                    {%- endif -%}
+                  </div>
+                  <dl class="site-pkg-detail__meta">
+                    {%- if p.version and p.version != "" -%}
+                    <dt>Latest</dt><dd>v{{ p.version | escape }}{% if p.last_publish != "" %} &middot; {{ p.last_publish | date: "%-d %b %Y" }}{% endif %}</dd>
+                    {%- endif -%}
+                    {%- if p.versions and p.versions > 0 -%}
+                    <dt>Releases</dt><dd>{{ p.versions }}{% if p.first_publish != "" %} since {{ p.first_publish | date: "%-d %b %Y" }}{% endif %}</dd>
+                    {%- endif -%}
+                    {%- if p.license and p.license != "" -%}<dt>License</dt><dd>{{ p.license | escape }}</dd>{%- endif -%}
+                    {%- if p.node and p.node != "" -%}<dt>Node</dt><dd>{{ p.node | escape }}</dd>{%- endif -%}
+                    {%- if p.size_kb -%}
+                    <dt>Size</dt><dd>{% include thousands.html n=p.size_kb %}&nbsp;kB unpacked &middot; {{ p.deps }} dependenc{% if p.deps == 1 %}y{% else %}ies{% endif %}</dd>
+                    {%- endif -%}
+                    <dt>Links</dt>
+                    <dd class="site-pkg-detail__links">
+                      <a class="cds--link" href="{{ p.npm_url | escape }}" target="_blank" rel="noopener">npm</a>
+                      {%- if p.repo_url and p.repo_url != "" -%}<a class="cds--link" href="{{ p.repo_url | escape }}" target="_blank" rel="noopener">Repository</a>{%- endif -%}
+                      {%- if p.homepage and p.homepage != "" and p.homepage != p.repo_url -%}<a class="cds--link" href="{{ p.homepage | escape }}" target="_blank" rel="noopener">Homepage</a>{%- endif -%}
+                    </dd>
+                  </dl>
+                </div>
+              </div>
+            </td>
+          </tr>
           {%- endfor -%}
         </tbody>
+        {%- endfor -%}
       </table>
     </div>
+    <p class="site-empty" data-pkg-empty hidden>No package matches that search.</p>
 
+    {%- comment -%}
+      The install line is spelled out here too: opening a row needs JavaScript,
+      and "how do I run this" should not depend on that.
+    {%- endcomment -%}
     <p class="site-helper site-mt-07">
-      Figures from the public npm downloads API. Recently published packages may
-      show no counts until npm aggregates a full period. Bars are relative to the
-      most-downloaded package.
+      Every command-line tool above installs the same way &mdash;
+      <code>npm i -g &lt;package&gt;</code> &mdash; or runs straight from
+      <code>npx</code>; open a row for that package's own examples. Figures come
+      from the public npm downloads API, and recently published packages may
+      show no counts until npm aggregates a full period. Sparklines cover weekly
+      downloads up to the last complete day.
     </p>
   </div>
 </section>
+
+{%- if heat -%}
+<!-- Shipping history: every release, one square per week -->
+<section class="cds--css-grid site-section" id="history">
+  <div class="cds--css-grid-column cds--col-span-100">
+    <div class="site-section__head">
+      <div>
+        <h2 class="site-section__title">Shipping history</h2>
+        <p class="site-section__lead">
+          All {{ heat.total }} releases since {{ heat.first | date: "%B %Y" }}, one
+          square per week.
+          {%- if heat.busiest.size > 0 %} The busiest day was {{ heat.busiest[0].date | date: "%-d %B %Y" }}, with {{ heat.busiest[0].n }} releases{% endif %}
+          {%- if heat.quiet.size > 0 %}; nothing shipped at all in {{ heat.quiet | array_to_sentence_string }}{% endif %}.
+        </p>
+      </div>
+    </div>
+    <div class="cds--tile">
+      <div class="site-plot" data-heat>
+        <div class="site-heat__scroll">
+          <div class="site-heat" role="group" aria-label="Releases per week, {{ heat.years[0].year }} to {{ heat.years.last.year }}">
+            <div class="site-heat__months" aria-hidden="true">
+              {%- for m in heat.months -%}<span style="grid-column: {{ m.col | plus: 2 }} / span 4">{{ m.label }}</span>{%- endfor -%}
+            </div>
+            {%- for y in heat.years -%}
+            <div class="site-heat__row">
+              <span class="site-heat__year">{{ y.year }}</span>
+              {%- for c in y.cells -%}
+              {%- if c.n > 0 -%}
+              <span class="site-heat__cell" role="img" data-l="{{ c.l }}" data-n="{{ c.n }}" data-d="{{ c.d }}" data-p="{{ c.p | escape }}"
+                    aria-label="{{ c.n }} release{% if c.n != 1 %}s{% endif %}, week of {{ c.d | date: '%-d %b %Y' }}: {{ c.p | escape }}"></span>
+              {%- else -%}
+              <span class="site-heat__cell" data-l="0"{% if c.f %} data-future{% endif %} aria-hidden="true"></span>
+              {%- endif -%}
+              {%- endfor -%}
+              <span class="site-heat__total" aria-label="{{ y.count }} releases in {{ y.year }}">{{ y.count }}</span>
+            </div>
+            {%- endfor -%}
+          </div>
+        </div>
+        <div class="site-tip" data-tip hidden aria-hidden="true"></div>
+      </div>
+      <div class="site-heat__foot">
+        <p class="site-helper">
+          Hover or tab into the grid for the packages behind each week. Totals
+          per year on the right; the shades step at 1, 2, 4 and 10 releases.
+        </p>
+        {%- comment -%} Buckets mirror HEAT_STEPS in scripts/fetch_npm_stats.py. {%- endcomment -%}
+        <div class="site-heat__legend" aria-label="Releases per week">
+          <span>Fewer</span>
+          <span class="site-heat__cell" data-l="1" title="1"></span>
+          <span class="site-heat__cell" data-l="2" title="2–3"></span>
+          <span class="site-heat__cell" data-l="3" title="4–9"></span>
+          <span class="site-heat__cell" data-l="4" title="10 or more"></span>
+          <span>More</span>
+        </div>
+      </div>
+    </div>
+    <details class="site-details">
+      <summary>Every release week as a table</summary>
+      <div class="cds--data-table-container">
+        <table class="cds--data-table cds--data-table--xs">
+          <thead><tr>
+            <th scope="col"><div class="cds--table-header-label">Week of</div></th>
+            <th scope="col"><div class="cds--table-header-label">Releases</div></th>
+            <th scope="col"><div class="cds--table-header-label">Packages</div></th>
+          </tr></thead>
+          <tbody>
+            {%- for y in heat.years reversed -%}{%- for c in y.cells reversed -%}{%- if c.n > 0 -%}
+            <tr><td>{{ c.d | date: "%-d %b %Y" }}</td><td class="site-pkg__num">{{ c.n }}</td><td>{{ c.p | escape }}</td></tr>
+            {%- endif -%}{%- endfor -%}{%- endfor -%}
+          </tbody>
+        </table>
+      </div>
+    </details>
+  </div>
+</section>
+{%- endif -%}
+
+<!-- Downloads -->
+<section class="cds--css-grid site-section site-pb-10" id="downloads">
+  <div class="cds--css-grid-column cds--col-span-100">
+    <div class="site-section__head">
+      <div>
+        <h2 class="site-section__title">Downloads</h2>
+        <p class="site-section__lead">Weekly npm downloads, all packages combined, and who moved most over the last month.</p>
+      </div>
+    </div>
+
+    {%- if chart -%}
+    <div class="cds--tile">
+      <div class="site-chart__head">
+        <span class="site-eyebrow">Weekly downloads &middot; all packages combined</span>
+        <span class="site-chart__peak">peak {% include thousands.html n=chart.peak_week %} / wk</span>
+      </div>
+      <div class="site-plot" data-chart data-values="{{ chart.values | join: ',' }}" data-starts="{{ chart.starts | join: ',' }}">
+        <svg class="site-chart" viewBox="0 0 100 40" preserveAspectRatio="none" role="img"
+             aria-label="Combined weekly npm downloads across all packages over the last 12 months, peaking at {{ chart.peak_week }} a week">
+          <polygon class="site-chart__area" points="{{ chart.area_points }}" />
+          <polyline class="site-chart__line" points="{{ chart.line_points }}" />
+        </svg>
+        <span class="site-chart__cursor" data-chart-cursor hidden></span>
+        <span class="site-chart__dot" data-chart-dot hidden></span>
+        <div class="site-tip" data-tip hidden aria-hidden="true"></div>
+      </div>
+      <div class="site-chart__axis">
+        <span>{{ chart.start | date: "%b %Y" }}</span>
+        <span>{{ chart.end | date: "%b %Y" }}</span>
+      </div>
+    </div>
+    <details class="site-details">
+      <summary>Weekly figures as a table</summary>
+      <div class="cds--data-table-container">
+        <table class="cds--data-table cds--data-table--xs">
+          <thead><tr>
+            <th scope="col"><div class="cds--table-header-label">Week of</div></th>
+            <th scope="col"><div class="cds--table-header-label">Downloads</div></th>
+          </tr></thead>
+          <tbody>
+            {%- assign last_week = chart.weeks | minus: 1 -%}
+            {%- for i in (0..last_week) reversed -%}
+            {%- assign week_start = chart.starts[i] -%}
+            {%- assign week_value = chart.values[i] -%}
+            <tr><td>{{ week_start | date: "%-d %b %Y" }}</td><td class="site-pkg__num">{% include thousands.html n=week_value %}</td></tr>
+            {%- endfor -%}
+          </tbody>
+        </table>
+      </div>
+    </details>
+    {%- endif -%}
+
+    {%- if movers -%}
+    <div class="site-rule-head site-mt-09">
+      <span class="site-eyebrow">Movers &middot; last 30 days vs the 30 before</span>
+    </div>
+    <ul class="site-movers">
+      {%- for m in movers.up -%}
+      <li class="cds--tile site-mover">
+        <span class="site-mover__pct">{% include icon.html name="arrow-up" %}+{{ m.pct }}%</span>
+        <span class="site-mover__who">{% if m.command != "" %}<code>{{ m.command | escape }}</code>{% else %}{{ m.name | escape }}{% endif %}</span>
+        <span class="site-mover__note">{% include thousands.html n=m.now %} downloads, up from {% include thousands.html n=m.before %}</span>
+      </li>
+      {%- endfor -%}
+      {%- for m in movers.down -%}
+      <li class="cds--tile site-mover">
+        <span class="site-mover__pct">{% include icon.html name="arrow-down" %}{{ m.pct }}%</span>
+        <span class="site-mover__who">{% if m.command != "" %}<code>{{ m.command | escape }}</code>{% else %}{{ m.name | escape }}{% endif %}</span>
+        <span class="site-mover__note">{% include thousands.html n=m.now %} downloads, down from {% include thousands.html n=m.before %}</span>
+      </li>
+      {%- endfor -%}
+    </ul>
+    <p class="site-helper site-mt-07">
+      Only packages with at least {{ totals.mover_floor }} downloads in the earlier window count &mdash;
+      below that, a handful of CI runs swings the percentage wildly.
+    </p>
+    {%- endif -%}
+  </div>
+</section>
+
+<template data-copy-button>
+  <button type="button" class="cds--btn cds--btn--ghost cds--btn--sm cds--btn--icon-only site-copy">
+    {% include icon.html name="copy" class="cds--btn__icon site-copy__idle" %}
+    {% include icon.html name="checkmark" class="cds--btn__icon site-copy__done" %}
+  </button>
+</template>
+
+<p class="cds--visually-hidden" aria-live="polite" data-announce></p>
+<script src="{{ '/assets/js/packages.js' | relative_url }}" defer></script>
 
 {%- else -%}
 <section class="cds--css-grid site-pb-10">
