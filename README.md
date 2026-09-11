@@ -101,13 +101,56 @@ Rules of thumb:
   which is why the bundle is ~35 KB gzipped rather than all of Carbon.
 - **Do not write raw colours, font sizes, or spacing values.** Use Carbon's
   tokens: `theme.$text-secondary`, `type.type-style("body-01")`,
-  `spacing.$spacing-05`. Both colour modes then follow for free.
+  `spacing.$spacing-05`. Both colour modes then follow for free — and stay
+  inside the set below rather than reaching for a new step.
 - **Themes** are Carbon's Gray 100 (dark, the default) and White (light),
   swapped by the `data-theme` attribute on `<html>` — see `_sass/site/_themes.scss`.
 - **Adding an icon:** copy the `<path>` out of
   `https://cdn.jsdelivr.net/npm/@carbon/icons@11/svg/32/<name>.svg` into
   `_includes/icon.html`. (`@carbon/icons` is not a dependency — it is 126 MB
   for ~30 icons — so there is no local copy to read it from.)
+
+### The set this site sticks to
+
+Carbon ships a large scale. The site uses a deliberately small slice of it, so
+building a page means picking from these tables instead of inventing a step.
+
+**Type — six roles, and nothing below 14px.**
+
+| Role | Carbon style | Size | Used for |
+| --- | --- | --- | --- |
+| Display | `fluid-display-01` | fluid | the hero name — once per site |
+| Page title | `productive-heading-06` | 42px | `h1` on a sub-page, post titles |
+| Section title | `productive-heading-04` | 28px | `h2`, the figures in stat tiles |
+| Subhead | `productive-heading-03` | 20px | `h3`, tile and card titles |
+| Body | `body-02` | 16px | prose and section leads |
+| Detail | `body-01` | 14px | everything else — meta, labels, table cells, captions |
+
+Monospace is the Detail step plus `@include type.font-family("mono")`, not a
+seventh size. Labels that need weight (the eyebrow, the footer wordmark) are
+Detail at `font-weight: 600`. **14px is the floor:** Carbon's Tag and Breadcrumb
+render at 12px on their own and are lifted back to Detail in `_base.scss` —
+small text was the single biggest legibility problem this site had.
+
+**Colour — two text greys, one accent.**
+
+| Token | Job |
+| --- | --- |
+| `$text-primary` | headings, and anything that must read first |
+| `$text-secondary` | every other piece of text — meta, labels, captions |
+| `$link-primary` (+ `-hover`, `$link-visited`) | links, and the accent every chart draws in |
+| `$background`, `$layer-01`, `$layer-accent-01`, `$layer-hover-01` | surfaces |
+| `$border-subtle-01`, `$border-strong-01` | hairlines and rules |
+| `$background-inverse`, `$text-inverse` | tooltips |
+| `$focus`, `$highlight`, `$text-error` | system states |
+
+There is no third grey — `$text-helper` and the `$icon-*` pair were folded into
+`$text-secondary`, and `$interactive` into `$link-primary`, so links and data
+share one blue.
+
+**Spacing — six steps** from Carbon's scale: `03` (0.5rem), `05` (1rem),
+`06` (1.5rem), `07` (2rem), `09` (3rem), `10` (4rem). Inline gaps use 03 and 05,
+blocks use 06 and 07, sections use 09 and 10.
 
 ## TODOs left in the data files
 

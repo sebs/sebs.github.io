@@ -18,9 +18,9 @@
 
 .site-tile__head {
   display: flex;
-  gap: spacing.$spacing-04;
+  gap: spacing.$spacing-05;
   justify-content: space-between;
-  margin-block-end: spacing.$spacing-04;
+  margin-block-end: spacing.$spacing-05;
 }
 
 .site-tile__title {
@@ -30,7 +30,7 @@
 .site-tile__tags {
   display: flex;
   flex-wrap: wrap;
-  gap: spacing.$spacing-02;
+  gap: spacing.$spacing-03;
   // Carbon Tags carry their own margin for form contexts; drop it here.
   .#{$prefix}--tag { margin: 0; }
 }
@@ -48,7 +48,7 @@
   border-block-start: 1px solid theme.$border-subtle-01;
   display: flex;
   flex-wrap: wrap;
-  gap: spacing.$spacing-04;
+  gap: spacing.$spacing-05;
   justify-content: space-between;
   margin-block-start: auto;
   padding-block-start: spacing.$spacing-05;
@@ -62,12 +62,12 @@
 }
 
 .site-signal {
-  @include type.type-style("label-01");
+  @include type.type-style("body-01");
 
   align-items: center;
   color: theme.$text-secondary;
   display: inline-flex;
-  gap: spacing.$spacing-02;
+  gap: spacing.$spacing-03;
 }
 
 .site-signal--active { color: theme.$link-primary; }
@@ -75,13 +75,13 @@
 // Icon-only outbound links (GitHub, npm, docs).
 .site-tile__links {
   display: flex;
-  gap: spacing.$spacing-02;
+  gap: spacing.$spacing-03;
 }
 
 .site-icon-link {
   align-items: center;
   block-size: spacing.$spacing-07;
-  color: theme.$icon-secondary;
+  color: theme.$text-secondary;
   display: inline-flex;
   inline-size: spacing.$spacing-07;
   justify-content: center;
@@ -89,7 +89,7 @@
 
   &:hover {
     background: theme.$layer-hover-01;
-    color: theme.$icon-primary;
+    color: theme.$text-primary;
   }
 }
 
@@ -109,7 +109,7 @@
 .site-callout__title {
   @include type.type-style("productive-heading-03");
 
-  margin-block-end: spacing.$spacing-02;
+  margin-block-end: spacing.$spacing-03;
 }
 
 .site-callout__body {

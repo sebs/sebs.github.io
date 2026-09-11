@@ -11,21 +11,21 @@
 .site-post__head { margin-block-end: spacing.$spacing-07; }
 
 .site-post__date {
-  @include type.type-style("label-01");
+  @include type.type-style("body-01");
 
-  color: theme.$text-helper;
+  color: theme.$text-secondary;
   display: block;
   margin-block: spacing.$spacing-05 spacing.$spacing-03;
 }
 
 .site-post__title {
-  @include type.type-style("fluid-heading-05", true);
+  @include type.type-style("productive-heading-06");
 }
 
 .site-post__tags {
   display: flex;
   flex-wrap: wrap;
-  gap: spacing.$spacing-02;
+  gap: spacing.$spacing-03;
   margin-block-start: spacing.$spacing-05;
 
   .#{$prefix}--tag { margin: 0; }
@@ -70,12 +70,12 @@
   ul { list-style: disc; }
   ol { list-style: decimal; }
 
-  li + li { margin-block-start: spacing.$spacing-02; }
+  li + li { margin-block-start: spacing.$spacing-03; }
 
   strong { font-weight: 600; }
 
   blockquote {
-    @include type.type-style("quotation-01", true);
+    @include type.type-style("body-02");
 
     border-inline-start: 2px solid theme.$border-strong-01;
     color: theme.$text-secondary;
@@ -86,26 +86,28 @@
     background: theme.$border-subtle-01;
     block-size: 1px;
     border: 0;
-    margin-block: spacing.$spacing-08;
+    margin-block: spacing.$spacing-07;
   }
 
   figcaption {
-    @include type.type-style("label-01");
+    @include type.type-style("body-01");
 
-    color: theme.$text-helper;
+    color: theme.$text-secondary;
     margin-block-start: spacing.$spacing-03;
   }
 
   // Inline code and code blocks use Carbon's mono scale and layer surfaces.
   :not(pre) > code {
-    @include type.type-style("code-01");
+    @include type.type-style("body-01");
+    @include type.font-family("mono");
 
     background: theme.$layer-01;
-    padding: 0.125rem spacing.$spacing-02;
+    padding: 0.125rem spacing.$spacing-03;
   }
 
   pre {
-    @include type.type-style("code-02");
+    @include type.type-style("body-01");
+    @include type.font-family("mono");
 
     background: theme.$layer-01;
     border: 1px solid theme.$border-subtle-01;

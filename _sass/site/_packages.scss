@@ -38,9 +38,10 @@
 }
 
 .site-term__title {
-  @include type.type-style("code-01");
+  @include type.type-style("body-01");
+  @include type.font-family("mono");
 
-  color: theme.$text-helper;
+  color: theme.$text-secondary;
 }
 
 .site-term__actions {
@@ -48,7 +49,8 @@
 }
 
 .site-term__screen {
-  @include type.type-style("code-02");
+  @include type.type-style("body-01");
+  @include type.font-family("mono");
 
   color: theme.$text-primary;
   flex: 1;
@@ -63,7 +65,7 @@
 
 .site-term__comment,
 .site-term__prompt {
-  color: theme.$text-helper;
+  color: theme.$text-secondary;
 }
 
 .site-term__install {
@@ -72,7 +74,7 @@
 
 .site-term__cursor {
   animation: site-term-blink 1.1s steps(1) infinite;
-  background: theme.$interactive;
+  background: theme.$link-primary;
   block-size: 1em;
   display: inline-block;
   inline-size: 0.5em;
@@ -114,18 +116,18 @@
 .site-stat {
   display: flex;
   flex-direction: column;
-  gap: spacing.$spacing-02;
+  gap: spacing.$spacing-03;
 }
 
 .site-stat__value {
-  @include type.type-style("productive-heading-05");
+  @include type.type-style("productive-heading-04");
 
   color: theme.$text-primary;
   line-height: 1;
 }
 
 .site-stat__label {
-  @include type.type-style("label-01");
+  @include type.type-style("body-01");
 
   color: theme.$text-secondary;
 }
@@ -155,7 +157,9 @@
   // Group headings sit inside the table body, one per domain, and must read
   // as a divider rather than as a second column header.
   .site-pkg__group th {
-    @include type.type-style("heading-compact-01");
+    @include type.type-style("body-01");
+
+    font-weight: 600;
 
     background: theme.$background;
     border-block-end: 1px solid theme.$border-subtle-01;
@@ -165,7 +169,7 @@
 }
 
 .site-pkg__group-count {
-  color: theme.$text-helper;
+  color: theme.$text-secondary;
 }
 
 .site-pkg__name {
@@ -189,31 +193,32 @@
 
 // The command a package installs — the thing you actually type.
 .site-pkg__cmd {
-  @include type.type-style("code-01");
+  @include type.type-style("body-01");
+  @include type.font-family("mono");
 
   background: theme.$layer-accent-01;
   color: theme.$text-primary;
-  padding-inline: spacing.$spacing-02;
+  padding-inline: spacing.$spacing-03;
 }
 
 .site-pkg__scope {
-  color: theme.$text-helper;
+  color: theme.$text-secondary;
 }
 
 .site-pkg__version {
-  @include type.type-style("label-01");
+  @include type.type-style("body-01");
 
-  color: theme.$text-helper;
+  color: theme.$text-secondary;
 }
 
 .site-pkg__version--error { color: theme.$text-error; }
 
 .site-pkg__desc {
-  @include type.type-style("helper-text-01");
+  @include type.type-style("body-01");
 
   color: theme.$text-secondary;
   display: block;
-  margin-block-start: spacing.$spacing-02;
+  margin-block-start: spacing.$spacing-03;
   max-inline-size: 70ch;
 }
 
@@ -224,10 +229,10 @@
 }
 
 .site-pkg__unit {
-  @include type.type-style("label-01");
+  @include type.type-style("body-01");
 
-  color: theme.$text-helper;
-  margin-inline-start: spacing.$spacing-02;
+  color: theme.$text-secondary;
+  margin-inline-start: spacing.$spacing-03;
 }
 
 // Per-package sparkline: 26 weekly totals, drawn small and quiet so a column
@@ -241,7 +246,7 @@
 
 .site-spark__line {
   fill: none;
-  stroke: theme.$icon-secondary;
+  stroke: theme.$text-secondary;
   stroke-linecap: round;
   stroke-linejoin: round;
   stroke-width: 1.5;
@@ -249,7 +254,7 @@
 }
 
 .site-spark__end {
-  fill: theme.$interactive;
+  fill: theme.$link-primary;
 }
 
 // --- Expanded row ---------------------------------------------------------
@@ -278,26 +283,27 @@
 
 .site-snippet {
   align-items: center;
-  background: theme.$layer-02;
+  background: theme.$layer-accent-01;
   display: flex;
   gap: spacing.$spacing-03;
   justify-content: space-between;
-  padding-inline-start: spacing.$spacing-04;
+  padding-inline-start: spacing.$spacing-05;
 
   code {
-    @include type.type-style("code-01");
+    @include type.type-style("body-01");
+    @include type.font-family("mono");
 
     overflow-wrap: anywhere;
-    padding-block: spacing.$spacing-02;
+    padding-block: spacing.$spacing-03;
   }
 }
 
 .site-snippet__prompt {
-  color: theme.$text-helper;
+  color: theme.$text-secondary;
 }
 
 .site-pkg-detail__meta {
-  @include type.type-style("body-compact-01");
+  @include type.type-style("body-01");
 
   column-gap: spacing.$spacing-05;
   display: grid;
@@ -306,9 +312,9 @@
   row-gap: spacing.$spacing-03;
 
   dt {
-    @include type.type-style("label-01");
+    @include type.type-style("body-01");
 
-    color: theme.$text-helper;
+    color: theme.$text-secondary;
   }
 
   dd {
@@ -357,21 +363,21 @@
 }
 
 .site-heat__months span {
-  @include type.type-style("label-01");
+  @include type.type-style("body-01");
 
-  color: theme.$text-helper;
+  color: theme.$text-secondary;
   grid-row: 1;
   white-space: nowrap;
 }
 
 .site-heat__year,
 .site-heat__total {
-  @include type.type-style("label-01");
+  @include type.type-style("body-01");
 
   // Pinned to the edges of the scroller: on a phone the grid is scrolled
   // sideways, and a row whose year has scrolled away says nothing.
   background: theme.$layer-01;
-  color: theme.$text-helper;
+  color: theme.$text-secondary;
   font-variant-numeric: tabular-nums;
   position: sticky;
   z-index: 1;
@@ -416,13 +422,13 @@
 // into the empty weeks.
 @each $level, $amount in (1: 32%, 2: 55%, 3: 78%) {
   .site-heat__cell[data-l="#{$level}"] {
-    background: theme.$interactive;
-    background: color-mix(in srgb, #{theme.$interactive} $amount, #{theme.$layer-01});
+    background: theme.$link-primary;
+    background: color-mix(in srgb, #{theme.$link-primary} $amount, #{theme.$layer-01});
   }
 }
 
 .site-heat__cell[data-l="4"] {
-  background: theme.$interactive;
+  background: theme.$link-primary;
 }
 
 .site-heat__foot {
@@ -435,12 +441,12 @@
 }
 
 .site-heat__legend {
-  @include type.type-style("label-01");
+  @include type.type-style("body-01");
 
   align-items: center;
-  color: theme.$text-helper;
+  color: theme.$text-secondary;
   display: flex;
-  gap: spacing.$spacing-02;
+  gap: spacing.$spacing-03;
 
   .site-heat__cell {
     block-size: 0.75rem;
@@ -456,21 +462,23 @@
 }
 
 .site-tip {
-  @include type.type-style("label-01");
+  @include type.type-style("body-01");
 
   background: theme.$background-inverse;
   color: theme.$text-inverse;
   inset-block-start: 0;
   inset-inline-start: 0;
   max-inline-size: 20rem;
-  padding: spacing.$spacing-03 spacing.$spacing-04;
+  padding: spacing.$spacing-03 spacing.$spacing-05;
   pointer-events: none;
   position: absolute;
   z-index: 2;
 
   // Value first, label after — the reader has the week and wants the number.
   strong {
-    @include type.type-style("heading-compact-01");
+    @include type.type-style("body-01");
+
+    font-weight: 600;
 
     display: block;
   }
@@ -492,7 +500,7 @@
 }
 
 .site-chart__peak {
-  @include type.type-style("label-01");
+  @include type.type-style("body-01");
 
   color: theme.$text-secondary;
 }
@@ -517,7 +525,7 @@
 
 .site-chart__line {
   fill: none;
-  stroke: theme.$interactive;
+  stroke: theme.$link-primary;
   stroke-linecap: round;
   stroke-linejoin: round;
   stroke-width: 1.5;
@@ -533,7 +541,7 @@
 }
 
 .site-chart__dot {
-  background: theme.$interactive;
+  background: theme.$link-primary;
   block-size: 0.5rem;
   border-radius: 50%;
   // A ring in the surface colour, so the dot reads over the area fill.
@@ -545,12 +553,12 @@
 }
 
 .site-chart__axis {
-  @include type.type-style("label-01");
+  @include type.type-style("body-01");
 
-  color: theme.$text-helper;
+  color: theme.$text-secondary;
   display: flex;
   justify-content: space-between;
-  margin-block-start: spacing.$spacing-04;
+  margin-block-start: spacing.$spacing-05;
 }
 
 // --- Movers ---------------------------------------------------------------
@@ -566,7 +574,7 @@
   display: flex;
   flex: 1 1 14rem;
   flex-direction: column;
-  gap: spacing.$spacing-02;
+  gap: spacing.$spacing-03;
 }
 
 .site-mover__pct {
@@ -574,17 +582,18 @@
 
   align-items: center;
   display: flex;
-  gap: spacing.$spacing-02;
+  gap: spacing.$spacing-03;
 }
 
 .site-mover__who code {
-  @include type.type-style("code-01");
+  @include type.type-style("body-01");
+  @include type.font-family("mono");
 }
 
 .site-mover__note {
-  @include type.type-style("label-01");
+  @include type.type-style("body-01");
 
-  color: theme.$text-helper;
+  color: theme.$text-secondary;
 }
 
 // --- Table twins ----------------------------------------------------------
@@ -595,11 +604,11 @@
   margin-block-start: spacing.$spacing-05;
 
   summary {
-    @include type.type-style("label-01");
+    @include type.type-style("body-01");
 
     color: theme.$text-secondary;
     cursor: pointer;
-    padding-block: spacing.$spacing-04;
+    padding-block: spacing.$spacing-05;
 
     &:hover { color: theme.$text-primary; }
   }

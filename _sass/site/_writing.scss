@@ -13,7 +13,7 @@
 .site-post-link {
   align-items: baseline;
   display: grid;
-  gap: spacing.$spacing-02;
+  gap: spacing.$spacing-03;
   grid-template-columns: 1fr auto;
   inline-size: 100%;
 
@@ -25,9 +25,9 @@
 }
 
 .site-post-link__date {
-  @include type.type-style("label-01");
+  @include type.type-style("body-01");
 
-  color: theme.$text-helper;
+  color: theme.$text-secondary;
   grid-column: 1 / -1;
   text-transform: uppercase;
 
@@ -37,19 +37,19 @@
 }
 
 .site-post-link__title {
-  @include type.type-style("body-compact-02");
+  @include type.type-style("body-02");
 
   color: theme.$text-primary;
   min-inline-size: 0;
 }
 
 .site-post-link__meta {
-  @include type.type-style("label-01");
+  @include type.type-style("body-01");
 
   align-items: center;
-  color: theme.$text-helper;
+  color: theme.$text-secondary;
   display: inline-flex;
-  gap: spacing.$spacing-04;
+  gap: spacing.$spacing-05;
 }
 
 .#{$prefix}--contained-list-item--clickable:hover .site-post-link__title {
@@ -92,17 +92,17 @@
 }
 
 .site-archive-date {
-  @include type.type-style("label-01");
+  @include type.type-style("body-01");
 
-  color: theme.$text-helper;
+  color: theme.$text-secondary;
   inline-size: 6rem;
   white-space: nowrap;
 }
 
 .site-archive-tags {
-  @include type.type-style("label-01");
+  @include type.type-style("body-01");
 
-  color: theme.$text-helper;
+  color: theme.$text-secondary;
   display: none;
   text-align: end;
 

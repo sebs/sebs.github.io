@@ -23,7 +23,9 @@
 }
 
 .site-footer__name {
-  @include type.type-style("heading-compact-01");
+  @include type.type-style("body-01");
+
+  font-weight: 600;
 
   display: block;
   letter-spacing: 0.16em;
@@ -40,7 +42,7 @@
 .site-footer__pitch {
   @include type.type-style("body-01");
 
-  color: theme.$text-helper;
+  color: theme.$text-secondary;
   margin-block-start: spacing.$spacing-03;
   max-inline-size: 40ch;
 }
@@ -52,9 +54,9 @@
 }
 
 .site-footer__legal {
-  @include type.type-style("label-01");
+  @include type.type-style("body-01");
 
   border-block-start: 1px solid theme.$border-subtle-01;
-  color: theme.$text-helper;
+  color: theme.$text-secondary;
   padding-block: spacing.$spacing-05;
 }

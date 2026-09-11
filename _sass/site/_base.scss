@@ -56,9 +56,12 @@ a {
 .icon--xl { block-size: 2rem; inline-size: 2rem; }
 
 // Small caps label used above section headings. Carbon has no "eyebrow"
-// component; this is heading-compact-01 with Carbon's label letter-spacing.
+// component; this is the Detail step in semibold, with Carbon's label
+// letter-spacing.
 .site-eyebrow {
-  @include type.type-style("heading-compact-01");
+  @include type.type-style("body-01");
+
+  font-weight: 600;
 
   color: theme.$text-secondary;
   letter-spacing: 0.16em;
@@ -66,11 +69,21 @@ a {
 }
 
 .site-mono {
-  @include type.type-style("code-02");
+  @include type.type-style("body-01");
+  @include type.font-family("mono");
 }
 
-.site-muted { color: theme.$text-secondary; }
-.site-helper { color: theme.$text-helper; }
+// The site's floor is the Detail step (14px). Carbon's Tag and Breadcrumb are
+// the two components that render below it — label-01, 12px — so they are
+// lifted here rather than everywhere they appear.
+.#{$prefix}--tag,
+.#{$prefix}--breadcrumb,
+.#{$prefix}--breadcrumb-item {
+  @include type.type-style("body-01");
+}
+
+.site-muted,
+.site-helper { color: theme.$text-secondary; }
 
 // Constrain body copy to a readable measure regardless of column span.
 .site-measure { max-inline-size: 60ch; }

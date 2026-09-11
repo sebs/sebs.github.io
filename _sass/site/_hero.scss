@@ -12,7 +12,7 @@
   padding-block: spacing.$spacing-09;
 
   @include breakpoint.breakpoint(md) {
-    padding-block: spacing.$spacing-11 spacing.$spacing-10;
+    padding-block: spacing.$spacing-10 spacing.$spacing-10;
   }
 }
 
@@ -23,7 +23,7 @@
 }
 
 .site-hero__identity {
-  @include type.type-style("fluid-heading-03", true);
+  @include type.type-style("productive-heading-03");
 
   color: theme.$text-primary;
   margin-block-end: spacing.$spacing-05;
@@ -73,7 +73,8 @@
 }
 
 .site-hero__mark {
-  @include type.type-style("code-02");
+  @include type.type-style("body-01");
+  @include type.font-family("mono");
 
   color: theme.$text-secondary;
   font-size: clamp(2.5rem, 9vw, 5rem);
@@ -85,13 +86,14 @@
 }
 
 .site-hero__coords {
-  @include type.type-style("code-01");
+  @include type.type-style("body-01");
+  @include type.font-family("mono");
 
   background: theme.$background;
   border: 1px solid theme.$border-subtle-01;
   color: theme.$text-secondary;
   inset-block-end: spacing.$spacing-05;
   inset-inline-end: spacing.$spacing-05;
-  padding: spacing.$spacing-02 spacing.$spacing-04;
+  padding: spacing.$spacing-03 spacing.$spacing-05;
   position: absolute;
 }

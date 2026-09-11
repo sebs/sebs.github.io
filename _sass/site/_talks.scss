@@ -9,13 +9,13 @@
 
 .site-talks > * + * {
   border-block-start: 1px solid theme.$border-subtle-01;
-  margin-block-start: spacing.$spacing-08;
-  padding-block-start: spacing.$spacing-08;
+  margin-block-start: spacing.$spacing-07;
+  padding-block-start: spacing.$spacing-07;
 }
 
 .site-talk {
   display: grid;
-  gap: spacing.$spacing-04;
+  gap: spacing.$spacing-05;
 
   @include breakpoint.breakpoint(md) {
     gap: spacing.$spacing-07;
@@ -24,11 +24,11 @@
 }
 
 .site-talk__year {
-  @include type.type-style("label-01");
+  @include type.type-style("body-01");
 
-  color: theme.$text-helper;
+  color: theme.$text-secondary;
   letter-spacing: 0.12em;
-  padding-block-start: spacing.$spacing-02;
+  padding-block-start: spacing.$spacing-03;
 }
 
 .site-talk__body {
@@ -42,12 +42,12 @@
 }
 
 .site-talk__venue {
-  @include type.type-style("label-01");
+  @include type.type-style("body-01");
 
   align-items: center;
   color: theme.$text-secondary;
   display: inline-flex;
-  gap: spacing.$spacing-02;
+  gap: spacing.$spacing-03;
 }
 
 .site-talk__desc {
