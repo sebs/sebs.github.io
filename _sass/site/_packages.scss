@@ -131,8 +131,8 @@
   color: theme.$text-secondary;
 }
 
-// --- Top Trumps -----------------------------------------------------------
-.site-trumps__score {
+// --- Head to head ----------------------------------------------------------
+.site-versus__score {
   @include type.type-style("body-01");
 
   align-items: center;
@@ -144,13 +144,13 @@
   strong { color: theme.$text-primary; }
 }
 
-.site-trumps__question {
+.site-versus__question {
   @include type.type-style("productive-heading-03");
 
   margin-block-end: spacing.$spacing-06;
 }
 
-.site-trumps__cards {
+.site-versus__cards {
   align-items: stretch;
   display: grid;
   gap: spacing.$spacing-05;
@@ -160,7 +160,7 @@
   }
 }
 
-.site-trumps__vs {
+.site-versus__vs {
   @include type.type-style("productive-heading-03");
 
   align-self: center;
@@ -168,7 +168,7 @@
   justify-self: center;
 }
 
-.site-trumps__card {
+.site-versus__card {
   background: theme.$layer-01;
   border: 1px solid theme.$border-subtle-01;
   color: inherit;
@@ -193,30 +193,30 @@
 
 // The verdict is a real status (right / wrong), so it carries a status colour —
 // always with the badge's own words beside it, never colour alone.
-.site-trumps__card--win { border-color: theme.$support-success; }
-.site-trumps__card--lose { border-color: theme.$border-strong-01; }
+.site-versus__card--win { border-color: theme.$support-success; }
+.site-versus__card--lose { border-color: theme.$border-strong-01; }
 
-.site-trumps__cmd {
+.site-versus__cmd {
   @include type.type-style("productive-heading-04");
   @include type.font-family("mono");
 
   overflow-wrap: anywhere;
 }
 
-.site-trumps__name {
+.site-versus__name {
   @include type.type-style("label-01");
 
   color: theme.$text-helper;
   overflow-wrap: anywhere;
 }
 
-.site-trumps__desc {
+.site-versus__desc {
   @include type.type-style("body-01");
 
   color: theme.$text-secondary;
 }
 
-.site-trumps__stat {
+.site-versus__stat {
   align-items: baseline;
   border-block-start: 1px solid theme.$border-subtle-01;
   display: flex;
@@ -226,25 +226,25 @@
   padding-block-start: spacing.$spacing-05;
 }
 
-.site-trumps__stat-label {
+.site-versus__stat-label {
   @include type.type-style("label-01");
 
   color: theme.$text-secondary;
 }
 
-.site-trumps__stat-value {
+.site-versus__stat-value {
   @include type.type-style("productive-heading-04");
 }
 
-.site-trumps__badge {
+.site-versus__badge {
   @include type.type-style("label-01");
 
   color: theme.$text-secondary;
 
-  .site-trumps__card--win & { color: theme.$support-success; }
+  .site-versus__card--win & { color: theme.$support-success; }
 }
 
-.site-trumps__foot {
+.site-versus__foot {
   align-items: center;
   display: flex;
   flex-wrap: wrap;
@@ -254,7 +254,7 @@
   min-block-size: spacing.$spacing-08;
 }
 
-.site-trumps__verdict {
+.site-versus__verdict {
   @include type.type-style("body-01");
 
   color: theme.$text-secondary;

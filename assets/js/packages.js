@@ -584,11 +584,11 @@
     });
   }
 
-  // --- Top Trumps -----------------------------------------------------------
+  // --- Head to head --------------------------------------------------------
   // Two packages, one statistic, one guess. Everything it needs is already on
   // the table rows, so the game adds no data to the page.
-  function initTrumps() {
-    var root = document.querySelector('[data-trumps]');
+  function initVersus() {
+    var root = document.querySelector('[data-versus]');
     if (!root) return;
 
     var pool = all('tr[data-pkg]').map(function (row) {
@@ -616,14 +616,14 @@
         of: function (p) { return p.size; }, read: function (p) { return num(p.size) + ' kB'; }, most: true }
     ];
 
-    var cards = all('[data-trumps-card]', root);
-    var question = root.querySelector('[data-trumps-question]');
-    var verdict = root.querySelector('[data-trumps-verdict]');
-    var nextButton = root.querySelector('[data-trumps-next]');
-    var streakOut = root.querySelector('[data-trumps-streak]');
-    var bestOut = root.querySelector('[data-trumps-best]');
+    var cards = all('[data-versus-card]', root);
+    var question = root.querySelector('[data-versus-question]');
+    var verdict = root.querySelector('[data-versus-verdict]');
+    var nextButton = root.querySelector('[data-versus-next]');
+    var streakOut = root.querySelector('[data-versus-streak]');
+    var bestOut = root.querySelector('[data-versus-best]');
     var streak = 0;
-    var best = Number(remember('packages-trumps-best')) || 0;
+    var best = Number(remember('packages-versus-best')) || 0;
     var round = null;
 
     function deal() {
@@ -655,19 +655,19 @@
       nextButton.hidden = true;
       cards.forEach(function (card, index) {
         var entry = round.pair[index];
-        var badge = card.querySelector('[data-trumps-badge]');
-        card.className = 'site-trumps__card';
+        var badge = card.querySelector('[data-versus-badge]');
+        card.className = 'site-versus__card';
         card.removeAttribute('aria-disabled');
-        card.querySelector('[data-trumps-domain]').textContent = entry.domain;
-        card.querySelector('[data-trumps-cmd]').textContent = entry.command;
+        card.querySelector('[data-versus-domain]').textContent = entry.domain;
+        card.querySelector('[data-versus-cmd]').textContent = entry.command;
         // For an unscoped package the command *is* the name (banira, es6-fuzz),
         // and printing it twice reads as a mistake.
-        var nameNode = card.querySelector('[data-trumps-name]');
+        var nameNode = card.querySelector('[data-versus-name]');
         nameNode.textContent = entry.name;
         nameNode.hidden = entry.name === entry.command;
-        card.querySelector('[data-trumps-desc]').textContent = entry.desc;
-        card.querySelector('[data-trumps-label]').textContent = round.kind.label;
-        card.querySelector('[data-trumps-value]').textContent = '?';
+        card.querySelector('[data-versus-desc]').textContent = entry.desc;
+        card.querySelector('[data-versus-label]').textContent = round.kind.label;
+        card.querySelector('[data-versus-value]').textContent = '?';
         badge.hidden = true;
         badge.textContent = '';
       });
@@ -680,17 +680,17 @@
       streak = right ? streak + 1 : 0;
       if (streak > best) {
         best = streak;
-        remember('packages-trumps-best', String(best));
+        remember('packages-versus-best', String(best));
       }
       streakOut.textContent = String(streak);
       bestOut.textContent = String(best);
 
       cards.forEach(function (card, position) {
         var entry = round.pair[position];
-        var badge = card.querySelector('[data-trumps-badge]');
+        var badge = card.querySelector('[data-versus-badge]');
         card.setAttribute('aria-disabled', 'true');
-        card.classList.add(position === round.winner ? 'site-trumps__card--win' : 'site-trumps__card--lose');
-        card.querySelector('[data-trumps-value]').textContent = round.kind.read(entry);
+        card.classList.add(position === round.winner ? 'site-versus__card--win' : 'site-versus__card--lose');
+        card.querySelector('[data-versus-value]').textContent = round.kind.read(entry);
         if (position === round.winner || position === index) {
           badge.hidden = false;
           badge.textContent = position === round.winner
@@ -737,5 +737,5 @@
   initCatalogue();
   initHeatmap();
   initChart();
-  initTrumps();
+  initVersus();
 })();

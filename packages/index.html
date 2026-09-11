@@ -123,39 +123,39 @@ permalink: /packages/
   </div>
 </section>
 
-<!-- Top Trumps: needs JavaScript, so it stays hidden until packages.js deals a round. -->
-<section class="cds--css-grid site-section site-section--flush site-mt-09" data-trumps hidden>
+<!-- Head to head: needs JavaScript, so it stays hidden until packages.js deals a round. -->
+<section class="cds--css-grid site-section site-section--flush site-mt-09" data-versus hidden>
   <div class="cds--css-grid-column cds--col-span-100">
     <div class="site-section__head">
       <div>
-        <h2 class="site-section__title">Top Trumps</h2>
+        <h2 class="site-section__title">Head to head</h2>
         <p class="site-section__lead">Two packages, one question. Pick the winner and keep the streak alive.</p>
       </div>
-      <p class="site-trumps__score">
+      <p class="site-versus__score">
         {% include icon.html name="trophy" %}
-        Streak <strong data-trumps-streak>0</strong> &middot; best <strong data-trumps-best>0</strong>
+        Streak <strong data-versus-streak>0</strong> &middot; best <strong data-versus-best>0</strong>
       </p>
     </div>
-    <p class="site-trumps__question" data-trumps-question></p>
-    <div class="site-trumps__cards">
+    <p class="site-versus__question" data-versus-question></p>
+    <div class="site-versus__cards">
       {%- for i in (0..1) -%}
-      <button type="button" class="site-trumps__card" data-trumps-card>
-        <span class="site-eyebrow" data-trumps-domain></span>
-        <span class="site-trumps__cmd" data-trumps-cmd></span>
-        <span class="site-trumps__name" data-trumps-name></span>
-        <span class="site-trumps__desc" data-trumps-desc></span>
-        <span class="site-trumps__stat">
-          <span class="site-trumps__stat-label" data-trumps-label></span>
-          <span class="site-trumps__stat-value" data-trumps-value>?</span>
+      <button type="button" class="site-versus__card" data-versus-card>
+        <span class="site-eyebrow" data-versus-domain></span>
+        <span class="site-versus__cmd" data-versus-cmd></span>
+        <span class="site-versus__name" data-versus-name></span>
+        <span class="site-versus__desc" data-versus-desc></span>
+        <span class="site-versus__stat">
+          <span class="site-versus__stat-label" data-versus-label></span>
+          <span class="site-versus__stat-value" data-versus-value>?</span>
         </span>
-        <span class="site-trumps__badge" data-trumps-badge hidden></span>
+        <span class="site-versus__badge" data-versus-badge hidden></span>
       </button>
-      {%- if forloop.first -%}<span class="site-trumps__vs" aria-hidden="true">vs</span>{%- endif -%}
+      {%- if forloop.first -%}<span class="site-versus__vs" aria-hidden="true">vs</span>{%- endif -%}
       {%- endfor -%}
     </div>
-    <div class="site-trumps__foot">
-      <p class="site-trumps__verdict" data-trumps-verdict aria-live="polite"></p>
-      <button type="button" class="cds--btn cds--btn--primary cds--btn--sm" data-trumps-next hidden>
+    <div class="site-versus__foot">
+      <p class="site-versus__verdict" data-versus-verdict aria-live="polite"></p>
+      <button type="button" class="cds--btn cds--btn--primary cds--btn--sm" data-versus-next hidden>
         Next round {% include icon.html name="arrow-right" class="cds--btn__icon" %}
       </button>
     </div>
