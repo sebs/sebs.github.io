@@ -25,9 +25,8 @@ projects + talks.
   also yield each one's `bin` command, its keywords (which sort it into a
   domain group), real example invocations lifted from its README, and the
   publish history behind the release heatmap. `assets/js/packages.js` adds the
-  behaviour on top — the typing terminal, the guessing game, table sorting and
-  filtering, and the chart readouts — and the page degrades to its static
-  render without it.
+  behaviour on top — the typing terminal, table sorting and filtering, and the
+  chart readouts — and the page degrades to its static render without it.
 - **The legacy posts are markdown in `_posts/`.** The old Hexo posts were
   converted to clean markdown (see `scripts/extract_posts.py` for how). Each
   post pins its **original URL** via `permalink:` in front matter

@@ -5,7 +5,8 @@
 // as shell.js: vanilla, driving the classes Carbon's CSS already ships, every
 // feature guarded by its own root element so the static render always stands
 // on its own. The parts that make no sense without JavaScript (the toolbar,
-// the game, the odometer) ship `hidden` in the markup and are revealed here.
+// the odometer, the copy buttons) ship `hidden` in the markup and are
+// revealed here.
 (function () {
   'use strict';
 
@@ -56,16 +57,6 @@
   function announce(message) {
     var region = document.querySelector('[data-announce]');
     if (region) region.textContent = message;
-  }
-
-  // localStorage is a convenience here (one best streak), never a dependency:
-  // it throws in private mode and can come back empty at any time.
-  function remember(key, value) {
-    try {
-      if (value === undefined) return localStorage.getItem(key);
-      localStorage.setItem(key, value);
-    } catch (e) { /* not available — carry on without it */ }
-    return null;
   }
 
   // --- Copy buttons ---------------------------------------------------------
@@ -584,152 +575,6 @@
     });
   }
 
-  // --- Head to head --------------------------------------------------------
-  // Two packages, one statistic, one guess. Everything it needs is already on
-  // the table rows, so the game adds no data to the page.
-  function initVersus() {
-    var root = document.querySelector('[data-versus]');
-    if (!root) return;
-
-    var pool = all('tr[data-pkg]').map(function (row) {
-      return {
-        name: row.getAttribute('data-name'),
-        command: row.getAttribute('data-command') || row.getAttribute('data-short'),
-        domain: row.getAttribute('data-domain-name'),
-        desc: row.getAttribute('data-desc'),
-        month: Number(row.getAttribute('data-month')),
-        versions: Number(row.getAttribute('data-versions')),
-        first: Date.parse(row.getAttribute('data-first')),
-        size: Number(row.getAttribute('data-size'))
-      };
-    });
-    if (pool.length < 2) return;
-
-    var rounds = [
-      { question: 'Which had more downloads in the last 30 days?', label: '30-day downloads',
-        of: function (p) { return p.month; }, read: function (p) { return num(p.month); }, most: true },
-      { question: 'Which one has shipped more releases?', label: 'Releases',
-        of: function (p) { return p.versions; }, read: function (p) { return num(p.versions); }, most: true },
-      { question: 'Which one landed on npm first?', label: 'First published',
-        of: function (p) { return p.first; }, read: function (p) { return day(new Date(p.first).toISOString().slice(0, 10)); }, most: false },
-      { question: 'Which one is bigger, unpacked?', label: 'Unpacked size',
-        of: function (p) { return p.size; }, read: function (p) { return num(p.size) + ' kB'; }, most: true }
-    ];
-
-    var cards = all('[data-versus-card]', root);
-    var question = root.querySelector('[data-versus-question]');
-    var verdict = root.querySelector('[data-versus-verdict]');
-    var nextButton = root.querySelector('[data-versus-next]');
-    var streakOut = root.querySelector('[data-versus-streak]');
-    var bestOut = root.querySelector('[data-versus-best]');
-    var streak = 0;
-    var best = Number(remember('packages-versus-best')) || 0;
-    var round = null;
-
-    function deal() {
-      for (var attempt = 0; attempt < 60; attempt++) {
-        var kind = pick(rounds);
-        var runners = pool.filter(function (p) {
-          var value = kind.of(p);
-          return isFinite(value) && value > 0;
-        });
-        if (runners.length < 2) continue;
-        var left = pick(runners);
-        var right = pick(runners);
-        if (left === right || kind.of(left) === kind.of(right)) continue;
-        round = {
-          kind: kind,
-          pair: [left, right],
-          winner: (kind.of(left) > kind.of(right)) === kind.most ? 0 : 1,
-          answered: false
-        };
-        render();
-        return true;
-      }
-      return false;
-    }
-
-    function render() {
-      question.textContent = round.kind.question;
-      verdict.textContent = '';
-      nextButton.hidden = true;
-      cards.forEach(function (card, index) {
-        var entry = round.pair[index];
-        var badge = card.querySelector('[data-versus-badge]');
-        card.className = 'site-versus__card';
-        card.removeAttribute('aria-disabled');
-        card.querySelector('[data-versus-domain]').textContent = entry.domain;
-        card.querySelector('[data-versus-cmd]').textContent = entry.command;
-        // For an unscoped package the command *is* the name (banira, es6-fuzz),
-        // and printing it twice reads as a mistake.
-        var nameNode = card.querySelector('[data-versus-name]');
-        nameNode.textContent = entry.name;
-        nameNode.hidden = entry.name === entry.command;
-        card.querySelector('[data-versus-desc]').textContent = entry.desc;
-        card.querySelector('[data-versus-label]').textContent = round.kind.label;
-        card.querySelector('[data-versus-value]').textContent = '?';
-        badge.hidden = true;
-        badge.textContent = '';
-      });
-    }
-
-    function answer(index) {
-      if (!round || round.answered) return;
-      round.answered = true;
-      var right = index === round.winner;
-      streak = right ? streak + 1 : 0;
-      if (streak > best) {
-        best = streak;
-        remember('packages-versus-best', String(best));
-      }
-      streakOut.textContent = String(streak);
-      bestOut.textContent = String(best);
-
-      cards.forEach(function (card, position) {
-        var entry = round.pair[position];
-        var badge = card.querySelector('[data-versus-badge]');
-        card.setAttribute('aria-disabled', 'true');
-        card.classList.add(position === round.winner ? 'site-versus__card--win' : 'site-versus__card--lose');
-        card.querySelector('[data-versus-value]').textContent = round.kind.read(entry);
-        if (position === round.winner || position === index) {
-          badge.hidden = false;
-          badge.textContent = position === round.winner
-            ? (position === index ? 'Winner — your pick' : 'Winner')
-            : 'Your pick';
-        }
-      });
-
-      var won = round.pair[round.winner];
-      var lost = round.pair[1 - round.winner];
-      verdict.textContent = (right ? 'Correct. ' : 'Not this time. ') + won.command + ' wins on ' +
-        round.kind.label.toLowerCase() + ': ' + round.kind.read(won) + ' against ' +
-        round.kind.read(lost) + '.' + (right ? '' : ' Streak back to zero.');
-      nextButton.hidden = false;
-      nextButton.focus();
-    }
-
-    cards.forEach(function (card, index) {
-      card.addEventListener('click', function () { answer(index); });
-    });
-    nextButton.addEventListener('click', function () {
-      if (deal()) {
-        // The question is not in a live region, and focus is about to land on
-        // a card, so say what is being asked before it does.
-        announce(round.kind.question);
-        cards[0].focus();
-        return;
-      }
-      // Nothing left to pair up — better to say so than to leave a button
-      // that does nothing.
-      nextButton.hidden = true;
-      verdict.textContent = 'That is every pairing this data can make. Reload for another run.';
-    });
-
-    streakOut.textContent = '0';
-    bestOut.textContent = String(best);
-    if (deal()) root.hidden = false;
-  }
-
   initCopyButtons();
   initSnippets();
   initTerminal();
@@ -737,5 +582,4 @@
   initCatalogue();
   initHeatmap();
   initChart();
-  initVersus();
 })();

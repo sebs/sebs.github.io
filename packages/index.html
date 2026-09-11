@@ -123,45 +123,6 @@ permalink: /packages/
   </div>
 </section>
 
-<!-- Head to head: needs JavaScript, so it stays hidden until packages.js deals a round. -->
-<section class="cds--css-grid site-section site-section--flush site-mt-09" data-versus hidden>
-  <div class="cds--css-grid-column cds--col-span-100">
-    <div class="site-section__head">
-      <div>
-        <h2 class="site-section__title">Head to head</h2>
-        <p class="site-section__lead">Two packages, one question. Pick the winner and keep the streak alive.</p>
-      </div>
-      <p class="site-versus__score">
-        {% include icon.html name="trophy" %}
-        Streak <strong data-versus-streak>0</strong> &middot; best <strong data-versus-best>0</strong>
-      </p>
-    </div>
-    <p class="site-versus__question" data-versus-question></p>
-    <div class="site-versus__cards">
-      {%- for i in (0..1) -%}
-      <button type="button" class="site-versus__card" data-versus-card>
-        <span class="site-eyebrow" data-versus-domain></span>
-        <span class="site-versus__cmd" data-versus-cmd></span>
-        <span class="site-versus__name" data-versus-name></span>
-        <span class="site-versus__desc" data-versus-desc></span>
-        <span class="site-versus__stat">
-          <span class="site-versus__stat-label" data-versus-label></span>
-          <span class="site-versus__stat-value" data-versus-value>?</span>
-        </span>
-        <span class="site-versus__badge" data-versus-badge hidden></span>
-      </button>
-      {%- if forloop.first -%}<span class="site-versus__vs" aria-hidden="true">vs</span>{%- endif -%}
-      {%- endfor -%}
-    </div>
-    <div class="site-versus__foot">
-      <p class="site-versus__verdict" data-versus-verdict aria-live="polite"></p>
-      <button type="button" class="cds--btn cds--btn--primary cds--btn--sm" data-versus-next hidden>
-        Next round {% include icon.html name="arrow-right" class="cds--btn__icon" %}
-      </button>
-    </div>
-  </div>
-</section>
-
 <!-- Catalogue -->
 <section class="cds--css-grid site-section site-mt-09" id="catalogue">
   <div class="cds--css-grid-column cds--col-span-100">
@@ -252,11 +213,9 @@ permalink: /packages/
           <tr class="cds--parent-row" data-parent-row data-pkg
               data-name="{{ p.name | escape }}" data-command="{{ p.command | escape }}"
               data-short="{{ scope_parts | last | escape }}"
-              data-domain="{{ p.domain_id }}" data-domain-name="{{ p.domain | escape }}"
-              data-desc="{{ p.description | escape }}"
+              data-domain="{{ p.domain_id }}"
               data-month="{{ p.dl_month | default: 0 }}" data-year="{{ p.dl_year | default: 0 }}"
-              data-versions="{{ p.versions | default: 0 }}" data-first="{{ p.first_publish }}"
-              data-size="{{ p.size_kb }}" data-search="{{ haystack | downcase | escape }}">
+              data-search="{{ haystack | downcase | escape }}">
             <td class="cds--table-expand">
               {%- comment -%} Revealed by packages.js: without it there is nothing to expand. {%- endcomment -%}
               <button type="button" class="cds--table-expand__button" aria-expanded="false" hidden

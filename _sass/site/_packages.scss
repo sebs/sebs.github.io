@@ -1,11 +1,10 @@
 // Packages -----------------------------------------------------------------
 // The /packages/ page is a catalogue of command-line tools: a terminal that
-// types out real README commands, a guessing game, a release heatmap and the
-// download figures. Carbon supplies the Tiles, Data Table (expandable rows,
-// sortable headers), Tags, Search and Buttons; this file adds the four
-// compositions Carbon has no component for — the terminal, the game cards,
-// the heatmap and the two plot readouts — always in theme tokens, never in
-// raw colour.
+// types out real README commands, a release heatmap and the download
+// figures. Carbon supplies the Tiles, Data Table (expandable rows, sortable
+// headers), Tags, Search and Buttons; this file adds the three compositions
+// Carbon has no component for — the terminal, the heatmap and the two plot
+// readouts — always in theme tokens, never in raw colour.
 @use "@carbon/styles/scss/theme";
 @use "@carbon/styles/scss/type";
 @use "@carbon/styles/scss/spacing";
@@ -127,135 +126,6 @@
 
 .site-stat__label {
   @include type.type-style("label-01");
-
-  color: theme.$text-secondary;
-}
-
-// --- Head to head ----------------------------------------------------------
-.site-versus__score {
-  @include type.type-style("body-01");
-
-  align-items: center;
-  color: theme.$text-secondary;
-  display: flex;
-  gap: spacing.$spacing-03;
-  white-space: nowrap;
-
-  strong { color: theme.$text-primary; }
-}
-
-.site-versus__question {
-  @include type.type-style("productive-heading-03");
-
-  margin-block-end: spacing.$spacing-06;
-}
-
-.site-versus__cards {
-  align-items: stretch;
-  display: grid;
-  gap: spacing.$spacing-05;
-
-  @include breakpoint.breakpoint(md) {
-    grid-template-columns: 1fr auto 1fr;
-  }
-}
-
-.site-versus__vs {
-  @include type.type-style("productive-heading-03");
-
-  align-self: center;
-  color: theme.$text-helper;
-  justify-self: center;
-}
-
-.site-versus__card {
-  background: theme.$layer-01;
-  border: 1px solid theme.$border-subtle-01;
-  color: inherit;
-  cursor: pointer;
-  display: flex;
-  flex-direction: column;
-  font: inherit;
-  gap: spacing.$spacing-03;
-  inline-size: 100%;
-  padding: spacing.$spacing-06;
-  text-align: start;
-  transition: background-color motion.$duration-fast-02 motion.motion(standard, productive);
-
-  &:hover { background: theme.$layer-hover-01; }
-
-  &[aria-disabled="true"] {
-    cursor: default;
-
-    &:hover { background: theme.$layer-01; }
-  }
-}
-
-// The verdict is a real status (right / wrong), so it carries a status colour —
-// always with the badge's own words beside it, never colour alone.
-.site-versus__card--win { border-color: theme.$support-success; }
-.site-versus__card--lose { border-color: theme.$border-strong-01; }
-
-.site-versus__cmd {
-  @include type.type-style("productive-heading-04");
-  @include type.font-family("mono");
-
-  overflow-wrap: anywhere;
-}
-
-.site-versus__name {
-  @include type.type-style("label-01");
-
-  color: theme.$text-helper;
-  overflow-wrap: anywhere;
-}
-
-.site-versus__desc {
-  @include type.type-style("body-01");
-
-  color: theme.$text-secondary;
-}
-
-.site-versus__stat {
-  align-items: baseline;
-  border-block-start: 1px solid theme.$border-subtle-01;
-  display: flex;
-  gap: spacing.$spacing-04;
-  justify-content: space-between;
-  margin-block-start: auto;
-  padding-block-start: spacing.$spacing-05;
-}
-
-.site-versus__stat-label {
-  @include type.type-style("label-01");
-
-  color: theme.$text-secondary;
-}
-
-.site-versus__stat-value {
-  @include type.type-style("productive-heading-04");
-}
-
-.site-versus__badge {
-  @include type.type-style("label-01");
-
-  color: theme.$text-secondary;
-
-  .site-versus__card--win & { color: theme.$support-success; }
-}
-
-.site-versus__foot {
-  align-items: center;
-  display: flex;
-  flex-wrap: wrap;
-  gap: spacing.$spacing-05;
-  justify-content: space-between;
-  margin-block-start: spacing.$spacing-06;
-  min-block-size: spacing.$spacing-08;
-}
-
-.site-versus__verdict {
-  @include type.type-style("body-01");
 
   color: theme.$text-secondary;
 }
