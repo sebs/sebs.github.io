@@ -99,10 +99,22 @@ permalink: /packages/
 {%- assign heat = stats.heatmap -%}
 {%- assign movers = stats.movers -%}
 
-<!-- Totals -->
-<section class="cds--css-grid">
+<!-- Activity: the totals, the trend, the movers and the release history are one
+     hairline-joined panel rather than four stacked sections — they answer one
+     question between them, so they read as one object. -->
+<section class="cds--css-grid site-section site-section--flush site-mt-07" id="activity">
   <div class="cds--css-grid-column cds--col-span-100">
-    <div class="site-statband">
+    <div class="site-section__head">
+      <div>
+        <h2 class="site-section__title">Activity</h2>
+        <p class="site-section__lead">
+          What shipped, when, and how often people install it &mdash; drawn from
+          the same registry data as the catalogue further down.
+        </p>
+      </div>
+    </div>
+
+    <div class="site-panel">
       <div class="cds--tile site-stat">
         <span class="site-stat__value">{{ totals.clis }}</span>
         <span class="site-stat__label">Command-line tools</span>
@@ -119,6 +131,146 @@ permalink: /packages/
         <span class="site-stat__value">{% include thousands.html n=totals.releases %}</span>
         <span class="site-stat__label">Releases{% if totals.since %} since {{ totals.since }}{% endif %}</span>
       </div>
+{%- if chart -%}
+      <div class="cds--tile site-panel__main">
+        <div class="site-panel__head">
+          <span class="site-eyebrow">Weekly downloads &middot; all packages</span>
+          <span class="site-panel__meta">peak {% include thousands.html n=chart.peak_week %} / wk</span>
+        </div>
+        <div class="site-plot" data-chart data-values="{{ chart.values | join: ',' }}" data-starts="{{ chart.starts | join: ',' }}">
+          <svg class="site-chart" viewBox="0 0 100 40" preserveAspectRatio="none" role="img"
+               aria-label="Combined weekly npm downloads across all packages over the last 12 months, peaking at {{ chart.peak_week }} a week">
+            <polygon class="site-chart__area" points="{{ chart.area_points }}" />
+            <polyline class="site-chart__line" points="{{ chart.line_points }}" />
+          </svg>
+          <span class="site-chart__cursor" data-chart-cursor hidden></span>
+          <span class="site-chart__dot" data-chart-dot hidden></span>
+          <div class="site-tip" data-tip hidden aria-hidden="true"></div>
+        </div>
+        <div class="site-chart__axis">
+          <span>{{ chart.start | date: "%b %Y" }}</span>
+          <span>{{ chart.end | date: "%b %Y" }}</span>
+        </div>
+      </div>
+{%- endif -%}
+{%- if movers -%}
+      <div class="cds--tile site-panel__side">
+        <div class="site-panel__head">
+          <span class="site-eyebrow">Movers</span>
+          <span class="site-panel__meta">30 days vs the 30 before</span>
+        </div>
+        <ul class="site-movers">
+          {%- for m in movers.up -%}
+          <li class="site-mover">
+            <span class="site-mover__pct">{% include icon.html name="arrow-up" %}+{{ m.pct }}%</span>
+            <span class="site-mover__who">{% if m.command != "" %}<code>{{ m.command | escape }}</code>{% else %}{{ m.name | escape }}{% endif %}</span>
+            <span class="site-mover__note">{% include thousands.html n=m.now %} downloads, up from {% include thousands.html n=m.before %}</span>
+          </li>
+          {%- endfor -%}
+          {%- for m in movers.down -%}
+          <li class="site-mover">
+            <span class="site-mover__pct">{% include icon.html name="arrow-down" %}{{ m.pct }}%</span>
+            <span class="site-mover__who">{% if m.command != "" %}<code>{{ m.command | escape }}</code>{% else %}{{ m.name | escape }}{% endif %}</span>
+            <span class="site-mover__note">{% include thousands.html n=m.now %} downloads, down from {% include thousands.html n=m.before %}</span>
+          </li>
+          {%- endfor -%}
+        </ul>
+        <p class="site-helper">Packages under {{ totals.mover_floor }} downloads in the earlier window sit this out &mdash; a few CI runs would swing them wildly.</p>
+      </div>
+{%- endif -%}
+{%- if heat -%}
+      <div class="cds--tile site-panel__wide">
+        <div class="site-panel__head">
+          <span class="site-eyebrow">Releases per week &middot; {{ heat.years[0].year }}&ndash;{{ heat.years.last.year }}</span>
+          <span class="site-panel__meta">
+            {{ heat.total }} releases{% if heat.busiest.size > 0 %} &middot; busiest {{ heat.busiest[0].date | date: "%-d %b %Y" }} with {{ heat.busiest[0].n }}{% endif %}
+            {%- if heat.quiet.size > 0 %} &middot; nothing in {{ heat.quiet | array_to_sentence_string }}{% endif %}
+          </span>
+        </div>
+        <div class="site-plot" data-heat>
+          <div class="site-heat__scroll">
+            <div class="site-heat" role="group" aria-label="Releases per week, {{ heat.years[0].year }} to {{ heat.years.last.year }}">
+              <div class="site-heat__months" aria-hidden="true">
+                {%- for m in heat.months -%}<span style="grid-column: {{ m.col | plus: 2 }} / span 4">{{ m.label }}</span>{%- endfor -%}
+              </div>
+              {%- for y in heat.years -%}
+              <div class="site-heat__row">
+                <span class="site-heat__year">{{ y.year }}</span>
+                {%- for c in y.cells -%}
+                {%- if c.n > 0 -%}
+                <span class="site-heat__cell" role="img" data-l="{{ c.l }}" data-n="{{ c.n }}" data-d="{{ c.d }}" data-p="{{ c.p | escape }}"
+                      aria-label="{{ c.n }} release{% if c.n != 1 %}s{% endif %}, week of {{ c.d | date: '%-d %b %Y' }}: {{ c.p | escape }}"></span>
+                {%- else -%}
+                <span class="site-heat__cell" data-l="0"{% if c.f %} data-future{% endif %} aria-hidden="true"></span>
+                {%- endif -%}
+                {%- endfor -%}
+                <span class="site-heat__total" aria-label="{{ y.count }} releases in {{ y.year }}">{{ y.count }}</span>
+              </div>
+              {%- endfor -%}
+            </div>
+          </div>
+          <div class="site-tip" data-tip hidden aria-hidden="true"></div>
+        </div>
+        <div class="site-heat__foot">
+          <p class="site-helper">
+            Hover or tab into the grid for the packages behind each week. Totals
+            per year on the right; the shades step at 1, 2, 4 and 10 releases.
+          </p>
+          {%- comment -%} Buckets mirror HEAT_STEPS in scripts/fetch_npm_stats.py. {%- endcomment -%}
+          <div class="site-heat__legend" aria-label="Releases per week">
+            <span>Fewer</span>
+            <span class="site-heat__cell" data-l="1" title="1"></span>
+            <span class="site-heat__cell" data-l="2" title="2–3"></span>
+            <span class="site-heat__cell" data-l="3" title="4–9"></span>
+            <span class="site-heat__cell" data-l="4" title="10 or more"></span>
+            <span>More</span>
+          </div>
+        </div>
+      </div>
+{%- endif -%}
+    </div>
+
+    <div class="site-details-row">
+{%- if chart -%}
+      <details class="site-details">
+        <summary>Weekly figures as a table</summary>
+        <div class="cds--data-table-container">
+          <table class="cds--data-table cds--data-table--xs">
+            <thead><tr>
+              <th scope="col"><div class="cds--table-header-label">Week of</div></th>
+              <th scope="col"><div class="cds--table-header-label">Downloads</div></th>
+            </tr></thead>
+            <tbody>
+              {%- assign last_week = chart.weeks | minus: 1 -%}
+              {%- for i in (0..last_week) reversed -%}
+              {%- assign week_start = chart.starts[i] -%}
+              {%- assign week_value = chart.values[i] -%}
+              <tr><td>{{ week_start | date: "%-d %b %Y" }}</td><td class="site-pkg__num">{% include thousands.html n=week_value %}</td></tr>
+              {%- endfor -%}
+            </tbody>
+          </table>
+        </div>
+      </details>
+{%- endif -%}
+{%- if heat -%}
+      <details class="site-details">
+        <summary>Every release week as a table</summary>
+        <div class="cds--data-table-container">
+          <table class="cds--data-table cds--data-table--xs">
+            <thead><tr>
+              <th scope="col"><div class="cds--table-header-label">Week of</div></th>
+              <th scope="col"><div class="cds--table-header-label">Releases</div></th>
+              <th scope="col"><div class="cds--table-header-label">Packages</div></th>
+            </tr></thead>
+            <tbody>
+              {%- for y in heat.years reversed -%}{%- for c in y.cells reversed -%}{%- if c.n > 0 -%}
+              <tr><td>{{ c.d | date: "%-d %b %Y" }}</td><td class="site-pkg__num">{{ c.n }}</td><td>{{ c.p | escape }}</td></tr>
+              {%- endif -%}{%- endfor -%}{%- endfor -%}
+            </tbody>
+          </table>
+        </div>
+      </details>
+{%- endif -%}
     </div>
   </div>
 </section>
@@ -338,163 +490,6 @@ permalink: /packages/
       show no counts until npm aggregates a full period. Sparklines cover weekly
       downloads up to the last complete day.
     </p>
-  </div>
-</section>
-
-{%- if heat -%}
-<!-- Shipping history: every release, one square per week -->
-<section class="cds--css-grid site-section" id="history">
-  <div class="cds--css-grid-column cds--col-span-100">
-    <div class="site-section__head">
-      <div>
-        <h2 class="site-section__title">Shipping history</h2>
-        <p class="site-section__lead">
-          All {{ heat.total }} releases since {{ heat.first | date: "%B %Y" }}, one
-          square per week.
-          {%- if heat.busiest.size > 0 %} The busiest day was {{ heat.busiest[0].date | date: "%-d %B %Y" }}, with {{ heat.busiest[0].n }} releases{% endif %}
-          {%- if heat.quiet.size > 0 %}; nothing shipped at all in {{ heat.quiet | array_to_sentence_string }}{% endif %}.
-        </p>
-      </div>
-    </div>
-    <div class="cds--tile">
-      <div class="site-plot" data-heat>
-        <div class="site-heat__scroll">
-          <div class="site-heat" role="group" aria-label="Releases per week, {{ heat.years[0].year }} to {{ heat.years.last.year }}">
-            <div class="site-heat__months" aria-hidden="true">
-              {%- for m in heat.months -%}<span style="grid-column: {{ m.col | plus: 2 }} / span 4">{{ m.label }}</span>{%- endfor -%}
-            </div>
-            {%- for y in heat.years -%}
-            <div class="site-heat__row">
-              <span class="site-heat__year">{{ y.year }}</span>
-              {%- for c in y.cells -%}
-              {%- if c.n > 0 -%}
-              <span class="site-heat__cell" role="img" data-l="{{ c.l }}" data-n="{{ c.n }}" data-d="{{ c.d }}" data-p="{{ c.p | escape }}"
-                    aria-label="{{ c.n }} release{% if c.n != 1 %}s{% endif %}, week of {{ c.d | date: '%-d %b %Y' }}: {{ c.p | escape }}"></span>
-              {%- else -%}
-              <span class="site-heat__cell" data-l="0"{% if c.f %} data-future{% endif %} aria-hidden="true"></span>
-              {%- endif -%}
-              {%- endfor -%}
-              <span class="site-heat__total" aria-label="{{ y.count }} releases in {{ y.year }}">{{ y.count }}</span>
-            </div>
-            {%- endfor -%}
-          </div>
-        </div>
-        <div class="site-tip" data-tip hidden aria-hidden="true"></div>
-      </div>
-      <div class="site-heat__foot">
-        <p class="site-helper">
-          Hover or tab into the grid for the packages behind each week. Totals
-          per year on the right; the shades step at 1, 2, 4 and 10 releases.
-        </p>
-        {%- comment -%} Buckets mirror HEAT_STEPS in scripts/fetch_npm_stats.py. {%- endcomment -%}
-        <div class="site-heat__legend" aria-label="Releases per week">
-          <span>Fewer</span>
-          <span class="site-heat__cell" data-l="1" title="1"></span>
-          <span class="site-heat__cell" data-l="2" title="2–3"></span>
-          <span class="site-heat__cell" data-l="3" title="4–9"></span>
-          <span class="site-heat__cell" data-l="4" title="10 or more"></span>
-          <span>More</span>
-        </div>
-      </div>
-    </div>
-    <details class="site-details">
-      <summary>Every release week as a table</summary>
-      <div class="cds--data-table-container">
-        <table class="cds--data-table cds--data-table--xs">
-          <thead><tr>
-            <th scope="col"><div class="cds--table-header-label">Week of</div></th>
-            <th scope="col"><div class="cds--table-header-label">Releases</div></th>
-            <th scope="col"><div class="cds--table-header-label">Packages</div></th>
-          </tr></thead>
-          <tbody>
-            {%- for y in heat.years reversed -%}{%- for c in y.cells reversed -%}{%- if c.n > 0 -%}
-            <tr><td>{{ c.d | date: "%-d %b %Y" }}</td><td class="site-pkg__num">{{ c.n }}</td><td>{{ c.p | escape }}</td></tr>
-            {%- endif -%}{%- endfor -%}{%- endfor -%}
-          </tbody>
-        </table>
-      </div>
-    </details>
-  </div>
-</section>
-{%- endif -%}
-
-<!-- Downloads -->
-<section class="cds--css-grid site-section site-pb-10" id="downloads">
-  <div class="cds--css-grid-column cds--col-span-100">
-    <div class="site-section__head">
-      <div>
-        <h2 class="site-section__title">Downloads</h2>
-        <p class="site-section__lead">Weekly npm downloads, all packages combined, and who moved most over the last month.</p>
-      </div>
-    </div>
-
-    {%- if chart -%}
-    <div class="cds--tile">
-      <div class="site-chart__head">
-        <span class="site-eyebrow">Weekly downloads &middot; all packages combined</span>
-        <span class="site-chart__peak">peak {% include thousands.html n=chart.peak_week %} / wk</span>
-      </div>
-      <div class="site-plot" data-chart data-values="{{ chart.values | join: ',' }}" data-starts="{{ chart.starts | join: ',' }}">
-        <svg class="site-chart" viewBox="0 0 100 40" preserveAspectRatio="none" role="img"
-             aria-label="Combined weekly npm downloads across all packages over the last 12 months, peaking at {{ chart.peak_week }} a week">
-          <polygon class="site-chart__area" points="{{ chart.area_points }}" />
-          <polyline class="site-chart__line" points="{{ chart.line_points }}" />
-        </svg>
-        <span class="site-chart__cursor" data-chart-cursor hidden></span>
-        <span class="site-chart__dot" data-chart-dot hidden></span>
-        <div class="site-tip" data-tip hidden aria-hidden="true"></div>
-      </div>
-      <div class="site-chart__axis">
-        <span>{{ chart.start | date: "%b %Y" }}</span>
-        <span>{{ chart.end | date: "%b %Y" }}</span>
-      </div>
-    </div>
-    <details class="site-details">
-      <summary>Weekly figures as a table</summary>
-      <div class="cds--data-table-container">
-        <table class="cds--data-table cds--data-table--xs">
-          <thead><tr>
-            <th scope="col"><div class="cds--table-header-label">Week of</div></th>
-            <th scope="col"><div class="cds--table-header-label">Downloads</div></th>
-          </tr></thead>
-          <tbody>
-            {%- assign last_week = chart.weeks | minus: 1 -%}
-            {%- for i in (0..last_week) reversed -%}
-            {%- assign week_start = chart.starts[i] -%}
-            {%- assign week_value = chart.values[i] -%}
-            <tr><td>{{ week_start | date: "%-d %b %Y" }}</td><td class="site-pkg__num">{% include thousands.html n=week_value %}</td></tr>
-            {%- endfor -%}
-          </tbody>
-        </table>
-      </div>
-    </details>
-    {%- endif -%}
-
-    {%- if movers -%}
-    <div class="site-rule-head site-mt-09">
-      <span class="site-eyebrow">Movers &middot; last 30 days vs the 30 before</span>
-    </div>
-    <ul class="site-movers">
-      {%- for m in movers.up -%}
-      <li class="cds--tile site-mover">
-        <span class="site-mover__pct">{% include icon.html name="arrow-up" %}+{{ m.pct }}%</span>
-        <span class="site-mover__who">{% if m.command != "" %}<code>{{ m.command | escape }}</code>{% else %}{{ m.name | escape }}{% endif %}</span>
-        <span class="site-mover__note">{% include thousands.html n=m.now %} downloads, up from {% include thousands.html n=m.before %}</span>
-      </li>
-      {%- endfor -%}
-      {%- for m in movers.down -%}
-      <li class="cds--tile site-mover">
-        <span class="site-mover__pct">{% include icon.html name="arrow-down" %}{{ m.pct }}%</span>
-        <span class="site-mover__who">{% if m.command != "" %}<code>{{ m.command | escape }}</code>{% else %}{{ m.name | escape }}{% endif %}</span>
-        <span class="site-mover__note">{% include thousands.html n=m.now %} downloads, down from {% include thousands.html n=m.before %}</span>
-      </li>
-      {%- endfor -%}
-    </ul>
-    <p class="site-helper site-mt-07">
-      Only packages with at least {{ totals.mover_floor }} downloads in the earlier window count &mdash;
-      below that, a handful of CI runs swings the percentage wildly.
-    </p>
-    {%- endif -%}
   </div>
 </section>
 
