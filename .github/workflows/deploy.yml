@@ -2,13 +2,13 @@ name: Build & deploy site
 
 # Builds the Jekyll site and deploys to GitHub Pages.
 # Unlike the native Pages build, this runs with network access, so it can:
-#   1. fetch the live dev.to writing feed at build time,
+#   1. fetch the npm download stats for /packages/ at build time,
 #   2. rasterize the social OG image (SVG -> PNG), and
 #   3. install the IBM Carbon Design System, whose Sass sources Jekyll compiles
 #      into assets/css/main.css (see _config.yml -> sass.load_paths).
-# The legacy posts are now markdown in _posts/ (each pins its original
-# /YYYY/MM/DD/... permalink), so Jekyll builds everything — nothing is copied
-# verbatim, and jekyll-archives regenerates the tag/date listing pages.
+# The blog is markdown in _posts/ (each pins its /YYYY/MM/DD/... permalink), so
+# Jekyll builds everything — nothing is copied verbatim; jekyll-archives,
+# jekyll-feed and jekyll-redirect-from generate the listings, feed and redirects.
 #
 # ONE-TIME SETUP: in the repo, Settings -> Pages -> Build and deployment ->
 # Source must be set to "GitHub Actions" for this workflow to publish.
@@ -18,7 +18,7 @@ on:
     branches: [master, main]
   workflow_dispatch:
   schedule:
-    - cron: "0 6 * * *"   # daily — refresh the dev.to writing feed
+    - cron: "0 6 * * *"   # daily — refresh the npm download stats
 
 permissions:
   contents: read
@@ -36,10 +36,6 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-
-      - name: Fetch dev.to writing feed (falls back to committed seed)
-        run: python3 scripts/fetch_devto.py
-        continue-on-error: true
 
       - name: Fetch npm download stats (page shows empty state if unavailable)
         run: python3 scripts/fetch_npm_stats.py

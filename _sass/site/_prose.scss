@@ -14,7 +14,9 @@
   @include type.type-style("body-01");
 
   color: theme.$text-secondary;
-  display: block;
+  display: flex;
+  flex-wrap: wrap;
+  gap: spacing.$spacing-03;
   margin-block: spacing.$spacing-05 spacing.$spacing-03;
 }
 
@@ -35,6 +37,41 @@
   border-block-start: 1px solid theme.$border-subtle-01;
   margin-block-start: spacing.$spacing-09;
   padding-block-start: spacing.$spacing-06;
+}
+
+// Newer / older post, as two hairline-joined tiles above "All posts".
+.site-post__pager {
+  background: theme.$border-subtle-01;
+  display: grid;
+  gap: 1px;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 12rem), 1fr));
+  margin-block-end: spacing.$spacing-07;
+}
+
+.site-post__pager-link {
+  background: theme.$layer-01;
+  display: flex;
+  flex-direction: column;
+  gap: spacing.$spacing-03;
+  padding: spacing.$spacing-05;
+
+  &:hover {
+    background: theme.$layer-hover-01;
+
+    .site-post__pager-title { color: theme.$link-primary; }
+  }
+}
+
+.site-post__pager-label {
+  @include type.type-style("body-01");
+
+  color: theme.$text-secondary;
+}
+
+.site-post__pager-title {
+  @include type.type-style("body-02");
+
+  color: theme.$text-primary;
 }
 
 .site-prose {

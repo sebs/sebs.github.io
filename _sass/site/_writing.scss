@@ -1,7 +1,8 @@
-// Writing & archives -------------------------------------------------------
-// The dev.to feed is a Carbon Contained List; the self-hosted archives are a
-// Structured List. Both ship most of what is needed — these rules add the
-// date/meta columns and the clickable-row affordance.
+// Writing & blog -----------------------------------------------------------
+// The homepage teaser is a Carbon Contained List; the blog's archive and the
+// tag/date listings are a Structured List. Both ship most of what is needed —
+// these rules add the date/meta columns and the clickable-row affordance. The
+// blog's latest-posts entries have no Carbon counterpart and are composed here.
 @use "@carbon/styles/scss/theme";
 @use "@carbon/styles/scss/type";
 @use "@carbon/styles/scss/spacing";
@@ -9,7 +10,71 @@
 @use "@carbon/styles/scss/breakpoint";
 @use "@carbon/styles/scss/config" as *;
 
-// --- dev.to feed (Contained List) ---
+// --- Blog: latest posts ---
+.site-blog {
+  list-style: none;
+}
+
+.site-blog__entry {
+  border-block-end: 1px solid theme.$border-subtle-01;
+  padding-block: spacing.$spacing-07;
+
+  &:first-child {
+    padding-block-start: 0;
+  }
+}
+
+.site-blog__meta {
+  @include type.type-style("body-01");
+
+  color: theme.$text-secondary;
+  display: flex;
+  flex-wrap: wrap;
+  gap: spacing.$spacing-03;
+  margin-block-end: spacing.$spacing-03;
+}
+
+.site-blog__title {
+  @include type.type-style("productive-heading-04");
+
+  a {
+    color: theme.$text-primary;
+
+    &:hover,
+    &:focus-visible {
+      color: theme.$link-primary;
+      text-decoration: underline;
+    }
+  }
+}
+
+.site-blog__summary {
+  @include type.type-style("body-02");
+
+  color: theme.$text-secondary;
+  margin-block-start: spacing.$spacing-03;
+  max-inline-size: 70ch;
+}
+
+.site-blog__tags {
+  @include type.type-style("body-01");
+
+  display: flex;
+  flex-wrap: wrap;
+  gap: spacing.$spacing-03 spacing.$spacing-05;
+  list-style: none;
+  margin-block-start: spacing.$spacing-05;
+
+  a:hover {
+    color: theme.$link-primary;
+  }
+}
+
+.site-archive-year__label a:hover {
+  color: theme.$link-primary;
+}
+
+// --- Homepage teaser (Contained List) ---
 .site-post-link {
   align-items: baseline;
   display: grid;
@@ -113,6 +178,10 @@
 
 .#{$prefix}--structured-list-row:hover .site-archive-title {
   color: theme.$link-primary;
+}
+
+.site-archive-tag {
+  color: theme.$text-secondary;
 }
 
 .site-archive-tag + .site-archive-tag {

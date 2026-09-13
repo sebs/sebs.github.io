@@ -12,7 +12,11 @@ into `assets/posts/<slug>/`, so no post depends on dev.to's CDN afterwards.
 The key comes from the environment only (dev.to -> Settings -> Extensions ->
 DEV Community API Keys); it is never written anywhere. Re-running overwrites
 the generated posts and skips images that are already on disk. This is a
-one-off migration tool, not part of the deploy — scripts/fetch_devto.py is.
+one-off migration tool, not part of the deploy.
+
+The migration is done: the exported articles were unpublished on dev.to (with
+their canonical_url pointing at this site), so a re-run now sees them as
+unpublished and would write every one into _drafts/ as a duplicate.
 
 What changes on the way in:
   - The front matter dev.to keeps inside `body_markdown` (v1 editor) is

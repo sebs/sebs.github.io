@@ -92,28 +92,3 @@
     color: theme.$text-primary;
   }
 }
-
-// Callout: a tile-backed prompt with an action on the right.
-.site-callout {
-  display: flex;
-  flex-direction: column;
-  gap: spacing.$spacing-05;
-
-  @include breakpoint.breakpoint(md) {
-    align-items: center;
-    flex-direction: row;
-    justify-content: space-between;
-  }
-}
-
-.site-callout__title {
-  @include type.type-style("productive-heading-03");
-
-  margin-block-end: spacing.$spacing-03;
-}
-
-.site-callout__body {
-  @include type.type-style("body-01");
-
-  color: theme.$text-secondary;
-}

@@ -1,9 +1,8 @@
 # sebs.github.io
 
 Personal hub for Sebastian Schürmann — the authoritative node for identity,
-projects, writing, and talks. **Own the hub, rent the reach:** blog posts stay
-on [dev.to](https://dev.to/sebs); this site links out to them and self-hosts
-projects + talks.
+projects, writing, and talks. The blog is self-hosted at `/blog/`; the articles
+that used to live on [dev.to](https://dev.to/sebs) were migrated here.
 
 ## Architecture
 
@@ -13,9 +12,9 @@ projects + talks.
   which supports Sass modules, so `assets/css/main.scss` can `@use` Carbon
   directly and no JS bundler is involved. See **Working on the UI** below.
 - **Static site, built with Jekyll, deployed via GitHub Actions.**
-  A full Actions build (not the native Pages build) is used so the dev.to
-  writing feed and npm download stats can be fetched at deploy time, the OG
-  image rasterized, and the `jekyll-archives` plugin run.
+  A full Actions build (not the native Pages build) is used so the npm download
+  stats can be fetched at deploy time, the OG image rasterized, and the
+  `jekyll-archives`, `jekyll-feed` and `jekyll-redirect-from` plugins run.
 - **The `/packages/` page is data-driven from a PURL config.** List package
   URLs in `_data/packages.yml`; `scripts/fetch_npm_stats.py` resolves the npm
   download counts and release metadata at build time into `_data/npm_stats.yml`
@@ -25,22 +24,24 @@ projects + talks.
   also yield each one's `bin` command, its keywords (which sort it into a
   domain group), real example invocations lifted from its README, and the
   publish history behind the release heatmap. `assets/js/packages.js` adds the
-  behaviour on top — the typing terminal, table sorting and filtering, and the
-  chart readouts — and the page degrades to its static render without it.
-- **The legacy posts are markdown in `_posts/`.** The old Hexo posts were
-  converted to clean markdown (see `scripts/extract_posts.py` for how). Each
-  post pins its **original URL** via `permalink:` in front matter
+  behaviour on top — table sorting and filtering, copy buttons, and the chart
+  readouts — and the page degrades to its static render without it.
+- **The blog is markdown in `_posts/`.** The old Hexo posts were converted to
+  clean markdown (see `scripts/extract_posts.py` for how), and the dev.to
+  articles were exported with `scripts/export_devto.py`, images and all. Each
+  post pins its URL via `permalink:` in front matter
   (e.g. `/2019/01/04/Monorepos-with-Lerna/`), so every existing link still
-  resolves. The `post` layout renders them; `jekyll-archives` regenerates the
-  `/tags/:name/` and `/archives/:year/[:month/]` listing pages, and
-  `archives.html` is the top-level `/archives/` index.
+  resolves. The `post` layout renders them; `blog/index.html` is the `/blog/`
+  index (the old `/archives/` index redirects there); `jekyll-archives`
+  regenerates the `/tags/:name/` and `/archives/:year/[:month/]` listing pages;
+  `jekyll-feed` publishes `/feed.xml`.
 
 ## One-time setup (required to publish)
 
 In the repository: **Settings → Pages → Build and deployment → Source →
 "GitHub Actions."** The `.github/workflows/deploy.yml` workflow then builds and
 deploys on every push to `master`/`main`, on a daily schedule (to refresh the
-dev.to feed), and on manual dispatch.
+npm download stats), and on manual dispatch.
 
 > Sponsor CTAs are intentionally hidden until GitHub Sponsors is enabled — see
 > `_data/profiles.yml`.
@@ -54,7 +55,6 @@ Most content lives in `_data/`:
 | `_data/profiles.yml`  | Hero/footer links, JSON-LD `sameAs`, sponsor flag        |
 | `_data/projects.yml`  | Project cards                                             |
 | `_data/talks.yml`     | `/talks` page + homepage teaser (`featured` + `history`)  |
-| `_data/writing.yml`   | Seed/fallback for Writing (overwritten by the dev.to feed at deploy) |
 | `_data/packages.yml`  | PURLs for the `/packages/` npm-stats page                 |
 
 Talk slides go in `assets/talks/` (PDF) or as a SpeakerDeck embed URL — see the
@@ -64,7 +64,8 @@ Long-form posts are markdown in `_posts/`, named `YYYY-MM-DD-slug.md`. Front
 matter sets `title`, `date`, `tags`, an optional `description`, and a
 `permalink` (the file's slug doesn't affect the URL — the permalink does). The
 `post` layout, `nav: writing` highlight, and `og_type: article` are applied
-automatically via `defaults` in `_config.yml`.
+automatically via `defaults` in `_config.yml`. Posts appear on `/blog/`, in the
+homepage Writing section and in `/feed.xml` without further wiring.
 
 ## Local development
 
@@ -79,9 +80,8 @@ and the build fails. `.npmrc` sets `ignore-scripts=true`: Carbon and IBM Plex
 are pure asset packages, and the only lifecycle scripts in the tree are IBM
 telemetry postinstalls.
 
-`scripts/fetch_devto.py` populates the live writing feed and
-`scripts/fetch_npm_stats.py` the npm download stats (both run automatically in
-CI; safe to run locally if you have network access).
+`scripts/fetch_npm_stats.py` populates the npm download stats (runs
+automatically in CI; safe to run locally if you have network access).
 
 ## Working on the UI
 

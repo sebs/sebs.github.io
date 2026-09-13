@@ -6,8 +6,7 @@ Output: _data/npm_stats.yml — JSON (a valid subset of YAML), so Jekyll parses 
         as a data file. This is a build-time artifact: it is regenerated on every
         deploy and is NOT committed to the repo (it is gitignored).
 
-Unlike scripts/fetch_devto.py (which keeps a committed seed), there is no seed
-here — the daily figures would drift and mislead. On a total failure we write
+There is no committed seed — the daily figures would drift and mislead. On a total failure we write
 nothing and the /packages/ page falls back to its empty state; a single package
 that errors is recorded with an `error` field rather than aborting the run. Only
 the stdlib is used (no PyYAML / requests), so it runs anywhere Python 3 does.

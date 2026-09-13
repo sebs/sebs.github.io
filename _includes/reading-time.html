@@ -1,0 +1,7 @@
+{%- comment -%}
+  "N min read" at ~220 words a minute, never below 1. Pass the rendered
+  post: {% include reading-time.html post=post %}
+{%- endcomment -%}
+{%- assign words = include.post.content | strip_html | number_of_words -%}
+{%- assign minutes = words | divided_by: 220 | at_least: 1 -%}
+{{- minutes }} min read
