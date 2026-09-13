@@ -30,7 +30,11 @@ nav: home
       </a>
       {%- endif -%}
       {%- for p in primary -%}
+      {%- if p.internal -%}
+      <a class="cds--btn cds--btn--tertiary" href="{{ p.url | relative_url }}">
+      {%- else -%}
       <a class="cds--btn cds--btn--tertiary" href="{{ p.url }}" target="_blank" rel="noopener me">
+      {%- endif %}
         {{ p.name }}
         {% include icon.html name=p.icon class="cds--btn__icon" %}
       </a>

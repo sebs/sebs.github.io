@@ -17,7 +17,7 @@ The [Bus Factor Analyzer](https://github.com/sebs/bussybussy) takes a deliberate
 
 ## The Reality of Modern Dependency Management
 
-The Shai-Hulud worm (that [supply chain attack I wrote about](https://dev.to/sebs/facing-the-shai-hulud-worm-where-the-hell-is-easystreet-4b60)) showed us how vulnerabilities propagate through interconnected dependencies. Each package you add isn't just code—it's trust. Trust in maintainers you've never met, in their security practices, and in their own dependency choices. One package might bring 50 transitive dependencies, each a potential entry point for compromise.
+The Shai-Hulud worm (that [supply chain attack I wrote about](/2025/09/19/facing-the-shai-hulud-worm-where-the-hell-is-easystreet/)) showed us how vulnerabilities propagate through interconnected dependencies. Each package you add isn't just code—it's trust. Trust in maintainers you've never met, in their security practices, and in their own dependency choices. One package might bring 50 transitive dependencies, each a potential entry point for compromise.
 
 Bus Factor Analyzer's dependency strategy is minimalism:
 

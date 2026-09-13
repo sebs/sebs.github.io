@@ -2,7 +2,7 @@
 
 Personal hub for Sebastian Schürmann — the authoritative node for identity,
 projects, writing, and talks. The blog is self-hosted at `/blog/`; the articles
-that used to live on [dev.to](https://dev.to/sebs) were migrated here.
+that used to live on dev.to were migrated here.
 
 ## Architecture
 

@@ -11,6 +11,10 @@
         </div>
         <nav class="site-footer__links" aria-label="Profiles">
           {%- for p in site.data.profiles.links -%}
+            {%- if p.internal -%}
+          <a class="cds--link" href="{{ p.url | relative_url }}">{{ p.name }}</a>
+            {%- continue -%}
+            {%- endif -%}
             {%- assign is_mail = p.url | slice: 0, 7 -%}
             {%- capture rel -%}{% if p.rel_me %}me {% endif %}{% unless is_mail == 'mailto:' %}noopener{% endunless %}{%- endcapture -%}
             {%- assign rel = rel | strip -%}

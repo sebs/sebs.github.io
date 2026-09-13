@@ -121,7 +121,8 @@
   "sameAs": [
     {%- assign links = "" | split: "" -%}
     {%- for p in site.data.profiles.links -%}
-      {%- unless p.url contains "mailto:" -%}{%- assign links = links | push: p.url -%}{%- endunless -%}
+      {%- if p.internal or p.url contains "mailto:" -%}{%- continue -%}{%- endif -%}
+      {%- assign links = links | push: p.url -%}
     {%- endfor -%}
     {%- for u in links -%}"{{ u }}"{%- unless forloop.last -%}, {%- endunless -%}{%- endfor -%}
   ]

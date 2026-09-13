@@ -4,6 +4,8 @@
 # `rel_me: true` emits rel="me" on the footer link for Mastodon/Bluesky
 # verification and identity hardening.
 # `primary: true` also surfaces the link as a hero CTA.
+# `internal: true` marks a page on this site: it opens in the same tab and is
+# left out of JSON-LD `sameAs`, which names other profiles of the same person.
 
 links:
   - name: GitHub
@@ -13,11 +15,10 @@ links:
     rel_me: true
     primary: true
 
-  - name: dev.to
-    handle: "@sebs"
-    url: "https://dev.to/sebs"
+  - name: Blog
+    url: "/blog/"
     icon: article
-    rel_me: true
+    internal: true
     primary: true
 
   - name: LinkedIn
