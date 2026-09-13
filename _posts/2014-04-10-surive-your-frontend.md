@@ -6,6 +6,9 @@ permalink: "/2014/04/10/Surive-your-Frontend/"
 description: "I am building a talk on how to approach big/long running front end projects that was initially presented at the Berlin PHP User-group July 2014. I started…"
 tags: [javascript, talk]
 og_type: article
+original_source: "Dissident Trainings"
+original_url: "http://dissident-trainings.de/2014/10/29/survive-your-frontend-thoughts.html"
+original_date: 2014-10-29
 ---
 I am building a talk on how to approach big/long running front end projects that was initially presented at the Berlin PHP User-group July 2014. I started to prepare it and want to nail down my thoughts.
 

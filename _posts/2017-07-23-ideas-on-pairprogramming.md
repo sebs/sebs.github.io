@@ -6,6 +6,9 @@ permalink: "/2017/07/23/Ideas-on-Pairprogramming/"
 description: "Over the last years, I got many good Ideas from teams on how to use pairing in their daily work. It is very interesting how the initial idea is “hacked”,…"
 tags: [extremeprogramming, practices, pairprogramming]
 og_type: article
+original_source: "Dissident Trainings"
+original_url: "http://dissident-trainings.de/2014/10/06/how-to-pair.html"
+original_date: 2014-10-06
 ---
 Over the last years, I got many good Ideas from teams on how to use pairing in their daily work. It is very interesting how the initial idea is “hacked”, changed and adapted. Some traditional and not so traditional approaches here in a blog post.
 

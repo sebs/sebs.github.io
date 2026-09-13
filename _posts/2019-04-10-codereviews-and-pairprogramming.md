@@ -6,6 +6,9 @@ permalink: "/2019/04/10/Codereviews-and-Pairprogramming/"
 description: "Do do we still need Codereviews when we do Pairprogramming?"
 tags: [extremeprogramming, practices]
 og_type: article
+original_source: "Dissident Trainings"
+original_url: "http://dissident-trainings.de/2014/11/14/codereviews-and-pairprogramming.html"
+original_date: 2014-11-14
 ---
 Do do we still need Codereviews when we do Pairprogramming?
 

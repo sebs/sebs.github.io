@@ -6,6 +6,9 @@ permalink: "/2017/03/23/10-TIPS-FOR-THE-XP-PRACTICE-SIT-TOGETHER-/"
 description: "James Shore describes “Sit together” in his book as"
 tags: [extremeprogramming, practices]
 og_type: article
+original_source: "Dissident Trainings"
+original_url: "http://dissident-trainings.de/2014/09/17/10-tips-for-the-xp-practice-sit-together.html"
+original_date: 2014-09-17
 ---
 James Shore describes “Sit together” in his book as
 

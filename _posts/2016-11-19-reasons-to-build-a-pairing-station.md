@@ -6,6 +6,9 @@ permalink: "/2016/11/19/Reasons-to-build-a-pairing-station/"
 description: "Having a dedicated computer and desk for the effort of Pair programming is a great thing. It is a little counter intuitive to those who seek for efficient…"
 tags: [extremeprogramming, pairprogramming]
 og_type: article
+original_source: "Dissident Trainings"
+original_url: "http://dissident-trainings.de/2014/11/19/Reasons-to-build-a-pairing-station.html"
+original_date: 2014-11-19
 ---
 Having a dedicated computer and desk for the effort of Pair programming is a great thing. It is a little counter intuitive to those who seek for efficient use of the workplace and try to use every inch of the office all the time. Creative people (programmers) are no laying hens and should not be treated this way. So why is it good to have a computer around that is just dedicated for Pair programming?
 

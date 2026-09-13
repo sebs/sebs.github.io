@@ -32,14 +32,16 @@ layout: default
       {%- endif -%}
 
       {%- comment -%}
-        Posts imported from another site say so up front, linked to the
-        original (see scripts/import_dissident_trainings.py).
+        Posts that first appeared on another site say so up front, linked to
+        the original (see scripts/import_dissident_trainings.py).
+        `original_date` is set where this blog dates the post later than the
+        original — republished copies keep their own date and URL.
       {%- endcomment -%}
       {%- if page.original_url -%}
       <p class="site-post__source" role="note">
         Originally published on
         <a class="cds--link cds--link--inline" href="{{ page.original_url }}">{{ page.original_source | default: page.original_url }}</a>
-        on {{ page.date | date: "%B %-d, %Y" }}.
+        on {{ page.original_date | default: page.date | date: "%B %-d, %Y" }}.
       </p>
       {%- endif -%}
     </header>
