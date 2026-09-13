@@ -3,8 +3,8 @@ layout: post
 title: "Node.js training incoming"
 date: 2014-11-03
 permalink: "/2014/11/03/nodejs-training-incoming/"
-description: "Out of the blue I did something I wanted to do for a very long time - creating a 2 day training for node.js."
-tags: []
+description: "Announcing a two-day Node.js training for web developers with basic JavaScript skills, covering async code, Redis, debugging, TDD, modules and Express."
+tags: [workshops-and-talks, web-development]
 og_type: article
 original_source: "Dissident Trainings"
 original_url: "http://dissident-trainings.de/2014/11/03/nodejs-training-incoming.html"

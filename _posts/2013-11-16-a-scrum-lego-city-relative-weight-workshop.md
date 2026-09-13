@@ -1,10 +1,10 @@
 ---
 layout: post
-title: "Scrum lego City Relative Weight Workshop"
+title: "Scrum Lego City Relative Weight Workshop"
 date: 2013-11-16
 permalink: "/2013/11/16/a-scrum-lego-city-relative-weight-workshop/"
-description: "A Relative Weight Backlog is one of the key artifacts in scrum. I always had a hard time to explain it to people. Since we are doing regular workshops in…"
-tags: []
+description: "A two-hour workshop where product owners build a relative weight backlog by estimating value, penalty, effort and risk for Scrum Lego City stories."
+tags: [agile-practices, workshops-and-talks]
 og_type: article
 original_source: "Dissident Trainings"
 original_url: "http://dissident-trainings.de/2013/11/16/a-scrum-lego-city-relative-weight-workshop.html"

@@ -3,10 +3,10 @@ layout: post
 title: "The Build vs. Buy Trap: Why You Should Be Assembling Instead"
 date: 2026-02-17 09:00:00 +0000
 permalink: "/2026/02/17/the-build-vs-buy-trap-why-you-should-be-assembling-instead/"
-description: "For a while, engineering teams have been trapped in a false dichotomy, a binary choice that has..."
-tags: [devops, tco]
+description: "Build versus buy is a false choice. Beyond renting SaaS, teams can assemble managed cloud services, owning workflow and logic while lowering total cost."
+tags: [tech-strategy, devops]
 og_type: article
-image: "/assets/posts/the-build-vs-buy-trap-why-you-should-be-assembling-instead/cover.png"
+image: "/assets/posts/the-build-vs-buy-trap-why-you-should-be-assembling-instead/og.jpg"
 devto_url: "https://dev.to/sebs/the-build-vs-buy-trap-why-you-should-be-assembling-instead-29f4"
 render_with_liquid: false
 ---

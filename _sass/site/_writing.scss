@@ -184,6 +184,8 @@
   color: theme.$text-secondary;
 }
 
-.site-archive-tag + .site-archive-tag {
-  margin-inline-start: spacing.$spacing-03;
+// Topic names are multi-word, so neighbours need a visible separator.
+.site-archive-tag + .site-archive-tag::before {
+  content: "·";
+  margin-inline: spacing.$spacing-03;
 }

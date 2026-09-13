@@ -4,7 +4,7 @@ title: "Speaking about Pairprogramming at the Hamburg PHP Usergroup"
 date: 2014-10-09
 permalink: "/2014/10/09/speaking-at-hamburg-php-usergroup/"
 description: "I will be speaking at the Hamburg PHP Usergroup on 14th of October about Pairprogramming: To pair or not to pair: That is not a question"
-tags: []
+tags: [pair-programming, workshops-and-talks]
 og_type: article
 original_source: "Dissident Trainings"
 original_url: "http://dissident-trainings.de/2014/10/09/speaking-at-hamburg-php-usergroup.html"

@@ -3,10 +3,10 @@ layout: post
 title: "Projen just put the fun back into releasing OS for me"
 date: 2024-07-16 22:24:35 +0000
 permalink: "/2024/07/16/projen-just-put-the-fun-back-into-releasing-os-for-me/"
-description: "projen might just be a scaffolding tool"
-tags: [npm, projen, typescript, node]
+description: "Projen takes the yak shaving out of releasing open source Node.js projects by generating and maintaining TypeScript, linting, testing and CI setup."
+tags: [developer-tooling, web-development]
 og_type: article
-image: "/assets/posts/projen-just-put-the-fun-back-into-releasing-os-for-me/cover.jpg"
+image: "/assets/posts/projen-just-put-the-fun-back-into-releasing-os-for-me/og.jpg"
 devto_url: "https://dev.to/sebs/projen-just-put-the-fun-back-into-releasing-os-for-me-cp5"
 render_with_liquid: false
 ---

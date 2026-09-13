@@ -3,10 +3,10 @@ layout: post
 title: "Implementation Decisions: Replit's Approach vs. Technical Requirements"
 date: 2025-06-12 10:46:49 +0000
 permalink: "/2025/06/12/implementation-decisions-replits-approach-vs-technical-requirements/"
-description: "In a recent blog post titled \"I Was So Angry, I Built My Own\", I articulated the frustrations that..."
-tags: [node, ai]
+description: "Replit built a project management app with an ORM, migrations and JSON versioning. Why Postgres triggers and plain SQL would remove that complexity."
+tags: [ai-assisted-development, software-architecture]
 og_type: article
-image: "/assets/posts/implementation-decisions-replits-approach-vs-technical-requirements/cover.png"
+image: "/assets/posts/implementation-decisions-replits-approach-vs-technical-requirements/og.jpg"
 series: "I was so angry I built my own"
 devto_url: "https://dev.to/sebs/implementation-decisions-replits-approach-vs-technical-requirements-b24"
 render_with_liquid: false

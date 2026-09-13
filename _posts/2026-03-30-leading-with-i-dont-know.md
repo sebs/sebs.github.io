@@ -3,10 +3,10 @@ layout: post
 title: "Leading With \"I Don't Know\""
 date: 2026-03-30 19:46:23 +0000
 permalink: "/2026/03/30/leading-with-i-dont-know/"
-description: "A powerful thing a tech lead can say isn't an answer. It's an honest admission — about your team's..."
-tags: [ai, leadership, crisismode]
+description: "Admitting uncertainty builds trust when tech leads follow it with action: concrete moves for daily team problems, the unclear impact of AI and crises."
+tags: [teams-and-leadership, ai-and-critical-thinking]
 og_type: article
-image: "/assets/posts/leading-with-i-dont-know/cover.png"
+image: "/assets/posts/leading-with-i-dont-know/og.jpg"
 devto_url: "https://dev.to/sebs/leading-with-i-dont-know-324h"
 render_with_liquid: false
 ---

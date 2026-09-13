@@ -3,8 +3,8 @@ layout: post
 title: "I Was So Angry, I Built My Own"
 date: 2025-05-28 15:24:53 +0000
 permalink: "/2025/05/28/i-was-so-angry-i-built-my-own/"
-description: "Frustration often breeds innovation. After years of wrestling with project management tools that..."
-tags: [tooling, programming, javascript]
+description: "A self-built project management tool born of frustration: markdown stories, relative weight estimates, ADRs, post-mortems, DORA and Kanban metrics."
+tags: [developer-tooling, agile-practices]
 og_type: article
 series: "I was so angry I built my own"
 devto_url: "https://dev.to/sebs/i-was-so-angry-i-built-my-own-4mj1"
@@ -17,7 +17,7 @@ Frustration often breeds innovation. After years of wrestling with project manag
 Most project management tools force you into their proprietary editors with fancy formatting options that ultimately create more problems than they solve. All I wanted was to edit markdown files – simple, portable, version-control friendly text that everyone already understands. Why should documenting a story be more complicated than writing code?
 
 
-![Image description](/assets/posts/i-was-so-angry-i-built-my-own/qvrobwm9r7bes3vwt9o2.png)
+![Markdown editor with YAML front matter for a user story beside a metadata panel showing benefit, penalty, estimate and risk](/assets/posts/i-was-so-angry-i-built-my-own/qvrobwm9r7bes3vwt9o2.webp)
 
 
 
@@ -41,7 +41,7 @@ This approach gives teams a more nuanced way to prioritize work and makes trade-
 
 In most tools, Architecture Decision Records (ADRs) and Post-Mortems are afterthoughts – if they exist at all. They're typically buried in wikis or shared drives, disconnected from the work they relate to.
 
-![Image description](/assets/posts/i-was-so-angry-i-built-my-own/9d824xpo3f5vp3no9n58.png)
+![Kanban board of the self-built tool with Backlog, Ready and In Progress columns holding user story cards](/assets/posts/i-was-so-angry-i-built-my-own/9d824xpo3f5vp3no9n58.webp)
 
 I built a system where ADRs and Post-Mortems are just as important as stories. They're versioned, linked to related work items, and follow the same workflow processes. This creates a connected knowledge base that evolves with your project, not separate from it.
 

@@ -3,8 +3,8 @@ layout: post
 title: "Weekly recap - Week #41"
 date: 2014-10-10
 permalink: "/2014/10/10/weekly-recap-week-41/"
-description: "I am preparing for a lot of speaking in the near future."
-tags: []
+description: "Weekly recap: upcoming talks on pair programming, Nonviolent Communication at XP Days and front-end survival, plus a user stories and BDD workshop."
+tags: [workshops-and-talks, pair-programming, testing-and-quality]
 og_type: article
 original_source: "Dissident Trainings"
 original_url: "http://dissident-trainings.de/2014/10/10/weekly-recap-week-41.html"

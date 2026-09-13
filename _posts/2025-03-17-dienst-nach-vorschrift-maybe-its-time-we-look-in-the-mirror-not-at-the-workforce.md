@@ -3,8 +3,8 @@ layout: post
 title: "Dienst Nach Vorschrift? Maybe It's Time We Look in the Mirror, Not at the Workforce"
 date: 2025-03-17 21:11:09 +0000
 permalink: "/2025/03/17/dienst-nach-vorschrift-maybe-its-time-we-look-in-the-mirror-not-at-the-workforce/"
-description: "Disclaimer: Author had and failed at several leadership roles, at several management levels in the..."
-tags: [teamwork]
+description: "A Gallup report on disengaged German workers points at leadership, not staff. Remedies: autonomy, better pay, balanced challenge and shared personal goals."
+tags: [teams-and-leadership]
 og_type: article
 devto_url: "https://dev.to/sebs/dienst-nach-vorschrift-maybe-its-time-we-look-in-the-mirror-not-at-the-workforce-308j"
 render_with_liquid: false

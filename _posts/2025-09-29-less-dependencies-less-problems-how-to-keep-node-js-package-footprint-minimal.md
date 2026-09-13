@@ -3,10 +3,10 @@ layout: post
 title: "Less Dependencies, Less Problems: How to keep node.js Package Footprint Minimal"
 date: 2025-09-29 11:08:41 +0000
 permalink: "/2025/09/29/less-dependencies-less-problems-how-to-keep-node-js-package-footprint-minimal/"
-description: "The Bus Factor Analyzer takes a deliberately minimalist approach to dependencies. With only five..."
-tags: [supplychain, security, node, webdev]
+description: "Why the Bus Factor Analyzer CLI uses only five npm dependencies, such as commander, ajv and simple-git, to cut supply chain risk and ownership costs."
+tags: [supply-chain-security, developer-tooling, web-development]
 og_type: article
-image: "/assets/posts/less-dependencies-less-problems-how-to-keep-node-js-package-footprint-minimal/cover.png"
+image: "/assets/posts/less-dependencies-less-problems-how-to-keep-node-js-package-footprint-minimal/og.jpg"
 devto_url: "https://dev.to/sebs/less-dependencies-less-problems-how-to-keep-nodejs-package-footprint-minimal-50o"
 render_with_liquid: false
 ---

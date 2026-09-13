@@ -60,16 +60,41 @@ Most content lives in `_data/`:
 | `_data/projects.yml`  | Project cards                                             |
 | `_data/talks.yml`     | `/talks` page + homepage teaser (`featured` + `history`)  |
 | `_data/packages.yml`  | PURLs for the `/packages/` npm-stats page                 |
+| `_data/topics.yml`    | The blog's topics: name, meta description and intro of each `/tags/<topic>/` page |
+| `_data/tag_redirects.yml` | Retired free-form tags → the topic their `/tags/<tag>/` URL now redirects to |
 
 Talk slides go in `assets/talks/` (PDF) or as a SpeakerDeck embed URL — see the
 comments in `_data/talks.yml`.
 
 Long-form posts are markdown in `_posts/`, named `YYYY-MM-DD-slug.md`. Front
-matter sets `title`, `date`, `tags`, an optional `description`, and a
-`permalink` (the file's slug doesn't affect the URL — the permalink does). The
-`post` layout, `nav: writing` highlight, and `og_type: article` are applied
+matter sets `title`, `date`, a `permalink` (the file's slug doesn't affect the
+URL — the permalink does), and for search and social previews:
+
+- `description` — 120–155 characters, a real summary (it is the search
+  snippet), never a cut-off first sentence;
+- `tags` — 1–3 topic slugs from `_data/topics.yml`, most relevant first. Topics
+  drive the topic pages, the "Related posts" block and `article:tag`;
+- `image` — optional social card, 1200×630. Put a cover in
+  `assets/posts/<slug>/`, point `image:` at it and run
+  `python3 scripts/optimize_images.py`: it cuts `og.jpg`, converts post images
+  to WebP at ≤ 1600px and rewrites the references.
+
+The `post` layout, `nav: writing` highlight, and `og_type: article` are applied
 automatically via `defaults` in `_config.yml`. Posts appear on `/blog/`, in the
 homepage Writing section and in `/feed.xml` without further wiring.
+
+### SEO plumbing
+
+- `_includes/head.html` emits `BlogPosting` and `BreadcrumbList` JSON-LD plus
+  `article:*` meta for posts, composes titles and descriptions for topic and
+  date pages, and marks thin pages `noindex, follow` (topics with fewer than
+  three posts, all month archives).
+- `sitemap.xml` is hand-written and lists only indexable pages; it also leaves
+  out posts whose `canonical_url` points at another site.
+- `_plugins/` holds three small build-time plugins: `related_posts.rb` (shared
+  topics → `page.related`), `tag_redirects.rb` (redirect pages from
+  `_data/tag_redirects.yml`) and `image_attributes.rb` (width, height and lazy
+  loading on post images, read from the files).
 
 ## Local development
 

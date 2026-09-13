@@ -3,8 +3,8 @@ layout: post
 title: "BDD Podcasts and Videos"
 date: 2014-10-08
 permalink: "/2014/10/08/bdd-podcasts-and-videos/"
-description: "I had to do some research for my workshop on BDD workshop and ended up with a big number of videos and podcasts. I thought I’d share that with you here."
-tags: []
+description: "Podcasts and videos on behavior-driven development, from BDD vs TDD intros to Dan North, Liz Keogh, Chris Matts on feature injection and cucumber.js."
+tags: [testing-and-quality, workshops-and-talks]
 og_type: article
 original_source: "Dissident Trainings"
 original_url: "http://dissident-trainings.de/2014/10/08/BDD-podcasts-and-videos.html"

@@ -3,8 +3,8 @@ layout: post
 title: "So that the crazy ones don't forget"
 date: 2014-05-28
 permalink: "/2014/05/28/so-that-the-crazy-ones-dont-forget/"
-description: "Here's to the crazy ones, the misfits, the rebels, the troublemakers — the ones who see things differently."
-tags: []
+description: "The full text of the tribute to the crazy ones, the misfits and rebels who see things differently and change the world, with a link to the YouTube video."
+tags: [teams-and-leadership]
 og_type: article
 original_source: "Dissident Trainings"
 original_url: "http://dissident-trainings.de/2014/05/28/so-that-the-crazy-ones-dont-forget.html"

@@ -3,8 +3,8 @@ layout: post
 title: "Weekly recap Week #39"
 date: 2014-09-26
 permalink: "/2014/09/26/weekly-recap-week-39/"
-description: "Oh what a sick week. In its true sense. I had my first real sick leave as a selfemployed person. Sucks. But a lot of time to read the interwebsz empty and…"
-tags: []
+description: "Weekly recap: rebuilding the Dissident Trainings site with Jekyll, rethinking the Git interface, js-git in the browser, SVG social icons and Bootstrap 3."
+tags: [workshops-and-talks, web-development]
 og_type: article
 original_source: "Dissident Trainings"
 original_url: "http://dissident-trainings.de/2014/09/26/weekly-recap-week-39.html"

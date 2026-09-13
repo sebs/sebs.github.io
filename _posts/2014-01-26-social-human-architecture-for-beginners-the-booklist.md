@@ -3,8 +3,8 @@ layout: post
 title: "Social Human Architecture for Beginners - The Booklist"
 date: 2014-01-26
 permalink: "/2014/01/26/social-human-architecture-for-beginners-the-booklist/"
-description: "While giving the Talk about “all those soft skills”, I referred to a lot of Books and Papers that someone could read. I will list all of them now"
-tags: []
+description: "Reading list from a talk on soft skills for developers: introversion, Maslow, nonviolent communication, Weinberg, Conway's Law, Tuckman, flow and McGregor."
+tags: [teams-and-leadership, workshops-and-talks]
 og_type: article
 original_source: "Dissident Trainings"
 original_url: "http://dissident-trainings.de/2014/01/26/social-human-architecture-for-beginners-the-booklist.html"

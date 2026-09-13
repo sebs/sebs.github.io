@@ -3,8 +3,8 @@ layout: post
 title: "Ideas for modern coding"
 date: 2014-08-20
 permalink: "/2014/08/20/ideas-for-modern-coding/"
-description: "If starting a new web project follow some basic principles"
-tags: []
+description: "A checklist for new web projects: deployable from day one, unit and functional tests, CI/CD, virtual machines, static analysis, monitoring and docs."
+tags: [devops, testing-and-quality]
 og_type: article
 original_source: "Dissident Trainings"
 original_url: "http://dissident-trainings.de/2014/08/20/ideas-for-modern-coding.html"

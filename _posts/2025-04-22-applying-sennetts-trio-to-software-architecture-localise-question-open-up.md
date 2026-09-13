@@ -3,8 +3,8 @@ layout: post
 title: "Applying Sennett's Trio to Software Architecture – Localise, Question, Open Up"
 date: 2025-04-22 09:58:09 +0000
 permalink: "/2025/04/22/applying-sennetts-trio-to-software-architecture-localise-question-open-up/"
-description: "Software development, particularly software architecture, is often discussed in terms of engineering..."
-tags: [architecture, programming]
+description: "Sociologist Richard Sennett's craftsmanship trio of localise, question and open up, applied to software architecture as a continuous design cycle."
+tags: [software-architecture]
 og_type: article
 devto_url: "https://dev.to/sebs/applying-sennetts-trio-to-software-architecture-localise-question-open-up-l5n"
 render_with_liquid: false

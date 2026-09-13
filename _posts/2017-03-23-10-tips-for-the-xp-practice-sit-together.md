@@ -1,10 +1,10 @@
 ---
 layout: post
-title: "10 TIPS FOR THE XP PRACTICE \"SIT TOGETHER\""
+title: "10 Tips for the XP Practice \"Sit Together\""
 date: 2017-03-23
 permalink: "/2017/03/23/10-TIPS-FOR-THE-XP-PRACTICE-SIT-TOGETHER-/"
-description: "James Shore describes “Sit together” in his book as"
-tags: [extremeprogramming, practices]
+description: "Ten tips for the XP practice sit together: seat all disciplines together, agree on explicit rules, adapt visual management, add rituals and enough space."
+tags: [agile-practices, teams-and-leadership]
 og_type: article
 original_source: "Dissident Trainings"
 original_url: "http://dissident-trainings.de/2014/09/17/10-tips-for-the-xp-practice-sit-together.html"

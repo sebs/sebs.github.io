@@ -3,8 +3,8 @@ layout: post
 title: "Why I Won't Pay to Train Your Model: A Developer's Farewell to Replit"
 date: 2025-07-20 14:38:16 +0000
 permalink: "/2025/07/20/why-i-wont-pay-to-train-your-model-a-developers-farewell-to-replit/"
-description: "*A hard look at effort-based pricing and the hidden cost of being a paying beta tester *  Let me be..."
-tags: [replit, programming, startup]
+description: "A farewell to Replit: effort-based pricing turns paying developers into unpaid testers who train its models, with unpredictable bills and lock-in."
+tags: [tech-strategy, ai-assisted-development]
 og_type: article
 devto_url: "https://dev.to/sebs/why-i-wont-pay-to-train-your-model-a-developers-farewell-to-replit-ih9"
 render_with_liquid: false

@@ -3,8 +3,8 @@ layout: post
 title: "The crux of done"
 date: 2019-02-03
 permalink: "/2019/02/03/The-crux-of-done/"
-description: "There are always big discussions revolving around when some piece of work is “done”: Often the discussion goes as far as defining different states of done…"
-tags: [teamwork]
+description: "Walks through definitions of done, from passing tests to deployment, and argues for a single rule: work is done when it measurably delivers value."
+tags: [agile-practices, devops]
 og_type: article
 ---
 There are always big discussions revolving around when some piece of work is “done”: Often the discussion goes as far as defining different states of done and there is even the notion of “done done”. This stands for “it is really done now”.

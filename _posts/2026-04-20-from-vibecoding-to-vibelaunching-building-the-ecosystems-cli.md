@@ -3,10 +3,10 @@ layout: post
 title: "From Vibecoding to Vibelaunching: Building the ecosystems-cli"
 date: 2026-04-20 18:58:07 +0000
 permalink: "/2026/04/20/from-vibecoding-to-vibelaunching-building-the-ecosystems-cli/"
-description: "12 months ago I set a goal: ship a production-ready CLI for the ecosyste.ms API, in Python. Some..."
-tags: [vibecoding, python, programming, ai]
+description: "Lessons from building ecosystems-cli in Python with Claude Code: tests become the spec, early architecture gets discarded, and funding pays for quality."
+tags: [ai-assisted-development, developer-tooling]
 og_type: article
-image: "/assets/posts/from-vibecoding-to-vibelaunching-building-the-ecosystems-cli/cover.png"
+image: "/assets/posts/from-vibecoding-to-vibelaunching-building-the-ecosystems-cli/og.jpg"
 devto_url: "https://dev.to/sebs/from-vibecoding-to-vibelaunching-building-the-ecosystems-cli-nje"
 render_with_liquid: false
 ---

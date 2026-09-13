@@ -3,10 +3,10 @@ layout: post
 title: "Pair Programming Shorts: Analyse Pairing Strategies & Interactions"
 date: 2025-04-29 08:45:55 +0000
 permalink: "/2025/04/29/pair-programming-shorts-analyse-pairing-strategies-interactions/"
-description: "What it is: Examining the specific techniques and interaction patterns your pair uses to achieve a..."
-tags: [pairprogramming, webdev, programming]
+description: "Pair programming short: examine the interaction patterns your pair uses, such as proposing versus challenging design ideas, to find areas to improve."
+tags: [pair-programming]
 og_type: article
-image: "/assets/posts/pair-programming-shorts-analyse-pairing-strategies-interactions/cover.jpg"
+image: "/assets/posts/pair-programming-shorts-analyse-pairing-strategies-interactions/og.jpg"
 devto_url: "https://dev.to/sebs/pair-programming-shorts-analyse-pairing-strategies-interactions-4nnc"
 render_with_liquid: false
 ---

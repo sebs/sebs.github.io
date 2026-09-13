@@ -3,10 +3,10 @@ layout: post
 title: "Frameworks Rot. The Platform Doesn't."
 date: 2026-06-12 18:46:48 +0000
 permalink: "/2026/06/12/frameworks-rot-the-platform-doesnt/"
-description: "A decision memo for anyone staring at their package.json and wondering.   Most arguments for leaving..."
-tags: [ai, javascript, tco, webdev]
+description: "The case for moving from SPA frameworks to vanilla JavaScript and Web Components on TCO, hiring, AI leverage and architecture, via a strangler migration."
+tags: [web-development, tech-strategy, software-architecture]
 og_type: article
-image: "/assets/posts/frameworks-rot-the-platform-doesnt/cover.png"
+image: "/assets/posts/frameworks-rot-the-platform-doesnt/og.jpg"
 devto_url: "https://dev.to/sebs/frameworks-rot-the-platform-doesnt-58g0"
 render_with_liquid: false
 ---

@@ -3,8 +3,8 @@ layout: post
 title: "The AI Coding Craze: Are We Dumbing Down, or Just Speeding Up?"
 date: 2025-03-30 14:21:04 +0000
 permalink: "/2025/03/30/the-ai-coding-craze-are-we-dumbing-down-or-just-speeding-up/"
-description: "The internet is buzzing about AI code generators, and while the initial excitement is understandable,..."
-tags: [vibecoding, programming, webdev]
+description: "AI code generators trade deep understanding for quick results: a critique of vibecoding hype and superficial expertise, and a call for accountability."
+tags: [ai-and-critical-thinking, ai-assisted-development]
 og_type: article
 devto_url: "https://dev.to/sebs/the-ai-coding-craze-are-we-dumbing-down-or-just-speeding-up-1ldn"
 render_with_liquid: false

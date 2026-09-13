@@ -3,10 +3,10 @@ layout: post
 title: "Taking LLMs to (code) town - part II. Creating a vanilla.js web component toolchain from ground up"
 date: 2025-01-02 21:49:19 +0000
 permalink: "/2025/01/02/taking-llms-to-code-town-part-ii-creating-a-vanilla-js-web-component-toolchain/"
-description: "I have been developing vanilla web components using a very minimal toolchain, primarily consisting of..."
-tags: [softwareengineering, webdev, typescript]
+description: "A lean toolchain for vanilla web components built on TypeScript, JSDOM, memfs and the Node test runner, developed in 40 hours with the Windsurf AI editor."
+tags: [web-development, ai-assisted-development, developer-tooling]
 og_type: article
-image: "/assets/posts/taking-llms-to-code-town-part-ii-creating-a-vanilla-js-web-component-toolchain/cover.png"
+image: "/assets/posts/taking-llms-to-code-town-part-ii-creating-a-vanilla-js-web-component-toolchain/og.jpg"
 devto_url: "https://dev.to/sebs/taking-llms-to-code-town-part-ii-creating-a-vanillajs-web-component-toolchain-from-ground-up-mi9"
 render_with_liquid: false
 ---
@@ -40,7 +40,7 @@ Node has delivered tooling for testing, and I want to explore this a bit more as
 
 Shoutout to Windsurf.Idea: It took approximately 40 hours to bring the project to its current state. Windsurf really helps with refactoring and making 'opinionated changes' to codebases. I began with the concept of mounting a web component to a JSDOM object, which would allow for the installation of components in RAM. Another aspect of the process involves utilizing TypeScript. Before I can mount my TypeScript source file to JSDOM, I still need to turn it into proper JavaScript. I began experimenting with the TS compiler, discovering that it was possible to compile while mounting a component. But it was slow. All the practicalities hit now: What about many tests for more than just one component? Well, there are caches (which I have not yet dabbled with) or in-memory filesystems to speed up build time.
 
-[![](/assets/posts/taking-llms-to-code-town-part-ii-creating-a-vanilla-js-web-component-toolchain/image-1.png)](https://mermaid.live/edit#pako:eNplUb1uwyAQfhXrJkey-wAeOnmqFHVIp4oFwdnGMpwFh6ooyrsXGzuNUxb4fu67A26gSCM00E30owbpufhqhSvSCl6V9lorsjM5dPzG4ZSVMRyFcRcWykzoM9Kk6h5dBoyB6wGneVc_Lu3nuSzX7bTVaxVtCpRsyJWP_CUoGR5TFXX9_tJqR6s0hlfzYZINZOGpoXB72SHt3-BPxGpYb5AlqMCit9Lo9KK3hRPAA1oU0KSjxk7GiQUId09WGZkuV6egYR-xgjhrydga2XtpoenkFBI7S_dN9IdRGyZ_zr-2fl4FnmI_bI77L_WbmAc)
+[![Toolchain diagram: my-component.ts is compiled to JS and a JSDOM test helper, and passed to doc-gen to produce component docs](/assets/posts/taking-llms-to-code-town-part-ii-creating-a-vanilla-js-web-component-toolchain/image-1.png)](https://mermaid.live/edit#pako:eNplUb1uwyAQfhXrJkey-wAeOnmqFHVIp4oFwdnGMpwFh6ooyrsXGzuNUxb4fu67A26gSCM00E30owbpufhqhSvSCl6V9lorsjM5dPzG4ZSVMRyFcRcWykzoM9Kk6h5dBoyB6wGneVc_Lu3nuSzX7bTVaxVtCpRsyJWP_CUoGR5TFXX9_tJqR6s0hlfzYZINZOGpoXB72SHt3-BPxGpYb5AlqMCit9Lo9KK3hRPAA1oU0KSjxk7GiQUId09WGZkuV6egYR-xgjhrydga2XtpoenkFBI7S_dN9IdRGyZ_zr-2fl4FnmI_bI77L_WbmAc)
 
 There is a documentation angle to the whole effort as well. It should be simple to turn the component into a working demo—preferably by just using doc tags in the component's source code. TSDOC is a useful tool to hook up to TypeScript documentation parsing and add your own tags, for example. In the end, this is where the real rabbit hole starts to open: creating a small working toolchain supporting me building a bunch of vanilla web components that are not trivial and still make sense. 
 

@@ -3,10 +3,10 @@ layout: post
 title: "Let the ORM fight begin!"
 date: 2026-04-28 17:23:24 +0000
 permalink: "/2026/04/28/let-the-orm-fight-begin/"
-description: "Every few months, a new round of \"which TypeScript ORM should we use?\" breaks out — on team chats, on..."
-tags: [typescript, database, cicd, experiment]
+description: "The orm-fight experiment builds the same bookkeeping app with seven TypeScript ORMs and tracks updates, CVEs and SBOM dependency drift for a year."
+tags: [supply-chain-security, web-development, tech-strategy]
 og_type: article
-image: "/assets/posts/let-the-orm-fight-begin/cover.png"
+image: "/assets/posts/let-the-orm-fight-begin/og.jpg"
 devto_url: "https://dev.to/sebs/let-the-orm-fight-begin-392e"
 render_with_liquid: false
 ---

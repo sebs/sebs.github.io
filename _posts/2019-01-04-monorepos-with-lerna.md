@@ -3,8 +3,8 @@ layout: post
 title: "Monorepos with Lerna"
 date: 2019-01-04
 permalink: "/2019/01/04/Monorepos-with-Lerna/"
-description: "When approaching a web components project you will end up will a lot of repositories: In our case these are at least 2 apps, the components used in these…"
-tags: [monorepos, javascript, frontend]
+description: "Managing a web components monorepo with Lerna: one-command bootstrap and test runs, shared dev dependencies, concurrency limits and Windows pitfalls."
+tags: [developer-tooling, web-development]
 og_type: article
 ---
 ## One repo to rule them all

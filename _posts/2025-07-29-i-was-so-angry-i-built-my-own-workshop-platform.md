@@ -3,10 +3,10 @@ layout: post
 title: "I Was So Angry, I Built My Own Workshop Platform"
 date: 2025-07-29 21:42:19 +0000
 permalink: "/2025/07/29/i-was-so-angry-i-built-my-own-workshop-platform/"
-description: "Sometimes the breaking point comes not from a single catastrophic failure, but from the slow..."
-tags: [webdev, ai, productivity, javascript]
+description: "Frustration with Miro led to a vanilla JavaScript workshop platform with WebRTC and CRDTs, prototyped with AI tools and guided by ADRs and TDD."
+tags: [ai-assisted-development, software-architecture, web-development]
 og_type: article
-image: "/assets/posts/i-was-so-angry-i-built-my-own-workshop-platform/cover.png"
+image: "/assets/posts/i-was-so-angry-i-built-my-own-workshop-platform/og.jpg"
 devto_url: "https://dev.to/sebs/i-was-so-angry-i-built-my-own-workshop-platform-439c"
 render_with_liquid: false
 ---
@@ -99,14 +99,14 @@ The Google AI Studio phase taught me that while AI could accelerate the initial 
 
 Frustrated by the testing limitations of Google AI Studio, I moved my prototyping efforts to Lovable, a platform that promised to handle both the technical implementation and user experience design aspects of web application development.
 
-![I really liked the Prototype](/assets/posts/i-was-so-angry-i-built-my-own-workshop-platform/c9zl7jnx8mc6unf4zg3q.png)
+![I really liked the Prototype](/assets/posts/i-was-so-angry-i-built-my-own-workshop-platform/c9zl7jnx8mc6unf4zg3q.webp)
 
 
 Lovable exceeded my expectations in several key areas. The platform demonstrated an impressive understanding of modern UX patterns, generating interfaces that felt intuitive and professionally designed. The WebRTC integration was handled more elegantly than my previous attempts, with proper error handling and graceful degradation when connections failed.
 
 More importantly, Lovable understood the collaborative nature of what I was building. The generated interfaces included features I hadn't explicitly requested but clearly needed: participant management, session state synchronization, and visual feedback for connection status. The platform seemed to grasp the implicit requirements of real-time collaborative tools in ways that pure code generation couldn't match.
 
-![Just nailed it here](/assets/posts/i-was-so-angry-i-built-my-own-workshop-platform/7yy5v6ynqca8py1hv4ov.png)
+![Just nailed it here](/assets/posts/i-was-so-angry-i-built-my-own-workshop-platform/7yy5v6ynqca8py1hv4ov.webp)
 
 But Lovable's strength in feature generation also became its weakness. The platform's enthusiasm for adding functionality resulted in a feature set that grew far beyond my original requirements.
 
@@ -158,7 +158,7 @@ ADR-002 defined the offline-first architecture with IndexedDB as the primary dat
 
 ADR-003 and ADR-004 addressed the collaboration model, establishing support for both host-controlled approval workflows and distributed CRDT-based synchronization. This dual approach reflected the tension between structured workshop facilitation and free-form collaborative brainstorming.
 
-![ADRs were created while writing this software](/assets/posts/i-was-so-angry-i-built-my-own-workshop-platform/u9vyr44kw27w7ts319f6.png)
+![ADRs were created while writing this software](/assets/posts/i-was-so-angry-i-built-my-own-workshop-platform/u9vyr44kw27w7ts319f6.webp)
 
 The ADRs transformed the project from a collection of prototypes into a coherent architectural vision. They provided the constraints and principles needed to guide implementation decisions, preventing the feature creep that had plagued the Lovable prototype while ensuring the robustness that the earlier prototypes had lacked.
 
@@ -252,7 +252,7 @@ But the elegance of the theoretical solution masked significant implementation c
 
 Following the same pattern that had proven effective for WebRTC exploration, I decided to implement a comprehensive prototype that demonstrated all the major CRDT types and their behavior in various conflict scenarios. This wasn't about building production code – it was about developing intuition for how different CRDT approaches would behave in the specific context of collaborative mindmapping.
 
-![This was a very interesting way to prototype data structures by designing a UI on top of them](/assets/posts/i-was-so-angry-i-built-my-own-workshop-platform/jnxs3rm0zve34h4rgtsd.png)
+![This was a very interesting way to prototype data structures by designing a UI on top of them](/assets/posts/i-was-so-angry-i-built-my-own-workshop-platform/jnxs3rm0zve34h4rgtsd.webp)
 
 I returned to 'Google AI Studio' for this exploration, but with a much more structured approach than my initial WebRTC prototyping attempts. Instead of asking for a complete collaboration system, I requested focused implementations of individual CRDT types with comprehensive test scenarios that demonstrated their convergence properties under various conflict conditions.
 
@@ -330,14 +330,14 @@ More importantly, the code review identified architectural integration challenge
 
 The code review findings triggered a second round of requirements analysis using a specialized requirements engineering agent. This agent took the prototype learnings and the architectural constraints established in the earlier ADRs and produced a comprehensive specification for the production CRDT implementation.
 
-![Image description](/assets/posts/i-was-so-angry-i-built-my-own-workshop-platform/4iwny1sb409cxxk7rlao.png)
+![Excerpt from the AI-generated requirements document: lobby system with pre-session lobby and ready-up requirements](/assets/posts/i-was-so-angry-i-built-my-own-workshop-platform/4iwny1sb409cxxk7rlao.webp)
 
 The requirements engineering process revealed that the production system needed capabilities that hadn't been apparent during the prototype phase. The CRDT implementation needed to support multiple collaboration modes, allowing users to choose between automatic conflict resolution and host-controlled approval workflows depending on the workshop context. The storage layer needed to handle CRDT metadata efficiently while maintaining the offline-first guarantees established in earlier architectural decisions.
 
 The requirements analysis also identified performance and scalability constraints that would significantly influence the implementation approach. The system needed to handle mindmaps with hundreds of nodes while maintaining sub-100ms response times for user interactions. The CRDT metadata overhead needed to be minimized to avoid overwhelming the WebRTC data channels with synchronization traffic.
 
 
-![Image description](/assets/posts/i-was-so-angry-i-built-my-own-workshop-platform/6ccj6154wt0zdcrwav0a.png)
+![Layered CRDT architecture: application and CRDT API over sync and persistence, on vector clocks, WebRTC and IndexedDB](/assets/posts/i-was-so-angry-i-built-my-own-workshop-platform/6ccj6154wt0zdcrwav0a.webp)
 
 Perhaps most importantly, the requirements engineering process produced a clear specification for how the CRDT implementation would integrate with the existing application architecture. Instead of retrofitting CRDTs onto the existing codebase, the specification defined clean interfaces and abstraction layers that would allow the CRDT functionality to be developed and tested independently before integration.
 
@@ -378,7 +378,7 @@ The effectiveness of the systematic approach was measurable in concrete terms in
 This growth in test coverage reflected the increasing complexity of the system, but also demonstrated that the test-driven development practices established during Phase 1 scaled effectively to handle distributed systems challenges. The systematic approach to testing meant that the complex CRDT algorithms, WebRTC connection management, and real-time synchronization features were all developed with the same confidence and reliability as the simpler offline functionality.
 
 
-![Image description](/assets/posts/i-was-so-angry-i-built-my-own-workshop-platform/kdsklazve677hk4pixro.png)
+![The collaborative mindmap app: toolbar with Add Node, Undo, Auto Layout and Collaborate above a tree of connected nodes](/assets/posts/i-was-so-angry-i-built-my-own-workshop-platform/kdsklazve677hk4pixro.webp)
 
 
 
@@ -403,7 +403,7 @@ Perhaps most importantly, the systematic approach demonstrated that complex dist
 ## Technical Outcomes
 
 
-![A good Starter for 2 days of work](/assets/posts/i-was-so-angry-i-built-my-own-workshop-platform/au1xd0wvedinsk3qefsr.png)
+![A good Starter for 2 days of work](/assets/posts/i-was-so-angry-i-built-my-own-workshop-platform/au1xd0wvedinsk3qefsr.webp)
 
 **Phase**: 166 passing tests, complete offline mindmap editor with IndexedDB storage, auto-save, undo/redo, and SVG rendering.
 

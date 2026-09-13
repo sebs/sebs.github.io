@@ -3,10 +3,10 @@ layout: post
 title: "Distributed Transaction Tango: Why Your Microservices Need Sagas"
 date: 2026-02-18 10:00:00 +0000
 permalink: "/2026/02/18/distributed-transaction-tango-why-your-microservices-need-sagas/"
-description: "The move to microservices was supposed to be a liberation. We broke free from the monolithic chains,..."
-tags: [devops, distributedsystems, acid]
+description: "Microservices lose ACID rollbacks and two-phase commit is a trap. Sagas with compensating actions, orchestrated or choreographed, make failure recoverable."
+tags: [software-architecture]
 og_type: article
-image: "/assets/posts/distributed-transaction-tango-why-your-microservices-need-sagas/cover.png"
+image: "/assets/posts/distributed-transaction-tango-why-your-microservices-need-sagas/og.jpg"
 devto_url: "https://dev.to/sebs/distributed-transaction-tango-why-your-microservices-need-sagas-4lh3"
 render_with_liquid: false
 ---

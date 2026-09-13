@@ -3,8 +3,8 @@ layout: post
 title: "Claude Lawfare"
 date: 2026-07-24 17:45:39 +0000
 permalink: "/2026/07/24/claude-lawfare/"
-description: "CN: Death           I. The letter   My father died in November. Sometime between the 16th and the..."
-tags: [lawtech, claude, kidsdontdothisathome, wehaveperrymasonathome]
+description: "Using Claude to contest a housing cooperative's refusal to transfer inherited shares, and what cheap AI legal help means for parity, risk and access."
+tags: [open-data, ai-and-critical-thinking]
 og_type: article
 devto_url: "https://dev.to/sebs/claude-lawfare-15on"
 render_with_liquid: false

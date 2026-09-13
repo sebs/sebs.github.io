@@ -4,7 +4,7 @@ title: "4 ways to practice Nonviolent Communication on your job"
 date: 2014-10-15
 permalink: "/2014/10/15/4-ways-to-practice-nonviolent-communication/"
 description: "I get asked a lot about practical applications of Nonviolent Communication and this post covers 4 applications of NVC that you can use in your daily work."
-tags: []
+tags: [teams-and-leadership, agile-practices]
 og_type: article
 original_source: "Dissident Trainings"
 original_url: "http://dissident-trainings.de/2014/10/15/4-ways-to-practice-nonviolent-communication.html"

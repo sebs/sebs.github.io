@@ -3,8 +3,8 @@ layout: post
 title: "Pair Programming against Agentic Dementia"
 date: 2025-06-24 20:23:34 +0000
 permalink: "/2025/06/24/pair-programming-against-agentic-dementia/"
-description: "Facing the challenges of AI-assisted development with a collaborative solution  In my previous..."
-tags: [programming, pairprogramming, resilience]
+description: "Pair programming against agentic dementia: working together preserves the critical thinking, knowledge transfer and code quality that AI dependency erodes."
+tags: [pair-programming, ai-and-critical-thinking]
 og_type: article
 devto_url: "https://dev.to/sebs/pair-programming-against-agentic-dementia-4ell"
 render_with_liquid: false

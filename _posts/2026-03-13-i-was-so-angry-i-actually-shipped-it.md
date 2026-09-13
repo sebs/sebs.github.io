@@ -3,10 +3,10 @@ layout: post
 title: "I Was So Angry, I Actually Shipped It"
 date: 2026-03-13 22:31:40 +0000
 permalink: "/2026/03/13/i-was-so-angry-i-actually-shipped-it/"
-description: "A while ago I wrote about how I was fed up enough with project management tools to build my own. No..."
-tags: [ai, vibecoding, agile, mcp]
+description: "Introducing rewelo, a CLI and MCP server for relative-weight backlogs: priority from benefit, penalty, estimate and risk, stored in DuckDB with history."
+tags: [developer-tooling, agile-practices, ai-assisted-development]
 og_type: article
-image: "/assets/posts/i-was-so-angry-i-actually-shipped-it/cover.png"
+image: "/assets/posts/i-was-so-angry-i-actually-shipped-it/og.jpg"
 devto_url: "https://dev.to/sebs/i-was-so-angry-i-actually-shipped-it-2m19"
 render_with_liquid: false
 ---
@@ -79,7 +79,7 @@ Here's where it gets weird in a good way.
 
 The CLI doubles as an MCP server over stdio. Which means Claude — or any AI assistant that speaks MCP — can manage your backlog directly. Create tickets, assign tags, run priority calculations, generate reports. All from a conversation.
 
-![Image description](/assets/posts/i-was-so-angry-i-actually-shipped-it/j7e5lti6ti1xyzxv764l.png)
+![Claude's MCP summary: 104 rewelo tickets created from 18 Gherkin feature files, with story counts per game system](/assets/posts/i-was-so-angry-i-actually-shipped-it/j7e5lti6ti1xyzxv764l.png)
 
 I wrote in the original post that I wanted to bind agent integration to workflows, to have some control over machine-made changes. This is the answer to that. The MCP tools are the workflow. The AI calls them explicitly and the audit log catches everything it touches. Nothing happens silently.
 

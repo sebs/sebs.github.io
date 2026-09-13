@@ -3,8 +3,8 @@ layout: post
 title: "No more servers already!"
 date: 2018-07-06
 permalink: "/2018/07/06/No-more-servers-already!/"
-description: "I am working a lot with clients who pay me to extend software they have created themselves or let others write it for them. A web shop here, a custom CRM…"
-tags: [serverless]
+description: "Maintaining custom web shop and CRM code is costly; a Wardley map makes the case for commodity SaaS services and a CDN-backed serverless static stack."
+tags: [tech-strategy, devops, software-architecture]
 og_type: article
 ---
 I am working a lot with clients who pay me to extend software they have created themselves or let others write it for them. A web shop here, a custom CRM there. Nothing crazy. I fix broken dependencies often and add features where ever my work is required. Me and the previous Hackers on these code bases seem too have the same approach to code/style and documentation (fancy/questionable and documentation minimal). Its ok to build things like this, but over the years, it is hard to keep all the elements up and running as if it were “day 1” (or better said bug fix release 1.14)

@@ -1,0 +1,158 @@
+# Blog topics. Every post's `tags:` holds 1–3 of these slugs (most relevant
+# first); jekyll-archives turns each into a topic page at /tags/<slug>/.
+#
+#   name         shown on posts, the blog index and as the topic page title
+#   description  the topic page's meta description (≤ 160 characters)
+#   intro        the paragraph under the topic page's title
+#
+# A topic with fewer than three posts still gets its page, but marked noindex
+# and left out of the sitemap (see _includes/head.html, sitemap.xml). Tags used
+# before the topics existed redirect to one of these via _data/tag_redirects.yml.
+
+pair-programming:
+  name: Pair & Mob Programming
+  description: >-
+    Pair and mob programming in practice: pairing stations, pairing styles,
+    code reviews versus pairing, and what teams learned in pairing workshops.
+  intro: >-
+    Two or more people, one problem, one keyboard. Notes from more than a
+    decade of pairing, mobbing and teaching it — setups, styles, the arguments
+    for and against, and what changes when an AI joins the pair.
+
+agile-practices:
+  name: XP & Agile Practices
+  description: >-
+    Extreme Programming and agile practices beyond the ceremony: sitting
+    together, coding conventions, estimation, Scrum and Kanban in real teams.
+  intro: >-
+    Extreme Programming and the agile practices around it, taken seriously and
+    tried in real teams — from sitting together and coding conventions to
+    estimation, Scrum and Kanban.
+
+ai-assisted-development:
+  name: AI-Assisted Development
+  description: >-
+    Building software with LLMs and coding agents: vibecoding experiments,
+    agentic workflows, prompting tricks, MCP and what actually ships.
+  intro: >-
+    Hands-on experiments with LLMs and coding agents — what they build well,
+    where they fall over, and the workflows, tricks and tools that make them
+    useful for real software.
+
+ai-and-critical-thinking:
+  name: AI, Skills & Critical Thinking
+  description: >-
+    The side effects of AI at work: skill atrophy, shrinking attention spans,
+    eroding competence and trust, and how teams can counter them.
+  intro: >-
+    What leaning on AI does to the people using it — skills that fade,
+    attention that shrinks, knowledge that gets harder to trust — and
+    practical ways to push back.
+
+supply-chain-security:
+  name: Software Supply-Chain Security
+  description: >-
+    Securing open-source dependencies: npm worms and rogue registries, keeping
+    package footprints small, and the Cyber Resilience Act for maintainers.
+  intro: >-
+    The code you did not write is still your problem. Attacks on npm and
+    package registries, keeping dependency trees small, and what regulation
+    like the Cyber Resilience Act means for open source.
+
+devops:
+  name: DevOps & Delivery
+  description: >-
+    DevOps beyond tooling: CI/CD pipelines, infrastructure as code with
+    Terraform and CDK, trust boundaries, DORA metrics and delivery culture.
+  intro: >-
+    Getting software from commit to production — pipelines, infrastructure as
+    code, containers and cloud — and the culture and metrics that decide
+    whether any of it works.
+
+software-architecture:
+  name: Software Architecture
+  description: >-
+    Software architecture as a craft: distributed systems and their fallacies,
+    sagas, over-abstraction, and design principles that hold up over time.
+  intro: >-
+    Architecture as craft rather than diagrams: distributed systems and the
+    fallacies that bite them, transactions and sagas, and the cost of
+    abstracting too much or too early.
+
+teams-and-leadership:
+  name: Teams, Culture & Leadership
+  description: >-
+    How teams work and how to lead them: culture models, communication,
+    management in a crisis, and leading honestly when you don't have answers.
+  intro: >-
+    Software is built by teams, and teams run on culture, communication and
+    leadership. Observations on all three, from workshops, consulting and
+    crises.
+
+tech-strategy:
+  name: Tech Strategy & Economics
+  description: >-
+    The economics behind technology decisions: build versus buy, total cost of
+    ownership, vendor lock-in and the real math of running AI locally.
+  intro: >-
+    Technology decisions are business decisions. Build or buy, what things
+    really cost over their lifetime, platform dependence, and the numbers
+    behind the AI hype.
+
+developer-tooling:
+  name: Developer Tooling & Open Source
+  description: >-
+    Building and maintaining developer tools: CLIs, npm and Python packages,
+    release automation, monorepos and life as an open-source maintainer.
+  intro: >-
+    Tools for developers and the work of maintaining them in the open —
+    command-line tools, libraries, release automation and the occasional tool
+    built out of sheer frustration.
+
+web-development:
+  name: Web Development
+  description: >-
+    Web development with JavaScript, TypeScript and Node.js: web standards,
+    vanilla JS and web components, and surviving long-running front ends.
+  intro: >-
+    JavaScript, TypeScript and Node.js on the web — leaning on the platform and
+    its standards, web components, and keeping big front-end projects alive
+    for years.
+
+testing-and-quality:
+  name: Testing & Code Quality
+  description: >-
+    Why quality is not optional: test-driven and behaviour-driven development,
+    Cucumber, code reviews and arguing for high quality in real projects.
+  intro: >-
+    Tests, specifications and reviews — TDD, BDD and Cucumber — and the
+    recurring argument for why high quality is the only way software stays
+    changeable.
+
+game-development:
+  name: Game Development & Prototyping
+  description: >-
+    Game prototypes and creative coding: rapid prototyping with LLMs, game
+    design from cardboard to code, generative art and WebGPU experiments.
+  intro: >-
+    Games and creative code as a playground — rapid prototypes, game design,
+    generative art and WebGPU, often with an LLM along for the ride.
+
+workshops-and-talks:
+  name: Workshops, Training & Talks
+  description: >-
+    Workshops, trainings and conference talks: pair programming workshops,
+    node.js trainings, user-group talks and recaps of the work around them.
+  intro: >-
+    Teaching and speaking — pair programming workshops, technical trainings,
+    user-group and conference talks, and the recaps written along the way.
+
+open-data:
+  name: Open Data & Civic Tech
+  description: >-
+    Open data and civic tech: getting at public-sector data, command-line
+    access to government APIs, and where law and technology meet.
+  intro: >-
+    Public data should be one command away. Working with government and
+    public-sector data, the tools that open it up, and where law and
+    technology collide.

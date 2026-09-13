@@ -3,10 +3,10 @@ layout: post
 title: "Decoding Your DevOps Team: A Peek with Schein's Culture Model"
 date: 2025-05-07 15:02:03 +0000
 permalink: "/2025/05/07/decoding-your-devops-team-a-peek-with-scheins-culture-model/"
-description: "Ever wondered what really makes your DevOps team tick, or sometimes, stumble? Beyond the CI/CD..."
-tags: [devops, culture]
+description: "Edgar Schein's culture model applied to DevOps teams: how artifacts, espoused values and hidden assumptions reveal what really drives team behavior."
+tags: [teams-and-leadership, devops]
 og_type: article
-image: "/assets/posts/decoding-your-devops-team-a-peek-with-scheins-culture-model/cover.webp"
+image: "/assets/posts/decoding-your-devops-team-a-peek-with-scheins-culture-model/og.jpg"
 devto_url: "https://dev.to/sebs/decoding-your-devops-team-a-peek-with-scheins-culture-model-5a04"
 render_with_liquid: false
 ---

@@ -3,10 +3,10 @@ layout: post
 title: "It's Time We All Eat some more Cucumber!"
 date: 2026-06-08 09:22:09 +0000
 permalink: "/2026/06/08/its-time-we-all-eat-some-more-cucumber/"
-description: "Everyone's writing specs for AI now. We hand the model a markdown file, tell it what we want, and..."
-tags: [ai, tdd, bdd, darkfactory]
+description: "Markdown is not a spec language for AI work. Gherkin scenarios and example tables give LLMs a fixed grammar and executable acceptance criteria."
+tags: [testing-and-quality, ai-assisted-development]
 og_type: article
-image: "/assets/posts/its-time-we-all-eat-some-more-cucumber/cover.webp"
+image: "/assets/posts/its-time-we-all-eat-some-more-cucumber/og.jpg"
 devto_url: "https://dev.to/sebs/its-time-we-all-eat-some-cucumber-16ic"
 render_with_liquid: false
 ---

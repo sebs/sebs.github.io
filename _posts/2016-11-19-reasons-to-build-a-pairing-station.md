@@ -3,8 +3,8 @@ layout: post
 title: "Reasons to build a pairing station"
 date: 2016-11-19
 permalink: "/2016/11/19/Reasons-to-build-a-pairing-station/"
-description: "Having a dedicated computer and desk for the effort of Pair programming is a great thing. It is a little counter intuitive to those who seek for efficient…"
-tags: [extremeprogramming, pairprogramming]
+description: "Why a dedicated pairing station pays off: one-button builds and setup, undisturbed work, a clean desk, a powerful desktop and a whiteboard close by."
+tags: [pair-programming, agile-practices]
 og_type: article
 original_source: "Dissident Trainings"
 original_url: "http://dissident-trainings.de/2014/11/19/Reasons-to-build-a-pairing-station.html"

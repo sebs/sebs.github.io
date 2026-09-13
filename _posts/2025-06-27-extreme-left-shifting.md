@@ -3,8 +3,8 @@ layout: post
 title: "Extreme Left Shifting"
 date: 2025-06-27 20:58:09 +0000
 permalink: "/2025/06/27/extreme-left-shifting/"
-description: "Left shifting refers to moving software development lifecycle activities to earlier stages in the..."
-tags: [containers, cicd, devops, development]
+description: "Extreme left shifting lets developers run the full build and deploy pipeline locally: faster feedback, Makefile-based CI/CD, paved paths and trade-offs."
+tags: [devops, software-architecture]
 og_type: article
 devto_url: "https://dev.to/sebs/extreme-left-shifting-1lnm"
 render_with_liquid: false
@@ -17,7 +17,7 @@ This implementation of left shifting addresses feedback loop delays inherent in 
 
 ## Left Shifting in Software Development
 
-![Image description](/assets/posts/extreme-left-shifting/cqtrtbg3phqov3rr4r0b.png)
+![Chart of effort across the lifecycle: the shift-left model peaks at plan and develop, the traditional model peaks at deploy](/assets/posts/extreme-left-shifting/cqtrtbg3phqov3rr4r0b.webp)
 
 Left shifting moves activities from later stages of the software development lifecycle to earlier stages [1]. IBM Engineering defines it as "a practice in software development in which teams focus on quality, work on problem prevention instead of detection, and begin testing earlier than usual in the development cycle" [2]. The practice originated in quality assurance, where testing activities were moved from post-development phases into the development process itself.
 

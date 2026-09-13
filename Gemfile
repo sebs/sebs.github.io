@@ -4,7 +4,6 @@ source "https://rubygems.org"
 # download stats can be fetched at build time. Versions are pinned for
 # reproducible deploys.
 gem "jekyll", "~> 4.3"
-gem "jekyll-sitemap", "~> 1.4"
 # Regenerates the blog's tag/date archives from the markdown posts (replaces
 # the old static Hexo listing pages). Plugin build, so the Actions deploy uses
 # it — the native Pages build would not.

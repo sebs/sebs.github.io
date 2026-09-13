@@ -3,8 +3,8 @@ layout: post
 title: "Managing a (webcomponent) Zoo"
 date: 2019-01-03
 permalink: "/2019/01/03/Managing-a-(webcomponent)-Zoo/"
-description: "Developing and shipping webcomponents seems simple at first, but modern frontend stacks come with their own set of challenges: A wide set of browsers…"
-tags: [monorepos, javascript, frontend]
+description: "Kickoff of a series on shipping web components with a Lerna monorepo, npm publishing, OpenAPI clients, a component catalogue and test automation."
+tags: [web-development, developer-tooling]
 og_type: article
 ---
 - [Part 1: Monorepos with learna.js](https://sebs.github.io/blog/managing-a-webcomponent-zoo-monorepo/)

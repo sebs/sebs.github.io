@@ -3,10 +3,10 @@ layout: post
 title: "The Over-Abstraction Trap: Why We Need to Stop Over-Engineering Our Infrastructure"
 date: 2026-01-23 16:35:50 +0000
 permalink: "/2026/01/23/the-over-abstraction-trap-why-we-need-to-stop-over-engineering-our/"
-description: "The arrival of Infrastructure as Code (IaC) promised a fundamental shift in how we manage our digital..."
-tags: [infrastructureascode, terraform, cdk, bicep]
+description: "Terraform, Bicep and CDK code often drowns in untested abstraction layers; the Hetzner community shows flat, explicit infrastructure code stays readable."
+tags: [devops, software-architecture]
 og_type: article
-image: "/assets/posts/the-over-abstraction-trap-why-we-need-to-stop-over-engineering-our/cover.png"
+image: "/assets/posts/the-over-abstraction-trap-why-we-need-to-stop-over-engineering-our/og.jpg"
 devto_url: "https://dev.to/sebs/the-over-abstraction-trap-why-we-need-to-stop-over-engineering-our-infrastructure-3737"
 render_with_liquid: false
 ---

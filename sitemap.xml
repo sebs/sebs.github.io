@@ -1,0 +1,37 @@
+---
+layout: null
+sitemap: false
+---
+{%- comment -%}
+  Hand-written in place of jekyll-sitemap's, so the sitemap lists only pages
+  that should be indexed. Left out:
+    - posts whose canonical_url points at another site (the imported
+      Dissident Trainings posts, while the original is online),
+    - topic pages with fewer than three posts and all month archives — both
+      carry `noindex` (see _includes/head.html),
+    - redirects, the feed and anything marked `sitemap: false`.
+{%- endcomment -%}
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+{%- for post in site.posts -%}
+  {%- if post.canonical_url or post.sitemap == false -%}{%- continue -%}{%- endif %}
+  <url>
+    <loc>{{ post.url | absolute_url | xml_escape }}</loc>
+    <lastmod>{{ post.last_modified_at | default: post.date | date_to_xmlschema }}</lastmod>
+  </url>
+{%- endfor -%}
+{%- for page in site.html_pages -%}
+  {%- if page.sitemap == false or page.redirect_to or page.noindex -%}{%- continue -%}{%- endif -%}
+  {%- if page.type == "month" -%}{%- continue -%}{%- endif -%}
+  {%- if page.type == "tag" and page.posts.size < 3 -%}{%- continue -%}{%- endif -%}
+  {%- if page.url contains "/404" -%}{%- continue -%}{%- endif %}
+  <url>
+    <loc>{{ page.url | replace: "/index.html", "/" | absolute_url | xml_escape }}</loc>
+    {%- if page.type == "tag" or page.type == "year" %}
+    <lastmod>{{ page.posts.first.date | date_to_xmlschema }}</lastmod>
+    {%- elsif page.url == "/blog/" or page.url == "/" %}
+    <lastmod>{{ site.posts.first.date | date_to_xmlschema }}</lastmod>
+    {%- endif %}
+  </url>
+{%- endfor %}
+</urlset>

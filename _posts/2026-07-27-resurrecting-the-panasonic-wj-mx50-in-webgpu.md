@@ -3,10 +3,10 @@ layout: post
 title: "Resurrecting the Panasonic WJ-MX50 in WebGPU"
 date: 2026-07-27 22:03:04 +0000
 permalink: "/2026/07/27/resurrecting-the-panasonic-wj-mx50-in-webgpu/"
-description: "In which a 1990s two-bus video mixer is reduced to a reducer, and the operating manual turns out to..."
-tags: [ai, cleanroom, programming, webgpu]
+description: "Rebuilding the 1990s Panasonic WJ-MX50 video mixer in TypeScript and WebGPU, with one reducer, 536 Gherkin scenarios from the manual and SDF wipes."
+tags: [game-development, web-development, testing-and-quality]
 og_type: article
-image: "/assets/posts/resurrecting-the-panasonic-wj-mx50-in-webgpu/cover.jpeg"
+image: "/assets/posts/resurrecting-the-panasonic-wj-mx50-in-webgpu/og.jpg"
 devto_url: "https://dev.to/sebs/resurrecting-the-panasonic-wj-mx50-in-webgpu-3ali"
 render_with_liquid: false
 ---
@@ -14,7 +14,7 @@ render_with_liquid: false
 *In which a 1990s two-bus video mixer is reduced to a reducer, and the operating manual turns out to be a test suite.*
 
 
-![Image description](/assets/posts/resurrecting-the-panasonic-wj-mx50-in-webgpu/riw4pvpcrwmpz7z9d6d1.png)
+![Front panel of the original Panasonic WJ-MX50 digital A/V mixer with buttons, faders, T-bar lever and joystick](/assets/posts/resurrecting-the-panasonic-wj-mx50-in-webgpu/riw4pvpcrwmpz7z9d6d1.png)
 
 
 The Panasonic WJ-MX50 was a desktop digital A/V mixer sold in the early 1990s for wedding videographers, cable-access studios, and anyone else doing A/B-roll editing on S-VHS decks. Two buses, four sources, 287 wipe patterns, a chroma keyer, a downstream keyer, eight event memories, and a joystick. The whole thing was defined by a 40-page operating manual that is unusually precise about behavior: which button blinks when, which effect excludes which, how many frames an auto-fade may take (0 to 510, in steps of 2 — not 1, not 5).
@@ -55,7 +55,7 @@ The behavioral spine of the project is 536 Gherkin scenarios (3,921 steps) in 26
 
 I am aware that Cucumber has a reputation, mostly earned, as a ceremony generator for enterprise projects where nobody reads the features. Here it did honest work, for one reason: the source material was already written in Gherkin's register. The manual says things like "When the SELECT button is pressed, the color indicated on the Matte Color Indicator changes from lower to upper. The Black will be selected after the Color Bar." That is a scenario. You transcribe it, wire the steps to the reducer, and now a forty-page document from 1992 fails your build when you get the matte cycling order wrong. When behavior and code disagree, the feature file wins until a scenario is deliberately changed — a policy that sounds bureaucratic and in practice meant the manual kept catching me.
 
-![Image description](/assets/posts/resurrecting-the-panasonic-wj-mx50-in-webgpu/hupg16fx62ndil5li2vk.png)
+![web-mx-50 program monitor, on air, showing a luminance-keyed title over a colored triangular grid pattern](/assets/posts/resurrecting-the-panasonic-wj-mx50-in-webgpu/hupg16fx62ndil5li2vk.webp)
 
 The wipe engine benefited most from this. The MX50's 287 wipe patterns are not a list; they are a small algebra. Seven pattern families, each cycling four variants, times a set of stackable modifiers (Compression, Slide, Multi, Pairing, Blinds), with a legality table for which combinations exist and a numbering scheme where pattern *n* and pattern *n*+128 are the same wipe reversed. Numbers above 255 exist on the panel but cannot be addressed over RS-422, and the external edit controller could only call 01–99, with 99 meaning "whatever is currently set up" — an escape hatch I have come to admire. All of that is pure arithmetic and table lookups, implemented in one GPU-free module and specified exhaustively in Gherkin. The shader consumes its output; it does not reimplement it.
 
@@ -76,7 +76,7 @@ Auto Take and Auto Fade run 0–510 frames in 2-frame steps, pausable mid-flight
 ## What I would tell you if you tried this
 
 
-![Image description](/assets/posts/resurrecting-the-panasonic-wj-mx50-in-webgpu/n1w7k3oybbj3z6z0g327.png)
+![web-mx-50 browser operator surface with four source feeds, program monitor, wipe pattern grid and lever](/assets/posts/resurrecting-the-panasonic-wj-mx50-in-webgpu/n1w7k3oybbj3z6z0g327.webp)
 
 Pick an artifact with a good manual. The MX50 succeeded here because Panasonic's technical writers in 1992 specified blinking LEDs and frame counts; a vaguer manual would have left me inventing behavior and calling it fidelity. Transcribe first, code second — the feature files were worth more than any framework. Keep the state in one dumb value; every hardware feature that looked hard (event memory, persistence, external control) became easy for that one reason. And decide early, in writing, which parts of the past you are not bringing along. There are sixteen architecture decision records in the repository, and the two most useful ones are the ones that say "no."
 

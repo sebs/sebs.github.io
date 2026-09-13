@@ -3,8 +3,8 @@ layout: post
 title: "Levels of crossfunctional work"
 date: 2019-03-16
 permalink: "/2019/03/16/Levels-of-crossfunctional-work/"
-description: "Just to highlight, why the expectations in that simple word “cross functional” might be so different."
-tags: [teamwork, scrum]
+description: "Intra-, cross-, multi-, inter- and transdisciplinary work defined side by side, showing why expectations behind the term cross-functional can differ."
+tags: [teams-and-leadership, agile-practices]
 og_type: article
 ---
 Interesting [read](http://www.arj.no/2012/03/12/disciplinarities-2/):

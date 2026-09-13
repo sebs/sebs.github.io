@@ -3,10 +3,10 @@ layout: post
 title: "We don't need GoldenLap, We got Golden Lap at home"
 date: 2025-10-06 19:45:48 +0000
 permalink: "/2025/10/06/we-dont-need-goldenlap-we-got-golden-lap-at-home/"
-description: "Another weekend, another rabbit hole. This time, it started with a game called Golden Lap. If you..."
-tags: [gamedev, programming]
+description: "A weekend attempt at a Golden Lap-style browser racing game: board game research, real-time simulation, GPU offloading, minimap rendering and physics."
+tags: [game-development]
 og_type: article
-image: "/assets/posts/we-dont-need-goldenlap-we-got-golden-lap-at-home/cover.jpeg"
+image: "/assets/posts/we-dont-need-goldenlap-we-got-golden-lap-at-home/og.jpg"
 devto_url: "https://dev.to/sebs/we-dont-need-goldenlap-we-got-golden-lap-at-home-ndb"
 render_with_liquid: false
 ---

@@ -3,10 +3,10 @@ layout: post
 title: "sudo 'schland just give me my data"
 date: 2026-07-06 17:31:08 +0000
 permalink: "/2026/07/06/sudo-schland-just-give-me-my-data/"
-description: "There's an old xkcd. Guy says \"make me a sandwich.\" Gets refused. Says \"sudo make me a sandwich.\"..."
-tags: [opendata, ai, darkfactory]
+description: "maschinenlesbar.org wraps German government open data APIs in uniform TypeScript CLIs built by an agent-driven dark factory, so the data can be linked."
+tags: [open-data, ai-assisted-development, developer-tooling]
 og_type: article
-image: "/assets/posts/sudo-schland-just-give-me-my-data/cover.png"
+image: "/assets/posts/sudo-schland-just-give-me-my-data/og.jpg"
 devto_url: "https://dev.to/sebs/sudo-schland-just-give-me-my-data-4ga7"
 render_with_liquid: false
 ---

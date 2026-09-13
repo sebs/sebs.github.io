@@ -25,6 +25,10 @@ html {
 
 img {
   display: block;
+  // Post images carry width/height attributes (_plugins/image_attributes.rb)
+  // so space is reserved before they load; auto height keeps the ratio when
+  // max-width scales them down.
+  height: auto;
   max-width: 100%;
 }
 

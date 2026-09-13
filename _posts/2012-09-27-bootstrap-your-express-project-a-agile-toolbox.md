@@ -1,10 +1,10 @@
 ---
 layout: post
-title: "Bootstrap your Express Project - A agile toolbox"
+title: "Bootstrap your Express Project - An agile toolbox"
 date: 2012-09-27
 permalink: "/2012/09/27/bootstrap-your-express-project-a-agile-toolbox/"
-description: "When starting with a new node/express project there is a variety of tools available that help your development effort. I have started a new project and want…"
-tags: []
+description: "A toolchain for new Node.js Express projects: package.json, the Express generator, Grunt linting, Mocha and Supertest tests, and Travis CI builds."
+tags: [web-development, testing-and-quality, devops]
 og_type: article
 original_source: "Dissident Trainings"
 original_url: "http://dissident-trainings.de/2012/09/27/bootstrap-your-express-project-a-agile-toolbox.html"

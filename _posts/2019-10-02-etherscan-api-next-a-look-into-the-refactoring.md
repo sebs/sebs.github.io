@@ -3,8 +3,8 @@ layout: post
 title: "etherscan-api@next - a look into the refactoring"
 date: 2019-10-02
 permalink: "/2019/10/02/etherscan-api-next-a-look-into-the-refactoring/"
-description: "I used typescript now for the second time in a commercial project, yet I had not learned it ‘by the book’ and was not getting to the bottom of it. On the…"
-tags: [refactoring, typescript, monorepo, lerna, etherscan]
+description: "Rewriting the etherscan-api npm client in TypeScript as a monorepo: goals, value objects, mocked API tests, slow ava test suites and painful bundling."
+tags: [developer-tooling, web-development]
 og_type: article
 ---
 I used [typescript](https://www.typescriptlang.org/) now for the second time in a commercial project, yet I had not learned it ‘by the book’ and was not getting to the bottom of it. On the other hand there was serious work to do on the [etherscan-api](https://github.com/sebs/etherscan-api) project and I was able to put the 100 plus hours into the next version of etherscan api to be rewritten in typescript and overcome old problems, mainly in documentation and design.

@@ -3,10 +3,10 @@ layout: post
 title: "Culture Trap: Why Your DevOps Transformation is Failing"
 date: 2026-02-16 11:04:14 +0000
 permalink: "/2026/02/16/culture-trap-why-your-devops-transformation-is-failing/"
-description: "The arrival of DevOps promised a revolution, but for many, it has become a frustrating exercise in..."
-tags: [devops, cicd, terraform]
+description: "DevOps transformations fail when teams adopt pipelines, Terraform and DORA metrics but leave unspoken assumptions about blame, trust and ownership."
+tags: [teams-and-leadership, devops]
 og_type: article
-image: "/assets/posts/culture-trap-why-your-devops-transformation-is-failing/cover.png"
+image: "/assets/posts/culture-trap-why-your-devops-transformation-is-failing/og.jpg"
 devto_url: "https://dev.to/sebs/culture-trap-why-your-devops-transformation-is-failing-22l6"
 render_with_liquid: false
 ---

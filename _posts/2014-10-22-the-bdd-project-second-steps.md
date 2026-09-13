@@ -3,8 +3,8 @@ layout: post
 title: "The BDD project - Second steps"
 date: 2014-10-22
 permalink: "/2014/10/22/the-bdd-project-second-steps/"
-description: "More progress (Version 0.0.1) is made and we are a little further down the road towards a first deploy."
-tags: []
+description: "Progress on a BDD side project: picking Silex, Cucumber.js with webdriver and gulp, writing the first feature scenario and planning steps toward a deploy."
+tags: [testing-and-quality, web-development]
 og_type: article
 original_source: "Dissident Trainings"
 original_url: "http://dissident-trainings.de/2014/10/22/the-bdd-project-second-steps.html"

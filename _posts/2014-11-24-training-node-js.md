@@ -3,8 +3,8 @@ layout: post
 title: "Delivering a node.js training"
 date: 2014-11-24
 permalink: "/2014/11/24/training-node-js/"
-description: "On a short notice a big training company had approached me - A trainer of them had dropped out of a planned training and they needed someone to deliver a…"
-tags: []
+description: "Recap of a two-day Node.js and Express training that turned into pair programming with a commit on every driver switch, plus lessons learned as a trainer."
+tags: [workshops-and-talks, web-development, pair-programming]
 og_type: article
 original_source: "Dissident Trainings"
 original_url: "http://dissident-trainings.de/2014/11/24/Training-node-js.html"

@@ -3,10 +3,10 @@ layout: post
 title: "Trying to get s*** done with an LLM"
 date: 2025-06-06 16:25:28 +0000
 permalink: "/2025/06/06/trying-to-get-s-done-with-an-llm/"
-description: "I had a goal: to create a command-line interface (CLI) for a well-known API I was using at work...."
-tags: [programming, ai, openapi]
+description: "Building a Python CLI for an OpenAPI-based API with an LLM: a dynamic client, a clean Bandit scan, one powerful review prompt and why AI code rarely ships."
+tags: [ai-assisted-development, developer-tooling]
 og_type: article
-image: "/assets/posts/trying-to-get-s-done-with-an-llm/cover.png"
+image: "/assets/posts/trying-to-get-s-done-with-an-llm/og.jpg"
 devto_url: "https://dev.to/sebs/trying-to-get-s-done-with-an-llm-k05"
 render_with_liquid: false
 ---

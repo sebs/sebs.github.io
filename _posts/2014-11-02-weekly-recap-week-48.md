@@ -1,10 +1,10 @@
 ---
 layout: post
-title: "Weekly recap - Week #43"
+title: "Weekly recap - Week #48"
 date: 2014-11-02
 permalink: "/2014/11/02/weekly-recap-week-48/"
-description: "Bad news is bad. I had to cancel the Pairing workshop in Munich due to a lack of registrations. It looks like people and companies want more of these…"
-tags: []
+description: "Weekly recap: the Munich pair programming workshop is cancelled, an on-site pairing workshop in Hamburg replaces it, plus first steps in Go and JS libs."
+tags: [workshops-and-talks, pair-programming, web-development]
 og_type: article
 original_source: "Dissident Trainings"
 original_url: "http://dissident-trainings.de/2014/11/02/Weekly-recap-week-48.html"

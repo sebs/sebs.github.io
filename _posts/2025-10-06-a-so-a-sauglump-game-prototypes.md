@@ -3,10 +3,10 @@ layout: post
 title: "A so a Sauglump! - Game Prototypes"
 date: 2025-10-06 12:02:10 +0000
 permalink: "/2025/10/06/a-so-a-sauglump-game-prototypes/"
-description: "I created the organization for the release of the game prototypes I mentioned. Here is the..."
-tags: [programming, gamedev, rapidprototyping]
+description: "Sauglump Games shares about 200 board and video game prototypes made in 2024 and 2025 with heavy LLM use, released as open source to collect feedback."
+tags: [game-development, ai-assisted-development]
 og_type: article
-image: "/assets/posts/a-so-a-sauglump-game-prototypes/cover.png"
+image: "/assets/posts/a-so-a-sauglump-game-prototypes/og.jpg"
 devto_url: "https://dev.to/sebs/a-so-a-sauglump-game-prototypes-2mjc"
 render_with_liquid: false
 ---

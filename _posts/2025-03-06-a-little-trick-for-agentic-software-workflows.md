@@ -3,8 +3,8 @@ layout: post
 title: "A little trick for 'Agentic Software Workflows'"
 date: 2025-03-06 12:29:09 +0000
 permalink: "/2025/03/06/a-little-trick-for-agentic-software-workflows/"
-description: "While working on the next version of the Pair-Programming Workshop, I recently tackled the task of..."
-tags: []
+description: "Instead of letting an agent edit 120 markdown files one by one, have it write scripts that set categories, slugs and NLTK-derived tags: faster and cheaper."
+tags: [ai-assisted-development]
 og_type: article
 devto_url: "https://dev.to/sebs/a-little-trick-for-agentic-software-dev-2clc"
 render_with_liquid: false

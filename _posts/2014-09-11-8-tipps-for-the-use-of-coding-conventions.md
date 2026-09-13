@@ -3,8 +3,8 @@ layout: post
 title: "8 tips for the use of coding conventions"
 date: 2014-09-11
 permalink: "/2014/09/11/8-tipps-for-the-use-of-coding-conventions/"
-description: "Coding conventions sound so easy, but get hard over the course of a longer project and with bigger team size. With a little feedback and forth with Johann…"
-tags: []
+description: "Eight tips for team coding conventions: apply them to everyone, automate checks, keep zero violations, change rules with the code, scope them per module."
+tags: [agile-practices, testing-and-quality]
 og_type: article
 original_source: "Dissident Trainings"
 original_url: "http://dissident-trainings.de/2014/09/11/8-tipps-for-the-use-of-coding-conventions.html"

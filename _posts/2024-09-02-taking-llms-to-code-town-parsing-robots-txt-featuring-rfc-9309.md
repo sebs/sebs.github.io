@@ -3,8 +3,8 @@ layout: post
 title: "Taking LLMs to (code) town: parsing robots.txt featuring RFC 9309"
 date: 2024-09-02 22:03:38 +0000
 permalink: "/2024/09/02/taking-llms-to-code-town-parsing-robots-txt-featuring-rfc-9309/"
-description: "Recently, large language models (LLMs) have gained significant attention as tools that can..."
-tags: [chatgpt, development, rfc]
+description: "Using ChatGPT to build an RFC 9309 robots.txt parser yields working but mediocre code, as the LLM clings to popular patterns and breaks the learning loop."
+tags: [ai-assisted-development, ai-and-critical-thinking]
 og_type: article
 devto_url: "https://dev.to/sebs/taking-llms-to-code-town-parsing-robotstxt-featuring-rfc-9309-3g64"
 render_with_liquid: false

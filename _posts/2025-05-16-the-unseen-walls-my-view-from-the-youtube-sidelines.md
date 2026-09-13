@@ -3,8 +3,8 @@ layout: post
 title: "The Unseen Walls: My View from the YouTube Sidelines"
 date: 2025-05-16 09:01:04 +0000
 permalink: "/2025/05/16/the-unseen-walls-my-view-from-the-youtube-sidelines/"
-description: "\"Honest disagreement is often a good sign of progress.\" - Mahatma Gandhi.   I saw that quote the..."
-tags: [influencers, shilling]
+description: "A YouTube viewer's take on how affirming comments, Patreon pressure and sponsorships build echo chambers around creators and crowd out honest disagreement."
+tags: [ai-and-critical-thinking]
 og_type: article
 devto_url: "https://dev.to/sebs/the-unseen-walls-my-view-from-the-youtube-sidelines-9dg"
 render_with_liquid: false

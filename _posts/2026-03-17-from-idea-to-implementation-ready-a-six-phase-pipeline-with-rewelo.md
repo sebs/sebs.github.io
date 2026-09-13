@@ -3,10 +3,10 @@ layout: post
 title: "From Idea to Implementation-Ready: A Six-Phase Pipeline with Rewelo"
 date: 2026-03-17 19:13:14 +0000
 permalink: "/2026/03/17/from-idea-to-implementation-ready-a-six-phase-pipeline-with-rewelo/"
-description: "Most projects start with a vague idea and a Jira board. The gap between \"we should build X\" and \"here..."
-tags: [ai, agenticagile, agile, productivity]
+description: "A six-phase pipeline from vision to a ready backlog: specs, Gherkin scenarios, ADRs, rewelo scoring of 113 tickets and an AI-run Four Amigos review."
+tags: [agile-practices, ai-assisted-development, testing-and-quality]
 og_type: article
-image: "/assets/posts/from-idea-to-implementation-ready-a-six-phase-pipeline-with-rewelo/cover.jpg"
+image: "/assets/posts/from-idea-to-implementation-ready-a-six-phase-pipeline-with-rewelo/og.jpg"
 devto_url: "https://dev.to/sebs/from-idea-to-implementation-ready-a-six-phase-pipeline-with-rewelo-42lp"
 render_with_liquid: false
 ---

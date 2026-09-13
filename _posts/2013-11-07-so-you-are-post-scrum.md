@@ -3,8 +3,8 @@ layout: post
 title: "So you are Post-Scrum?"
 date: 2013-11-07
 permalink: "/2013/11/07/so-you-are-post-scrum/"
-description: "I hear a lot of teams are “POST-SCRUM”. That is not a bad thing, given one of the basic mechanics is “Inspect and Adapt”. This is constantly changing the…"
-tags: []
+description: "Teams calling themselves post-Scrum should check process changes against the Agile Manifesto principles, whether they move to Kanban or NoEstimates."
+tags: [agile-practices]
 og_type: article
 original_source: "Dissident Trainings"
 original_url: "http://dissident-trainings.de/2013/11/07/so-you-are-post-scrum.html"

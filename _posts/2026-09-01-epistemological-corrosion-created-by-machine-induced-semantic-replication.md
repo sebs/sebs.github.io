@@ -3,15 +3,15 @@ layout: post
 title: "Epistemological corrosion created by machine induced semantic replication entropy"
 date: 2026-09-01 19:33:55 +0000
 permalink: "/2026/09/01/epistemological-corrosion-created-by-machine-induced-semantic-replication/"
-description: "The headline is a extract of a skeet from a gamedev/designer/dev person of Bluesky: Osaka     Skilled..."
-tags: [ai]
+description: "A Bluesky thread on AI knowledge collapse: de-skilled workers feed degraded input to models, so outputs and users get worse, plus links to research papers."
+tags: [ai-and-critical-thinking]
 og_type: article
 devto_url: "https://dev.to/sebs/epistemological-corrosion-created-by-machine-induced-semantic-replication-entropy-3gek"
 render_with_liquid: false
 ---
 The headline is a extract of a skeet from a gamedev/designer/dev person of [Bluesky: Osaka](https://bsky.app/profile/osaka.zone/post/3muhrsihpls2i)
 
-![Image description](/assets/posts/epistemological-corrosion-created-by-machine-induced-semantic-replication/8rv999jg638gpmsgyzc1.png)
+![Cycle diagram: workers de-skill, knowledge is lost, models take degraded input, outputs and users get worse, repeat](/assets/posts/epistemological-corrosion-created-by-machine-induced-semantic-replication/8rv999jg638gpmsgyzc1.webp)
 
 * Skilled workers are de-skilling themselves 
 * Institutional knowledge and skills are actually being lost

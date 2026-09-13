@@ -3,8 +3,8 @@ layout: post
 title: "Weekly recap - Week #42"
 date: 2014-10-17
 permalink: "/2014/10/17/weekly-recap-week-42/"
-description: "Pew, this week was a full on workshop and conference week. Prparing for workshops and visiting XP days."
-tags: []
+description: "Weekly recap: pair programming trainings in Hamburg and Munich, plus XP Days Germany talks on Extreme Continuous Delivery and nonviolent communication."
+tags: [workshops-and-talks, pair-programming, agile-practices]
 og_type: article
 original_source: "Dissident Trainings"
 original_url: "http://dissident-trainings.de/2014/10/17/weekly-recap-week-42.html"

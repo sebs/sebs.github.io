@@ -3,8 +3,8 @@ layout: post
 title: "Commercial thinking and action"
 date: 2014-11-11
 permalink: "/2014/11/11/commercial-thinking/"
-description: "This blogpost begins with a little story. I once (think years not months) worked as a coach for company and we sat in one of the meetings held in regular…"
-tags: []
+description: "Managers who demand commercial thinking from developers often lack commercial training themselves. Kicks off a series on cost, investment and the CFO."
+tags: [tech-strategy, teams-and-leadership]
 og_type: article
 original_source: "Dissident Trainings"
 original_url: "http://dissident-trainings.de/2014/11/11/commercial-thinking.html"

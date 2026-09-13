@@ -3,8 +3,8 @@ layout: post
 title: "Building a CLI for the Ecosyste.ms API"
 date: 2025-09-16 13:12:50 +0000
 permalink: "/2025/09/16/building-a-cli-for-the-ecosyste-ms-api/"
-description: "Recently, I have been working on a small side project that involves creating a command-line interface..."
-tags: [opensource, security, supplychain]
+description: "A Python CLI for the ecosyste.ms open source metadata APIs with table, JSON and TSV output, experimental MCP support, and official adoption by ecosyste.ms."
+tags: [developer-tooling, supply-chain-security]
 og_type: article
 devto_url: "https://dev.to/sebs/building-a-cli-for-the-ecosystems-api-1d4a"
 render_with_liquid: false

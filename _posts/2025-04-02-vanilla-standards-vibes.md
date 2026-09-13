@@ -3,10 +3,10 @@ layout: post
 title: "Vanilla Standards Vibes"
 date: 2025-04-02 10:18:40 +0000
 permalink: "/2025/04/02/vanilla-standards-vibes/"
-description: "The web development landscape is constantly evolving, with frameworks like React, Vue, and Angular..."
-tags: [vibecoding, webstandards, vanillajs]
+description: "LLM assistants ease the teamwork problems frameworks solve, making vanilla JavaScript and web standards a strong alternative to React, Vue or Angular."
+tags: [web-development, ai-assisted-development]
 og_type: article
-image: "/assets/posts/vanilla-standards-vibes/cover.png"
+image: "/assets/posts/vanilla-standards-vibes/og.jpg"
 devto_url: "https://dev.to/sebs/vanilla-standards-vibes-36oi"
 render_with_liquid: false
 ---

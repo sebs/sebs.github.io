@@ -3,10 +3,10 @@ layout: post
 title: "13 Years, a Walz, and a Relaunch: My Pair Programming Workshop is Back"
 date: 2025-06-17 19:23:05 +0000
 permalink: "/2025/06/17/13-years-a-walz-and-a-relaunch-my-pair-programming-workshop-is-back/"
-description: "I just checked the calendar and did the math. It turns out this project is one year faster than it..."
-tags: [pairprogramming, xp, workshop, productivity]
+description: "After 13 years the pair programming workshop relaunches with updated CC BY-SA materials and a new website, tracing its path from a travelling walz project."
+tags: [pair-programming, workshops-and-talks]
 og_type: article
-image: "/assets/posts/13-years-a-walz-and-a-relaunch-my-pair-programming-workshop-is-back/cover.png"
+image: "/assets/posts/13-years-a-walz-and-a-relaunch-my-pair-programming-workshop-is-back/og.jpg"
 devto_url: "https://dev.to/sebs/13-years-a-waltz-and-a-relaunch-my-pair-programming-workshop-is-back-10l2"
 render_with_liquid: false
 ---

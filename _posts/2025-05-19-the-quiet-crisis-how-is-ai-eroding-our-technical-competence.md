@@ -3,8 +3,8 @@ layout: post
 title: "The Quiet Crisis: How is AI Eroding Our Technical Competence?"
 date: 2025-05-19 20:04:20 +0000
 permalink: "/2025/05/19/the-quiet-crisis-how-is-ai-eroding-our-technical-competence/"
-description: "We are likely witnessing a quiet crisis in our technical teams. While we celebrate the productivity..."
-tags: [ai]
+description: "AI tools may be quietly eroding technical skills: cognitive offloading drives skill atrophy and brittle teams, hidden behind celebrated productivity gains."
+tags: [ai-and-critical-thinking, teams-and-leadership]
 og_type: article
 devto_url: "https://dev.to/sebs/the-quiet-crisis-how-is-ai-eroding-our-technical-competence-2in2"
 render_with_liquid: false

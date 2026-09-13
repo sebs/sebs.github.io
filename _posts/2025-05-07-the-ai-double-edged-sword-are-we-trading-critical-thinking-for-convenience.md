@@ -3,10 +3,10 @@ layout: post
 title: "The AI Double-Edged Sword: Are We Trading Critical Thinking for Convenience?"
 date: 2025-05-07 15:42:42 +0000
 permalink: "/2025/05/07/the-ai-double-edged-sword-are-we-trading-critical-thinking-for-convenience/"
-description: "\"Artificial Intelligence\" is transforming our workplaces. For consulting firms, the promise of..."
-tags: [ai, llm, vibecoding]
+description: "AI convenience risks cognitive offloading, skill atrophy and weaker critical thinking in consultants; six remedies based on Lee et al. and Gerlich (2025)."
+tags: [ai-and-critical-thinking, teams-and-leadership]
 og_type: article
-image: "/assets/posts/the-ai-double-edged-sword-are-we-trading-critical-thinking-for-convenience/cover.png"
+image: "/assets/posts/the-ai-double-edged-sword-are-we-trading-critical-thinking-for-convenience/og.jpg"
 series: "counter llm sideffects"
 devto_url: "https://dev.to/sebs/the-ai-double-edged-sword-are-we-trading-critical-thinking-for-convenience-5da3"
 render_with_liquid: false

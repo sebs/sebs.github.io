@@ -3,8 +3,8 @@ layout: post
 title: "Weekly recap - Week #36"
 date: 2014-09-05
 permalink: "/2014/09/05/weekly-recap-week-36/"
-description: "This week was full of interesting stuff \\ COACHING: I had to do some research on feedback types and styles. I stumbled on this document\\, giving a little…"
-tags: []
+description: "Weekly recap: research on feedback types, preparing a Lean and Kanban workshop, a website theme, the HTTP status code RFC and Mytaxi's sale to Daimler."
+tags: [workshops-and-talks, agile-practices, web-development]
 og_type: article
 original_source: "Dissident Trainings"
 original_url: "http://dissident-trainings.de/2014/09/05/weekly-recap-week-36.html"

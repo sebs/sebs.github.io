@@ -3,8 +3,8 @@ layout: post
 title: "Talk at Berlin PHP Usergroup: Surviving your frontend"
 date: 2014-10-09
 permalink: "/2014/10/09/talk-surviving-your-frontend/"
-description: "I will be speaking on the 4th of November at the Berlin PHP Usergroup about Surviving your frontend."
-tags: []
+description: "Talk announcement for the Berlin PHP Usergroup on keeping frontend code maintainable with static analysis, modules, tests, CI/CD and pairing."
+tags: [workshops-and-talks, web-development]
 og_type: article
 original_source: "Dissident Trainings"
 original_url: "http://dissident-trainings.de/2014/10/09/talk-surviving-your-frontend.html"

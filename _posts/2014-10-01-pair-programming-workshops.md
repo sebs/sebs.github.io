@@ -3,8 +3,8 @@ layout: post
 title: "Pair Programming workshops as product"
 date: 2014-10-01
 permalink: "/2014/10/01/pair-programming-workshops/"
-description: "Its been more then two years that Soehnke Rumpler and I had been on the phone and talking about the contents of a workshop for the XP practice of pair…"
-tags: []
+description: "A two-day, hands-on pair programming workshop on XP values, pairing variants, bus factor, workspace setup and katas, bookable for teams or individuals."
+tags: [pair-programming, workshops-and-talks, agile-practices]
 og_type: article
 original_source: "Dissident Trainings"
 original_url: "http://dissident-trainings.de/2014/10/01/pair-programming-workshops.html"

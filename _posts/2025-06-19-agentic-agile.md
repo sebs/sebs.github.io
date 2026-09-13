@@ -3,8 +3,8 @@ layout: post
 title: "Agentic \"Agile\""
 date: 2025-06-19 09:52:32 +0000
 permalink: "/2025/06/19/agentic-agile/"
-description: "Let's be honest: the \"ceremonies\" and processes of Agile can often feel like a drag. The endless..."
-tags: [agile, ai, productivity]
+description: "Experiments with AI agents in agile work: generating backlogs, relative estimation, Definition of Ready checks, Gherkin, backlog paths and post-mortems."
+tags: [agile-practices, ai-assisted-development]
 og_type: article
 devto_url: "https://dev.to/sebs/agentic-agile-4386"
 render_with_liquid: false

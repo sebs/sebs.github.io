@@ -3,8 +3,8 @@ layout: post
 title: "Facing the Shai-Hulud Worm: Where the Hell is Easystreet?"
 date: 2025-09-19 20:39:15 +0000
 permalink: "/2025/09/19/facing-the-shai-hulud-worm-where-the-hell-is-easystreet/"
-description: "The recent Shai-Hulud supply chain attack on the NPM ecosystem has reminded the javascript..."
-tags: [npm, security, github, shaihulud]
+description: "Defenses against each stage of the Shai-Hulud npm worm: phishing training, 2FA, signed commits, scoped tokens, key rotation and locked-down containers."
+tags: [supply-chain-security, devops]
 og_type: article
 devto_url: "https://dev.to/sebs/facing-the-shai-hulud-worm-where-the-hell-is-easystreet-4b60"
 render_with_liquid: false
@@ -15,7 +15,7 @@ The recent Shai-Hulud supply chain attack on the NPM ecosystem has reminded the 
 
  The following diagram is featured in an early [article](https://www.trendmicro.com/en_us/research/25/i/npm-supply-chain-attack.html) by Trend Micro:
 
- ![Image description](/assets/posts/facing-the-shai-hulud-worm-where-the-hell-is-easystreet/5trrcj25bsll14hgoz8t.png)
+ ![Trend Micro diagram of the Shai-Hulud npm attack chain, from phishing and credential theft to repo exposure and exfiltration](/assets/posts/facing-the-shai-hulud-worm-where-the-hell-is-easystreet/5trrcj25bsll14hgoz8t.webp)
 
  I wanted to offer some advice as someone who uses Node on a daily basis and has code published on NPM. I am also passionate about open-source ecosystems. Regrettably, I am unable to write a doom-and-gloom post about Node, JavaScript, or TypeScript, despite the fact that it appears to attract a large audience.  We should review all the stages and generate some ideas on how to make it at least more difficult to replicate them in your codebase.
 

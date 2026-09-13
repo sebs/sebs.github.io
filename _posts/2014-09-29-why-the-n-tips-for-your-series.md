@@ -3,8 +3,8 @@ layout: post
 title: "Why the N  tips for XP practices post series?"
 date: 2014-09-29
 permalink: "/2014/09/29/why-the-n-tips-for-your-series/"
-description: "Some weeks ago, I startet out to write a series of blog-posts on XP practices in the format of “N tips for your XP practice” and I want to give a little…"
-tags: []
+description: "Why a weekly N tips series on Extreme Programming practices: thin information on many practices, too much negativity, and first-hand experience to share."
+tags: [agile-practices]
 og_type: article
 original_source: "Dissident Trainings"
 original_url: "http://dissident-trainings.de/2014/09/29/why-the-n-tips-for-your-series.html"

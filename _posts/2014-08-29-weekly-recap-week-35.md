@@ -3,8 +3,8 @@ layout: post
 title: "Weekly recap - Week #35"
 date: 2014-08-29
 permalink: "/2014/08/29/weekly-recap-week-35/"
-description: "Following the practice of Martin Wolf, I am now posting a recap of things I do over the course of a week. So you can see not only what is on my mind, but…"
-tags: []
+description: "Weekly recap on Backbone.js inheritance and model validation, switching from Grunt to Gulp, and Olaf Lewitz's post on happiness and money."
+tags: [web-development, workshops-and-talks]
 og_type: article
 original_source: "Dissident Trainings"
 original_url: "http://dissident-trainings.de/2014/08/29/weekly-recap-week-35.html"

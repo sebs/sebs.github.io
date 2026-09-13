@@ -3,10 +3,10 @@ layout: post
 title: "A Rogue Registry in My Own Backyard: Anatomy of a Two-Line Supply Chain Attack"
 date: 2026-06-27 22:30:09 +0000
 permalink: "/2026/06/27/a-rogue-registry-in-my-own-backyard-anatomy-of-a-two-line-supply-chain-attack/"
-description: "The previous parts of this series were written from a comfortable distance. I read the Trend Micro..."
-tags: [npm, security, supplychain]
+description: "Dissects a malicious PR that added an .npmrc pointing npm at a bare-IP HTTP registry, and lists defenses from CODEOWNERS and CI checks to egress limits."
+tags: [supply-chain-security, devops]
 og_type: article
-image: "/assets/posts/a-rogue-registry-in-my-own-backyard-anatomy-of-a-two-line-supply-chain-attack/cover.png"
+image: "/assets/posts/a-rogue-registry-in-my-own-backyard-anatomy-of-a-two-line-supply-chain-attack/og.jpg"
 devto_url: "https://dev.to/sebs/a-rogue-registry-in-my-own-backyard-anatomy-of-a-two-line-supply-chain-attack-5b0h"
 render_with_liquid: false
 ---

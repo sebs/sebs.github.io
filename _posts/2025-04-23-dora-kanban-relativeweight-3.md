@@ -3,8 +3,8 @@ layout: post
 title: "Dora + Kanban + RelativeWeight = <3"
 date: 2025-04-23 10:15:17 +0000
 permalink: "/2025/04/23/dora-kanban-relativeweight-3/"
-description: "DevOps is a deliberate attempt towards delivering better software faster and more reliably. Often,..."
-tags: [devops, metrics, estimates]
+description: "How Relative Weight prioritization, Kanban flow metrics and DORA metrics form one improvement system driven by culture and automation, with key formulas."
+tags: [devops, agile-practices]
 og_type: article
 devto_url: "https://dev.to/sebs/dora-kanban-relativeweight-3-47ae"
 render_with_liquid: false

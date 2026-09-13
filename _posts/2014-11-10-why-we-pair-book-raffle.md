@@ -3,8 +3,8 @@ layout: post
 title: "Book raffle - #whywepair"
 date: 2014-11-10
 permalink: "/2014/11/10/why-we-pair-book-raffle/"
-description: "I want to know a little bit more about the reasoning behind Pairprogramming usage in development teams."
-tags: []
+description: "A raffle for Pair Programming Illuminated by Laurie Williams and Robert Kessler: tweet why your team pairs with #whywepair before the Hamburg workshop."
+tags: [pair-programming, workshops-and-talks]
 og_type: article
 original_source: "Dissident Trainings"
 original_url: "http://dissident-trainings.de/2014/11/10/why-we-pair-book-raffle.html"

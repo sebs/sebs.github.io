@@ -3,24 +3,25 @@
   jekyll-archives tag/year/month listings so they stay identical.
 
   Usage: {% include post-list.html posts=year.items date_format="%b %-d" %}
+  On a topic page pass `exclude=page.title`, so the rows name the posts' other
+  topics instead of repeating the one being listed.
 {%- endcomment -%}
 {%- assign fmt = include.date_format | default: "%b %-d, %Y" -%}
 <div class="cds--structured-list cds--structured-list--condensed cds--structured-list--flush">
   <div class="cds--structured-list-tbody">
     {%- for post in include.posts -%}
+    {%- assign shown = "" | split: "" -%}
+    {%- for tag in post.tags -%}
+      {%- if tag != include.exclude and shown.size < 2 -%}{%- assign shown = shown | push: tag -%}{%- endif -%}
+    {%- endfor -%}
     <a class="cds--structured-list-row" href="{{ post.url | relative_url }}">
       <div class="cds--structured-list-td site-archive-date">
         <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: fmt }}</time>
       </div>
       <div class="cds--structured-list-td site-archive-title">{{ post.title }}</div>
-      {%- if post.tags and post.tags.size > 0 -%}
       <div class="cds--structured-list-td site-archive-tags">
-        {%- assign shown = post.tags | slice: 0, 3 -%}
-        {%- for tag in shown -%}<span class="site-archive-tag">#{{ tag }}</span>{%- endfor -%}
+        {%- for tag in shown -%}<span class="site-archive-tag">{{ site.data.topics[tag].name | default: tag }}</span>{%- endfor -%}
       </div>
-      {%- else -%}
-      <div class="cds--structured-list-td site-archive-tags"></div>
-      {%- endif -%}
     </a>
     {%- endfor -%}
   </div>

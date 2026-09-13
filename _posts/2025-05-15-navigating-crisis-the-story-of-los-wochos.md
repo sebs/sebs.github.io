@@ -3,8 +3,8 @@ layout: post
 title: "Navigating Crisis: The Story of Los Wochos"
 date: 2025-05-15 15:28:23 +0000
 permalink: "/2025/05/15/navigating-crisis-the-story-of-los-wochos/"
-description: "Today I stumbled over ......    \"Influence didn’t have to look like volume or certainty. It could..."
-tags: [management]
+description: "How curious, trusting C-levels at an online media company led 80 people through a fast pivot in the 2008 financial crisis without layoffs."
+tags: [teams-and-leadership]
 og_type: article
 devto_url: "https://dev.to/sebs/navigating-crisis-the-story-of-los-wochos-27ga"
 render_with_liquid: false

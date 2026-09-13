@@ -3,8 +3,8 @@ layout: post
 title: "A little action might not hurt - #heforshe"
 date: 2014-09-27
 permalink: "/2014/09/27/a-little-action-might-not-hurt/"
-description: "TL;TR: Any gender diverse group gets a 25% price reduction for coachings and trainings becuase diverse groups yield better results and make my job easier"
-tags: []
+description: "Inspired by #heforshe, gender-diverse groups get a 25% discount on trainings and coaching, because diverse groups are more creative and get better results."
+tags: [teams-and-leadership, workshops-and-talks]
 og_type: article
 original_source: "Dissident Trainings"
 original_url: "http://dissident-trainings.de/2014/09/27/a-little-action-might-not-hurt.html"

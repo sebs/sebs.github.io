@@ -3,8 +3,8 @@ layout: post
 title: "Vibecoding hacks"
 date: 2025-03-16 20:22:43 +0000
 permalink: "/2025/03/16/vibecoding-hacks/"
-description: "Okay, let's ditch the bullet points and LinkedIn-speak. Vibe Coding, at its core, is about building a..."
-tags: []
+description: "Vibe coding as grounded dialogue: context-rich prompt examples and a repo structure of rules, concepts, stories, backlog and ADRs that feeds LLM agents."
+tags: [ai-assisted-development]
 og_type: article
 devto_url: "https://dev.to/sebs/vibecoding-hacks-1ien"
 render_with_liquid: false

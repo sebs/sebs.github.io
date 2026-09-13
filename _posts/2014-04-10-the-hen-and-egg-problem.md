@@ -3,8 +3,8 @@ layout: post
 title: "The hen and egg problem"
 date: 2014-04-10
 permalink: "/2014/04/10/the-hen-and-egg-problem/"
-description: "Imagine, you do a project with a UX guy. He is building the UI and expects an api while doing so."
-tags: []
+description: "Building UI and API in parallel causes interface ping-pong that slows delivery; a quickly changeable mock API built with Interfake saves that time."
+tags: [web-development, developer-tooling]
 og_type: article
 original_source: "Dissident Trainings"
 original_url: "http://dissident-trainings.de/2014/04/10/the-hen-and-egg-problem.html"

@@ -3,8 +3,8 @@ layout: post
 title: "Open-Source & Cyber Resilience Act - Differing opinions aside"
 date: 2025-06-26 15:41:45 +0000
 permalink: "/2025/06/26/open-source-cyber-resilience-act-differing-opinions-aside/"
-description: "The European Union's Cyber Resilience Act (CRA) is set to introduce a new regulatory framework for..."
-tags: [cra, opensource, compliance]
+description: "Assessing the unmaintained es6-fuzz library against the EU Cyber Resilience Act: outdated Node.js, no SECURITY.md, and a fix plan with SBOM, SAST, SCA."
+tags: [supply-chain-security, developer-tooling]
 og_type: article
 devto_url: "https://dev.to/sebs/open-source-cyber-resilience-act-differing-opinions-aside-egn"
 render_with_liquid: false

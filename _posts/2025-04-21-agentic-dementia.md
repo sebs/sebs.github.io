@@ -3,8 +3,8 @@ layout: post
 title: "Agentic Dementia"
 date: 2025-04-21 23:11:33 +0000
 permalink: "/2025/04/21/agentic-dementia/"
-description: "Let's be clear: agentic LLMs for coding support and research are phenomenal. Tools that can..."
-tags: [vibecoding, programming]
+description: "Agentic coding LLMs boost productivity at hidden costs: lost learning, paying to train vendor models, eroded craft, locked-in knowledge and metered use."
+tags: [ai-and-critical-thinking, ai-assisted-development]
 og_type: article
 series: "counter llm sideffects"
 devto_url: "https://dev.to/sebs/agentic-dementia-5hdc"

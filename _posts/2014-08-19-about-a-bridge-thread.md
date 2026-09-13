@@ -3,8 +3,8 @@ layout: post
 title: "About a Bridge Thread"
 date: 2014-08-19
 permalink: "/2014/08/19/about-a-bridge-thread/"
-description: "Reading the C2 wiki, in the context of extreme programming, a bridge thread is"
-tags: []
+description: "Tips for the XP bridge thread as first iteration: pick an independent, end-to-end core story that touches all layers, sets up CI and informs estimates."
+tags: [agile-practices, software-architecture]
 og_type: article
 original_source: "Dissident Trainings"
 original_url: "http://dissident-trainings.de/2014/08/19/about-a-bridge-thread.html"

@@ -3,8 +3,8 @@ layout: post
 title: "Over my dead body!"
 date: 2013-11-21
 permalink: "/2013/11/21/over-my-dead-body/"
-description: "Ever since I started with XP and especially Testing, there is a pattern evolving that works like this"
-tags: []
+description: "Agencies, enterprises and startups all say TDD and high quality only pay off somewhere else. Developers must own code quality anyway, or walk away."
+tags: [testing-and-quality, agile-practices]
 og_type: article
 original_source: "Dissident Trainings"
 original_url: "http://dissident-trainings.de/2013/11/21/over-my-dead-body.html"

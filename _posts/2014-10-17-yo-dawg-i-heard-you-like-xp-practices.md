@@ -3,8 +3,8 @@ layout: post
 title: "Yo dawg, I heard you like XP Practices and BDD"
 date: 2014-10-17
 permalink: "/2014/10/17/yo-dawg-i-heard-you-like-xp-practices/"
-description: "I need to get a website for the upcoming XP Practices training together that shows basic practices and allows participants to prepare for the workshop.…"
-tags: []
+description: "Building the website for an XP practices training with BDD and continuous delivery, so real failures and fixes become examples for a BDD workshop."
+tags: [testing-and-quality, workshops-and-talks, agile-practices]
 og_type: article
 original_source: "Dissident Trainings"
 original_url: "http://dissident-trainings.de/2014/10/17/yo-dawg-i-heard-you-like-xp-practices.html"

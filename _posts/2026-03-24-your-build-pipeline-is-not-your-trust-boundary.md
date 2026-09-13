@@ -3,10 +3,10 @@ layout: post
 title: "Your build pipeline is not your trust boundary"
 date: 2026-03-24 16:27:07 +0000
 permalink: "/2026/03/24/your-build-pipeline-is-not-your-trust-boundary/"
-description: "Some teams deploying software to AWS have two registries and think of them as a logistics detail. One..."
-tags: [devops, bulkhead, wellarchitected, aws]
+description: "Applies the bulkhead pattern to deployments: CI pushes to an untrusted GitLab registry and a separate pipeline validates images before they reach ECR."
+tags: [devops, supply-chain-security, software-architecture]
 og_type: article
-image: "/assets/posts/your-build-pipeline-is-not-your-trust-boundary/cover.png"
+image: "/assets/posts/your-build-pipeline-is-not-your-trust-boundary/og.jpg"
 devto_url: "https://dev.to/sebs/your-build-pipeline-is-not-your-trust-boundary-1bnn"
 render_with_liquid: false
 ---

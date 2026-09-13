@@ -3,8 +3,8 @@ layout: post
 title: "20 Questions to Ask an LLM About Your Codebase (That You Probably Won't Like the Answers To)"
 date: 2025-08-04 18:50:43 +0000
 permalink: "/2025/08/04/20-questions-to-ask-an-llm-about-your-codebase-that-you-probably-wont-like-the/"
-description: "LLM generated or not. Stop letting a machine generate only the words that you want to hear and start..."
-tags: []
+description: "Twenty uncomfortable questions to ask an LLM about your codebase, from coupling and complexity to technical debt, weak tests, security and bus factor."
+tags: [testing-and-quality, ai-assisted-development]
 og_type: article
 devto_url: "https://dev.to/sebs/20-questions-to-ask-an-llm-about-your-codebase-that-you-probably-wont-like-the-answers-to-2h9k"
 render_with_liquid: false

@@ -3,8 +3,8 @@ layout: post
 title: "Codereviews and Pairprogramming"
 date: 2019-04-10
 permalink: "/2019/04/10/Codereviews-and-Pairprogramming/"
-description: "Do do we still need Codereviews when we do Pairprogramming?"
-tags: [extremeprogramming, practices]
+description: "Code reviews and pair programming are not rivals: a roundup of versus articles and the case that pairing focuses reviews on the hard problems."
+tags: [pair-programming, testing-and-quality]
 og_type: article
 original_source: "Dissident Trainings"
 original_url: "http://dissident-trainings.de/2014/11/14/codereviews-and-pairprogramming.html"

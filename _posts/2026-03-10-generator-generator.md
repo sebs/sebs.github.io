@@ -3,10 +3,10 @@ layout: post
 title: "Generator Generator"
 date: 2026-03-10 12:39:08 +0000
 permalink: "/2026/03/10/generator-generator/"
-description: "Suppose you need to produce a physical set of Agile Workshop Tokens for your development team. Forty..."
-tags: [llm, nanobanana, generativeart, ai]
+description: "Ask AI for procedural grammars, not single assets: a 40-piece, 3D-printable Agile Workshop Token set shows how generative systems beat one-off images."
+tags: [ai-assisted-development, game-development]
 og_type: article
-image: "/assets/posts/generator-generator/cover.jpg"
+image: "/assets/posts/generator-generator/og.jpg"
 devto_url: "https://dev.to/sebs/generator-generator-1m0h"
 render_with_liquid: false
 ---
@@ -143,7 +143,7 @@ The token pipeline's stochastic layer encodes the same principle at a smaller sc
 
 ## IV. Praxis: What Do You Actually Use This For?
 
-![The generated system turned into a demo webapp displaying the workshop tokens](/assets/posts/generator-generator/woc1g5n8i31jjno0mjml.png)
+![The generated system turned into a demo webapp displaying the workshop tokens](/assets/posts/generator-generator/woc1g5n8i31jjno0mjml.webp)
 
 The pragmatic reader is entitled to scepticism. The token set is illustrative, but what about genuinely mundane work?
 

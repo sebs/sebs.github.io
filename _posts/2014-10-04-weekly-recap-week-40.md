@@ -3,8 +3,8 @@ layout: post
 title: "Weekly recap - Week #40"
 date: 2014-10-04
 permalink: "/2014/10/04/weekly-recap-week-40/"
-description: "This week was a wild mix of code and topics from the “agile world”"
-tags: []
+description: "Weekly recap: prototyping with Hoodie, WinJS and Cordova, arguments against pair programming, advanced TDD and a GitHub, Travis CI and Heroku pipeline."
+tags: [workshops-and-talks, web-development, pair-programming]
 og_type: article
 original_source: "Dissident Trainings"
 original_url: "http://dissident-trainings.de/2014/10/04/weekly-recap-week-40.html"

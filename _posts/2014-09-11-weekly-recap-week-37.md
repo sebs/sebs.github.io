@@ -3,8 +3,8 @@ layout: post
 title: "Weekly recap - Week #37"
 date: 2014-09-11
 permalink: "/2014/09/11/weekly-recap-week-37/"
-description: "If you look for a way to generate a appcache.manifest and make your page more available for offline usage, grunt-appcache is your friend."
-tags: []
+description: "Weekly recap of front-end finds: grunt-appcache and the Manifesto bookmarklet for offline apps, tablet virtual keyboard layout bugs, apper and Math.js 1.0."
+tags: [web-development, workshops-and-talks]
 og_type: article
 original_source: "Dissident Trainings"
 original_url: "http://dissident-trainings.de/2014/09/11/weekly-recap-week-37.html"

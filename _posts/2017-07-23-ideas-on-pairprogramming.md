@@ -3,8 +3,8 @@ layout: post
 title: "Ideas on Pairprogramming"
 date: 2017-07-23
 permalink: "/2017/07/23/Ideas-on-Pairprogramming/"
-description: "Over the last years, I got many good Ideas from teams on how to use pairing in their daily work. It is very interesting how the initial idea is “hacked”,…"
-tags: [extremeprogramming, practices, pairprogramming]
+description: "Ways to adapt pair programming: pair promiscuously, switch on red-green-refactor, onboard new hires, and pair on releases, bugfixes and spikes."
+tags: [pair-programming, agile-practices]
 og_type: article
 original_source: "Dissident Trainings"
 original_url: "http://dissident-trainings.de/2014/10/06/how-to-pair.html"

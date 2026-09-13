@@ -3,8 +3,8 @@ layout: post
 title: "Weekly recap - Week #43"
 date: 2014-11-02
 permalink: "/2014/11/02/weekly-recap-week-43/"
-description: "The talk for the Berlin PHP Usergroup is finished. It features: bower, gulp, grunt, docker, chef, puppet, analytics, new relic, a lot of js frameworks and…"
-tags: []
+description: "Weekly recap: a Berlin PHP user group talk on frontend tooling, a play4agile video, pairing workshops in Hamburg and Munich and cucumber.js trouble."
+tags: [workshops-and-talks, pair-programming, web-development]
 og_type: article
 original_source: "Dissident Trainings"
 original_url: "http://dissident-trainings.de/2014/11/02/weekly-recap-week-43.html"

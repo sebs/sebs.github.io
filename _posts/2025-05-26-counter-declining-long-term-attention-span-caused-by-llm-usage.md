@@ -3,10 +3,10 @@ layout: post
 title: "Counter Declining Long-Term Attention Span caused by LLM usage"
 date: 2025-05-26 10:54:59 +0000
 permalink: "/2025/05/26/counter-declining-long-term-attention-span-caused-by-llm-usage/"
-description: "In our rush to embrace the productivity benefits of Large Language Models (LLMs), we've overlooked a..."
-tags: [llm, secondsingularity]
+description: "LLM use erodes sustained attention. Counter it by cross-training your brain with focus-heavy activities, from chess and archery to slow chess at work."
+tags: [ai-and-critical-thinking]
 og_type: article
-image: "/assets/posts/counter-declining-long-term-attention-span-caused-by-llm-usage/cover.png"
+image: "/assets/posts/counter-declining-long-term-attention-span-caused-by-llm-usage/og.jpg"
 devto_url: "https://dev.to/sebs/counter-llm-usage-side-effects-part-1-declining-long-term-attention-span-232e"
 render_with_liquid: false
 ---

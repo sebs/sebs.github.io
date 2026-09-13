@@ -4,7 +4,7 @@ title: "The rules of mob programming"
 date: 2016-02-06
 permalink: "/2016/02/06/The-rules-of-mob-programming/"
 description: "A funny list of pseudo rules that apply to mob programming. Sometimes a laugh is a good thing"
-tags: [extremeprogramming, teamwork, pairprogramming, fun]
+tags: [pair-programming]
 og_type: article
 ---
 A funny list of pseudo rules that apply to mob programming. Sometimes a laugh is a good thing

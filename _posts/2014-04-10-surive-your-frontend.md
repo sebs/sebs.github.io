@@ -1,10 +1,10 @@
 ---
 layout: post
-title: "Surive your Frontend"
+title: "Survive your Frontend"
 date: 2014-04-10
 permalink: "/2014/04/10/Surive-your-Frontend/"
-description: "I am building a talk on how to approach big/long running front end projects that was initially presented at the Berlin PHP User-group July 2014. I started…"
-tags: [javascript, talk]
+description: "Notes for a talk on surviving big, long-running JavaScript front ends: treat front-end work as real software development with tools, craft and process."
+tags: [web-development, workshops-and-talks, testing-and-quality]
 og_type: article
 original_source: "Dissident Trainings"
 original_url: "http://dissident-trainings.de/2014/10/29/survive-your-frontend-thoughts.html"

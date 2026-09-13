@@ -22,10 +22,10 @@ layout: default
       <h1 class="site-post__title">{{ page.title }}</h1>
 
       {%- if page.tags and page.tags.size > 0 -%}
-      <div class="site-post__tags">
+      <div class="site-post__tags" aria-label="Topics">
         {%- for tag in page.tags -%}
         <a class="cds--tag cds--tag--sm cds--tag--outline cds--tag--operational" href="{{ '/tags/' | append: tag | append: '/' | relative_url }}">
-          <span class="cds--tag__label">#{{ tag }}</span>
+          <span class="cds--tag__label">{{ site.data.topics[tag].name | default: tag }}</span>
         </a>
         {%- endfor -%}
       </div>
@@ -51,6 +51,22 @@ layout: default
     </div>
 
     <footer class="site-post__foot">
+      {%- comment -%} `page.related` comes from _plugins/related_posts.rb (shared topics). {%- endcomment -%}
+      {%- if page.related and page.related.size > 0 -%}
+      <section class="site-post__related" aria-labelledby="related-heading">
+        <h2 class="site-eyebrow" id="related-heading">Related posts</h2>
+        <ul class="site-post__related-list">
+          {%- for post in page.related -%}
+          <li>
+            <a class="site-post__related-link" href="{{ post.url | relative_url }}">
+              <span class="site-post__related-title">{{ post.title }}</span>
+              <span class="site-post__related-meta">{{ post.date | date: "%B %Y" }}</span>
+            </a>
+          </li>
+          {%- endfor -%}
+        </ul>
+      </section>
+      {%- endif -%}
       {%- if page.previous or page.next -%}
       <nav class="site-post__pager" aria-label="More posts">
         {%- if page.next -%}

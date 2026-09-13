@@ -30,7 +30,17 @@
   gap: spacing.$spacing-03;
   margin-block-start: spacing.$spacing-05;
 
-  .#{$prefix}--tag { margin: 0; }
+  // Topic names are a few words long; Carbon's tag would cut them off with
+  // an ellipsis ("Game Development & Proto…").
+  .#{$prefix}--tag {
+    margin: 0;
+    max-inline-size: none;
+  }
+
+  .#{$prefix}--tag__label {
+    overflow: visible;
+    text-overflow: clip;
+  }
 }
 
 // "Originally published on ..." for imported posts — a quiet tile with the
@@ -49,6 +59,44 @@
   border-block-start: 1px solid theme.$border-subtle-01;
   margin-block-start: spacing.$spacing-09;
   padding-block-start: spacing.$spacing-06;
+}
+
+// Related posts (shared topics) — a plain list above the pager.
+.site-post__related {
+  margin-block-end: spacing.$spacing-07;
+
+  .site-eyebrow {
+    display: block;
+    margin-block-end: spacing.$spacing-05;
+  }
+}
+
+.site-post__related-list {
+  list-style: none;
+}
+
+.site-post__related-link {
+  border-block-start: 1px solid theme.$border-subtle-01;
+  display: flex;
+  flex-wrap: wrap;
+  gap: spacing.$spacing-03 spacing.$spacing-05;
+  justify-content: space-between;
+  padding-block: spacing.$spacing-05;
+
+  &:hover .site-post__related-title { color: theme.$link-primary; }
+}
+
+.site-post__related-title {
+  @include type.type-style("body-02");
+
+  color: theme.$text-primary;
+}
+
+.site-post__related-meta {
+  @include type.type-style("body-01");
+
+  color: theme.$text-secondary;
+  white-space: nowrap;
 }
 
 // Newer / older post, as two hairline-joined tiles above "All posts".

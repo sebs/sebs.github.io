@@ -20,7 +20,6 @@ lang: "en"
 image: "/assets/og/og-default.png"
 
 plugins:
-  - jekyll-sitemap
   - jekyll-archives
   - jekyll-feed
   - jekyll-redirect-from

@@ -3,8 +3,8 @@ layout: post
 title: "The BDD project - My first results"
 date: 2014-10-22
 permalink: "/2014/10/22/the-bdd-project-first-results/"
-description: "Starting of on sunday with a little impact mapping I tried to outline the first basic ideas using this technique. It turns it takes some rewrites and a…"
-tags: []
+description: "First results of a BDD side project: an impact map for an XP practices workshop site, its user groups, and the first two user stories for cucumber.js."
+tags: [testing-and-quality, agile-practices]
 og_type: article
 original_source: "Dissident Trainings"
 original_url: "http://dissident-trainings.de/2014/10/22/the-bdd-project-first-results.html"

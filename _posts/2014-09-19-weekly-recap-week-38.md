@@ -3,8 +3,8 @@ layout: post
 title: "Weekly recap Week #38"
 date: 2014-09-19
 permalink: "/2014/09/19/weekly-recap-week-38/"
-description: "This week was more about building my own things aka website."
-tags: []
+description: "Weekly recap: a Jekyll website and Yeoman generator, learning what copywriting is, picking XP, pairing and BDD trainings, and a ClojureScript talk."
+tags: [workshops-and-talks, web-development]
 og_type: article
 original_source: "Dissident Trainings"
 original_url: "http://dissident-trainings.de/2014/09/19/weekly-recap-week-38.html"

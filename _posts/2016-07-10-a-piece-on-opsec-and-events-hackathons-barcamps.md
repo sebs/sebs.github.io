@@ -3,8 +3,8 @@ layout: post
 title: "A piece on “OpSec” and Events/Hackathons/Barcamps"
 date: 2016-07-10
 permalink: "/2016/07/10/A-piece-on-“OpSec”-and-Events-Hackathons-Barcamps/"
-description: "I thought, everything that you could say has been said, about how to stay half assed secure on conferences and other nerdy events and environments. Let me…"
-tags: [events, barcamp]
+description: "OpSec tips for developers at hackathons, barcamps and conferences: leave the work laptop home, secure open services, tunnel traffic, mind what you share."
+tags: [supply-chain-security, devops]
 og_type: article
 ---
 I thought, everything that you could say has been said, about how to stay half assed secure on conferences and other nerdy events and environments. Let me tell you about some mistakes that I made. This is aimed on the half way tech savy from a half assed programmer. Please correct me in the comments if necessary

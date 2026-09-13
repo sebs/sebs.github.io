@@ -3,10 +3,10 @@ layout: post
 title: "Local AI Will Save Us All (The Math Says So, Trust Me)"
 date: 2026-04-15 14:05:13 +0000
 permalink: "/2026/04/15/local-ai-will-save-us-all-the-math-says-so-trust-me/"
-description: "Every few weeks a take goes viral in tech circles making the case for ditching cloud AI and running..."
-tags: [ai, mba, operations]
+description: "Checks the viral math for local AI on two RTX PRO 6000 GPUs: power costs, token use, cooling, labor, noise and supply risks. Data sovereignty holds up."
+tags: [tech-strategy, ai-and-critical-thinking]
 og_type: article
-image: "/assets/posts/local-ai-will-save-us-all-the-math-says-so-trust-me/cover.png"
+image: "/assets/posts/local-ai-will-save-us-all-the-math-says-so-trust-me/og.jpg"
 devto_url: "https://dev.to/sebs/local-ai-will-save-us-all-the-math-says-so-trust-me-4m22"
 render_with_liquid: false
 ---

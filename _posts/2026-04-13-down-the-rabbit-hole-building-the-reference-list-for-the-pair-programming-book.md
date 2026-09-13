@@ -3,10 +3,10 @@ layout: post
 title: "Down the Rabbit Hole: Building the Reference List for the Pair-Programming Book"
 date: 2026-04-13 11:20:07 +0000
 permalink: "/2026/04/13/down-the-rabbit-hole-building-the-reference-list-for-the-pair-programming-book/"
-description: "There's a particular kind of humbling that happens when you sit down to write a book and realize you..."
-tags: [pairprogramming, writing, research]
+description: "Building the reference list for a pair programming book: 250 to 500 papers, Laurie Williams' key work and studies built on shaky personality types."
+tags: [pair-programming]
 og_type: article
-image: "/assets/posts/down-the-rabbit-hole-building-the-reference-list-for-the-pair-programming-book/cover.png"
+image: "/assets/posts/down-the-rabbit-hole-building-the-reference-list-for-the-pair-programming-book/og.jpg"
 devto_url: "https://dev.to/sebs/down-the-rabbit-hole-building-the-reference-list-for-the-pair-programming-book-367n"
 render_with_liquid: false
 ---

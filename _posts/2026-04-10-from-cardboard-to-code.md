@@ -3,10 +3,10 @@ layout: post
 title: "From Cardboard to Code"
 date: 2026-04-10 22:43:15 +0000
 permalink: "/2026/04/10/from-cardboard-to-code/"
-description: "The design challenge isn't understanding board games. It's turning prose rules into structures a..."
-tags: [ai, gamedev, gamedesign]
+description: "RuleForge, a suite of Claude Code slash commands, turns a board game rulebook PDF into a developer bundle with GDD, user stories and architecture diagrams."
+tags: [ai-assisted-development, game-development, developer-tooling]
 og_type: article
-image: "/assets/posts/from-cardboard-to-code/cover.png"
+image: "/assets/posts/from-cardboard-to-code/og.jpg"
 devto_url: "https://dev.to/sebs/from-cardboard-to-code-29d5"
 render_with_liquid: false
 ---

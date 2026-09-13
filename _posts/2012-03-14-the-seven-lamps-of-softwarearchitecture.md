@@ -3,8 +3,8 @@ layout: post
 title: "The seven Lamps of (Software)Architecture"
 date: 2012-03-14
 permalink: "/2012/03/14/the-seven-lamps-of-softwarearchitecture/"
-description: "I am still reading “The Craftsman” by Richard Sennet, a book that was given to me by a very smart Product-Designer/UX-Guy/Carpenter because we talked a lot…"
-tags: []
+description: "Applies John Ruskin's Seven Lamps of Architecture, found in Richard Sennett's The Craftsman, to software design, from network limits to honest structure."
+tags: [software-architecture]
 og_type: article
 original_source: "Dissident Trainings"
 original_url: "http://dissident-trainings.de/2012/03/14/the-seven-lamps-of-softwarearchitecture.html"
