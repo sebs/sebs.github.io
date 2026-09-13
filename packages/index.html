@@ -181,7 +181,7 @@ permalink: /packages/
 {%- if heat -%}
       <div class="cds--tile site-panel__wide">
         <div class="site-panel__head">
-          <span class="site-eyebrow">Releases per week &middot; {{ heat.years[0].year }}&ndash;{{ heat.years.last.year }}</span>
+          <span class="site-eyebrow">Releases per month &middot; {{ heat.years[0].year }}&ndash;{{ heat.years.last.year }}</span>
           <span class="site-panel__meta">
             {{ heat.total }} releases{% if heat.busiest.size > 0 %} &middot; busiest {{ heat.busiest[0].date | date: "%-d %b %Y" }} with {{ heat.busiest[0].n }}{% endif %}
             {%- if heat.quiet.size > 0 %} &middot; nothing in {{ heat.quiet | array_to_sentence_string }}{% endif %}
@@ -189,9 +189,10 @@ permalink: /packages/
         </div>
         <div class="site-plot" data-heat>
           <div class="site-heat__scroll">
-            <div class="site-heat" role="group" aria-label="Releases per week, {{ heat.years[0].year }} to {{ heat.years.last.year }}">
+            <div class="site-heat" role="group" aria-label="Releases per month, {{ heat.years[0].year }} to {{ heat.years.last.year }}">
               <div class="site-heat__months" aria-hidden="true">
-                {%- for m in heat.months -%}<span style="grid-column: {{ m.col | plus: 2 }} / span 4">{{ m.label }}</span>{%- endfor -%}
+                <span class="site-heat__year"></span>
+                {%- for m in heat.months -%}<span>{{ m }}</span>{%- endfor -%}
               </div>
               {%- for y in heat.years -%}
               <div class="site-heat__row">
@@ -199,7 +200,7 @@ permalink: /packages/
                 {%- for c in y.cells -%}
                 {%- if c.n > 0 -%}
                 <span class="site-heat__cell" role="img" data-l="{{ c.l }}" data-n="{{ c.n }}" data-d="{{ c.d }}" data-p="{{ c.p | escape }}"
-                      aria-label="{{ c.n }} release{% if c.n != 1 %}s{% endif %}, week of {{ c.d | date: '%-d %b %Y' }}: {{ c.p | escape }}"></span>
+                      aria-label="{{ c.n }} release{% if c.n != 1 %}s{% endif %} in {{ c.d | date: '%B %Y' }}: {{ c.p | escape }}"></span>
                 {%- else -%}
                 <span class="site-heat__cell" data-l="0"{% if c.f %} data-future{% endif %} aria-hidden="true"></span>
                 {%- endif -%}
@@ -213,11 +214,11 @@ permalink: /packages/
         </div>
         <div class="site-heat__foot">
           <p class="site-helper">
-            Hover or tab into the grid for the packages behind each week. Totals
+            Hover or tab into the grid for the packages behind each month. Totals
             per year on the right; the shades step at 1, 2, 4 and 10 releases.
           </p>
           {%- comment -%} Buckets mirror HEAT_STEPS in scripts/fetch_npm_stats.py. {%- endcomment -%}
-          <div class="site-heat__legend" aria-label="Releases per week">
+          <div class="site-heat__legend" aria-label="Releases per month">
             <span>Fewer</span>
             <span class="site-heat__cell" data-l="1" title="1"></span>
             <span class="site-heat__cell" data-l="2" title="2–3"></span>
@@ -254,17 +255,17 @@ permalink: /packages/
 {%- endif -%}
 {%- if heat -%}
       <details class="site-details">
-        <summary>Every release week as a table</summary>
+        <summary>Every release month as a table</summary>
         <div class="cds--data-table-container">
           <table class="cds--data-table cds--data-table--xs">
             <thead><tr>
-              <th scope="col"><div class="cds--table-header-label">Week of</div></th>
+              <th scope="col"><div class="cds--table-header-label">Month</div></th>
               <th scope="col"><div class="cds--table-header-label">Releases</div></th>
               <th scope="col"><div class="cds--table-header-label">Packages</div></th>
             </tr></thead>
             <tbody>
               {%- for y in heat.years reversed -%}{%- for c in y.cells reversed -%}{%- if c.n > 0 -%}
-              <tr><td>{{ c.d | date: "%-d %b %Y" }}</td><td class="site-pkg__num">{{ c.n }}</td><td>{{ c.p | escape }}</td></tr>
+              <tr><td>{{ c.d | date: "%b %Y" }}</td><td class="site-pkg__num">{{ c.n }}</td><td>{{ c.p | escape }}</td></tr>
               {%- endif -%}{%- endfor -%}{%- endfor -%}
             </tbody>
           </table>

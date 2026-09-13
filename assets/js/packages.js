@@ -39,6 +39,13 @@
     return parsed.getUTCDate() + ' ' + MONTHS[parsed.getUTCMonth()] + ' ' + parsed.getUTCFullYear();
   }
 
+  // "2026-06-01" -> "Jun 2026", matching Liquid's "%b %Y".
+  function month(iso) {
+    var parsed = new Date(iso + 'T00:00:00Z');
+    if (isNaN(parsed.getTime())) return iso;
+    return MONTHS[parsed.getUTCMonth()] + ' ' + parsed.getUTCFullYear();
+  }
+
   function pick(list) {
     return list[Math.floor(Math.random() * list.length)];
   }
@@ -458,7 +465,7 @@
       cells.forEach(function (other) { other.classList.toggle('is-active', other === cell); });
       showTip(plot, [
         releases + (releases === 1 ? ' release' : ' releases'),
-        'week of ' + day(cell.getAttribute('data-d')),
+        month(cell.getAttribute('data-d')),
         cell.getAttribute('data-p')
       ], cell.getBoundingClientRect());
     }
@@ -475,8 +482,8 @@
     plot.addEventListener('pointerleave', clear);
 
     // Roving tabindex: the grid is a single tab stop and the arrow keys walk
-    // the weeks that actually have releases — ~80 of them, against 600-odd
-    // squares that would otherwise all land in the tab order.
+    // the months that actually have releases, rather than every square
+    // landing in the tab order.
     var current = cells.length - 1;
     cells.forEach(function (cell, index) { cell.tabIndex = index === current ? 0 : -1; });
 
@@ -504,7 +511,7 @@
       if (!plot.contains(event.relatedTarget)) clear();
     });
 
-    // Open on the most recent weeks when the grid is wider than the viewport.
+    // Open on the most recent months when the grid is wider than the viewport.
     if (scroller && scroller.scrollWidth > scroller.clientWidth) {
       var last = cells[cells.length - 1];
       scroller.scrollLeft = last.offsetLeft - scroller.clientWidth / 2;

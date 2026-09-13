@@ -337,14 +337,13 @@ def short_name(pkg):
 
 
 def release_heatmap(packages, today):
-    """Year-by-week grid of every release, GitHub-contribution style.
+    """Year-by-month grid of every release.
 
     One row per calendar year from the first release to this one — including
-    years without a release, whose empty rows are part of the story — and 53
-    week columns (day-of-year // 7, so the last holds a day or two). Each cell
-    carries its count `n`, intensity level `l` (see HEAT_STEPS) and, when it
-    has releases, its week-start date `d` and a label `p` naming them; `f`
-    marks weeks still in the future.
+    years without a release, whose empty rows are part of the story — and 12
+    month columns. Each cell carries its count `n`, intensity level `l` (see
+    HEAT_STEPS) and, when it has releases, its month-start date `d` and a label
+    `p` naming them; `f` marks months still in the future.
     """
     events = sorted(
         (day, p.get("command") or short_name(p["name"]), ver)
@@ -357,8 +356,7 @@ def release_heatmap(packages, today):
     cells_by_key = {}
     for day, who, ver in events:
         d = date.fromisoformat(day)
-        key = (d.year, (d.timetuple().tm_yday - 1) // 7)
-        cells_by_key.setdefault(key, []).append(f"{who} {ver}")
+        cells_by_key.setdefault((d.year, d.month), []).append(f"{who} {ver}")
 
     # Through this year, or the last release if one is somehow dated ahead of
     # it — an empty `years` would leave the section claiming releases it does
@@ -367,9 +365,9 @@ def release_heatmap(packages, today):
     years = []
     for year in range(int(events[0][0][:4]), last_year + 1):
         cells = []
-        for week in range(53):
-            start = date(year, 1, 1) + timedelta(days=7 * week)
-            hits = cells_by_key.get((year, week), [])
+        for month in range(1, 13):
+            start = date(year, month, 1)
+            hits = cells_by_key.get((year, month), [])
             n = len(hits)
             cell = {"n": n, "l": sum(n >= step for step in HEAT_STEPS)}
             if n:
@@ -387,11 +385,8 @@ def release_heatmap(packages, today):
         "years": years,
         "quiet": [y["year"] for y in years if not y["count"]],
         "busiest": [{"date": d, "n": n} for d, n in per_day.most_common(3)],
-        # Month labels for the column axis, placed at the week holding the 1st.
-        # One label row is shared by every year, so it is approximate by
-        # construction: a leap year runs a column late from March on.
-        "months": [{"label": label, "col": (date(2001, m, 1).timetuple().tm_yday - 1) // 7}
-                   for m, label in enumerate(MONTHS, start=1)],
+        # Column axis labels, one per month column.
+        "months": list(MONTHS),
     }
 
 

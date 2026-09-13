@@ -101,16 +101,47 @@
   font-weight: 600;
 }
 
-// --- Totals band: four tiles sharing one hairline grid ---
-.site-statband {
+// --- Activity panel: every tile shares one hairline grid ---
+// The four totals run across the top, the trend and the movers share the
+// middle row, and the release heatmap spans the full width underneath.
+.site-panel {
   background: theme.$border-subtle-01;
   display: grid;
   gap: 1px;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
 
   @include breakpoint.breakpoint(md) {
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(4, minmax(0, 1fr));
   }
+}
+
+.site-panel__main,
+.site-panel__side,
+.site-panel__wide {
+  grid-column: 1 / -1;
+  min-inline-size: 0;
+}
+
+@include breakpoint.breakpoint(lg) {
+  .site-panel__main,
+  .site-panel__side {
+    grid-column: span 2;
+  }
+}
+
+.site-panel__head {
+  align-items: baseline;
+  display: flex;
+  flex-wrap: wrap;
+  gap: spacing.$spacing-03;
+  justify-content: space-between;
+  margin-block-end: spacing.$spacing-06;
+}
+
+.site-panel__meta {
+  @include type.type-style("body-01");
+
+  color: theme.$text-secondary;
 }
 
 .site-stat {
@@ -338,7 +369,7 @@
 }
 
 // --- Release heatmap ------------------------------------------------------
-// One row per year, one square per week. Sequential magnitude, so it is a
+// One row per year, one cell per month. Sequential magnitude, so it is a
 // single hue stepped light to dark against the tile it sits on.
 .site-heat__scroll {
   overflow-x: auto;
@@ -348,8 +379,8 @@
   display: flex;
   flex-direction: column;
   gap: 2px;
-  // Below this the squares stop being clickable, so the grid scrolls instead.
-  min-inline-size: 46rem;
+  // Below this the month labels collide, so the grid scrolls instead.
+  min-inline-size: 27rem;
 }
 
 .site-heat__row,
@@ -357,9 +388,9 @@
   align-items: center;
   display: grid;
   gap: 2px;
-  // Year label · 53 weeks · year total. Capped so the squares stay squares on
-  // a wide screen instead of stretching into bricks.
-  grid-template-columns: 2.75rem repeat(53, minmax(0, 1.25rem)) 2.5rem;
+  // Year label · 12 months · year total. Twelve columns fill the tile, so the
+  // cells are fixed in height rather than square.
+  grid-template-columns: 2.75rem repeat(12, minmax(0, 1fr)) 2.5rem;
 }
 
 .site-heat__months span {
@@ -376,25 +407,32 @@
 
   // Pinned to the edges of the scroller: on a phone the grid is scrolled
   // sideways, and a row whose year has scrolled away says nothing.
+  // Stretched to the full row and over the 2px column gap, so no sliver of a
+  // cell scrolled underneath shows around the label.
+  align-items: center;
+  align-self: stretch;
   background: theme.$layer-01;
   color: theme.$text-secondary;
+  display: flex;
   font-variant-numeric: tabular-nums;
   position: sticky;
   z-index: 1;
 }
 
 .site-heat__year {
+  box-shadow: 2px 0 0 theme.$layer-01;
   inset-inline-start: 0;
 }
 
 .site-heat__total {
+  box-shadow: -2px 0 0 theme.$layer-01;
   inset-inline-end: 0;
-  text-align: end;
+  justify-content: flex-end;
 }
 
 .site-heat__cell {
-  aspect-ratio: 1;
   background: theme.$border-subtle-01;
+  block-size: 1.5rem;
 
   &[data-n] {
     cursor: pointer;
@@ -408,8 +446,8 @@
   }
 }
 
-// A week that has not happened yet — the current year stops at this week
-// rather than trailing twenty empty squares.
+// A month that has not happened yet — the current year stops at this month
+// rather than trailing empty cells.
 .site-heat__cell[data-future] {
   background: transparent;
 }
@@ -490,21 +528,6 @@
 }
 
 // --- Combined download trend ---
-.site-chart__head {
-  align-items: baseline;
-  display: flex;
-  flex-wrap: wrap;
-  gap: spacing.$spacing-03;
-  justify-content: space-between;
-  margin-block-end: spacing.$spacing-06;
-}
-
-.site-chart__peak {
-  @include type.type-style("body-01");
-
-  color: theme.$text-secondary;
-}
-
 .site-chart {
   block-size: 12.5rem;
   display: block;
@@ -563,16 +586,15 @@
 
 // --- Movers ---------------------------------------------------------------
 .site-movers {
-  background: theme.$border-subtle-01;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1px;
+  display: grid;
+  gap: spacing.$spacing-06;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 14rem), 1fr));
   list-style: none;
+  margin-block-end: spacing.$spacing-06;
 }
 
 .site-mover {
   display: flex;
-  flex: 1 1 14rem;
   flex-direction: column;
   gap: spacing.$spacing-03;
 }
@@ -599,6 +621,16 @@
 // --- Table twins ----------------------------------------------------------
 // Every plot on the page has a plain-table equivalent behind a disclosure, so
 // no figure is reachable only by hovering.
+.site-details-row {
+  align-items: start;
+  column-gap: spacing.$spacing-07;
+  display: grid;
+
+  @include breakpoint.breakpoint(md) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
 .site-details {
   border-block-end: 1px solid theme.$border-subtle-01;
   margin-block-start: spacing.$spacing-05;
