@@ -19,7 +19,8 @@
 <title>{{ full_title | escape }}</title>
 <meta name="description" content="{{ page_desc | strip_newlines | escape }}">
 <meta name="author" content="{{ site.author | escape }}">
-<link rel="canonical" href="{{ page_url }}">
+{%- comment -%} Imported posts point at their original while it is still online. {%- endcomment -%}
+<link rel="canonical" href="{{ page.canonical_url | default: page_url }}">
 {% feed_meta %}
 
 {%- comment -%} No-flash theme: set data-theme before first paint. {%- endcomment -%}

@@ -30,6 +30,18 @@ layout: default
         {%- endfor -%}
       </div>
       {%- endif -%}
+
+      {%- comment -%}
+        Posts imported from another site say so up front, linked to the
+        original (see scripts/import_dissident_trainings.py).
+      {%- endcomment -%}
+      {%- if page.original_url -%}
+      <p class="site-post__source" role="note">
+        Originally published on
+        <a class="cds--link cds--link--inline" href="{{ page.original_url }}">{{ page.original_source | default: page.original_url }}</a>
+        on {{ page.date | date: "%B %-d, %Y" }}.
+      </p>
+      {%- endif -%}
     </header>
 
     <div class="site-prose">

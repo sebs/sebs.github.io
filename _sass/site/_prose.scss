@@ -33,6 +33,18 @@
   .#{$prefix}--tag { margin: 0; }
 }
 
+// "Originally published on ..." for imported posts — a quiet tile with the
+// accent rule on its leading edge, so the provenance reads before the post.
+.site-post__source {
+  @include type.type-style("body-01");
+
+  background: theme.$layer-01;
+  border-inline-start: 3px solid theme.$link-primary;
+  color: theme.$text-secondary;
+  margin-block-start: spacing.$spacing-06;
+  padding: spacing.$spacing-05;
+}
+
 .site-post__foot {
   border-block-start: 1px solid theme.$border-subtle-01;
   margin-block-start: spacing.$spacing-09;

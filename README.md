@@ -27,8 +27,12 @@ that used to live on [dev.to](https://dev.to/sebs) were migrated here.
   behaviour on top — table sorting and filtering, copy buttons, and the chart
   readouts — and the page degrades to its static render without it.
 - **The blog is markdown in `_posts/`.** The old Hexo posts were converted to
-  clean markdown (see `scripts/extract_posts.py` for how), and the dev.to
-  articles were exported with `scripts/export_devto.py`, images and all. Each
+  clean markdown (see `scripts/extract_posts.py` for how), the dev.to
+  articles were exported with `scripts/export_devto.py`, images and all, and
+  the 2012–2015 posts from dissident-trainings.de were imported with
+  `scripts/import_dissident_trainings.py`. Imported posts carry
+  `original_source`/`original_url` (rendered as an "Originally published on"
+  note) and a `canonical_url` pointing at the original while it is online. Each
   post pins its URL via `permalink:` in front matter
   (e.g. `/2019/01/04/Monorepos-with-Lerna/`), so every existing link still
   resolves. The `post` layout renders them; `blog/index.html` is the `/blog/`
