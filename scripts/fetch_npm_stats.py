@@ -59,8 +59,7 @@ MOVER_FLOOR = 40
 MOVER_MIN_PCT = 10
 
 # Cap on example commands kept per package (see `readme_examples`), and the
-# longest one we keep: the hero terminal shows one command at a time, and a
-# longer line wraps awkwardly on a phone.
+# longest one we keep: a longer line wraps awkwardly on a phone.
 MAX_EXAMPLES = 4
 MAX_EXAMPLE_LEN = 80
 
@@ -470,7 +469,7 @@ def _strip_comment(line):
 
 def readme_examples(readme, pkg, bins):
     """Up to MAX_EXAMPLES commands from the README's shell blocks that run this
-    package — the hero terminal types them out verbatim.
+    package — the catalogue's expanded rows show them verbatim.
 
     A line qualifies when its first word is one of the package's `bin` names,
     or it is `npx <package or command> ...`; a leading `$ ` prompt is
@@ -677,9 +676,6 @@ def main():
         # template reads them from here rather than repeating the constants.
         "spark_weeks": SPARK_WEEKS,
         "mover_floor": MOVER_FLOOR,
-        # Downloads per day over the last 30 complete days — the hero's
-        # "since you opened this page" counter ticks at this rate.
-        "rate": round(sum(agg[d] for d in days[-30:]) / 30, 2) if len(days) >= 30 else None,
     }
     heatmap = release_heatmap(packages, date.today())
     board = movers(packages)

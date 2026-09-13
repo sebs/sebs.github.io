@@ -16,18 +16,7 @@ permalink: /packages/
 {%- assign has_data = false -%}
 {%- if packages and packages.size > 0 -%}{%- assign has_data = true -%}{%- endif -%}
 
-{%- comment -%}
-  The first package with README examples seeds the terminal, so it reads as a
-  real command before (or without) any JavaScript.
-{%- endcomment -%}
-{%- assign demo = nil -%}
-{%- for p in packages -%}
-  {%- if p.examples and p.examples.size > 0 -%}{%- assign demo = p -%}{%- break -%}{%- endif -%}
-{%- endfor -%}
-{%- capture nl %}
-{% endcapture -%}
-
-<section class="cds--css-grid site-page-head site-pkg-head">
+<section class="cds--css-grid site-page-head">
   <div class="cds--css-grid-column cds--sm:col-span-4 cds--md:col-span-8 cds--lg:col-span-7">
     <h1 class="site-page-head__title">Packages</h1>
     <p class="site-section__lead">
@@ -36,13 +25,6 @@ permalink: /packages/
       market, the job board &mdash; so the data is one command away. The rest
       are developer tools.
     </p>
-    {%- if has_data and totals.rate -%}
-    <p class="site-odometer" data-odometer data-rate="{{ totals.rate }}" hidden>
-      &asymp; <span class="site-odometer__value" data-odometer-value>0.00</span>
-      downloads since you opened this page
-      <span class="site-helper">&middot; one every <span data-odometer-every></span>, at the current rate</span>
-    </p>
-    {%- endif -%}
     {%- if stats.generated -%}
     <p class="site-helper site-mt-07">
       {% include icon.html name="history" %} Last refreshed {{ stats.generated }}
@@ -50,48 +32,6 @@ permalink: /packages/
     </p>
     {%- endif -%}
   </div>
-
-  {%- if demo -%}
-  {%- assign demo_ex = demo.examples | first -%}
-  {%- assign demo_npx = demo_ex | slice: 0, 4 -%}
-  <div class="cds--css-grid-column cds--sm:col-span-4 cds--md:col-span-8 cds--lg:col-span-9">
-    {%- comment -%}
-      `group` rather than a label on the <pre>: <pre> maps to a generic role,
-      which carries no accessible name.
-    {%- endcomment -%}
-    <div class="site-term" data-term role="group" aria-label="Example commands">
-      <div class="site-term__bar">
-        <span class="site-term__title">~/try-one</span>
-        <div class="site-term__actions">
-          <button type="button" class="cds--btn cds--btn--ghost cds--btn--sm" data-term-pause aria-pressed="false" hidden>Pause</button>
-          <button type="button" class="cds--btn cds--btn--ghost cds--btn--sm" data-term-next hidden>Next</button>
-          {%- comment -%}
-            Pause, Next and Copy all need JavaScript, so they ship hidden and
-            packages.js reveals them — a dead button is worse than none.
-          {%- endcomment -%}
-          <button type="button" class="cds--btn cds--btn--ghost cds--btn--sm site-copy" data-term-copy hidden
-                  data-copy="{% if demo_npx != 'npx ' %}npm i -g {{ demo.name | escape }}{{ nl }}{% endif %}{{ demo_ex | escape }}">
-            <span data-copy-label>Copy</span>
-            {% include icon.html name="copy" class="cds--btn__icon site-copy__idle" %}
-            {% include icon.html name="checkmark" class="cds--btn__icon site-copy__done" %}
-          </button>
-        </div>
-      </div>
-      <pre class="site-term__screen"><code><span class="site-term__comment" data-term-comment># {{ demo.command | escape }} &mdash; {{ demo.description | truncate: 90 | escape }}</span>
-<span data-term-install-line{% if demo_npx == 'npx ' %} hidden{% endif %}><span class="site-term__prompt" aria-hidden="true">$ </span><span class="site-term__install" data-term-install>npm i -g {{ demo.name | escape }}</span>
-</span><span class="site-term__prompt" aria-hidden="true">$ </span><span data-term-cmd>{{ demo_ex | escape }}</span><span class="site-term__cursor" aria-hidden="true"></span></code></pre>
-      <ul hidden data-term-list>
-        {%- for p in packages -%}
-        {%- if p.examples and p.examples.size > 0 -%}
-        <li data-name="{{ p.name | escape }}" data-command="{{ p.command | escape }}"
-            data-desc="{{ p.description | truncate: 90 | escape }}"
-            data-examples="{{ p.examples | join: nl | escape }}"></li>
-        {%- endif -%}
-        {%- endfor -%}
-      </ul>
-    </div>
-  </div>
-  {%- endif -%}
 </section>
 
 {%- if has_data -%}

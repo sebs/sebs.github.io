@@ -5,12 +5,10 @@
 // as shell.js: vanilla, driving the classes Carbon's CSS already ships, every
 // feature guarded by its own root element so the static render always stands
 // on its own. The parts that make no sense without JavaScript (the toolbar,
-// the odometer, the copy buttons) ship `hidden` in the markup and are
-// revealed here.
+// the copy buttons) ship `hidden` in the markup and are revealed here.
 (function () {
   'use strict';
 
-  var REDUCED = window.matchMedia ? matchMedia('(prefers-reduced-motion: reduce)').matches : false;
   var NUMBER = new Intl.NumberFormat('en-US');
 
   function all(selector, root) {
@@ -46,29 +44,13 @@
     return MONTHS[parsed.getUTCMonth()] + ' ' + parsed.getUTCFullYear();
   }
 
-  function pick(list) {
-    return list[Math.floor(Math.random() * list.length)];
-  }
-
-  function shuffled(list) {
-    var copy = list.slice();
-    for (var i = copy.length - 1; i > 0; i--) {
-      var j = Math.floor(Math.random() * (i + 1));
-      var swap = copy[i];
-      copy[i] = copy[j];
-      copy[j] = swap;
-    }
-    return copy;
-  }
-
   function announce(message) {
     var region = document.querySelector('[data-announce]');
     if (region) region.textContent = message;
   }
 
   // --- Copy buttons ---------------------------------------------------------
-  // Every [data-copy] button copies its own attribute; the terminal keeps its
-  // button's attribute in step with whatever is on screen.
+  // Every [data-copy] button copies its own attribute.
   function copyToClipboard(text) {
     // The async API is the good path, but it rejects wherever the permission
     // is withheld (some Safari and Firefox contexts, an unfocused document),
@@ -128,137 +110,6 @@
       button.setAttribute('aria-label', 'Copy command: ' + text);
       snippet.appendChild(button);
     });
-  }
-
-  // --- Hero terminal --------------------------------------------------------
-  // Types out the README examples of one package after another. The command
-  // currently on screen is the one the copy button hands over.
-  function initTerminal() {
-    var root = document.querySelector('[data-term]');
-    if (!root) return;
-
-    var items = all('[data-term-list] li', root).map(function (node) {
-      return {
-        name: node.getAttribute('data-name'),
-        command: node.getAttribute('data-command'),
-        desc: node.getAttribute('data-desc'),
-        examples: (node.getAttribute('data-examples') || '').split('\n').filter(Boolean)
-      };
-    }).filter(function (item) { return item.examples.length; });
-    if (!items.length) return;
-    // With a single package there is nothing to cycle through, but its command
-    // is still on screen and still worth copying.
-    var cycles = items.length > 1;
-
-    var comment = root.querySelector('[data-term-comment]');
-    var installLine = root.querySelector('[data-term-install-line]');
-    var install = root.querySelector('[data-term-install]');
-    var command = root.querySelector('[data-term-cmd]');
-    var copyButton = root.querySelector('[data-term-copy]');
-    var nextButton = root.querySelector('[data-term-next]');
-    var pauseButton = root.querySelector('[data-term-pause]');
-
-    var queue = shuffled(items);
-    var position = -1;
-    var typeTimer = null;
-    var nextTimer = null;
-    // Reduced motion: nothing types itself and nothing advances on its own.
-    var paused = REDUCED;
-    // Two flags rather than one counter: `focusin` bubbles on every focus
-    // change inside the terminal while `focusout` only fires clear of it, so a
-    // counter climbs as you tab between the buttons and never comes back down.
-    var hovering = false;
-    var focused = false;
-
-    function schedule() {
-      clearTimeout(nextTimer);
-      if (!cycles || paused || hovering || focused || document.hidden) return;
-      nextTimer = setTimeout(advance, 4200);
-    }
-
-    function render(item, example) {
-      clearTimeout(typeTimer);
-      var installCommand = /^npx\s/.test(example) ? '' : 'npm i -g ' + item.name;
-      comment.textContent = '# ' + item.command + ' — ' + item.desc;
-      install.textContent = installCommand;
-      installLine.hidden = !installCommand;
-      copyButton.setAttribute('data-copy', (installCommand ? installCommand + '\n' : '') + example);
-
-      if (REDUCED) {
-        command.textContent = example;
-        return;
-      }
-      var typed = 0;
-      command.textContent = '';
-      (function type() {
-        typed += 1;
-        command.textContent = example.slice(0, typed);
-        if (typed < example.length) typeTimer = setTimeout(type, 25 + Math.random() * 45);
-        else schedule();
-      })();
-    }
-
-    function advance() {
-      position = (position + 1) % queue.length;
-      var item = queue[position];
-      render(item, pick(item.examples));
-    }
-
-    root.addEventListener('mouseenter', function () { hovering = true; schedule(); });
-    root.addEventListener('mouseleave', function () { hovering = false; schedule(); });
-    root.addEventListener('focusin', function () { focused = true; schedule(); });
-    root.addEventListener('focusout', function (event) {
-      if (root.contains(event.relatedTarget)) return;
-      focused = false;
-      schedule();
-    });
-    // Nothing to type into a tab nobody is looking at.
-    document.addEventListener('visibilitychange', schedule);
-
-    copyButton.hidden = false;
-
-    if (cycles) {
-      nextButton.hidden = false;
-      nextButton.addEventListener('click', advance);
-    }
-
-    if (cycles && !REDUCED) {
-      pauseButton.hidden = false;
-      pauseButton.addEventListener('click', function () {
-        paused = !paused;
-        pauseButton.textContent = paused ? 'Play' : 'Pause';
-        pauseButton.setAttribute('aria-pressed', String(paused));
-        schedule();
-      });
-      schedule();
-    }
-  }
-
-  // --- Install odometer -----------------------------------------------------
-  // Downloads are counted per day, so at ~470 a day a whole-number counter
-  // would read 0 for the length of a visit. It counts fractions instead, and
-  // says outright that it is a rate, not a live feed.
-  function initOdometer() {
-    var root = document.querySelector('[data-odometer]');
-    if (!root) return;
-    var perDay = parseFloat(root.getAttribute('data-rate'));
-    if (!(perDay > 0)) return;
-
-    var value = root.querySelector('[data-odometer-value]');
-    var every = root.querySelector('[data-odometer-every]');
-    var seconds = 86400 / perDay;
-    every.textContent = seconds < 90 ? Math.round(seconds) + ' seconds'
-      : seconds < 5400 ? Math.round(seconds / 60) + ' minutes'
-        : Math.round(seconds / 3600) + ' hours';
-
-    var opened = Date.now();
-    root.hidden = false;
-    setInterval(function () {
-      // The count is derived from elapsed time, so there is nothing to catch
-      // up on — a hidden tab simply skips the paint.
-      if (document.hidden) return;
-      value.textContent = ((Date.now() - opened) / 1000 / seconds).toFixed(2);
-    }, 500);
   }
 
   // --- Catalogue: expand, sort, filter --------------------------------------
@@ -584,8 +435,6 @@
 
   initCopyButtons();
   initSnippets();
-  initTerminal();
-  initOdometer();
   initCatalogue();
   initHeatmap();
   initChart();

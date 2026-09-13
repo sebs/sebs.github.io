@@ -1,9 +1,8 @@
 // Packages -----------------------------------------------------------------
-// The /packages/ page is a catalogue of command-line tools: a terminal that
-// types out real README commands, a release heatmap and the download
-// figures. Carbon supplies the Tiles, Data Table (expandable rows, sortable
-// headers), Tags, Search and Buttons; this file adds the three compositions
-// Carbon has no component for — the terminal, the heatmap and the two plot
+// The /packages/ page is a catalogue of command-line tools: a release heatmap
+// and the download figures. Carbon supplies the Tiles, Data Table (expandable
+// rows, sortable headers), Tags, Search and Buttons; this file adds the
+// compositions Carbon has no component for — the heatmap and the two plot
 // readouts — always in theme tokens, never in raw colour.
 @use "@carbon/styles/scss/theme";
 @use "@carbon/styles/scss/type";
@@ -11,95 +10,6 @@
 @use "@carbon/styles/scss/motion";
 @use "@carbon/styles/scss/breakpoint";
 @use "@carbon/styles/scss/config" as *;
-
-// --- Page head: copy on the left, terminal on the right ---
-.site-pkg-head {
-  row-gap: spacing.$spacing-07;
-}
-
-// --- Terminal -------------------------------------------------------------
-// Styled as a Carbon code surface (layer + hairline), not as a chrome-less
-// macOS window: the page is Carbon everywhere else.
-.site-term {
-  background: theme.$layer-01;
-  block-size: 100%;
-  border: 1px solid theme.$border-subtle-01;
-  display: flex;
-  flex-direction: column;
-}
-
-.site-term__bar {
-  align-items: center;
-  border-block-end: 1px solid theme.$border-subtle-01;
-  display: flex;
-  gap: spacing.$spacing-03;
-  justify-content: space-between;
-  padding-inline-start: spacing.$spacing-05;
-}
-
-.site-term__title {
-  @include type.type-style("body-01");
-  @include type.font-family("mono");
-
-  color: theme.$text-secondary;
-}
-
-.site-term__actions {
-  display: flex;
-}
-
-.site-term__screen {
-  @include type.type-style("body-01");
-  @include type.font-family("mono");
-
-  color: theme.$text-primary;
-  flex: 1;
-  margin: 0;
-  // Three lines plus padding, so a shorter command never collapses the box
-  // and the page does not jump while one is being typed.
-  min-block-size: 9rem;
-  overflow-wrap: anywhere;
-  padding: spacing.$spacing-05;
-  white-space: pre-wrap;
-}
-
-.site-term__comment,
-.site-term__prompt {
-  color: theme.$text-secondary;
-}
-
-.site-term__install {
-  color: theme.$text-secondary;
-}
-
-.site-term__cursor {
-  animation: site-term-blink 1.1s steps(1) infinite;
-  background: theme.$link-primary;
-  block-size: 1em;
-  display: inline-block;
-  inline-size: 0.5em;
-  margin-inline-start: 0.1em;
-  vertical-align: text-bottom;
-}
-
-@keyframes site-term-blink {
-  50% { opacity: 0; }
-}
-
-// --- Install odometer -----------------------------------------------------
-.site-odometer {
-  @include type.type-style("body-01");
-
-  color: theme.$text-secondary;
-  margin-block-start: spacing.$spacing-06;
-}
-
-.site-odometer__value {
-  color: theme.$text-primary;
-  // Ticking digits, so equal widths keep the line from shivering.
-  font-variant-numeric: tabular-nums;
-  font-weight: 600;
-}
 
 // --- Activity panel: every tile shares one hairline grid ---
 // The four totals run across the top, the trend and the movers share the
