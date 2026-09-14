@@ -70,31 +70,6 @@ SHELL_LANGS = {"", "bash", "sh", "shell", "console", "zsh", "shell-session"}
 FAMILY_KEYWORDS = {"cli", "api-client", "germany"}
 MAX_KEYWORDS = 6
 
-# A package's domain, derived from its keywords: the first entry whose set
-# intersects them wins, so order matters. `opendata` is a near catch-all, so
-# the statistics bucket goes last, and entgeltatlas (tagged both
-# `arbeitsagentur` and `statistik`) lands with work. Anything matching nothing
-# falls into FALLBACK_DOMAIN.
-DOMAINS = [
-    ("Parliament & transparency", {"bundestag", "bundesrat", "parlament", "parliament",
-                                   "election", "wahl", "lobbying", "transparency",
-                                   "informationsfreiheit", "foi"}),
-    ("Environment & weather", {"environment", "weather", "wetter", "hydrology",
-                               "water-level", "marine", "radiation", "air-quality",
-                               "umweltbundesamt"}),
-    ("Energy & mobility", {"energy", "energie", "electricity", "strom",
-                           "bundesnetzagentur", "ev-charging", "traffic", "verkehr"}),
-    ("Work & education", {"arbeitsagentur", "jobs", "salary", "apprenticeship",
-                          "ausbildung"}),
-    ("Public administration", {"verwaltung", "fim", "fitko", "xzufi"}),
-    ("Warnings & news", {"civil-protection", "travel-warning", "news"}),
-    ("Culture & heritage", {"cultural-heritage", "glam", "museums"}),
-    ("Statistics & open data", {"statistik", "destatis", "official-statistics",
-                                "regionalstatistik", "budget", "finance",
-                                "opendata", "open-data"}),
-]
-FALLBACK_DOMAIN = "Developer tools"
-
 # Release-heatmap intensity: a cell with at least HEAT_STEPS[i] releases is
 # level i+1. Fixed, roughly logarithmic steps rather than a linear scale — a
 # single release is the common case and has to stay visible next to the days
@@ -424,15 +399,6 @@ def bin_names(pkg, bin_field):
     return []
 
 
-def domain_of(keywords):
-    """First DOMAINS entry sharing a keyword with the package (see there)."""
-    tags = {k.lower() for k in keywords}
-    for name, domain_tags in DOMAINS:
-        if tags & domain_tags:
-            return name
-    return FALLBACK_DOMAIN
-
-
 def _fenced_blocks(markdown):
     """Yield (language, lines) for each fenced code block in a markdown string.
 
@@ -519,7 +485,7 @@ def metadata(pkg):
         "description": "", "version": "", "license": "",
         "first_publish": "", "last_publish": "", "versions": 0,
         "repo_url": "", "homepage": "",
-        "bin": [], "keywords": [], "examples": [], "domain": FALLBACK_DOMAIN,
+        "bin": [], "keywords": [], "examples": [],
         "size_kb": None, "node": "", "deps": 0,
         "_releases": [],
     }
@@ -538,7 +504,6 @@ def metadata(pkg):
     out["bin"] = bin_names(pkg, manifest.get("bin"))
     keywords = [k.strip() for k in manifest.get("keywords") or doc.get("keywords") or []
                 if isinstance(k, str) and k.strip()]
-    out["domain"] = domain_of(keywords)
     skip = FAMILY_KEYWORDS | {b.lower() for b in out["bin"]}
     out["keywords"] = [k for k in keywords if k.lower() not in skip][:MAX_KEYWORDS]
     readme = doc.get("readme") or manifest.get("readme") or ""
@@ -600,10 +565,6 @@ def collect(pkg):
     return rec
 
 
-def _slug(text):
-    return re.sub(r"[^a-z0-9]+", "-", text.lower()).strip("-")
-
-
 def main():
     purls = read_purls(CONFIG)
     npm_pkgs = [p for p in (parse_npm_purl(x) for x in purls) if p]
@@ -619,7 +580,7 @@ def main():
         except Exception as exc:  # noqa: BLE001
             print(f"  failed: {exc}", file=sys.stderr)
             rec = {"name": pkg, "npm_url": f"https://www.npmjs.com/package/{pkg}",
-                   "error": str(exc), "domain": FALLBACK_DOMAIN, "bin": [], "command": ""}
+                   "error": str(exc), "bin": [], "command": ""}
         if not rec.get("error"):
             ok += 1
         packages.append(rec)
@@ -648,18 +609,9 @@ def main():
         p["spark"] = sparkline(daily, days) if daily else None
         p["trend"] = trend(daily, days)
 
-    # Domain groups, busiest first. The table's default view is grouped, so
-    # the package list is ordered group by group, then by 30-day downloads.
-    groups = {}
-    for p in packages:
-        g = groups.setdefault(p["domain"], {"name": p["domain"], "id": _slug(p["domain"]),
-                                            "count": 0, "dl_month": 0})
-        g["count"] += 1
-        g["dl_month"] += p.get("dl_month") or 0
-        p["domain_id"] = g["id"]
-    domains = sorted(groups.values(), key=lambda g: (-g["dl_month"], g["name"]))
-    rank = {g["name"]: i for i, g in enumerate(domains)}
-    packages.sort(key=lambda p: (rank[p["domain"]], -(p.get("dl_month") or 0), p["name"]))
+    # One flat catalogue, busiest first — the same 12-month figure the table
+    # shows, so its resting order matches the column it is sorted under.
+    packages.sort(key=lambda p: (-(p.get("dl_year") or 0), p["name"]))
 
     first_years = [int(p["first_publish"][:4]) for p in packages if p.get("first_publish")]
     totals = {
@@ -689,7 +641,6 @@ def main():
         "chart": chart,
         "movers": board,
         "heatmap": heatmap,
-        "domains": domains,
         "packages": packages,
     }
     with open(OUT, "w", encoding="utf-8") as fh:

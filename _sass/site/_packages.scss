@@ -74,7 +74,7 @@
 }
 
 // --- Catalogue toolbar ----------------------------------------------------
-// One filter row above everything it scopes: search, then the domain chips.
+// One search field above the table it scopes, with the result count under it.
 .site-pkg-toolbar {
   display: flex;
   flex-direction: column;
@@ -82,35 +82,6 @@
   margin-block-end: spacing.$spacing-06;
 
   .#{$prefix}--search { max-inline-size: 24rem; }
-}
-
-.site-pkg-filters {
-  display: flex;
-  flex-wrap: wrap;
-  gap: spacing.$spacing-03;
-
-  // Carbon Tags carry margin for form contexts; the row owns the gaps here.
-  .#{$prefix}--tag { margin: 0; }
-}
-
-// --- Per-package data table -----------------------------------------------
-.site-pkg-table {
-  // Group headings sit inside the table body, one per domain, and must read
-  // as a divider rather than as a second column header.
-  .site-pkg__group th {
-    @include type.type-style("body-01");
-
-    font-weight: 600;
-
-    background: theme.$background;
-    border-block-end: 1px solid theme.$border-subtle-01;
-    color: theme.$text-secondary;
-    padding-block: spacing.$spacing-05 spacing.$spacing-03;
-  }
-}
-
-.site-pkg__group-count {
-  color: theme.$text-secondary;
 }
 
 .site-pkg__name {
@@ -161,12 +132,27 @@
   display: block;
   margin-block-start: spacing.$spacing-03;
   max-inline-size: 70ch;
+  // Descriptions end in an unbroken host name — "(lobbyregister.bundestag.de)"
+  // — which would otherwise set the column's minimum width and push the
+  // downloads beside it off a phone screen.
+  overflow-wrap: anywhere;
 }
 
 .site-pkg__num {
   font-variant-numeric: tabular-nums;
   text-align: end;
   white-space: nowrap;
+}
+
+// One downloads column: the sparkline and the 12-month total it sums to, kept
+// on one baseline and pushed to the right so the figures line up as a column.
+.site-pkg__dl-head .#{$prefix}--table-sort__flex { justify-content: flex-end; }
+
+.site-pkg__dl-inner {
+  align-items: center;
+  display: flex;
+  gap: spacing.$spacing-05;
+  justify-content: flex-end;
 }
 
 .site-pkg__unit {
@@ -179,10 +165,18 @@
 // Per-package sparkline: 26 weekly totals, drawn small and quiet so a column
 // of them reads as texture, with only the last week picked out.
 .site-spark {
-  block-size: 1.5rem;
-  display: block;
-  inline-size: 6.25rem;
-  overflow: visible;
+  // Below `md` the figure alone has to carry the column: with the sparkline
+  // beside it the table outgrows a phone viewport, and the house rule is to
+  // drop what is secondary rather than hand the page a horizontal scroller.
+  display: none;
+
+  @include breakpoint.breakpoint(md) {
+    block-size: 1.5rem;
+    display: block;
+    flex: 0 0 auto;
+    inline-size: 6.25rem;
+    overflow: visible;
+  }
 }
 
 .site-spark__line {

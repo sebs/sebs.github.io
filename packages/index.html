@@ -223,8 +223,8 @@ permalink: /packages/
       <div>
         <h2 class="site-section__title">Catalogue</h2>
         <p class="site-section__lead">
-          Grouped by what they cover. Sort a column to rank everything instead,
-          and open a row for install commands, examples and details.
+          One list, busiest first. Sort a column to rank it differently, and
+          open a row for install commands, examples and details.
         </p>
       </div>
     </div>
@@ -242,27 +242,16 @@ permalink: /packages/
           {% include icon.html name="close" %}
         </button>
       </div>
-      <div class="site-pkg-filters" role="group" aria-label="Filter by domain">
-        <button type="button" class="cds--tag cds--tag--selectable cds--tag--selectable-selected"
-                aria-pressed="true" data-domain-filter=""><span>All {{ packages.size }}</span></button>
-        {%- for d in stats.domains -%}
-        <button type="button" class="cds--tag cds--tag--selectable" aria-pressed="false"
-                data-domain-filter="{{ d.id }}"><span>{{ d.name }} {{ d.count }}</span></button>
-        {%- endfor -%}
-      </div>
       <p class="site-helper" data-pkg-count aria-live="polite"></p>
     </div>
 
     <div class="cds--data-table-container">
       <table class="cds--data-table cds--data-table--expandable site-pkg-table" data-pkg-table>
-        <caption class="cds--visually-hidden">npm packages, grouped by domain</caption>
+        <caption class="cds--visually-hidden">npm packages and their downloads over the last 12 months</caption>
         <thead>
           <tr>
             <th scope="col" class="cds--table-expand"><span class="cds--visually-hidden">Details</span></th>
-            {%- comment -%}
-              Carbon sortable headers. Unsorted is the grouped view; sorting
-              flattens the table (see packages.js).
-            {%- endcomment -%}
+            {%- comment -%} Carbon sortable headers; see packages.js. {%- endcomment -%}
             <th scope="col" class="cds--table-sort__header" aria-sort="none" data-sort="name">
               <button type="button" class="cds--table-sort">
                 <span class="cds--table-sort__flex">
@@ -272,20 +261,10 @@ permalink: /packages/
                 </span>
               </button>
             </th>
-            <th scope="col" class="site-table__col--optional"><div class="cds--table-header-label">Last {{ totals.spark_weeks }} weeks</div></th>
-            <th scope="col" class="cds--table-sort__header" aria-sort="none" data-sort="month">
+            <th scope="col" class="cds--table-sort__header site-pkg__dl-head" aria-sort="none" data-sort="year">
               <button type="button" class="cds--table-sort">
                 <span class="cds--table-sort__flex">
-                  <span class="cds--table-header-label">30 days</span>
-                  {% include icon.html name="arrow-up" class="cds--table-sort__icon" %}
-                  {% include icon.html name="arrows-vertical" class="cds--table-sort__icon-unsorted" %}
-                </span>
-              </button>
-            </th>
-            <th scope="col" class="cds--table-sort__header site-table__col--optional" aria-sort="none" data-sort="year">
-              <button type="button" class="cds--table-sort">
-                <span class="cds--table-sort__flex">
-                  <span class="cds--table-header-label">12 months</span>
+                  <span class="cds--table-header-label">Downloads</span>
                   {% include icon.html name="arrow-up" class="cds--table-sort__icon" %}
                   {% include icon.html name="arrows-vertical" class="cds--table-sort__icon-unsorted" %}
                 </span>
@@ -293,21 +272,20 @@ permalink: /packages/
             </th>
           </tr>
         </thead>
-        {%- for d in stats.domains -%}
-        {%- assign members = packages | where: "domain", d.name -%}
-        <tbody data-group="{{ d.id }}">
-          <tr class="site-pkg__group">
-            <th scope="colgroup" colspan="5">{{ d.name }} <span class="site-pkg__group-count">{{ d.count }}</span></th>
-          </tr>
-          {%- for p in members -%}
-          {%- assign row_id = "pkg-" | append: d.id | append: "-" | append: forloop.index -%}
+        <tbody>
+          {%- comment -%}
+            Ordered by the 12-month figure the column shows, so the resting
+            state matches the header the table is sorted under.
+          {%- endcomment -%}
+          {%- assign catalogue = packages | sort: "dl_year" | reverse -%}
+          {%- for p in catalogue -%}
+          {%- assign row_id = "pkg-" | append: forloop.index -%}
           {%- assign scope_parts = p.name | split: "/" -%}
-          {%- capture haystack -%}{{ p.name }} {{ p.command }} {{ p.description }} {{ p.keywords | join: " " }} {{ p.domain }}{%- endcapture -%}
+          {%- capture haystack -%}{{ p.name }} {{ p.command }} {{ p.description }} {{ p.keywords | join: " " }}{%- endcapture -%}
           <tr class="cds--parent-row" data-parent-row data-pkg
               data-name="{{ p.name | escape }}" data-command="{{ p.command | escape }}"
               data-short="{{ scope_parts | last | escape }}"
-              data-domain="{{ p.domain_id }}"
-              data-month="{{ p.dl_month | default: 0 }}" data-year="{{ p.dl_year | default: 0 }}"
+              data-year="{{ p.dl_year | default: 0 }}"
               data-search="{{ haystack | downcase | escape }}">
             <td class="cds--table-expand">
               {%- comment -%} Revealed by packages.js: without it there is nothing to expand. {%- endcomment -%}
@@ -340,25 +318,26 @@ permalink: /packages/
               <span class="site-pkg__desc">{{ p.description | escape }}</span>
               {%- endif -%}
             </td>
-            <td class="site-table__col--optional">
-              {%- if p.spark -%}
-              <svg class="site-spark" viewBox="0 0 100 24" role="img"
-                   aria-label="Weekly downloads over the last {{ p.spark.weeks }} weeks: peak {{ p.spark.peak }}, last week {{ p.spark.last }}">
-                <title>Peak {{ p.spark.peak }} / week &middot; last week {{ p.spark.last }}</title>
-                <polyline class="site-spark__line" points="{{ p.spark.points }}" />
-                <circle class="site-spark__end" cx="{{ p.spark.end_x }}" cy="{{ p.spark.end_y }}" r="2.5" />
-              </svg>
-              {%- endif -%}
-            </td>
-            <td class="site-pkg__num">
-              {% include thousands.html n=p.dl_month %}<span class="site-pkg__unit">/mo</span>
-            </td>
-            <td class="site-pkg__num site-table__col--optional">
-              {% include thousands.html n=p.dl_year %}<span class="site-pkg__unit">/yr</span>
+            {%- comment -%}
+              One downloads column: the shape of the last {{ totals.spark_weeks }}
+              weeks next to the 12-month total it adds up to.
+            {%- endcomment -%}
+            <td class="site-pkg__dl">
+              <span class="site-pkg__dl-inner">
+                {%- if p.spark -%}
+                <svg class="site-spark" viewBox="0 0 100 24" role="img"
+                     aria-label="Weekly downloads over the last {{ p.spark.weeks }} weeks: peak {{ p.spark.peak }}, last week {{ p.spark.last }}">
+                  <title>Peak {{ p.spark.peak }} / week &middot; last week {{ p.spark.last }}</title>
+                  <polyline class="site-spark__line" points="{{ p.spark.points }}" />
+                  <circle class="site-spark__end" cx="{{ p.spark.end_x }}" cy="{{ p.spark.end_y }}" r="2.5" />
+                </svg>
+                {%- endif -%}
+                <span class="site-pkg__num">{% include thousands.html n=p.dl_year %}<span class="site-pkg__unit">/yr</span></span>
+              </span>
             </td>
           </tr>
           <tr class="cds--expandable-row" data-child-row id="{{ row_id }}" inert>
-            <td colspan="5">
+            <td colspan="3">
               <div class="cds--child-row-inner-container">
                 {%- if p.bin and p.bin.size > 0 -%}
                   {%- assign install = "npm i -g " | append: p.name -%}
@@ -383,11 +362,6 @@ permalink: /packages/
                       {%- endfor -%}
                     </ul>
                     {%- endif -%}
-                    {%- if p.keywords and p.keywords.size > 0 -%}
-                    <div class="site-tile__tags">
-                      {%- for k in p.keywords -%}<span class="cds--tag cds--tag--gray cds--tag--sm">{{ k | escape }}</span>{%- endfor -%}
-                    </div>
-                    {%- endif -%}
                   </div>
                   <dl class="site-pkg-detail__meta">
                     {%- if p.version and p.version != "" -%}
@@ -396,6 +370,7 @@ permalink: /packages/
                     {%- if p.versions and p.versions > 0 -%}
                     <dt>Releases</dt><dd>{{ p.versions }}{% if p.first_publish != "" %} since {{ p.first_publish | date: "%-d %b %Y" }}{% endif %}</dd>
                     {%- endif -%}
+                    <dt>Downloads</dt><dd>{% include thousands.html n=p.dl_month %} in 30 days &middot; {% include thousands.html n=p.dl_year %} in 12 months</dd>
                     {%- if p.license and p.license != "" -%}<dt>License</dt><dd>{{ p.license | escape }}</dd>{%- endif -%}
                     {%- if p.node and p.node != "" -%}<dt>Node</dt><dd>{{ p.node | escape }}</dd>{%- endif -%}
                     {%- if p.size_kb -%}
@@ -414,7 +389,6 @@ permalink: /packages/
           </tr>
           {%- endfor -%}
         </tbody>
-        {%- endfor -%}
       </table>
     </div>
     <p class="site-empty" data-pkg-empty hidden>No package matches that search.</p>
@@ -426,10 +400,11 @@ permalink: /packages/
     <p class="site-helper site-mt-07">
       Every command-line tool above installs the same way &mdash;
       <code>npm i -g &lt;package&gt;</code> &mdash; or runs straight from
-      <code>npx</code>; open a row for that package's own examples. Figures come
-      from the public npm downloads API, and recently published packages may
-      show no counts until npm aggregates a full period. Sparklines cover weekly
-      downloads up to the last complete day.
+      <code>npx</code>; open a row for that package's own examples. The
+      downloads column is the last 12 months, drawn as the last
+      {{ totals.spark_weeks }} weeks beside it. Figures come from the public npm
+      downloads API up to the last complete day, and recently published packages
+      may show no counts until npm aggregates a full period.
     </p>
   </div>
 </section>

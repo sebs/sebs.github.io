@@ -117,18 +117,15 @@
     var table = document.querySelector('[data-pkg-table]');
     if (!table) return;
 
-    var groups = all('tbody[data-group]', table);
+    var body = table.querySelector('tbody');
     var entries = all('tr[data-pkg]', table).map(function (row, index) {
       return {
         row: row,
         detail: row.nextElementSibling,
-        group: row.parentNode,
         order: index,
-        domain: row.getAttribute('data-domain'),
         text: row.getAttribute('data-search') || '',
         keys: {
           name: (row.getAttribute('data-command') || row.getAttribute('data-short') || '').toLowerCase(),
-          month: Number(row.getAttribute('data-month')) || 0,
           year: Number(row.getAttribute('data-year')) || 0
         }
       };
@@ -159,14 +156,8 @@
       }
     });
 
-    // Sorting flattens the table: the group bodies step aside and every row
-    // moves into one list. Carbon's third click ("none") brings the groups
-    // back, which makes grouped-by-domain the table's resting state.
-    var flat = el('tbody');
-    flat.setAttribute('data-flat', '');
-    flat.hidden = true;
-    table.appendChild(flat);
-
+    // Sorting reorders the one body in place. Carbon's third click ("none")
+    // restores the order the page was rendered in — downloads, busiest first.
     var headers = all('th[data-sort]', table);
     var sortKey = null;
     var sortDir = 'none';
@@ -182,25 +173,17 @@
         button.classList.toggle('cds--table-sort--descending', !!active && direction === 'descending');
       });
 
-      if (!key) {
-        entries.forEach(function (entry) {
-          entry.group.appendChild(entry.row);
-          entry.group.appendChild(entry.detail);
-        });
-        flat.hidden = true;
-      } else {
-        var sign = direction === 'ascending' ? 1 : -1;
-        entries.slice().sort(function (a, b) {
-          var left = a.keys[key];
-          var right = b.keys[key];
-          var result = typeof left === 'string' ? left.localeCompare(right) : left - right;
-          return (result * sign) || (a.order - b.order);
-        }).forEach(function (entry) {
-          flat.appendChild(entry.row);
-          flat.appendChild(entry.detail);
-        });
-        flat.hidden = false;
-      }
+      var sign = direction === 'ascending' ? 1 : -1;
+      entries.slice().sort(function (a, b) {
+        if (!key) return a.order - b.order;
+        var left = a.keys[key];
+        var right = b.keys[key];
+        var result = typeof left === 'string' ? left.localeCompare(right) : left - right;
+        return (result * sign) || (a.order - b.order);
+      }).forEach(function (entry) {
+        body.appendChild(entry.row);
+        body.appendChild(entry.detail);
+      });
       applyFilter();
     }
 
@@ -216,14 +199,12 @@
       });
     });
 
-    // Searching and the domain chips.
+    // Searching.
     var toolbar = document.querySelector('[data-pkg-toolbar]');
     var search = document.querySelector('[data-pkg-search]');
     var clear = document.querySelector('[data-pkg-clear]');
-    var chips = all('[data-domain-filter]');
     var empty = document.querySelector('[data-pkg-empty]');
     var count = document.querySelector('[data-pkg-count]');
-    var domain = '';
 
     function applyFilter() {
       var query = (search.value || '').trim().toLowerCase();
@@ -231,18 +212,12 @@
       var shown = 0;
 
       entries.forEach(function (entry) {
-        var match = (!domain || entry.domain === domain) && terms.every(function (term) {
+        var match = terms.every(function (term) {
           return entry.text.indexOf(term) !== -1;
         });
         entry.row.hidden = !match;
         entry.detail.hidden = !match;
         if (match) shown += 1;
-      });
-
-      groups.forEach(function (group) {
-        group.hidden = !!sortKey || !entries.some(function (entry) {
-          return entry.group === group && !entry.row.hidden;
-        });
       });
 
       clear.classList.toggle('cds--search-close--hidden', !query);
@@ -260,19 +235,6 @@
       search.value = '';
       applyFilter();
       search.focus();
-    });
-
-    chips.forEach(function (chip) {
-      chip.addEventListener('click', function () {
-        var value = chip.getAttribute('data-domain-filter');
-        domain = domain === value ? '' : value;
-        chips.forEach(function (other) {
-          var on = other.getAttribute('data-domain-filter') === domain;
-          other.classList.toggle('cds--tag--selectable-selected', on);
-          other.setAttribute('aria-pressed', String(on));
-        });
-        applyFilter();
-      });
     });
 
     toolbar.hidden = false;
