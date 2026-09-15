@@ -40,5 +40,8 @@ purls:
   - pkg:npm/@maschinenlesbar.org/mudab-cli
   - pkg:npm/@maschinenlesbar.org/bundesrat-cli
   - pkg:npm/@maschinenlesbar.org/bundeswahlleiterin-cli
-  - pkg:npm/@maschinenlesbar.org/regionalatlas-cli  
+  - pkg:npm/@maschinenlesbar.org/regionalatlas-cli
   - pkg:npm/@maschinenlesbar.org/ladesaeulenregister-cli
+  - pkg:npm/@maschinenlesbar.org/lebensmittelwarnung-cli
+  - pkg:npm/@maschinenlesbar.org/hochwasserzentralen-cli
+  - pkg:npm/@maschinenlesbar.org/regionalstatistik-cli
