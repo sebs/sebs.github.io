@@ -45,3 +45,4 @@ purls:
   - pkg:npm/@maschinenlesbar.org/lebensmittelwarnung-cli
   - pkg:npm/@maschinenlesbar.org/hochwasserzentralen-cli
   - pkg:npm/@maschinenlesbar.org/regionalstatistik-cli
+  - pkg:npm/@maschinenlesbar.org/oparl-cli
