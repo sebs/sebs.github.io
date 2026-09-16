@@ -12,20 +12,30 @@ that used to live on dev.to were migrated here.
   which supports Sass modules, so `assets/css/main.scss` can `@use` Carbon
   directly and no JS bundler is involved. See **Working on the UI** below.
 - **Static site, built with Jekyll, deployed via GitHub Actions.**
-  A full Actions build (not the native Pages build) is used so the npm download
-  stats can be fetched at deploy time, the OG image rasterized, and the
+  A full Actions build (not the native Pages build) is used so the package
+  download stats can be fetched at deploy time, the OG image rasterized, and the
   `jekyll-archives`, `jekyll-feed` and `jekyll-redirect-from` plugins run.
 - **The `/packages/` page is data-driven from a PURL config.** List package
-  URLs in `_data/packages.yml`; `scripts/fetch_npm_stats.py` resolves the npm
-  download counts and release metadata at build time into `_data/npm_stats.yml`
-  (a build-time artifact, regenerated on every deploy — not committed, so the
-  live figures never go stale in git). It is a catalogue of command-line tools
-  rather than a download table: the same two registry responses per package
-  also yield each one's `bin` command, its keywords (which sort it into a
-  domain group), real example invocations lifted from its README, and the
-  publish history behind the release heatmap. `assets/js/packages.js` adds the
-  behaviour on top — table sorting and filtering, copy buttons, and the chart
-  readouts — and the page degrades to its static render without it.
+  URLs in `_data/packages.yml` — `pkg:npm/…` or `pkg:pypi/…` — and
+  `scripts/fetch_package_stats.py` resolves the download counts and release
+  metadata at build time into `_data/package_stats.yml` (a build-time artifact,
+  regenerated on every deploy — not committed, so the live figures never go
+  stale in git). Adding a package is one line in that file; nothing downstream
+  branches on which registry it came from except for display. It is a catalogue
+  of command-line tools rather than a download table: the same registry
+  responses per package also yield the command each one installs, its keywords
+  (which sort it into a domain group), real example invocations lifted from its
+  README, and the publish history behind the release heatmap.
+  `assets/js/packages.js` adds the behaviour on top — table sorting and
+  filtering, copy buttons, and the chart readouts — and the page degrades to its
+  static render without it.
+
+  The two registries are not symmetrical. npm publishes downloads itself; PyPI
+  publishes none, so the figures come from pypistats.org (the public front end
+  for the BigQuery dataset) with mirror traffic excluded — counted in, mirrors
+  outnumber real installs several times over. npm puts `bin` in the registry
+  document; PyPI exposes entry points nowhere in its API, so the console-script
+  name is read out of the latest wheel's `entry_points.txt`.
 - **The blog is markdown in `_posts/`.** The old Hexo posts were converted to
   clean markdown (see `scripts/extract_posts.py` for how), the dev.to
   articles were exported with `scripts/export_devto.py`, images and all, and
@@ -45,7 +55,7 @@ that used to live on dev.to were migrated here.
 In the repository: **Settings → Pages → Build and deployment → Source →
 "GitHub Actions."** The `.github/workflows/deploy.yml` workflow then builds and
 deploys on every push to `master`/`main`, on a daily schedule (to refresh the
-npm download stats), and on manual dispatch.
+package download stats), and on manual dispatch.
 
 > Sponsor CTAs are intentionally hidden until GitHub Sponsors is enabled — see
 > `_data/profiles.yml`.
@@ -59,7 +69,7 @@ Most content lives in `_data/`:
 | `_data/profiles.yml`  | Hero/footer links, JSON-LD `sameAs`, sponsor flag        |
 | `_data/projects.yml`  | Project cards                                             |
 | `_data/talks.yml`     | `/talks` page + homepage teaser (`featured` + `history`)  |
-| `_data/packages.yml`  | PURLs for the `/packages/` npm-stats page                 |
+| `_data/packages.yml`  | npm/PyPI PURLs for the `/packages/` stats page            |
 | `_data/topics.yml`    | The blog's topics: name, meta description and intro of each `/tags/<topic>/` page |
 | `_data/tag_redirects.yml` | Retired free-form tags → the topic their `/tags/<tag>/` URL now redirects to |
 
@@ -109,7 +119,7 @@ and the build fails. `.npmrc` sets `ignore-scripts=true`: Carbon and IBM Plex
 are pure asset packages, and the only lifecycle scripts in the tree are IBM
 telemetry postinstalls.
 
-`scripts/fetch_npm_stats.py` populates the npm download stats (runs
+`scripts/fetch_package_stats.py` populates the npm and PyPI download stats (runs
 automatically in CI; safe to run locally if you have network access).
 
 ## Working on the UI

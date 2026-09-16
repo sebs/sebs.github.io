@@ -117,6 +117,19 @@
   color: theme.$text-secondary;
 }
 
+// Which index the package lives in. Outlined rather than filled so it reads as
+// a label on the name, not as a second command chip — `site-pkg__cmd` beside it
+// is the filled one, and it is the thing you type.
+.site-pkg__registry {
+  @include type.type-style("label-01");
+
+  border: 1px solid theme.$border-subtle-01;
+  color: theme.$text-secondary;
+  padding-inline: spacing.$spacing-02;
+  text-transform: none;
+  white-space: nowrap;
+}
+
 .site-pkg__version {
   @include type.type-style("body-01");
 
@@ -356,7 +369,7 @@
   background: transparent;
 }
 
-// Intensity steps mirror HEAT_STEPS in scripts/fetch_npm_stats.py: 1, 2-3,
+// Intensity steps mirror HEAT_STEPS in scripts/fetch_package_stats.py: 1, 2-3,
 // 4-9, 10+. Mixed against the tile surface so every step stays one hue.
 // The flat fallback comes first: where `color-mix` is not understood (before
 // Chrome 111 / Safari 16.2 / Firefox 113) the steps collapse into one shade,

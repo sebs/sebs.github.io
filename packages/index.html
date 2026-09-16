@@ -3,14 +3,14 @@ layout: default
 title: Packages
 description: >-
   Command-line tools for German federal open data and the developer tools
-  Sebastian Schürmann maintains on npm — runnable examples, release history
-  and download trends, refreshed on every deploy.
+  Sebastian Schürmann maintains on npm and PyPI — runnable examples, release
+  history and download trends, refreshed on every deploy.
 nav: packages
 og_type: website
 permalink: /packages/
 ---
 
-{%- assign stats = site.data.npm_stats -%}
+{%- assign stats = site.data.package_stats -%}
 {%- assign packages = stats.packages -%}
 {%- assign totals = stats.totals -%}
 {%- assign has_data = false -%}
@@ -20,12 +20,12 @@ permalink: /packages/
   <div class="cds--css-grid-column cds--sm:col-span-4 cds--md:col-span-8 cds--lg:col-span-7">
     <h1 class="site-page-head__title">Packages</h1>
     <p class="site-section__lead">
-      Command-line tools I maintain on npm.
+      Command-line tools I maintain on npm and PyPI.
     </p>
     {%- if stats.generated -%}
     <p class="site-helper site-mt-07">
       {% include icon.html name="history" %} Last refreshed {{ stats.generated }}
-      &middot; source: registry.npmjs.org
+      &middot; source: npmjs.org and pypi.org
     </p>
     {%- endif -%}
   </div>
@@ -75,7 +75,7 @@ permalink: /packages/
         </div>
         <div class="site-plot" data-chart data-values="{{ chart.values | join: ',' }}" data-starts="{{ chart.starts | join: ',' }}">
           <svg class="site-chart" viewBox="0 0 100 40" preserveAspectRatio="none" role="img"
-               aria-label="Combined weekly npm downloads across all packages over the last 12 months, peaking at {{ chart.peak_week }} a week">
+               aria-label="Combined weekly downloads across all packages over the last 12 months, peaking at {{ chart.peak_week }} a week">
             <polygon class="site-chart__area" points="{{ chart.area_points }}" />
             <polyline class="site-chart__line" points="{{ chart.line_points }}" />
           </svg>
@@ -153,7 +153,7 @@ permalink: /packages/
             Hover or tab into the grid for the packages behind each month. Totals
             per year on the right; the shades step at 1, 2, 4 and 10 releases.
           </p>
-          {%- comment -%} Buckets mirror HEAT_STEPS in scripts/fetch_npm_stats.py. {%- endcomment -%}
+          {%- comment -%} Buckets mirror HEAT_STEPS in scripts/fetch_package_stats.py. {%- endcomment -%}
           <div class="site-heat__legend" aria-label="Releases per month">
             <span>Fewer</span>
             <span class="site-heat__cell" data-l="1" title="1"></span>
@@ -243,7 +243,13 @@ permalink: /packages/
 
     <div class="cds--data-table-container">
       <table class="cds--data-table cds--data-table--expandable site-pkg-table" data-pkg-table>
-        <caption class="cds--visually-hidden">npm packages and their downloads over the last 12 months</caption>
+        <caption class="cds--visually-hidden">
+          {%- for r in totals.registries -%}
+          {%- unless forloop.first %}, {% endunless -%}
+          {{ r.packages }} on {{ r.label }}
+          {%- endfor -%}
+          , and their downloads over the last 12 months
+        </caption>
         <thead>
           <tr>
             <th scope="col" class="cds--table-expand"><span class="cds--visually-hidden">Details</span></th>
@@ -277,7 +283,7 @@ permalink: /packages/
           {%- for p in catalogue -%}
           {%- assign row_id = "pkg-" | append: forloop.index -%}
           {%- assign scope_parts = p.name | split: "/" -%}
-          {%- capture haystack -%}{{ p.name }} {{ p.command }} {{ p.description }} {{ p.keywords | join: " " }}{%- endcapture -%}
+          {%- capture haystack -%}{{ p.name }} {{ p.command }} {{ p.description }} {{ p.keywords | join: " " }} {{ p.registry }} {{ p.registry_label }}{%- endcapture -%}
           <tr class="cds--parent-row" data-parent-row data-pkg
               data-name="{{ p.name | escape }}" data-command="{{ p.command | escape }}"
               data-short="{{ scope_parts | last | escape }}"
@@ -299,10 +305,16 @@ permalink: /packages/
                 {%- endcomment -%}
                 {%- assign short_name = scope_parts | last -%}
                 {%- if p.command and p.command != "" and p.command != short_name -%}<code class="site-pkg__cmd">{{ p.command | escape }}</code>{%- endif -%}
-                <a class="cds--link" href="{{ p.npm_url | escape }}" target="_blank" rel="noopener">
+                <a class="cds--link" href="{{ p.url | escape }}" target="_blank" rel="noopener">
                   {%- if scope_parts.size > 1 -%}<span class="site-pkg__scope">{{ scope_parts | first | escape }}/</span>{%- endif -%}
                   {{- scope_parts | last | escape -}}
                 </a>
+                {%- comment -%}
+                  The registry is marked on every row, not just the odd one out:
+                  which index a name lives in is part of identifying it, and the
+                  install line differs by it.
+                {%- endcomment -%}
+                <span class="site-pkg__registry" data-registry="{{ p.registry | escape }}">{{ p.registry_label | escape }}</span>
                 {%- if p.version and p.version != "" -%}
                 <span class="site-pkg__version">v{{ p.version | escape }}</span>
                 {%- endif -%}
@@ -335,11 +347,12 @@ permalink: /packages/
           <tr class="cds--expandable-row" data-child-row id="{{ row_id }}" inert>
             <td colspan="3">
               <div class="cds--child-row-inner-container">
-                {%- if p.bin and p.bin.size > 0 -%}
-                  {%- assign install = "npm i -g " | append: p.name -%}
-                {%- else -%}
-                  {%- assign install = "npm i " | append: p.name -%}
-                {%- endif -%}
+                {%- comment -%}
+                  `install` is resolved per registry in fetch_package_stats.py —
+                  a tool gets its ecosystem's tool installer, a library the
+                  plain one.
+                {%- endcomment -%}
+                {%- assign install = p.install -%}
                 <div class="site-pkg-detail">
                   <div class="site-pkg-detail__main">
                     <span class="site-eyebrow">Install</span>
@@ -368,13 +381,14 @@ permalink: /packages/
                     {%- endif -%}
                     <dt>Downloads</dt><dd>{% include thousands.html n=p.dl_month %} in 30 days &middot; {% include thousands.html n=p.dl_year %} in 12 months</dd>
                     {%- if p.license and p.license != "" -%}<dt>License</dt><dd>{{ p.license | escape }}</dd>{%- endif -%}
-                    {%- if p.node and p.node != "" -%}<dt>Node</dt><dd>{{ p.node | escape }}</dd>{%- endif -%}
+                    {%- comment -%} `runtime_label` is Node on npm, Python on PyPI. {%- endcomment -%}
+                    {%- if p.runtime and p.runtime != "" -%}<dt>{{ p.runtime_label }}</dt><dd>{{ p.runtime | escape }}</dd>{%- endif -%}
                     {%- if p.size_kb -%}
-                    <dt>Size</dt><dd>{% include thousands.html n=p.size_kb %}&nbsp;kB unpacked &middot; {{ p.deps }} dependenc{% if p.deps == 1 %}y{% else %}ies{% endif %}</dd>
+                    <dt>Size</dt><dd>{% include thousands.html n=p.size_kb %}&nbsp;kB{% if p.registry == "npm" %} unpacked{% endif %} &middot; {{ p.deps }} dependenc{% if p.deps == 1 %}y{% else %}ies{% endif %}</dd>
                     {%- endif -%}
                     <dt>Links</dt>
                     <dd class="site-pkg-detail__links">
-                      <a class="cds--link" href="{{ p.npm_url | escape }}" target="_blank" rel="noopener">npm</a>
+                      <a class="cds--link" href="{{ p.url | escape }}" target="_blank" rel="noopener">{{ p.registry_label | escape }}</a>
                       {%- if p.repo_url and p.repo_url != "" -%}<a class="cds--link" href="{{ p.repo_url | escape }}" target="_blank" rel="noopener">Repository</a>{%- endif -%}
                       {%- if p.homepage and p.homepage != "" and p.homepage != p.repo_url -%}<a class="cds--link" href="{{ p.homepage | escape }}" target="_blank" rel="noopener">Homepage</a>{%- endif -%}
                     </dd>
@@ -394,13 +408,15 @@ permalink: /packages/
       and "how do I run this" should not depend on that.
     {%- endcomment -%}
     <p class="site-helper site-mt-07">
-      Every command-line tool above installs the same way &mdash;
-      <code>npm i -g &lt;package&gt;</code> &mdash; or runs straight from
-      <code>npx</code>; open a row for that package's own examples. The
-      downloads column is the last 12 months, drawn as the last
-      {{ totals.spark_weeks }} weeks beside it. Figures come from the public npm
-      downloads API up to the last complete day, and recently published packages
-      may show no counts until npm aggregates a full period.
+      The npm tools install with <code>npm i -g &lt;package&gt;</code> or run
+      straight from <code>npx</code>; the PyPI ones install with
+      <code>pipx install &lt;package&gt;</code> or run from <code>uvx</code>.
+      Open a row for that package's own install line and examples. The downloads
+      column is the last 12 months, drawn as the last {{ totals.spark_weeks }}
+      weeks beside it. Figures come from the public npm downloads API and from
+      pypistats.org &mdash; PyPI publishes no counts of its own &mdash; up to
+      the last complete day, with PyPI mirror traffic excluded. Recently
+      published packages may show no counts until a full period is aggregated.
     </p>
   </div>
 </section>
@@ -419,8 +435,8 @@ permalink: /packages/
 <section class="cds--css-grid site-pb-10">
   <div class="cds--css-grid-column cds--sm:col-span-4 cds--md:col-span-6 cds--lg:col-span-8">
     <p class="site-empty">
-      Package statistics load at deploy time from the npm registry. Meanwhile,
-      browse everything at
+      Package statistics load at deploy time from the npm and PyPI registries.
+      Meanwhile, browse everything at
       <a class="cds--link cds--link--inline" href="https://www.npmjs.com/~sebs" target="_blank" rel="noopener">npmjs.com/~sebs</a>.
     </p>
   </div>

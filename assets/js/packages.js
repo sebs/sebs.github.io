@@ -1,7 +1,7 @@
 // /packages/ — behaviour for the package catalogue.
 //
-// The page itself is rendered at build time from _data/npm_stats.yml (see
-// scripts/fetch_npm_stats.py); nothing here fetches anything. Same house style
+// The page itself is rendered at build time from _data/package_stats.yml (see
+// scripts/fetch_package_stats.py); nothing here fetches anything. Same house style
 // as shell.js: vanilla, driving the classes Carbon's CSS already ships, every
 // feature guarded by its own root element so the static render always stands
 // on its own. The parts that make no sense without JavaScript (the toolbar,

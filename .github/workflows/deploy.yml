@@ -2,7 +2,7 @@ name: Build & deploy site
 
 # Builds the Jekyll site and deploys to GitHub Pages.
 # Unlike the native Pages build, this runs with network access, so it can:
-#   1. fetch the npm download stats for /packages/ at build time,
+#   1. fetch the npm and PyPI download stats for /packages/ at build time,
 #   2. rasterize the social OG image (SVG -> PNG), and
 #   3. install the IBM Carbon Design System, whose Sass sources Jekyll compiles
 #      into assets/css/main.css (see _config.yml -> sass.load_paths).
@@ -18,7 +18,7 @@ on:
     branches: [master, main]
   workflow_dispatch:
   schedule:
-    - cron: "0 6 * * *"   # daily — refresh the npm download stats
+    - cron: "0 6 * * *"   # daily — refresh the package download stats
 
 permissions:
   contents: read
@@ -37,8 +37,8 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Fetch npm download stats (page shows empty state if unavailable)
-        run: python3 scripts/fetch_npm_stats.py
+      - name: Fetch package download stats (page shows empty state if unavailable)
+        run: python3 scripts/fetch_package_stats.py
         continue-on-error: true
 
       - name: Rasterize OG image (SVG -> PNG)
