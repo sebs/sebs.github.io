@@ -35,7 +35,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: Fetch package download stats (page shows empty state if unavailable)
         run: python3 scripts/fetch_package_stats.py
@@ -60,9 +60,12 @@ jobs:
       # resolves `@use "@carbon/styles/..."` out of node_modules, so this must
       # succeed before the Jekyll build — it is not continue-on-error.
       - name: Setup Node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v7
         with:
-          node-version: "20"
+          # Only used to run `npm ci` for the Carbon assets — nothing here runs
+          # on Node at build or serve time, so this tracks LTS rather than
+          # anything the site depends on.
+          node-version: "24"
           cache: npm
 
       - name: Install design system (Carbon)
@@ -74,7 +77,7 @@ jobs:
           JEKYLL_ENV: production
 
       - name: Upload Pages artifact
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v5
         with:
           path: _site
 
@@ -87,4 +90,4 @@ jobs:
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5
