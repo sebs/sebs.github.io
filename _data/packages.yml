@@ -49,6 +49,7 @@ purls:
   - pkg:npm/@maschinenlesbar.org/hochwasserzentralen-cli
   - pkg:npm/@maschinenlesbar.org/regionalstatistik-cli
   - pkg:npm/@maschinenlesbar.org/oparl-cli
+  - pkg:npm/@maschinenlesbar.org/ckan-cli
 
   # PyPI
   - pkg:pypi/ecosyste-ms-cli
