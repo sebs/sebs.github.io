@@ -15,3 +15,11 @@
     classic mechanics with new ideas.
   tags: [Games, Indie]
   url: "https://sauglump-games.github.io/"
+
+- name: maschinenlesbar.org
+  description: >-
+    A growing family of TypeScript API clients and CLIs for German open-data
+    and public-sector APIs — Bundestag, DWD, Destatis, Autobahn, NINA, GovData
+    and 30+ more. Published on npm under @maschinenlesbar.org.
+  tags: [TypeScript, CLI, "Open Data"]
+  url: "https://github.com/maschinenlesbar-org"
