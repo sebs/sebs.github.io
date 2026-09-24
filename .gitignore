@@ -12,3 +12,6 @@ vendor/
 _data/package_stats.yml
 assets/og/og-default.png
 node_modules
+
+# macOS
+.DS_Store
