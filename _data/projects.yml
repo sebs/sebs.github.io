@@ -81,3 +81,16 @@
   license:                  # TODO: confirm license (none detected on GitHub)
   links:
     github: "https://github.com/dadamachines/dada-tbd-tui"
+
+- name: rewelo
+  description: >-
+    Relative-weight backlog prioritization — score tickets on benefit, penalty,
+    estimate and risk, then rank by value/cost. SQLite-backed, usable as a CLI
+    or as a Docker-based MCP server for LLM agents.
+  tags: [TypeScript, CLI, MCP]
+  active: true
+  stars: 2
+  last_activity: "v0.5.0 · Sep 2026"
+  license: MIT
+  links:
+    github: "https://github.com/sebs/rewelo"
