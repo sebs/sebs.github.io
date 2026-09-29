@@ -32,9 +32,24 @@
 {%- endif -%}
 {%- assign page_url = page.url | default: "/" | absolute_url -%}
 {%- assign canonical = page.canonical_url | default: page_url -%}
-{%- assign og_image = page.image | default: site.image | absolute_url -%}
 {%- assign is_post = false -%}
 {%- if page.collection == "posts" -%}{%- assign is_post = true -%}{%- endif -%}
+{%- comment -%}
+  Social card: the post's own image, else its generated title card
+  (scripts/generate_og_cards.py, built in CI) when the PNG exists, else the site
+  card. Posts share under their bare title — the site name is og:site_name.
+{%- endcomment -%}
+{%- assign og_image_path = page.image -%}
+{%- assign social_title = full_title -%}
+{%- if is_post -%}
+  {%- assign social_title = page_title -%}
+  {%- unless og_image_path -%}
+    {%- assign card = "/assets/og/posts/" | append: page.slug | append: ".png" -%}
+    {%- assign card_file = site.static_files | where: "path", card | first -%}
+    {%- if card_file -%}{%- assign og_image_path = card -%}{%- endif -%}
+  {%- endunless -%}
+{%- endif -%}
+{%- assign og_image = og_image_path | default: site.image | absolute_url -%}
 
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -66,7 +81,7 @@
 <!-- Open Graph -->
 <meta property="og:type" content="{{ page.og_type | default: 'website' }}">
 <meta property="og:site_name" content="{{ site.title | escape }}">
-<meta property="og:title" content="{{ full_title | escape }}">
+<meta property="og:title" content="{{ social_title | escape }}">
 <meta property="og:description" content="{{ page_desc | strip_newlines | escape }}">
 <meta property="og:url" content="{{ page_url }}">
 <meta property="og:image" content="{{ og_image }}">
@@ -84,7 +99,7 @@
 
 <!-- Twitter -->
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="{{ full_title | escape }}">
+<meta name="twitter:title" content="{{ social_title | escape }}">
 <meta name="twitter:description" content="{{ page_desc | strip_newlines | escape }}">
 <meta name="twitter:image" content="{{ og_image }}">
 

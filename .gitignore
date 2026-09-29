@@ -11,6 +11,7 @@ vendor/
 # Generated at deploy time
 _data/package_stats.yml
 assets/og/og-default.png
+assets/og/posts/
 node_modules
 
 # macOS
