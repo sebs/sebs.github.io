@@ -18,7 +18,7 @@ The OKFN [said it more bluntly](https://okfn.de/blog/2021/01/zur-abschaltung-von
 
 I spent a lot of my career extending other peoples code bases, so I know what a "relaunch" usually is: a new theme on the old thing. I don't think anybody in a Landtag sat down and planned to break Max's scrapers. Nobody had to. 17 parliaments, a handful of vendors, every installation configured different and every one a bit worse. The cost of reading it all lands on whoever wants to read it all, and that was one volunteer. Paid political monitoring exists, as Max points out, so the lobby groups that can afford it were fine anyway.
 
-That is the balkanisation I mean. It does not need a conspiracy, it needs an asymmetry: making the mess is cheap for the publisher, cleaning it up is expensive for the reader. As long as that holds the mess wins, and "Open Data" can go into every strategy paper without anything happening.
+That is the data fragementation I mean. It does not need a conspiracy, it needs an asymmetry: making the mess is cheap for the publisher, cleaning it up is expensive for the reader. As long as that holds the mess wins, and "Open Data" can go into every strategy paper without anything happening.
 
 ## The asymmetry is gone
 
