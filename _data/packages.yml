@@ -51,6 +51,7 @@ purls:
   - pkg:npm/@maschinenlesbar.org/regionalstatistik-cli
   - pkg:npm/@maschinenlesbar.org/oparl-cli
   - pkg:npm/@maschinenlesbar.org/ckan-cli
+  - pkg:npm/@maschinenlesbar.org/openka-cli
 
   # PyPI
   - pkg:pypi/ecosyste-ms-cli
