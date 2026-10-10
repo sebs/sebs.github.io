@@ -12,9 +12,14 @@ description: >-
   open-source maintainer, and builder of developer tooling and LLM/AI workflows.
   Based in Hamburg.
 author: "Sebastian Schürmann"
-url: "https://sebs.github.io"
+url: "https://sebs.maschinenlesbar.org"
 baseurl: ""
 lang: "en"
+
+# Posts dated before this day get `noindex, follow` and stay out of the
+# sitemap (see _includes/head.html, sitemap.xml) — they were published under
+# sebs.github.io and elsewhere first, so this avoids duplicate content.
+noindex_posts_before: "2026-09-15"
 
 # Default OG/Twitter image (relative to url)
 image: "/assets/og/og-default.png"

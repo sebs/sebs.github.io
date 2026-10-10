@@ -9,12 +9,16 @@ sitemap: false
       Dissident Trainings posts, while the original is online),
     - topic pages with fewer than three posts and all month archives — both
       carry `noindex` (see _includes/head.html),
+    - posts dated before `noindex_posts_before` (_config.yml) — they carry
+      `noindex` too,
     - redirects, the feed and anything marked `sitemap: false`.
 {%- endcomment -%}
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 {%- for post in site.posts -%}
-  {%- if post.canonical_url or post.sitemap == false -%}{%- continue -%}{%- endif %}
+  {%- if post.canonical_url or post.sitemap == false or post.noindex -%}{%- continue -%}{%- endif -%}
+  {%- assign post_day = post.date | date: "%Y-%m-%d" -%}
+  {%- if post_day < site.noindex_posts_before -%}{%- continue -%}{%- endif %}
   <url>
     <loc>{{ post.url | absolute_url | xml_escape }}</loc>
     <lastmod>{{ post.last_modified_at | default: post.date | date_to_xmlschema }}</lastmod>

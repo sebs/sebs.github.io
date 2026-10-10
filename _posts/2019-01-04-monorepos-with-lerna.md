@@ -62,6 +62,6 @@ It might be a special quirk of me, trying to use terminal commands (e.g. rm) whe
 
 ## Links
 
-- [Blog Post Overview](https://sebs.github.io/blog/managing-a-webcomponent-zoo/)
+- [Blog Post Overview](/blog/managing-a-webcomponent-zoo/)
 - [Example Git Repo](https://github.com/sebs/component-zoo)
 - [Lerna js](https://lernajs.io/)

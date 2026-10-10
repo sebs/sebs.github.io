@@ -7,7 +7,7 @@ description: "Kickoff of a series on shipping web components with a Lerna monore
 tags: [web-development, developer-tooling]
 og_type: article
 ---
-- [Part 1: Monorepos with learna.js](https://sebs.github.io/blog/managing-a-webcomponent-zoo-monorepo/)
+- [Part 1: Monorepos with learna.js](/blog/managing-a-webcomponent-zoo-monorepo/)
 - Part 2: Anatomy of an improved polymer3 component
 - Part 3: Scaffolding
 - Part 4: TBD

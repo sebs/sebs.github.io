@@ -90,4 +90,4 @@ I think we now can stop repeating the fails of the last ten years (and more) ove
 - Craft - Front-end is hardcore software development. Accept it and learn it.
 - Process - Process wise we learned a lot on how we can improve development and find errors and bugs early in development. CI, CD, Feedback and all this is not a joke. This is the new imperative. I am looking forward to the talk and as always I am looking for feedback in the comments section here.
 
-[The crux of done →](https://sebs.github.io/blog/the-crux-of-done)
+[The crux of done →](/blog/the-crux-of-done)

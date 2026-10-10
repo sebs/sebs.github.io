@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://sebs.github.io/sitemap.xml
+Sitemap: https://sebs.maschinenlesbar.org/sitemap.xml

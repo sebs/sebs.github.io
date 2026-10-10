@@ -9,7 +9,11 @@
 {%- assign page_title = page.title | default: site.title -%}
 {%- assign page_desc = page.description | default: site.description -%}
 {%- assign noindex = page.noindex | default: false -%}
-{%- if page.type == "tag" -%}
+{%- if page.collection == "posts" -%}
+  {%- comment -%} Older posts: crawlable, not indexed (_config.yml -> noindex_posts_before). {%- endcomment -%}
+  {%- assign post_day = page.date | date: "%Y-%m-%d" -%}
+  {%- if post_day < site.noindex_posts_before -%}{%- assign noindex = true -%}{%- endif -%}
+{%- elsif page.type == "tag" -%}
   {%- assign topic = site.data.topics[page.title] -%}
   {%- assign page_title = topic.name | default: page.title | append: " — Blog" -%}
   {%- assign page_desc = topic.description | default: page_desc -%}
