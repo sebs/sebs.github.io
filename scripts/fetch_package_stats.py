@@ -64,7 +64,7 @@ CONFIG = "_data/packages.yml"
 OUT = "_data/package_stats.yml"
 UA = {"User-Agent": "sebs.github.io build (package stats)"}
 TIMEOUT = 30
-RETRIES = 4   # api.npmjs.org answers bursts of requests with HTTP 429
+RETRIES = 6   # api.npmjs.org answers bursts of requests with HTTP 429
 
 # Registries we know how to resolve. `label` is what the page prints; `runtime`
 # labels the interpreter constraint each ecosystem records (npm `engines.node`,
@@ -138,8 +138,11 @@ def _get_json(url):
         except urllib.error.HTTPError as exc:
             if exc.code not in (429, 500, 502, 503, 504) or attempt == RETRIES - 1:
                 raise
+            # Never wait less than the exponential step: api.npmjs.org sends
+            # `Retry-After: 0` with its 429s, and honouring that literally
+            # burns every retry in a fraction of a second.
             retry_after = (exc.headers.get("Retry-After") or "").strip()
-            delay = int(retry_after) if retry_after.isdigit() else 2 ** attempt
+            delay = max(int(retry_after) if retry_after.isdigit() else 0, 2 ** attempt)
             time.sleep(min(delay, 30))
     raise RuntimeError(f"exhausted retries for {url}")   # unreachable
 
