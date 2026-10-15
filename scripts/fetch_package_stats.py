@@ -144,6 +144,14 @@ def _get_json(url):
             retry_after = (exc.headers.get("Retry-After") or "").strip()
             delay = max(int(retry_after) if retry_after.isdigit() else 0, 2 ** attempt)
             time.sleep(min(delay, 30))
+        except OSError:
+            # Timeouts and dropped connections (URLError, TimeoutError,
+            # ConnectionResetError). From the CI runners a single download
+            # request occasionally hangs until TIMEOUT; without a retry that
+            # package's series comes back empty and the table shows 0/yr.
+            if attempt == RETRIES - 1:
+                raise
+            time.sleep(2 ** attempt)
     raise RuntimeError(f"exhausted retries for {url}")   # unreachable
 
 
@@ -252,7 +260,8 @@ def npm_daily_series(pkg):
     try:
         data = _get_json(f"https://api.npmjs.org/downloads/range/{start}:{end}/{_api_name(pkg)}")
         days = data.get("downloads") or []
-    except Exception:  # noqa: BLE001
+    except Exception as exc:  # noqa: BLE001
+        print(f"  downloads unavailable: {exc}", file=sys.stderr)
         return {}
     return {d["day"]: int(d.get("downloads") or 0) for d in days if d.get("day")}
 
@@ -270,7 +279,8 @@ def pypi_daily_series(pkg):
     try:
         data = _get_json(f"https://pypistats.org/api/packages/{pkg}/overall?mirrors=false")
         rows = data.get("data") or []
-    except Exception:  # noqa: BLE001
+    except Exception as exc:  # noqa: BLE001
+        print(f"  downloads unavailable: {exc}", file=sys.stderr)
         return {}
     cutoff = (date.today() - timedelta(days=365)).isoformat()
     return {r["date"]: int(r.get("downloads") or 0)
