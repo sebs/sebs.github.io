@@ -43,12 +43,54 @@ nav: home
   </div>
 
   <div class="cds--css-grid-column cds--sm:col-span-4 cds--md:col-span-8 cds--lg:col-span-6 cds--lg:col-start-11">
-    <div class="site-hero__panel" aria-hidden="true">
-      <span class="site-hero__mark">&lt;/&gt;</span>
-      <span class="site-hero__coords">HAMBURG, DE — 53.55° N, 9.99° E</span>
-    </div>
+    {%- comment -%}
+      Shader reel: a small playlist of fragment shaders drawn in the site's own
+      Carbon tokens (assets/js/shader-reel.js). Without WebGL 2 or JS it stays
+      the static grid panel with the </> mark.
+    {%- endcomment %}
+    <figure class="site-reel" data-reel aria-label="Shader playlist">
+      <div class="site-reel__stage" data-reel-stage>
+        <canvas class="site-reel__canvas" data-reel-canvas aria-hidden="true"></canvas>
+        <div class="site-reel__grid" aria-hidden="true"></div>
+        <div class="site-reel__glare" aria-hidden="true"></div>
+        <span class="site-reel__mark" aria-hidden="true">&lt;/&gt;</span>
+
+        <div class="site-reel__hud">
+          <div class="site-reel__top">
+            <span class="site-reel__chip" data-reel-index>01 / 05</span>
+            <a class="site-reel__chip site-reel__src" href="https://github.com/sebs/sebs.github.io/blob/master/assets/js/shader-reel.js" target="_blank" rel="noopener">
+              GLSL {% include icon.html name="arrow-up-right" %}
+            </a>
+          </div>
+
+          <div class="site-reel__deck">
+            <ol class="site-reel__tracks" data-reel-tracks></ol>
+            <div class="site-reel__row">
+              <figcaption class="site-reel__caption">
+                <span class="site-reel__title" data-reel-title></span>
+                <span class="site-reel__sub" data-reel-sub></span>
+              </figcaption>
+              <div class="site-reel__controls">
+                <button type="button" class="cds--btn cds--btn--ghost cds--btn--sm cds--btn--icon-only" data-reel-prev aria-label="Previous shader">
+                  {% include icon.html name="chevron-left" class="cds--btn__icon" %}
+                </button>
+                <button type="button" class="cds--btn cds--btn--ghost cds--btn--sm cds--btn--icon-only" data-reel-toggle aria-label="Pause shader playlist">
+                  <span data-reel-icon="pause">{% include icon.html name="pause" class="cds--btn__icon" %}</span>
+                  <span data-reel-icon="play" hidden>{% include icon.html name="play" class="cds--btn__icon" %}</span>
+                </button>
+                <button type="button" class="cds--btn cds--btn--ghost cds--btn--sm cds--btn--icon-only" data-reel-next aria-label="Next shader">
+                  {% include icon.html name="chevron-right" class="cds--btn__icon" %}
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </figure>
   </div>
 </section>
+
+<script src="{{ '/assets/js/shader-reel.js' | relative_url }}" defer></script>
 
 <!-- About -->
 <section class="cds--css-grid site-section" id="about">

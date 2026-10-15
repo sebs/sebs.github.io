@@ -6,6 +6,7 @@
 @use "@carbon/styles/scss/type";
 @use "@carbon/styles/scss/spacing";
 @use "@carbon/styles/scss/breakpoint";
+@use "@carbon/styles/scss/motion";
 @use "@carbon/styles/scss/config" as *;
 
 .site-hero {
@@ -44,56 +45,276 @@
   gap: spacing.$spacing-03;
 }
 
-// Companion panel: Carbon's grid texture over a layer surface. Decorative.
-.site-hero__panel {
-  align-items: center;
+// Shader reel ---------------------------------------------------------------
+// The companion panel: a playlist of fragment shaders (assets/js/shader-reel.js)
+// painted in the theme's own tokens. The stage tilts toward the pointer and its
+// layers sit at different depths — canvas at the back, the 16px Carbon grid as
+// a pane of glass in front of it, the player chrome nearest — so the tilt reads
+// as parallax. Before the script runs (or without WebGL 2) it is the plain grid
+// panel with the </> mark, exactly as static as it used to be.
+.site-reel {
+  margin: 0;
+  perspective: 75rem;
+}
+
+.site-reel__stage {
   aspect-ratio: 4 / 3;
   background: theme.$layer-01;
   border: 1px solid theme.$border-subtle-01;
-  display: grid;
-  justify-items: center;
-  overflow: hidden;
   position: relative;
+  transform: rotateX(var(--reel-tilt-x, 0deg)) rotateY(var(--reel-tilt-y, 0deg));
+  transform-style: preserve-3d;
 
   @include breakpoint.breakpoint(lg) {
     aspect-ratio: 1 / 1;
   }
 
-  // 16px Carbon grid, faded out at the edges.
-  &::before {
-    background-image:
-      linear-gradient(theme.$border-subtle-01 1px, transparent 1px),
-      linear-gradient(90deg, theme.$border-subtle-01 1px, transparent 1px);
-    background-size: spacing.$spacing-06 spacing.$spacing-06;
-    content: "";
-    inset: 0;
-    mask-image: radial-gradient(circle at 50% 50%, #000 25%, transparent 72%);
-    position: absolute;
+  .is-live & {
+    background: theme.$background;
+    will-change: transform;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    transform: none;
   }
 }
 
-.site-hero__mark {
-  @include type.type-style("body-01");
+.site-reel__canvas {
+  block-size: 100%;
+  display: block;
+  inline-size: 100%;
+  inset: 0;
+  opacity: 0;
+  position: absolute;
+  transition: opacity motion.$duration-slow-02 motion.motion(entrance, expressive);
+
+  .is-live & {
+    opacity: 1;
+  }
+}
+
+// 16px Carbon grid, faded out at the edges. Lifted off the canvas so it slides
+// against the shader when the stage tilts.
+.site-reel__grid {
+  background-image:
+    linear-gradient(theme.$border-subtle-01 1px, transparent 1px),
+    linear-gradient(90deg, theme.$border-subtle-01 1px, transparent 1px);
+  background-size: spacing.$spacing-06 spacing.$spacing-06;
+  inset: 0;
+  mask-image: radial-gradient(circle at 50% 50%, #000 25%, transparent 72%);
+  pointer-events: none;
+  position: absolute;
+  transform: translateZ(1.5rem);
+  transition: opacity motion.$duration-slow-02 motion.motion(standard, expressive);
+
+  .is-live & {
+    mask-image: radial-gradient(circle at 50% 50%, transparent 30%, #000 95%);
+    opacity: 0.35;
+  }
+}
+
+.site-reel__glare {
+  background: radial-gradient(
+    circle at var(--reel-glare-x, 50%) var(--reel-glare-y, 50%),
+    rgb(255 255 255 / 7%),
+    transparent 55%
+  );
+  inset: 0;
+  opacity: 0;
+  pointer-events: none;
+  position: absolute;
+  transform: translateZ(0.5rem);
+
+  .is-live & {
+    opacity: 1;
+  }
+
+  [data-theme="light"] & {
+    display: none;
+  }
+}
+
+.site-reel__mark {
   @include type.font-family("mono");
 
   color: theme.$text-secondary;
+  display: grid;
   font-size: clamp(2.5rem, 9vw, 5rem);
   font-weight: 600;
+  inset: 0;
   letter-spacing: -0.04em;
   line-height: 1;
-  position: relative;
+  place-content: center;
+  position: absolute;
   user-select: none;
+
+  .is-live & {
+    display: none;
+  }
 }
 
-.site-hero__coords {
-  @include type.type-style("body-01");
-  @include type.font-family("mono");
+// Player chrome -------------------------------------------------------------
+.site-reel__hud {
+  display: flex;
+  flex-direction: column;
+  inset: 0;
+  justify-content: space-between;
+  padding: spacing.$spacing-05;
+  pointer-events: none;
+  position: absolute;
+  transform: translateZ(3rem);
+  visibility: hidden;
 
+  .is-live & {
+    visibility: visible;
+  }
+
+  > * {
+    pointer-events: auto;
+  }
+}
+
+.site-reel__top {
+  align-items: flex-start;
+  display: flex;
+  justify-content: space-between;
+}
+
+.site-reel__chip {
+  @include type.type-style("code-01");
+
+  align-items: center;
   background: theme.$background;
   border: 1px solid theme.$border-subtle-01;
   color: theme.$text-secondary;
-  inset-block-end: spacing.$spacing-05;
-  inset-inline-end: spacing.$spacing-05;
-  padding: spacing.$spacing-03 spacing.$spacing-05;
-  position: absolute;
+  display: inline-flex;
+  gap: spacing.$spacing-02;
+  padding: spacing.$spacing-02 spacing.$spacing-03;
+}
+
+.site-reel__src {
+  text-decoration: none;
+  transition: color motion.$duration-fast-02 motion.motion(standard, productive);
+
+  &:hover {
+    color: theme.$link-primary;
+  }
+
+  &:focus {
+    outline: 2px solid theme.$focus;
+    outline-offset: -2px;
+  }
+}
+
+.site-reel__deck {
+  background: theme.$background;
+  border: 1px solid theme.$border-subtle-01;
+}
+
+// One segment per shader: past ones full, the playing one filling up.
+.site-reel__tracks {
+  display: flex;
+  gap: spacing.$spacing-01;
+  list-style: none;
+  margin: 0;
+  padding: 0 spacing.$spacing-03;
+}
+
+.site-reel__tracks li {
+  flex: 1;
+}
+
+.site-reel__track {
+  background: none;
+  block-size: spacing.$spacing-05;
+  border: 0;
+  cursor: pointer;
+  display: block;
+  inline-size: 100%;
+  padding: 0;
+  position: relative;
+
+  &::before,
+  &::after {
+    block-size: 2px;
+    content: "";
+    inset-block-start: 50%;
+    inset-inline: 0;
+    position: absolute;
+  }
+
+  &::before {
+    background: theme.$border-subtle-01;
+    transition: background-color motion.$duration-fast-02 motion.motion(standard, productive);
+  }
+
+  &::after {
+    background: theme.$interactive;
+    transform: scaleX(var(--reel-progress, 0));
+    transform-origin: left center;
+  }
+
+  &:hover::before {
+    background: theme.$border-strong-01;
+  }
+
+  &:focus {
+    outline: 2px solid theme.$focus;
+    outline-offset: -2px;
+  }
+}
+
+.site-reel__row {
+  align-items: center;
+  display: flex;
+  gap: spacing.$spacing-03;
+  justify-content: space-between;
+  padding: 0 0 0 spacing.$spacing-04;
+}
+
+.site-reel__caption {
+  display: flex;
+  flex-direction: column;
+  min-inline-size: 0;
+  padding-block-end: spacing.$spacing-03;
+}
+
+.site-reel__title {
+  @include type.type-style("code-02");
+
+  color: theme.$text-primary;
+  font-weight: 600;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.site-reel__sub {
+  @include type.type-style("helper-text-01");
+
+  color: theme.$text-secondary;
+  // Room for two lines whatever the track, so the deck never changes height.
+  min-block-size: 2lh;
+}
+
+.site-reel__controls {
+  align-self: flex-end;
+  display: flex;
+  flex: none;
+
+  // Carbon sizes icon-only buttons from a layout custom property that only
+  // its size utilities set; pin them to a square target here.
+  .cds--btn--icon-only {
+    block-size: spacing.$spacing-07;
+    inline-size: spacing.$spacing-07;
+    min-block-size: spacing.$spacing-07;
+  }
+
+  [data-reel-icon] {
+    display: inline-flex;
+  }
+
+  [data-reel-icon][hidden] {
+    display: none;
+  }
 }
