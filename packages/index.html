@@ -340,7 +340,11 @@ permalink: /packages/
                   <circle class="site-spark__end" cx="{{ p.spark.end_x }}" cy="{{ p.spark.end_y }}" r="2.5" />
                 </svg>
                 {%- endif -%}
+                {%- if p.downloads_unavailable -%}
+                <span class="site-pkg__num" title="Download figures unavailable in this build">&mdash;</span>
+                {%- else -%}
                 <span class="site-pkg__num">{% include thousands.html n=p.dl_year %}<span class="site-pkg__unit">/yr</span></span>
+                {%- endif -%}
               </span>
             </td>
           </tr>
@@ -379,7 +383,7 @@ permalink: /packages/
                     {%- if p.versions and p.versions > 0 -%}
                     <dt>Releases</dt><dd>{{ p.versions }}{% if p.first_publish != "" %} since {{ p.first_publish | date: "%-d %b %Y" }}{% endif %}</dd>
                     {%- endif -%}
-                    <dt>Downloads</dt><dd>{% include thousands.html n=p.dl_month %} in 30 days &middot; {% include thousands.html n=p.dl_year %} in 12 months</dd>
+                    <dt>Downloads</dt><dd>{%- if p.downloads_unavailable -%}Unavailable in this build{%- else -%}{% include thousands.html n=p.dl_month %} in 30 days &middot; {% include thousands.html n=p.dl_year %} in 12 months{%- endif -%}</dd>
                     {%- if p.license and p.license != "" -%}<dt>License</dt><dd>{{ p.license | escape }}</dd>{%- endif -%}
                     {%- comment -%} `runtime_label` is Node on npm, Python on PyPI. {%- endcomment -%}
                     {%- if p.runtime and p.runtime != "" -%}<dt>{{ p.runtime_label }}</dt><dd>{{ p.runtime | escape }}</dd>{%- endif -%}

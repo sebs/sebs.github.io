@@ -64,7 +64,16 @@ CONFIG = "_data/packages.yml"
 OUT = "_data/package_stats.yml"
 UA = {"User-Agent": "sebs.github.io build (package stats)"}
 TIMEOUT = 30
-RETRIES = 6   # api.npmjs.org answers bursts of requests with HTTP 429
+# api.npmjs.org answers bursts of requests with HTTP 429 and keeps doing so for
+# longer than a 31s backoff (1+2+4+8+16) — the scheduled builds lost a package's
+# numbers that way. Eight attempts with the 30s cap wait 91s in all.
+RETRIES = 8
+MAX_BACKOFF = 30
+
+# Minimum gap between two api.npmjs.org download requests. Back to back, the
+# ~20th package in a run trips the rate limit; spaced out, none does.
+NPM_DOWNLOADS_INTERVAL = 1.0
+_last_npm_download = 0.0
 
 # Registries we know how to resolve. `label` is what the page prints; `runtime`
 # labels the interpreter constraint each ecosystem records (npm `engines.node`,
@@ -143,7 +152,7 @@ def _get_json(url):
             # burns every retry in a fraction of a second.
             retry_after = (exc.headers.get("Retry-After") or "").strip()
             delay = max(int(retry_after) if retry_after.isdigit() else 0, 2 ** attempt)
-            time.sleep(min(delay, 30))
+            time.sleep(min(delay, MAX_BACKOFF))
         except OSError:
             # Timeouts and dropped connections (URLError, TimeoutError,
             # ConnectionResetError). From the CI runners a single download
@@ -151,7 +160,7 @@ def _get_json(url):
             # package's series comes back empty and the table shows 0/yr.
             if attempt == RETRIES - 1:
                 raise
-            time.sleep(2 ** attempt)
+            time.sleep(min(2 ** attempt, MAX_BACKOFF))
     raise RuntimeError(f"exhausted retries for {url}")   # unreachable
 
 
@@ -255,8 +264,13 @@ def npm_daily_series(pkg):
     `last-year` even though its downloads are already visible via an explicit
     range (and on npmjs.com), zeroing out every dl_* figure for that package.
     """
+    global _last_npm_download
     end = date.today()
     start = end - timedelta(days=365)
+    wait = _last_npm_download + NPM_DOWNLOADS_INTERVAL - time.monotonic()
+    if wait > 0:
+        time.sleep(wait)
+    _last_npm_download = time.monotonic()
     try:
         data = _get_json(f"https://api.npmjs.org/downloads/range/{start}:{end}/{_api_name(pkg)}")
         days = data.get("downloads") or []
@@ -836,6 +850,9 @@ def collect(registry, pkg):
         "dl_week": _tail_sum(daily, 7),
         "dl_month": _tail_sum(daily, 30),
         "dl_year": sum(daily.values()) if daily else None,
+        # The download fetch failed (npm sends explicit zero days, so a quiet
+        # package still has a series). The page shows a dash, not a fake 0.
+        "downloads_unavailable": not daily,
         "error": None,
         # `_daily` is consumed to build the aggregate chart, sparklines and
         # trends, then dropped before the file is written (it would bloat the
@@ -942,6 +959,11 @@ def main():
     with open(OUT, "w", encoding="utf-8") as fh:
         json.dump(payload, fh, ensure_ascii=False, indent=2)
     print(f"wrote {len(packages)} packages ({ok} ok) to {OUT}")
+    # A GitHub Actions annotation, so a gap in the numbers shows on the run
+    # summary instead of only deep in the log of a green build.
+    for p in packages:
+        if p.get("downloads_unavailable"):
+            print(f"::warning::download figures unavailable for {p['name']}")
     return 0
 
 
