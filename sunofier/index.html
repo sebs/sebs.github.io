@@ -1,0 +1,715 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Sunofier</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Syne:wght@500;700;800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: a studio console. Input rack left, generated patch center, variation bank right; concept notes below. */
+:root{
+  --bg:#f3f1ec; --panel:#fbfaf7; --ink:#1d1b17; --ink-2:#5c574d; --line:#d9d4c8;
+  --accent:#d9541a; --accent-ink:#fff; --tag:#e8e2d3; --ok:#2f7d4f; --warn:#b8860b; --bad:#b23a2a;
+  --code-bg:#eeeae0; --sel:#fff2e8;
+  --font-display:"Syne","Avenir Next",system-ui,sans-serif;
+  --font-body:"IBM Plex Sans",system-ui,sans-serif;
+  --font-mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#17161a; --panel:#1f1e23; --ink:#ebe7df; --ink-2:#a39d91; --line:#36343a;
+  --accent:#ff7a3d; --accent-ink:#1a1210; --tag:#2b2a31; --ok:#5fc58a; --warn:#e2b84a; --bad:#ef6d5a;
+  --code-bg:#141317; --sel:#2a211c; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#17161a; --panel:#1f1e23; --ink:#ebe7df; --ink-2:#a39d91; --line:#36343a;
+  --accent:#ff7a3d; --accent-ink:#1a1210; --tag:#2b2a31; --ok:#5fc58a; --warn:#e2b84a; --bad:#ef6d5a;
+  --code-bg:#141317; --sel:#2a211c; color-scheme:dark}
+
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--font-body);font-size:15px;line-height:1.5;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:0 48px}
+h1,h2,h3{font-family:var(--font-display);text-wrap:balance;margin:0;line-height:1.1}
+p{margin:0}
+button,select,input,textarea{font:inherit;color:inherit}
+a{color:var(--accent)}
+
+header.top{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:12px;padding-block:22px 14px;border-bottom:1px solid var(--line)}
+header.top h1{font-size:30px;font-weight:800;letter-spacing:-.02em}
+header.top h1 span{color:var(--accent)}
+header.top p{color:var(--ink-2);max-width:60ch}
+.eyebrow{font-family:var(--font-mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-2)}
+
+.console{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1.3fr) minmax(0,.75fr);gap:18px;padding-block:18px}
+@media (max-width:1100px){.console{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}.bank{grid-column:1/-1}}
+@media (max-width:720px){.console{grid-template-columns:minmax(0,1fr)}.bank{grid-column:auto}}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:10px;min-width:0;display:flex;flex-direction:column}
+.panel>.head{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:10px 14px;border-bottom:1px solid var(--line)}
+.panel>.head h2{font-size:15px;font-weight:700}
+.panel>.body{padding:14px;display:flex;flex-direction:column;gap:12px;min-width:0}
+
+textarea{width:100%;min-height:260px;resize:vertical;background:var(--code-bg);border:1px solid var(--line);border-radius:8px;padding:10px 12px;font-family:var(--font-mono);font-size:13px;line-height:1.55}
+textarea:focus,select:focus,input:focus,button:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
+
+.knobs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.knob{display:flex;flex-direction:column;gap:4px;min-width:0}
+.knob label{font-size:12px;color:var(--ink-2);font-weight:500}
+.knob select,.knob input[type=text],.knob input[type=number]{width:100%;background:var(--panel);border:1px solid var(--line);border-radius:6px;padding:6px 8px}
+.knob input[type=range]{width:100%;accent-color:var(--accent)}
+.knob .val{font-family:var(--font-mono);font-size:11px;color:var(--ink-2)}
+.row{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.btn{border:1px solid var(--line);background:var(--panel);border-radius:7px;padding:7px 12px;cursor:pointer;font-weight:500;font-size:13px}
+.btn:hover{border-color:var(--ink-2)}
+.btn.primary{background:var(--accent);color:var(--accent-ink);border-color:var(--accent);font-weight:600}
+.btn.small{padding:4px 9px;font-size:12px}
+.chk{display:flex;align-items:center;gap:6px;font-size:13px;color:var(--ink-2)}
+.chk input{accent-color:var(--accent)}
+
+.tabs{display:flex;gap:2px;padding:6px 8px 0;border-bottom:1px solid var(--line);overflow-x:auto}
+.tab{border:0;background:none;padding:8px 12px;cursor:pointer;font-weight:500;color:var(--ink-2);border-bottom:2px solid transparent;white-space:nowrap}
+.tab[aria-selected=true]{color:var(--ink);border-bottom-color:var(--accent)}
+.out{display:flex;flex-direction:column;gap:10px}
+.outbox{position:relative}
+.outbox pre{margin:0;background:var(--code-bg);border:1px solid var(--line);border-radius:8px;padding:12px 14px;font-family:var(--font-mono);font-size:12.5px;line-height:1.6;white-space:pre-wrap;word-wrap:break-word;max-height:520px;overflow:auto}
+.outbox .meta{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:6px}
+.outbox .meta .count{font-family:var(--font-mono);font-size:11px;color:var(--ink-2)}
+.count.warn{color:var(--warn)}.count.bad{color:var(--bad)}
+.tagline{color:var(--accent)}
+.settings{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px}
+.stat{border:1px solid var(--line);border-radius:8px;padding:10px 12px}
+.stat .k{font-size:11px;color:var(--ink-2);text-transform:uppercase;letter-spacing:.08em;font-family:var(--font-mono)}
+.stat .v{font-family:var(--font-display);font-size:22px;font-weight:700;margin-top:2px;font-variant-numeric:tabular-nums}
+.stat .s{font-size:12px;color:var(--ink-2)}
+.meter{height:6px;background:var(--tag);border-radius:3px;overflow:hidden;margin-top:6px}
+.meter i{display:block;height:100%;background:var(--accent)}
+
+.arc{width:100%;height:auto;display:block;max-width:100%}
+.sections{display:flex;flex-direction:column;gap:6px}
+.sec{display:grid;grid-template-columns:34px 90px minmax(0,1fr) 52px;gap:8px;align-items:center;font-size:12.5px;padding:6px 8px;border:1px solid var(--line);border-radius:7px}
+.sec .n{font-family:var(--font-mono);color:var(--ink-2)}
+.sec .kind{font-weight:600}
+.sec .lines{color:var(--ink-2);min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.sec .e{font-family:var(--font-mono);text-align:right;font-variant-numeric:tabular-nums}
+.pill{display:inline-block;font-family:var(--font-mono);font-size:10.5px;padding:2px 7px;border-radius:999px;background:var(--tag);margin-left:4px}
+.issue{font-size:12.5px;padding:6px 10px;border-left:3px solid var(--warn);background:var(--tag);border-radius:0 6px 6px 0}
+.issue.ok{border-left-color:var(--ok)}
+
+.bank .cards{display:flex;flex-direction:column;gap:8px}
+.card{border:1px solid var(--line);border-radius:8px;padding:9px 10px;cursor:pointer;display:grid;grid-template-columns:minmax(0,1fr) 64px;gap:8px;align-items:center}
+.card:hover{border-color:var(--ink-2)}
+.card[aria-current=true]{border-color:var(--accent);background:var(--sel)}
+.card .t{font-weight:600;font-size:13px;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.card .d{font-size:11.5px;color:var(--ink-2);font-family:var(--font-mono);min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.card svg{width:64px;height:28px;display:block}
+
+.toast{position:fixed;left:50%;bottom:calc(18px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:8px 14px;border-radius:999px;font-size:13px;opacity:0;transition:opacity .2s;pointer-events:none}
+.toast.show{opacity:1}
+
+.concept{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px;padding-block:10px 20px}
+.concept>section{min-width:0}
+.concept h2{font-size:18px;margin-bottom:8px}
+.concept h3{font-size:14px;margin:12px 0 4px}
+.concept p,.concept li{font-size:14px;color:var(--ink-2);max-width:68ch}
+.concept ul{padding-left:18px;margin:4px 0}
+.concept code{font-family:var(--font-mono);font-size:12.5px;background:var(--code-bg);padding:1px 5px;border-radius:4px;color:var(--ink)}
+.concept .cheat{font-family:var(--font-mono);font-size:12px;background:var(--code-bg);border:1px solid var(--line);border-radius:8px;padding:10px 12px;white-space:pre-wrap;overflow-x:auto;color:var(--ink)}
+.concept-head{padding-block:22px 6px;border-top:1px solid var(--line)}
+.concept-head h2{font-size:24px}
+.sources{font-size:12.5px;color:var(--ink-2)}
+@media (prefers-reduced-motion:reduce){.toast{transition:none}}
+</style>
+
+<header class="top">
+  <div>
+    <div class="eyebrow">Suno v6 · lyrics → custom-mode patch</div>
+    <h1>Suno<span>fier</span></h1>
+  </div>
+  <p>Paste a poem, a stanza, a text. The engine detects the song form, rolls a procedural arrangement from a seed, and writes the three Suno boxes for you. Tuned for dark, electronic, abstract modern pop: sparse art-pop, noir R&amp;B, glitch, industrial, dream-pop, chamber electronica.</p>
+</header>
+
+<main class="console">
+  <section class="panel" aria-label="Input">
+    <div class="head"><h2>Source text</h2><div class="row"><button class="btn small" id="btnSample">Load example</button><button class="btn small" id="btnClear">Clear</button></div></div>
+    <div class="body">
+      <textarea id="src" spellcheck="false" aria-label="Lyrics or poem"></textarea>
+      <div class="knobs">
+        <div class="knob"><label for="family">Genre family</label>
+          <select id="family">
+            <option value="auto">Auto (from the text)</option>
+            <option value="minimal">Minimal art-pop (sparse, clipped, huge low end)</option>
+            <option value="noir">Trip-hop noir R&amp;B (slow, smoky, sub bass)</option>
+            <option value="glitch">Glitch / abstract pop (chopped, pitched, broken)</option>
+            <option value="industrial">Industrial alt-pop (distorted, cold, menacing)</option>
+            <option value="dream">Ambient dream-pop (drowned, slow, wide)</option>
+            <option value="maximal">Maximal electro-pop (saturated, clipped drums, big)</option>
+            <option value="chamber">Chamber electronica (strings, piano, electronics)</option>
+          </select></div>
+        <div class="knob"><label for="arc">Energy arc</label>
+          <select id="arc">
+            <option value="auto">Auto</option>
+            <option value="rise">Slow rise</option>
+            <option value="wave">Wave (verse low, chorus high)</option>
+            <option value="collapse">Climb then collapse</option>
+            <option value="plateau">Flat and hypnotic</option>
+          </select></div>
+        <div class="knob"><label for="vocal">Vocal identity</label>
+          <select id="vocal">
+            <option value="auto">Auto</option>
+            <option value="alto">Low female alto, deadpan to belt</option>
+            <option value="breathy">Breathy, smoky female, close-mic</option>
+            <option value="halfspoken">Half-spoken female, cold and precise</option>
+            <option value="stacked">Pitched-down doubles + vocoder stack</option>
+            <option value="lowmale">Low male, hushed</option>
+            <option value="none">Instrumental (no vocals)</option>
+          </select></div>
+        <div class="knob"><label for="seed">Seed</label>
+          <div class="row"><input type="number" id="seed" value="7" min="0" step="1" style="flex:1;min-width:0"><button class="btn small" id="btnReroll">Reroll</button></div></div>
+        <div class="knob"><label for="weird">Mutation (drift from family)</label><input type="range" id="weird" min="0" max="100" value="35"><span class="val" id="weirdVal">35</span></div>
+        <div class="knob"><label for="density">Tag density</label><input type="range" id="density" min="1" max="5" value="3"><span class="val" id="densityVal">3 · balanced</span></div>
+      </div>
+      <div class="row">
+        <label class="chk"><input type="checkbox" id="optCaps" checked> CAPS on the peak line</label>
+        <label class="chk"><input type="checkbox" id="optBacking" checked> (backing vocals)</label>
+        <label class="chk"><input type="checkbox" id="optAdlib" checked> [adlibs] where the genre uses them</label>
+        <label class="chk"><input type="checkbox" id="optSfx"> *atmosphere cues*</label>
+        <label class="chk"><input type="checkbox" id="optEnd" checked> [End]</label>
+      </div>
+      <div class="row"><button class="btn primary" id="btnGen">Sunofy</button><span class="eyebrow" id="hint">live · regenerates as you type</span></div>
+    </div>
+  </section>
+
+  <section class="panel" aria-label="Output">
+    <div class="tabs" role="tablist">
+      <button class="tab" role="tab" aria-selected="true" data-tab="lyrics">Lyrics box</button>
+      <button class="tab" role="tab" aria-selected="false" data-tab="style">Style box</button>
+      <button class="tab" role="tab" aria-selected="false" data-tab="exclude">Exclude</button>
+      <button class="tab" role="tab" aria-selected="false" data-tab="settings">Model &amp; sliders</button>
+      <button class="tab" role="tab" aria-selected="false" data-tab="analysis">Analysis</button>
+    </div>
+    <div class="body out">
+      <div class="outbox" data-pane="lyrics">
+        <div class="meta"><span class="eyebrow">Paste into Custom → Lyrics</span><span class="row"><span class="count" id="cntLyrics"></span><button class="btn small" data-copy="outLyrics">Copy</button></span></div>
+        <pre id="outLyrics"></pre>
+      </div>
+      <div class="outbox" data-pane="style" hidden>
+        <div class="meta"><span class="eyebrow">Paste into Custom → Style of Music</span><span class="row"><span class="count" id="cntStyle"></span><button class="btn small" data-copy="outStyle">Copy</button></span></div>
+        <pre id="outStyle"></pre>
+      </div>
+      <div class="outbox" data-pane="exclude" hidden>
+        <div class="meta"><span class="eyebrow">Advanced options → Exclude styles</span><span class="row"><span class="count" id="cntExclude"></span><button class="btn small" data-copy="outExclude">Copy</button></span></div>
+        <pre id="outExclude"></pre>
+        <p class="issue" style="margin-top:10px">Keep exclusions to 2–3. Too many and the arrangement goes unstable because the model has nothing left to build with.</p>
+      </div>
+      <div class="outbox" data-pane="settings" hidden>
+        <div class="settings" id="outSettings"></div>
+      </div>
+      <div class="outbox" data-pane="analysis" hidden>
+        <div class="eyebrow" style="margin-bottom:6px">Energy arc per section</div>
+        <svg class="arc" id="arcSvg" viewBox="0 0 600 120" role="img" aria-label="Energy per section"></svg>
+        <div class="eyebrow" style="margin:10px 0 6px">Detected form</div>
+        <div class="sections" id="outSections"></div>
+        <div class="eyebrow" style="margin:10px 0 6px">Singability</div>
+        <div class="sections" id="outIssues"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="panel bank" aria-label="Variations">
+    <div class="head"><h2>Variation bank</h2><button class="btn small" id="btnBank">New batch</button></div>
+    <div class="body">
+      <p style="font-size:12.5px;color:var(--ink-2)">Eight seeds rolled from the same text and knobs. Click one to load it. Same seed always reproduces the same patch.</p>
+      <div class="cards" id="cards"></div>
+    </div>
+  </section>
+</main>
+
+<div class="concept-head"><div class="eyebrow">Concept</div><h2>How the engine works, and what the research says</h2></div>
+<div class="concept">
+  <section>
+    <h2>The generator is procedural art, not a template</h2>
+    <p>Every patch is a deterministic function of <code>hash(text) ⊕ seed</code>. Change the seed and you get a sibling; keep it and you get the same song back. The layers, in order:</p>
+    <h3>1 · Form detection</h3>
+    <p>Tags already in the source (<code>[Verse 1]</code>, <code>[Chorus]</code>, <code>[Bridge]</code>…) are stripped before anything else. A tag line becomes a role hint for the stanza under it, so a chorus you marked stays a chorus; intro, outro and instrumental tags are dropped and regenerated. Brackets inside a lyric line are removed. Stanzas are split on blank lines. A stanza that repeats (fuzzy match on normalized words) becomes the <code>[Chorus]</code>. A short stanza directly before a chorus becomes <code>[Pre-Chorus]</code>. A late, unrepeated stanza with a different vocabulary becomes <code>[Bridge]</code>. Single-stanza poems are folded into verse / chorus by repeating the strongest couplet.</p>
+    <h3>2 · Energy curve from value noise</h3>
+    <p>A 1-D value-noise field (smoothstep interpolation between seeded lattice points) is blended with an archetype curve (rise, wave, collapse, plateau). Each section samples the field once. That number drives everything downstream: which mood word, how many instruments enter, whether the vocal is whispered or belted, whether the peak line is capitalized.</p>
+    <h3>3 · Palette with weighted drift</h3>
+    <p>Each genre family is a palette (instruments, grooves, mix words, adlibs, exclusions). The mutation slider is a temperature: at 0 the engine only draws from the family; higher values let it borrow one or two elements from a neighboring family, which is exactly how the field guide suggests escaping the "pop gravity well".</p>
+    <h3>4 · Grammar for the Style box</h3>
+    <p>A sentence grammar fills the community's master template: identity, vocal, core instruments, rhythm, arrangement arc, dynamics, atmosphere, mix, master. Sentences end with periods, not commas, because Suno parses a period as a hard boundary and a comma as "optional".</p>
+    <h3>5 · Lyric-level typography</h3>
+    <p>Rules from the "dirty tricks" series, applied by energy: ALL CAPS only on the single highest-energy line (contrast is the whole point), <code>(parentheses)</code> echoes on chorus tails, inline <code>[adlibs]</code> only in families that use them, syllable stretching <code>lo-o-ove</code> on a ballad's peak word, <code>*asterisk*</code> cues for atmosphere.</p>
+  </section>
+  <section>
+    <h2>Suno v6 syntax, condensed</h2>
+    <p>Current as of the September 2026 v6 launch. Three models: <strong>v6</strong> (control), <strong>v6-wild</strong> (discovery), <strong>v6-mini</strong> (fast, free tier). All three generate up to 8 minutes.</p>
+    <h3>Two fields, two jobs</h3>
+    <ul>
+      <li><strong>Style box</strong>: how it sounds. Nothing here is sung. Comma or period separated prose, no brackets. Order by influence: genre → mood → lead instrument → vocal → production. 3–5 tags for simple songs, up to ~15 for control, beyond ~20 the model gets confused.</li>
+      <li><strong>Lyrics box</strong>: what is sung, plus <code>[bracket tags]</code> that shape the arrangement. Tags are case-insensitive and probabilistic cues, not commands.</li>
+      <li><strong>Exclude styles</strong> (Advanced options): first-class negative field. More reliable than inline <code>no drums</code>; combine both for stubborn elements.</li>
+    </ul>
+    <h3>Section tags that are validated</h3>
+    <div class="cheat">[Intro] [Verse] [Verse 2] [Pre-Chorus] [Chorus] [Post-Chorus] [Hook]
+[Bridge] [Break] [Breakdown] [Build] [Drop] [Interlude]
+[Instrumental] [Solo] [Outro] [End] [Fade Out]</div>
+    <h3>Pipe stacking (the v5.5/v6 pattern)</h3>
+    <div class="cheat">[Section | Mood | Vocal | Instruments | Movement | Space | Production]
+[Chorus | explosive | full voice | wide synths | stacked harmonies | vocal forward]</div>
+    <p>Max ~7 elements, most important first, never contradictory pairs in one tag. Stacked tags override the Style box for that section.</p>
+    <h3>Typography the vocal model reads</h3>
+    <div class="cheat">LINE IN CAPS!        louder, shouted (use once, for contrast)
+line in lowercase     delicate
+(echo these words)    backing vocal / call-and-response
+[yeah!] inside a line adlib, not a section
+lo-o-o-ove            stretched note
+i-hit-the-street      hyphen run = faster flow
+word, word.  word...  breath · hard reset · drag
+*rain falling*        non-sung atmosphere
+reed / lyve / bahss   phonetic respelling for homographs
+[End]                 terminal tag, ~85–90 % effective</div>
+    <h3>Sliders</h3>
+    <ul>
+      <li><strong>Weirdness</strong> 0–100 %, 50 is "expected". Covers 10–30, experimental 70+.</li>
+      <li><strong>Style influence</strong>: vague tags want 70–90, very specific tags 40–60.</li>
+      <li><strong>Variety</strong> (v6): can rewrite your style tags; set 0 when you need them preserved.</li>
+      <li>Change one slider per test. Max Mode helps acoustic/orchestral, does little for electronic.</li>
+    </ul>
+    <h3>Things that don't work well</h3>
+    <ul>
+      <li>Adjective soup (<em>epic, beautiful, cinematic</em>): describe audible behavior instead.</li>
+      <li>Prompt adherence decays after ~60 s: front-load the distinctive elements; build long songs with Extend or assemble sections in Studio.</li>
+      <li>Lyric bleed: short poetic lines in the style box get sung. Keep that box dense and technical.</li>
+      <li>DAW numbers (<code>-14 LUFS, Q 1.4</code>) do nothing in a prompt.</li>
+    </ul>
+  </section>
+  <section>
+    <h2>Build notes for the app</h2>
+    <p>Everything on this page is one HTML file: vanilla JS, vanilla CSS, no build step, no dependencies. The engine is a pure function <code>generate(text, knobs, seed) → patch</code>, so the same code can run in a worker, a CLI, or a browser extension that fills Suno's form.</p>
+    <h3>Module map</h3>
+    <ul>
+      <li><code>rng</code>: mulberry32 + FNV-1a string hash, value noise.</li>
+      <li><code>form</code>: stanza split, repeat detection, role assignment, syllable estimator.</li>
+      <li><code>palettes</code>: seven dark-pop families as data (instruments, grooves, textures, moods, mix, exclusions). Add your own without touching logic. Artist names are deliberately absent: Suno ignores or blocks them, so each family describes the sound those records are made of instead.</li>
+      <li><code>compose</code>: energy curve → section tags → typography passes.</li>
+      <li><code>style</code>: grammar for the Style box, budget-aware (trims from the end of the priority list).</li>
+      <li><code>ui</code>: knobs, tabs, variation bank, copy, URL-free state.</li>
+    </ul>
+    <h3>Roadmap ideas</h3>
+    <ul>
+      <li>Lock layers independently (keep structure, reroll palette), i.e. partial reseeding per module.</li>
+      <li>L-system expansion for intros/outros (<code>I → I B</code> rewrites that add a build or a break).</li>
+      <li>Markov chain over the community cookbook to grow new palettes.</li>
+      <li>Rhyme-scheme and meter detection to pick between sung vs rapped delivery per section.</li>
+      <li>A/B log: store seed + patch + your 1–10 score, then bias the sampler toward what scored well (a tiny "My Taste").</li>
+    </ul>
+    <h3 id="sources">Sources</h3>
+    <p class="sources">
+      <a href="https://github.com/LILSYNNOFFICIAL/LIL-SYNN-s-Complete-Suno-V6-Guide">LIL SYNN's Complete Suno V6 Guide</a> (Sep 2026) ·
+      <a href="https://github.com/mttkllr/suno-field-guide">Suno Field Guide</a> incl. daveshap base tags and Grenar's dirty tricks ·
+      <a href="https://help.suno.com/en/articles/13924801">Suno help: What's new in v6</a> ·
+      <a href="https://blakecrosley.com/guides/suno">Blake Crosley: Tags, Meta Tags &amp; Prompts</a> ·
+      <a href="https://songtoolbox.tools/blog/suno-prompt-guide">songtoolbox prompt guide</a>.
+      The Reddit thread you linked could not be fetched from here; the GitHub guides above compile the same community findings.
+    </p>
+  </section>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+/* ============ rng ============ */
+function fnv1a(str){let h=0x811c9dc5;for(let i=0;i<str.length;i++){h^=str.charCodeAt(i);h=Math.imul(h,0x01000193)}return h>>>0}
+function mulberry32(a){return function(){a|=0;a=a+0x6D2B79F5|0;let t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296}}
+function makeRng(seed){const r=mulberry32(seed);return{
+  f:()=>r(),
+  pick:(arr)=>arr[Math.floor(r()*arr.length)],
+  pickN:(arr,n)=>{const a=arr.slice();const out=[];while(a.length&&out.length<n){out.push(a.splice(Math.floor(r()*a.length),1)[0])}return out},
+  chance:(p)=>r()<p,
+  int:(lo,hi)=>lo+Math.floor(r()*(hi-lo+1))
+}}
+function valueNoise(seed,n){ // n lattice points, returns function t∈[0,1]→[0,1]
+  const r=mulberry32(seed);const pts=[];for(let i=0;i<=n;i++)pts.push(r());
+  return t=>{const x=t*n;const i=Math.floor(x);const f=x-i;const s=f*f*(3-2*f);const a=pts[Math.min(i,n)],b=pts[Math.min(i+1,n)];return a+(b-a)*s}
+}
+
+/* ============ form ============ */
+function syllables(word){
+  word=word.toLowerCase().replace(/[^a-zäöüß']/g,'');if(!word)return 0;
+  if(word.length<=3)return 1;
+  word=word.replace(/(?:[^laeiouy]es|ed|[^laeiouy]e)$/,'').replace(/^y/,'');
+  const m=word.match(/[aeiouyäöü]{1,2}/g);return m?m.length:1;
+}
+function lineSyllables(line){return line.split(/\s+/).filter(Boolean).reduce((a,w)=>a+syllables(w),0)}
+function norm(s){return s.toLowerCase().replace(/[^a-z0-9äöüß\s]/g,'').replace(/\s+/g,' ').trim()}
+function similarity(a,b){const A=new Set(norm(a).split(' ')),B=new Set(norm(b).split(' '));let inter=0;A.forEach(w=>{if(B.has(w))inter++});return inter/Math.max(1,Math.max(A.size,B.size))}
+
+// Existing [tags] in the source: a tag line on its own is stripped and read as a role hint; brackets inside a lyric line are removed.
+const TAG_LINE=/^\s*\[[^\]]*\]\s*$/;
+function tagRole(line){
+  const t=line.replace(/[\[\]]/g,'').split(/[|:\-–]/)[0].trim().toLowerCase();
+  if(/^(final |last )?chorus/.test(t)||/^hook/.test(t)||/^refrain/.test(t))return 'chorus';
+  if(/^pre[- ]?chorus/.test(t))return 'pre-chorus';
+  if(/^bridge/.test(t))return 'bridge';
+  if(/^verse/.test(t)||/^strophe/.test(t))return 'verse';
+  return 'skip'; // intro, outro, instrumental, solo, break, end …: dropped, the engine writes its own
+}
+function stripTags(text){
+  const out=[];let pending=null;
+  text.replace(/\r/g,'').split('\n').forEach(raw=>{
+    const line=raw.trim();
+    if(TAG_LINE.test(line)){const r=tagRole(line);if(r!=='skip')pending=r;if(out.length&&out[out.length-1]!=='')out.push('');return}
+    if(line===''){out.push('');return}
+    const clean=line.replace(/\[[^\]]*\]/g,'').replace(/\s{2,}/g,' ').trim();
+    if(!clean)return;
+    out.push((pending?'\u0000'+pending+'\u0000':'')+clean);pending=null;
+  });
+  return out.join('\n');
+}
+function detectForm(text){
+  const hinted=stripTags(text);
+  const stanzas=hinted.split(/\n\s*\n/).map(s=>s.split('\n').map(l=>l.trim()).filter(Boolean)).filter(s=>s.length);
+  if(!stanzas.length)return [];
+  // single stanza: split into chunks of 4 lines
+  let blocks=stanzas;
+  if(stanzas.length===1&&stanzas[0].length>=6){const l=stanzas[0];blocks=[];for(let i=0;i<l.length;i+=4)blocks.push(l.slice(i,i+4))}
+  const n=blocks.length;
+  const roles=new Array(n).fill(null);
+  // role hints from the source's own tags win over detection
+  const hints=blocks.map(b=>{const m=b[0].match(/^\u0000([a-z-]+)\u0000/);return m?m[1]:null});
+  blocks=blocks.map(b=>b.map(l=>l.replace(/^\u0000[a-z-]+\u0000/,'')));
+  const hasHints=hints.some(Boolean);
+  hints.forEach((h,i)=>{if(h)roles[i]=h});
+  // repeated stanzas → chorus
+  const joined=blocks.map(b=>b.join(' '));
+  for(let i=0;i<n;i++)for(let j=i+1;j<n;j++){if(similarity(joined[i],joined[j])>=0.6){if(!hints[i])roles[i]='chorus';if(!hints[j])roles[j]='chorus'}}
+  const hasChorus=roles.includes('chorus');
+  if(!hasChorus&&!hasHints&&n>=2){ // promote the shortest-lined, most repetitive stanza as chorus, else the 2nd
+    let best=-1,score=-1;
+    blocks.forEach((b,i)=>{const words=norm(b.join(' ')).split(' ');const uniq=new Set(words).size;const rep=1-uniq/Math.max(1,words.length);const s=rep*2+(b.length<=4?0.5:0)+(i===1?0.4:0);if(s>score){score=s;best=i}});
+    roles[best]='chorus';
+  }
+  // pre-chorus: short stanza directly before a chorus
+  if(!hasHints)for(let i=1;i<n-1;i++){if(!roles[i]&&roles[i+1]==='chorus'&&blocks[i].length<=2&&!roles[i-1]&&blocks[i-1].length>blocks[i].length)roles[i]='pre-chorus'}
+  // bridge: unrepeated stanza in the last 40 % with low vocab overlap to the chorus
+  const chorusText=joined.filter((_,i)=>roles[i]==='chorus').join(' ')||'';
+  let bridgeSet=false;
+  for(let i=Math.floor(n*0.55);i<n;i++){if(!hasHints&&!roles[i]&&!bridgeSet&&n>=4&&similarity(joined[i],chorusText)<0.25&&i!==n-1){roles[i]='bridge';bridgeSet=true}}
+  // anything unhinted after the last chorus is a coda, not another verse
+  const lastChorus=roles.lastIndexOf('chorus');
+  if(lastChorus>=0)for(let i=lastChorus+1;i<n;i++){if(!roles[i]&&!hints[i])roles[i]='outro'}
+  let v=0;
+  return blocks.map((lines,i)=>{let role=roles[i]||'verse';if(role==='verse')v++;return{role,index:role==='verse'?v:0,lines,syl:lines.map(lineSyllables)}});
+}
+
+/* ============ palettes ============ */
+const PALETTES={
+  minimal:{name:'Minimal art-pop',identity:['minimal dark art-pop','sparse alt-pop with huge sub bass and almost no mid-range','deadpan electronic pop built on negative space'],
+    instruments:['clipped finger-snap percussion','huge sub bass','single detuned synth stab','pitched-down vocal double as an instrument','dry 808 kick','muted piano chord'],
+    groove:['slow 72 BPM half-time with gaps between hits','lurching 84 BPM pulse, kick on the one only','mid-tempo pulse that drops out entirely in the verse'],
+    textures:['tape-stop on the last chorus word','vocal sample pitched down an octave','air and room noise kept between hits','bit-crushed snap'],
+    moods:{low:['deadpan','empty','cool'],mid:['coiled','sly','pressurized'],high:['enormous','sudden','defiant']},
+    mix:['vocal bone-dry and dead center','sub bass felt, not heard','everything else far back','no reverb except on the chorus tail'],
+    master:['dynamic with headroom','quiet verses, loud chorus'],
+    exclude:['acoustic guitar','rock drums','EDM build'],adlibs:['(mm)','(uh-huh)','(yeah)'],sfx:['*room tone*','*static*'],weirdness:[35,60],styleInfluence:[65,80],
+    neighbors:['noir','glitch','maximal']},
+  noir:{name:'Trip-hop noir R&B',identity:['slow trip-hop noir R&B','smoky downtempo alt-R&B','dark cinematic bedroom R&B'],
+    instruments:['sub bass','dusty broken beat','Rhodes through a tape delay','slow filtered synth pad','pitched vocal chops','muted plucked strings'],
+    groove:['slow 68 BPM trip-hop shuffle','dragging 76 BPM half-time','rubato verse settling into a slow beat'],
+    textures:['vinyl crackle under the verse','reverse reverb into the hook','vocal chop stutter as a hook','long dark plate on the harmonies'],
+    moods:{low:['smoky','late','heavy-lidded'],mid:['yearning','slow tension','sultry'],high:['devastating','wide','aching']},
+    mix:['vocal close and warm','sub centered and mono','drums dry and dusty','harmonies wide and dark'],
+    master:['warm and dynamic','no brickwall'],
+    exclude:['upbeat','acoustic folk','rock'],adlibs:['(ooh)','(mm)','(oh)'],sfx:['*rain on the window*','*city at night*'],weirdness:[30,50],styleInfluence:[70,85],
+    neighbors:['minimal','dream','chamber']},
+  glitch:{name:'Glitch / abstract pop',identity:['abstract glitch pop','deconstructed electronic pop','fractured art-pop with broken rhythms'],
+    instruments:['granular vocal chops','stuttering glitched drums','FM bell tones','rubbery synth bass','detuned pads','metallic percussion'],
+    groove:['broken 92 BPM beat that never fully resolves','off-grid stutters over a slow pulse','half-time with skipping hats'],
+    textures:['vocal stutters and reversed syllables','buffer-repeat glitches on the drums','pitch-shifted vocal harmonies','sudden silence before the hook'],
+    moods:{low:['uneasy','glassy','fragmented'],mid:['restless','prismatic','off-balance'],high:['overwhelming','ecstatic','shattering']},
+    mix:['vocal upfront, processed','stereo field constantly moving','sub clean and mono','high end bright and sharp'],
+    master:['loud and clean','controlled transients'],
+    exclude:['acoustic','rock','country'],adlibs:['(ah)','(oh-oh)'],sfx:['*static*','*signal dropout*'],weirdness:[55,80],styleInfluence:[50,70],
+    neighbors:['minimal','industrial','maximal']},
+  industrial:{name:'Industrial alt-pop',identity:['industrial-tinged dark pop','cold menacing electro-pop','distorted alt-pop with a mechanical pulse'],
+    instruments:['distorted synth bass','mechanical drums','metallic hits','icy synth lead','pitched-down vocal doubles','noise swells'],
+    groove:['relentless 100 BPM mechanical pulse','slow pounding 80 BPM march','four-on-the-floor with the kick distorted'],
+    textures:['bit-crushed vocal doubles','noise riser into the chorus','distortion on the drums only','sudden drop to a dry whisper'],
+    moods:{low:['cold','sinister','numb'],mid:['menacing','pressurized','controlled anger'],high:['brutal','blazing','relentless']},
+    mix:['vocal dry and forward','drums distorted and dry','sub tight','minimal reverb'],
+    master:['dense and controlled','loud with peak control'],
+    exclude:['acoustic','warm','folk'],adlibs:['(hey)','(uh)'],sfx:['*machinery*','*static*'],weirdness:[35,60],styleInfluence:[70,85],
+    neighbors:['glitch','minimal','maximal']},
+  dream:{name:'Ambient dream-pop',identity:['drowned ambient dream-pop','slow wide electronic dream-pop','weightless alt-pop with washed vocals'],
+    instruments:['washed-out synth pads','slow filter-drifting drones','sub bass','soft pulsing kick','shimmer reverb guitar','distant choir pad'],
+    groove:['pulseless drift settling into a slow 70 BPM beat','slow 64 BPM heartbeat kick','gentle half-time sway'],
+    textures:['vocal drowned in reverb, then dry for one line','granular reverb freezes on the hook','tape wow and flutter on the pads','long fades between sections'],
+    moods:{low:['weightless','distant','submerged'],mid:['drifting','longing','slow bloom'],high:['vast','overwhelming','luminous']},
+    mix:['vocal recessed in reverb','deep and wide','sub soft and round','long tails everywhere'],
+    master:['quiet and open','transparent'],
+    exclude:['trap','punchy','rock'],adlibs:['(ah)','(ooh)'],sfx:['*wind*','*distant bells*','*ocean*'],weirdness:[45,70],styleInfluence:[55,75],
+    neighbors:['noir','chamber','minimal']},
+  maximal:{name:'Maximal electro-pop',identity:['maximalist dark electro-pop','saturated alt-pop with clipped drums and huge synths','big dramatic synth-pop with a dark core'],
+    instruments:['clipped saturated drums','huge detuned synth chords','growling sub bass','stacked vocal harmonies','arpeggiated synth','brass-like synth stabs'],
+    groove:['driving 118 BPM pulse','half-time verse exploding into four-on-the-floor chorus','pounding mid-tempo'],
+    textures:['drums clipped on purpose','vocoder stack on the chorus','filter sweep into the drop','everything cut to a single vocal before the last chorus'],
+    moods:{low:['tense','held back','nocturnal'],mid:['rising','euphoric but dark','charged'],high:['enormous','cathartic','blazing']},
+    mix:['vocal forward, harmonies wide','drums saturated and punchy','sub growling','wide chorus, narrow verse'],
+    master:['loud and punchy','clipped transients'],
+    exclude:['acoustic','folk','jazz'],adlibs:['(oh)','(hey)','(ah-ah)'],sfx:['*crowd far away*','*thunder*'],weirdness:[30,50],styleInfluence:[70,85],
+    neighbors:['industrial','minimal','glitch']},
+  chamber:{name:'Chamber electronica',identity:['chamber electronica','dark orchestral-electronic pop','piano and strings against cold electronics'],
+    instruments:['felt piano','close-mic cello','pizzicato strings','sub bass','soft electronic drums','granular pad'],
+    groove:['slow 66 BPM pulse','rubato piano verse, beat enters at the chorus','gentle 6/8 sway'],
+    textures:['strings processed through a granular reverb','piano with pedal noise and room kept','sub bass under the strings','electronic drums enter late'],
+    moods:{low:['fragile','hushed','still'],mid:['aching','swelling','restrained'],high:['soaring','overwhelming','cinematic']},
+    mix:['vocal close and intimate','strings wide','piano centered','sub soft'],
+    master:['dynamic and open','natural'],
+    exclude:['trap','rock','EDM'],adlibs:['(ah)'],sfx:['*rain*','*pedal noise*'],weirdness:[25,45],styleInfluence:[70,90],
+    neighbors:['dream','noir','minimal']}
+};
+const VOCALS={
+  alto:{style:'Low female alto, deadpan and conversational in the verses, opening into a full belt on the hook, slight rasp, dry close-mic, pitched-down double under the chorus',tag:'low female alto',high:'full belt with stacked harmonies',low:'deadpan alto, close and dry'},
+  breathy:{style:'Breathy, smoky female lead, close-mic with audible breaths, sultry and restrained, never fully opens up, dark stacked harmonies on the hook',tag:'breathy female vocal',high:'layered smoky harmonies',low:'breathy whisper-sung'},
+  halfspoken:{style:'Half-spoken female delivery, cold and precise, rhythmic talk-singing in the verses, sung only on the hook, dry and forward',tag:'half-spoken female',high:'sung hook, doubled',low:'spoken, dry, almost monotone'},
+  stacked:{style:'Female lead doubled with a pitched-down octave copy and a vocoder stack, processed as an instrument, dry center with wide processed layers',tag:'processed female vocal',high:'vocoder stack and octave-down double',low:'single dry take'},
+  lowmale:{style:'Low hushed male lead, intimate close-mic, restrained, stronger chest voice only on the final chorus, pitched-down double',tag:'hushed low male vocal',high:'chest voice, doubled',low:'hushed male vocal'},
+  none:{style:'Instrumental, no vocals',tag:'no vocals',high:'lead synth carries the hook',low:'sparse motif'}
+};
+const ENERGY_WORDS={verse:{low:'minimal arrangement',mid:'restrained drums',high:'full band'},chorus:{low:'held back',mid:'drums in, wide',high:'maximum lift'}};
+
+/* ============ compose ============ */
+function guessFamily(text,rng){
+  const t=norm(text);
+  const score={minimal:0.3,noir:0,glitch:0,industrial:0,dream:0,maximal:0,chamber:0};
+  const cue=(words,fam,w)=>words.forEach(x=>{if(t.includes(x))score[fam]+=w});
+  cue(['kitchen','room','phone','count','small','quiet','clock'],'minimal',1);
+  cue(['smoke','slow','skin','late','touch','bed','stay','warm'],'noir',1.1);
+  cue(['glass','static','signal','screen','broken','pieces','mirror','wire'],'glitch',1.2);
+  cue(['blood','teeth','cold','steel','burn','fight','loud','machine'],'industrial',1.2);
+  cue(['ocean','sky','float','drift','fog','dream','light','sleep'],'dream',1.1);
+  cue(['run','louder','fire','crown','city','night','drive','scream'],'maximal',1);
+  cue(['winter','snow','mother','piano','letter','church','old','grey'],'chamber',1.1);
+  const lines=t.split('\n').length;const avg=t.length/Math.max(1,lines);if(avg<22)score.minimal+=0.5;if(avg>50)score.dream+=0.5;
+  let best='minimal',bs=-1;Object.keys(score).forEach(k=>{const s=score[k]+rng.f()*0.7;if(s>bs){bs=s;best=k}});return best;
+}
+function guessArc(form){const c=form.filter(s=>s.role==='chorus').length;if(form.length<=2)return 'rise';if(c>=2)return 'wave';if(form.some(s=>s.role==='bridge'))return 'collapse';return 'rise'}
+function archetype(arc,t,role){
+  let base;switch(arc){case 'rise':base=0.2+0.7*t;break;case 'wave':base=0.45;break;case 'collapse':base=t<0.7?0.25+t:0.95-(t-0.7)*2.2;break;default:base=0.5}
+  if(role==='chorus')base+=0.3;if(role==='pre-chorus')base+=0.1;if(role==='bridge')base-=0.2;if(role==='verse')base-=0.1;if(role==='outro')base-=0.35;return Math.max(0,Math.min(1,base));
+}
+function band(e){return e<0.38?'low':e<0.7?'mid':'high'}
+function capitalize(s){return s.charAt(0).toUpperCase()+s.slice(1)}
+function titleCase(s){return s.replace(/\b\w/g,c=>c.toUpperCase())}
+
+function generate(text,k,seed){
+  const base=(fnv1a(text)^Math.imul(seed+1,2654435761))>>>0;
+  const rng=makeRng(base);
+  const form=detectForm(text);
+  const family=k.family==='auto'?guessFamily(text,rng):k.family;
+  const P=PALETTES[family];
+  const temp=k.weird/100;
+  // palette drift: borrow from a neighbor with probability = temp
+  const borrowed=[];const neighbor=PALETTES[rng.pick(P.neighbors)];
+  const pal={instruments:P.instruments.slice(),mix:P.mix.slice(),identity:P.identity.slice(),groove:P.groove.slice()};
+  if(rng.chance(temp)){const ins=rng.pick(neighbor.instruments);pal.instruments.push(ins);borrowed.push(ins)}
+  if(rng.chance(temp*0.8)){const g=rng.pick(neighbor.groove);pal.groove.push(g);borrowed.push(g)}
+  if(rng.chance(temp*temp)){const id=rng.pick(neighbor.identity);pal.identity=[rng.pick(P.identity)+' with '+id.replace(/^(a |an )/,'')+' influence'];borrowed.push(id)}
+  const vocalKey=k.vocal==='auto'?rng.pick(['alto','alto','breathy','halfspoken','stacked',family==='chamber'||family==='dream'?'breathy':'alto',rng.chance(0.15)?'lowmale':'alto']):k.vocal;
+  const V=VOCALS[vocalKey];
+  const arc=k.arc==='auto'?guessArc(form):k.arc;
+  const noise=valueNoise(base^0x9e3779b9,Math.max(3,form.length));
+  const noiseAmt=0.18+temp*0.25;
+  const n=form.length;
+  const sections=form.map((s,i)=>{const t=n>1?i/(n-1):0.5;const e=archetype(arc,t,s.role)*(1-noiseAmt)+noise(t)*noiseAmt;return{...s,t,e:Math.max(0.05,Math.min(1,e))}});
+  // choose core instruments (3–5) and a "late entry" instrument
+  const coreN=3+Math.min(2,Math.floor(k.density/2));
+  const core=rng.pickN(pal.instruments,coreN);
+  const lateEntry=core[core.length-1];
+  const identity=rng.pick(pal.identity);const groove=rng.pick(pal.groove);
+  const mixWords=rng.pickN(pal.mix,2+Math.floor(k.density/2));const master=rng.pick(P.master);
+  let peakIdx=sections.reduce((b,s,i)=>s.e>sections[b].e?i:b,0);
+  const lastChorusIdx=sections.map(x=>x.role).lastIndexOf('chorus');
+  if(lastChorusIdx>=0){peakIdx=lastChorusIdx;sections[peakIdx].e=Math.min(1,Math.max(sections[peakIdx].e,Math.max(...sections.map(x=>x.e))+0.06))}
+  const hasOutroSection=sections.some(x=>x.role==='outro');
+  const density=k.density;
+  const adlibs=P.adlibs;
+  const textures=rng.pickN(P.textures,1+Math.floor(density/2));
+  const dropBefore=density>=3&&sections.filter(x=>x.role==='chorus').length>=2&&rng.chance(0.6); // cut to a dry single vocal before the final chorus
+
+  // ---- lyrics box ----
+  const out=[];
+  const introMood=rng.pick(P.moods[band(sections[0].e*0.6)]);
+  const introParts=['Intro',introMood,core[0]+(density>=3?' only':''),density>=4?'short':null].filter(Boolean);
+  out.push('['+introParts.join(' | ')+']');
+  if(k.sfx&&rng.chance(0.7))out.push(rng.pick(P.sfx));
+  out.push('');
+  let chorusCount=0;const usedCaps={done:false};
+  sections.forEach((s,i)=>{
+    const b=band(s.e);const mood=rng.pick(P.moods[b]);
+    let label;
+    if(s.role==='verse')label='Verse '+s.index;else if(s.role==='chorus'){chorusCount++;label=(i===lastChorusIdx&&chorusCount>1)?'Final Chorus':'Chorus'}else if(s.role==='outro'){label='Outro'}else label=titleCase(s.role);
+    const voc=vocalKey==='none'?null:(b==='high'?V.high:b==='low'?V.low:V.tag);
+    const instr=b==='high'?core.slice(0,3).join(', '):b==='mid'?core.slice(0,2).join(' and '):core[0];
+    const move=s.role==='chorus'?(b==='high'?'maximum lift':'drums in, wider'):s.role==='bridge'?'reduced drums, exposed':s.role==='pre-chorus'?'rising tension':s.role==='outro'?rng.pick(['strip elements away','fade out','let the last chord ring']):(b==='low'?'minimal arrangement':'steady');
+    const space=rng.pick(['dry and close','wide','restrained reverb','short room','long tail']);
+    const parts=[label,mood];
+    if(density>=2&&voc)parts.push(voc);
+    if(density>=3)parts.push(instr);
+    if(density>=2)parts.push(move);
+    if(density>=4)parts.push(space);
+    if(density>=5&&i===peakIdx)parts.push('stacked harmonies');
+    if(dropBefore&&label==='Final Chorus'){out.push('[Break | sudden silence | single dry vocal | no drums]');out.push(s.lines[0]);out.push('')}
+    out.push('['+parts.slice(0,7).join(' | ')+']');
+    if(k.sfx&&s.role==='bridge'&&rng.chance(0.6))out.push(rng.pick(P.sfx));
+    // lyric lines with typography passes
+    const lines=s.lines.map((line,li)=>{
+      let L=line;
+      const isLast=li===s.lines.length-1;
+      if(k.caps&&i===peakIdx&&!usedCaps.done&&isLast&&vocalKey!=='none'){L=L.toUpperCase().replace(/[.]$/,'')+'!';usedCaps.done=true}
+      else if((family==='chamber'||family==='dream'||family==='noir')&&i===peakIdx&&li===0&&rng.chance(0.6)){ // stretch the first long word
+        L=L.replace(/\b([a-z]{4,})\b/i,(m)=>{const v=m.search(/[aeiou]/i);if(v<0)return m;const ch=m[v];return m.slice(0,v+1)+('-'+ch).repeat(2)+m.slice(v+1)})
+      }
+      if(k.backing&&s.role==='chorus'&&isLast&&vocalKey!=='none'&&vocalKey!=='spoken'){const words=line.replace(/[^\w\s']/g,'').split(/\s+/).filter(Boolean);const tail=words.slice(-Math.min(3,words.length)).join(' ').toLowerCase();if(tail&&L===L.toUpperCase())L+=' ('+tail.toUpperCase()+'!)';else if(tail)L+=' ('+tail+')'}
+      if(k.adlib&&adlibs.length&&s.role==='verse'&&li%2===1&&rng.chance(0.45))L+=' '+rng.pick(adlibs);
+      return L;
+    });
+    out.push(...lines);
+    out.push('');
+    // interlude between a chorus and a following verse at higher density
+    if(density>=4&&s.role==='chorus'&&sections[i+1]&&sections[i+1].role==='verse'){out.push('[Interlude | '+rng.pick(P.moods.low)+' | '+rng.pick(textures)+' | short]');out.push('')}
+  });
+  const outroMood=rng.pick(P.moods.low);
+  if(!hasOutroSection){out.push('[Outro | '+outroMood+' | '+core[0]+' | '+rng.pick(['fade out','let the last chord ring','clean stop'])+']');if(k.sfx&&rng.chance(0.5))out.push(rng.pick(P.sfx))}
+  if(k.end)out.push('','[End]');
+  const lyrics=out.join('\n').replace(/\n{3,}/g,'\n\n').trim();
+
+  // ---- style box (grammar, budget-aware) ----
+  const arcWords={rise:'sparse opening that grows section by section into a full final chorus',wave:'sparse verses, rising pre-chorus, big chorus, reduced bridge, expanded final chorus',collapse:'steady climb to a peak, then everything falls away for the ending',plateau:'hypnotic and even, texture changes instead of dynamic jumps'};
+  const sentences=[
+    capitalize(identity)+'.',
+    vocalKey==='none'?'Instrumental, no vocals.':V.style+'.',
+    'Core instruments: '+core.join(', ')+'.',
+    'Rhythm: '+groove+'.',
+    'Arrangement: '+arcWords[arc]+(lateEntry?', '+lateEntry+' enters late':'')+'.',
+    'Atmosphere: '+rng.pick(P.moods.mid)+' and '+rng.pick(P.moods[band(sections[peakIdx].e)])+'.',
+    'Textures: '+textures.join(', ')+'.',
+    'Mix: '+mixWords.join(', ')+'.',
+    'Master: '+master+'.'
+  ];
+  if(density>=4)sentences.splice(2,0,'Broadway musical clarity, story-first enunciation.');
+  let style=sentences.join(' ');
+  while(style.length>1000&&sentences.length>3){sentences.pop();style=sentences.join(' ')}
+
+  // ---- exclude ----
+  const excl=rng.pickN(P.exclude,Math.min(3,P.exclude.length));
+  if(vocalKey==='female')excl.push('male vocals');if(vocalKey==='lowmale')excl.push('female vocals');
+  const exclude=excl.slice(0,3).join(', ');
+
+  // ---- settings ----
+  const w=P.weirdness,si=P.styleInfluence;
+  const settings={
+    model:temp>0.6?'v6-wild':(text.length<300?'v6-mini (test) → v6':'v6'),
+    weirdness:Math.round(w[0]+(w[1]-w[0])*temp),
+    styleInfluence:Math.round(si[1]-(si[1]-si[0])*temp),
+    variety:temp<0.3?0:temp<0.6?25:50,
+    maxMode:['chamber','dream'].includes(family)?'On (strings and piano benefit)':'Off (little effect on electronic material)',
+    length:Math.round(sections.reduce((a,s)=>a+s.lines.length,0)*9+30)
+  };
+  return{family:P.name,familyKey:family,vocal:vocalKey,arc,sections,lyrics,style,exclude,settings,borrowed,core,seed,peakIdx};
+}
+
+/* ============ ui ============ */
+const $=id=>document.getElementById(id);
+const SAMPLE=`Three a.m. and the kettle hums its one flat note
+the window keeps a copy of the kitchen, pale and reversed
+I count the cars that pass and none of them are yours
+the fridge light finds me like a small confession
+
+Stay, stay until the street goes grey
+stay until the kettle stops
+I'll keep the light on in the hall
+stay until the kettle stops
+
+Your coat still holds the shape of how you leaned
+the chair still tilts toward the door you took
+I speak into the room and the room repeats me
+a little softer every time it says it back
+
+Stay, stay until the street goes grey
+stay until the kettle stops
+I'll keep the light on in the hall
+stay until the kettle stops
+
+If I unplug the clock will the morning wait
+if I pour the cup for two will the second one go cold
+
+Stay until the kettle stops
+stay until the kettle stops`;
+
+function knobs(){return{family:$('family').value,arc:$('arc').value,vocal:$('vocal').value,weird:+$('weird').value,density:+$('density').value,caps:$('optCaps').checked,backing:$('optBacking').checked,adlib:$('optAdlib').checked,sfx:$('optSfx').checked,end:$('optEnd').checked}}
+let current=null;
+function render(){
+  const text=$('src').value;
+  if(!text.trim()){$('outLyrics').textContent='Paste something on the left.';$('outStyle').textContent='';$('outExclude').textContent='';$('outSettings').innerHTML='';$('outSections').innerHTML='';$('outIssues').innerHTML='';$('arcSvg').innerHTML='';return}
+  const seed=+$('seed').value||0;
+  current=generate(text,knobs(),seed);
+  renderPatch(current);
+}
+function renderPatch(p){
+  $('outLyrics').textContent=p.lyrics;$('outStyle').textContent=p.style;$('outExclude').textContent=p.exclude;
+  setCount('cntLyrics',p.lyrics.length,3000,2500);setCount('cntStyle',p.style.length,1000,800);setCount('cntExclude',p.exclude.length,200,150);
+  const s=p.settings;
+  $('outSettings').innerHTML=[
+    stat('Model',s.model,['glitch','dream'].includes(p.familyKey)?'wild suits this palette':'control first, wild for discovery'),
+    stat('Weirdness',s.weirdness+' %','50 % is the model\'s "expected"',s.weirdness),
+    stat('Style influence',s.styleInfluence+' %','vague tags want more, specific tags less',s.styleInfluence),
+    stat('Variety',s.variety,'0 keeps your style tags verbatim',s.variety),
+    stat('Max Mode',s.maxMode,''),
+    stat('Expected length','~'+Math.floor(s.length/60)+':'+String(s.length%60).padStart(2,'0'),'shorter lyrics → shorter song; use Extend for more'),
+    stat('Family',p.family,p.borrowed.length?'borrowed: '+p.borrowed.join(', '):'no drift this seed'),
+    stat('Peak section','#'+(p.peakIdx+1),'where CAPS and the fullest tag land')
+  ].join('');
+  // arc
+  const W=600,H=120,n=p.sections.length;const pts=p.sections.map((sec,i)=>{const x=20+(W-40)*(n>1?i/(n-1):0.5);const y=H-16-(H-36)*sec.e;return[x,y]});
+  const path=pts.map((q,i)=>(i?'L':'M')+q[0].toFixed(1)+' '+q[1].toFixed(1)).join(' ');
+  const area=path+' L'+pts[pts.length-1][0].toFixed(1)+' '+(H-16)+' L'+pts[0][0].toFixed(1)+' '+(H-16)+' Z';
+  $('arcSvg').innerHTML=`<line x1="20" x2="${W-20}" y1="${H-16}" y2="${H-16}" stroke="var(--line)" stroke-width="1"/><path d="${area}" fill="var(--accent)" fill-opacity=".14"/><path d="${path}" fill="none" stroke="var(--accent)" stroke-width="2"/>`+
+    pts.map((q,i)=>`<circle cx="${q[0]}" cy="${q[1]}" r="${i===p.peakIdx?5:3.5}" fill="${i===p.peakIdx?'var(--accent)':'var(--panel)'}" stroke="var(--accent)" stroke-width="1.5"/><text x="${q[0]}" y="${H-3}" font-size="9" text-anchor="middle" fill="var(--ink-2)" font-family="var(--font-mono)">${abbr(p.sections[i])}</text>`).join('');
+  $('outSections').innerHTML=p.sections.map((sec,i)=>`<div class="sec"><span class="n">${i+1}</span><span class="kind">${sec.role==='verse'?'Verse '+sec.index:titleCase(sec.role)}${i===p.peakIdx?'<span class="pill">peak</span>':''}</span><span class="lines">${esc(sec.lines[0])}</span><span class="e">${Math.round(sec.e*100)}</span></div>`).join('');
+  // singability issues
+  const issues=[];let total=0,cnt=0;
+  p.sections.forEach((sec,i)=>{sec.syl.forEach((sy,li)=>{total+=sy;cnt++;if(sy>12)issues.push(`<div class="issue">Section ${i+1}, line ${li+1}: ${sy} syllables. Over 12 tends to smear; split it or cut a word.</div>`);if(sy<4&&sec.lines[li].length>2)issues.push(`<div class="issue">Section ${i+1}, line ${li+1}: only ${sy} syllables. Repeat the last word or add a filler so it fills the bar.</div>`)});
+    const v=sec.syl;if(v.length>=2){const max=Math.max(...v),min=Math.min(...v);if(max-min>5)issues.push(`<div class="issue">Section ${i+1}: syllable spread ${min}–${max}. Lines in the same slot should stay within ±2.</div>`)}});
+  if(/—/.test($('src').value))issues.push('<div class="issue">Em dashes found. Suno reads a plain hyphen as a break more reliably.</div>');
+  if(!issues.length)issues.push(`<div class="issue ok">Lines average ${(total/Math.max(1,cnt)).toFixed(1)} syllables and stay even. Good to sing.</div>`);
+  $('outIssues').innerHTML=issues.slice(0,8).join('');
+}
+function abbr(s){return s.role==='verse'?'V'+s.index:s.role==='chorus'?'CH':s.role==='pre-chorus'?'PRE':s.role==='outro'?'OUT':'BR'}
+function esc(s){return s.replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]))}
+function stat(k,v,s,m){return `<div class="stat"><div class="k">${k}</div><div class="v">${esc(String(v))}</div><div class="s">${esc(s)}</div>${typeof m==='number'?`<div class="meter"><i style="width:${Math.max(0,Math.min(100,m))}%"></i></div>`:''}</div>`}
+function setCount(id,len,bad,warn){const el=$(id);el.textContent=len+' chars';el.className='count'+(len>bad?' bad':len>warn?' warn':'')}
+
+function renderBank(){
+  const text=$('src').value;const wrap=$('cards');wrap.innerHTML='';if(!text.trim())return;
+  const k=knobs();const base=+$('seed').value||0;
+  for(let i=0;i<8;i++){const seed=base+i*13;const p=generate(text,k,seed);
+    const card=document.createElement('button');card.className='card';card.type='button';card.setAttribute('aria-current',seed===base?'true':'false');
+    const n=p.sections.length;const pts=p.sections.map((s,j)=>[(n>1?j/(n-1):0.5)*60+2,26-s.e*22]);
+    const d=pts.map((q,j)=>(j?'L':'M')+q[0].toFixed(1)+' '+q[1].toFixed(1)).join(' ');
+    card.innerHTML=`<div><div class="t">${esc(p.family)} · ${esc(VOCALS[p.vocal].tag)}</div><div class="d">seed ${seed} · ${p.arc} · ${esc(p.core.slice(0,2).join(', '))}</div></div><svg viewBox="0 0 64 28" aria-hidden="true"><path d="${d}" fill="none" stroke="var(--accent)" stroke-width="1.5"/></svg>`;
+    card.addEventListener('click',()=>{$('seed').value=seed;render();renderBank()});
+    wrap.appendChild(card)}
+}
+let timer;function live(){clearTimeout(timer);timer=setTimeout(()=>{render();renderBank()},160)}
+['src','family','arc','vocal','seed','weird','density','optCaps','optBacking','optAdlib','optSfx','optEnd'].forEach(id=>$(id).addEventListener('input',live));
+$('weird').addEventListener('input',()=>$('weirdVal').textContent=$('weird').value);
+$('density').addEventListener('input',()=>{const v=+$('density').value;$('densityVal').textContent=v+' · '+['bare','light','balanced','rich','maximal'][v-1]});
+$('btnGen').addEventListener('click',()=>{render();renderBank()});
+$('btnReroll').addEventListener('click',()=>{$('seed').value=Math.floor(Math.random()*9999);render();renderBank()});
+$('btnBank').addEventListener('click',()=>{$('seed').value=Math.floor(Math.random()*9999);render();renderBank()});
+$('btnSample').addEventListener('click',()=>{$('src').value=SAMPLE;render();renderBank()});
+$('btnClear').addEventListener('click',()=>{$('src').value='';render();renderBank();$('src').focus()});
+document.querySelectorAll('.tab').forEach(t=>t.addEventListener('click',()=>{document.querySelectorAll('.tab').forEach(x=>x.setAttribute('aria-selected',x===t?'true':'false'));document.querySelectorAll('[data-pane]').forEach(p=>p.hidden=p.dataset.pane!==t.dataset.tab)}));
+document.querySelectorAll('[data-copy]').forEach(b=>b.addEventListener('click',()=>{const el=$(b.dataset.copy);const txt=el.textContent;const done=()=>toast('Copied');
+  if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(txt).then(done).catch(()=>{selectText(el);toast('Selected, press Ctrl/Cmd+C')})}else{selectText(el);toast('Selected, press Ctrl/Cmd+C')}}));
+function selectText(el){const r=document.createRange();r.selectNodeContents(el);const s=window.getSelection();s.removeAllRanges();s.addRange(r)}
+let tt;function toast(m){const t=$('toast');t.textContent=m;t.classList.add('show');clearTimeout(tt);tt=setTimeout(()=>t.classList.remove('show'),1400)}
+$('src').value=SAMPLE;render();renderBank();
+</script>
+
+</body></html>
