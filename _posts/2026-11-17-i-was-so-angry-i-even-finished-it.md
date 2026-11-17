@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "I Was So Angry, I Even Finished It"
-date: 2026-11-17 20:00:00 +0000
+date: 2026-11-17 08:00:00 +0000
 permalink: "/2026/11/17/i-was-so-angry-i-even-finished-it/"
 description: "Eighteen months after the rant, rewelo is finished: what survived of the original plan, why DuckDB went, 237 bugs in a week, and a tool that checks its own estimates."
 tags: [developer-tooling, agile-practices, ai-assisted-development]
