@@ -23,7 +23,7 @@ links:
 
   - name: LinkedIn
     handle: "Sebastian Schürmann"
-    url: "https://www.linkedin.com/in/sebastianschuermann/"   # TODO: confirm exact LinkedIn slug
+    url: "https://www.linkedin.com/in/sebastian-sch%C3%BCrmann-7a642011/"
     icon: work
     rel_me: true
 

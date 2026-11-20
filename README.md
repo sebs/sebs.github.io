@@ -194,6 +194,6 @@ blocks use 06 and 07, sections use 09 and 10.
 
 ## TODOs left in the data files
 
-Search for `TODO` in `_data/*.yml`: confirm the LinkedIn slug, npm download
+Search for `TODO` in `_data/*.yml`: confirm the npm download
 figure, and the `claude-ecosystems-skills` license. (Most talks are missing a
 venue — fill in `venue:` in `_data/talks.yml` if you track those down.)
