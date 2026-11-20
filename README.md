@@ -20,7 +20,8 @@ that used to live on dev.to were migrated here.
   `scripts/fetch_package_stats.py` resolves the download counts and release
   metadata at build time into `_data/package_stats.yml` (a build-time artifact,
   regenerated on every deploy — not committed, so the live figures never go
-  stale in git). Adding a package is one line in that file; nothing downstream
+  stale in git). Adding a package is one line in that file (an `<api>-mcp` package
+  shares the table row of its `<api>-cli`, see `pair_servers`); nothing downstream
   branches on which registry it came from except for display. It is a catalogue
   of command-line tools rather than a download table: the same registry
   responses per package also yield the command each one installs, its keywords

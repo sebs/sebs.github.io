@@ -151,6 +151,41 @@
   overflow-wrap: anywhere;
 }
 
+// An API's MCP server, on its command-line tool's row: one quiet line under
+// the name, with the server's own command chip.
+.site-pkg__server {
+  @include type.type-style("label-01");
+
+  align-items: baseline;
+  color: theme.$text-secondary;
+  display: flex;
+  flex-wrap: wrap;
+  gap: spacing.$spacing-03;
+  margin-block-start: spacing.$spacing-02;
+}
+
+.site-pkg__server .site-pkg__cmd,
+.site-pkg__server .site-pkg__version {
+  @include type.type-style("label-01");
+}
+
+// From md up a description takes at most two lines, so seventy rows don't each
+// stand three or four lines tall; the row's details and the package page have
+// the rest. On a phone it wraps in full: clamping there would cut most of it.
+.site-pkg__desc {
+  @include breakpoint.breakpoint(md) {
+    -webkit-box-orient: vertical;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    overflow: hidden;
+  }
+}
+
+.site-pkg-more {
+  margin-block-start: spacing.$spacing-05;
+}
+
 .site-pkg__num {
   font-variant-numeric: tabular-nums;
   text-align: end;

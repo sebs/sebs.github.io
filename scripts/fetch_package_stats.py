@@ -426,6 +426,55 @@ def movers(packages, n=3):
     return {"up": [slim(p) for p in up[:n]], "down": [slim(p) for p in down[:n]]}
 
 
+# An API's MCP server and its command-line tool are published from one
+# repository under these suffixes and released together; see `pair_servers`.
+TOOL_SUFFIX, SERVER_SUFFIX = "-cli", "-mcp"
+
+# The fields of a server kept on its tool's row, for the row's detail panel.
+SERVER_FIELDS = ("name", "command", "version", "install", "url", "dl_month", "dl_year",
+                 "downloads_unavailable", "first_publish", "last_publish", "versions")
+
+
+def is_server(p):
+    return p["name"].endswith(SERVER_SUFFIX) and bool(p.get("bin"))
+
+
+def pair_servers(packages, days):
+    """The catalogue's rows: each MCP server folded into the row of the
+    command-line tool it ships with.
+
+    Listed apart, the maschinenlesbar.org packages would double the catalogue
+    with rows that differ in one suffix. Folded, a row is the API: its downloads
+    and sparkline count both packages, and its detail panel lists each with its
+    own install line and figures. A server without its tool (or whose tool or
+    own fetch failed) keeps a row of its own. Every other figure on the page
+    (totals, chart, movers, heatmap) still counts each package on its own."""
+    by_name = {(p["registry"], p["name"]): p for p in packages}
+    rows = []
+    for p in packages:
+        tool = None
+        if is_server(p) and not p.get("error"):
+            tool = by_name.get((p["registry"], p["name"][:-len(SERVER_SUFFIX)] + TOOL_SUFFIX))
+        if tool is None or tool.get("error"):
+            rows.append(p)
+            continue
+        tool["server"] = {k: p.get(k) for k in SERVER_FIELDS}
+        tool["_server_daily"] = p.get("_daily") or {}
+    for row in rows:
+        own = row.get("_daily") or {}
+        extra = row.pop("_server_daily", None)
+        if extra is None:
+            row["row_dl_year"], row["row_spark"] = row.get("dl_year"), row.get("spark")
+            continue
+        both = dict(own)
+        for day, count in extra.items():
+            both[day] = both.get(day, 0) + count
+        years = [x for x in (row.get("dl_year"), row["server"].get("dl_year")) if x is not None]
+        row["row_dl_year"] = sum(years) if years else None
+        row["row_spark"] = sparkline(both, days) if both else None
+    return rows
+
+
 def short_name(pkg):
     """`@scope/name` -> `name`; the scope is the same for most of the family."""
     return pkg.rsplit("/", 1)[-1]
@@ -919,13 +968,17 @@ def main():
     # One flat catalogue, busiest first — the same 12-month figure the table
     # shows, so its resting order matches the column it is sorted under.
     packages.sort(key=lambda p: (-(p.get("dl_year") or 0), p["name"]))
+    rows = pair_servers(packages, days)
+    rows.sort(key=lambda p: (-(p.get("row_dl_year") or 0), p["name"]))
 
     first_years = [int(p["first_publish"][:4]) for p in packages if p.get("first_publish")]
     live = [p for p in packages if not p.get("error")]
     per_registry = Counter(p["registry"] for p in live)
     totals = {
         "packages": len(live),
-        "clis": len([p for p in live if p.get("bin")]),
+        "clis": len([p for p in live if p.get("bin") and not is_server(p)]),
+        "servers": len([p for p in live if is_server(p)]),
+        "rows": len(rows),
         # Ordered as REGISTRIES declares them, so the page's "n on npm, m on
         # PyPI" line does not reshuffle when a package is added.
         "registries": [{"registry": r, "label": REGISTRIES[r]["label"], "packages": per_registry[r]}
@@ -954,7 +1007,7 @@ def main():
         "chart": chart,
         "movers": board,
         "heatmap": heatmap,
-        "packages": packages,
+        "packages": rows,
     }
     with open(OUT, "w", encoding="utf-8") as fh:
         json.dump(payload, fh, ensure_ascii=False, indent=2)

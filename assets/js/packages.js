@@ -161,6 +161,8 @@
     var headers = all('th[data-sort]', table);
     var sortKey = null;
     var sortDir = 'none';
+    // The entries in the order the body shows them, which applyFilter walks.
+    var shownOrder = entries.slice();
 
     function applySort(key, direction) {
       sortKey = key;
@@ -174,13 +176,14 @@
       });
 
       var sign = direction === 'ascending' ? 1 : -1;
-      entries.slice().sort(function (a, b) {
+      shownOrder = entries.slice().sort(function (a, b) {
         if (!key) return a.order - b.order;
         var left = a.keys[key];
         var right = b.keys[key];
         var result = typeof left === 'string' ? left.localeCompare(right) : left - right;
         return (result * sign) || (a.order - b.order);
-      }).forEach(function (entry) {
+      });
+      shownOrder.forEach(function (entry) {
         body.appendChild(entry.row);
         body.appendChild(entry.detail);
       });
@@ -205,26 +208,53 @@
     var clear = document.querySelector('[data-pkg-clear]');
     var empty = document.querySelector('[data-pkg-empty]');
     var count = document.querySelector('[data-pkg-count]');
+    var more = document.querySelector('[data-pkg-more]');
+    var moreButton = more && more.querySelector('[data-pkg-more-button]');
+
+    // The table opens on its busiest rows; the rest are a click (or a search)
+    // away. Without JavaScript every row is rendered, so nothing is lost.
+    var LIMIT = 12;
+    var showAll = entries.length <= LIMIT;
 
     function applyFilter() {
       var query = (search.value || '').trim().toLowerCase();
       var terms = query ? query.split(/\s+/) : [];
+      var matches = 0;
       var shown = 0;
 
-      entries.forEach(function (entry) {
+      shownOrder.forEach(function (entry) {
         var match = terms.every(function (term) {
           return entry.text.indexOf(term) !== -1;
         });
-        entry.row.hidden = !match;
-        entry.detail.hidden = !match;
-        if (match) shown += 1;
+        if (match) matches += 1;
+        var visible = match && (showAll || query !== '' || matches <= LIMIT);
+        entry.row.hidden = !visible;
+        entry.detail.hidden = !visible;
+        if (visible) shown += 1;
       });
 
       clear.classList.toggle('cds--search-close--hidden', !query);
-      empty.hidden = shown > 0;
-      count.textContent = shown === entries.length
-        ? entries.length + ' packages'
-        : 'Showing ' + shown + ' of ' + entries.length + ' packages';
+      empty.hidden = matches > 0;
+      if (more) {
+        more.hidden = shown === matches;
+        if (moreButton) moreButton.textContent = 'Show all ' + entries.length + ' rows';
+      }
+      count.textContent = query
+        ? matches + ' of ' + entries.length + ' rows match'
+        : (shown === entries.length ? entries.length + ' rows' : 'The ' + shown + ' busiest of ' + entries.length + ' rows');
+    }
+
+    if (moreButton) {
+      moreButton.addEventListener('click', function () {
+        var first = shownOrder.filter(function (entry) { return entry.row.hidden; })[0];
+        showAll = true;
+        applyFilter();
+        // Keep the keyboard where the reader was going: the first new row.
+        if (first) {
+          var button = first.row.querySelector('.cds--table-expand__button');
+          if (button) button.focus();
+        }
+      });
     }
 
     search.addEventListener('input', applyFilter);

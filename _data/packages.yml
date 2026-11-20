@@ -53,5 +53,41 @@ purls:
   - pkg:npm/@maschinenlesbar.org/ckan-cli
   - pkg:npm/@maschinenlesbar.org/openka-cli
 
+  # MCP servers. Each shares its row with the -cli of the same API (see
+  # pair_servers in scripts/fetch_package_stats.py).
+  - pkg:npm/@maschinenlesbar.org/abgeordnetenwatch-mcp
+  - pkg:npm/@maschinenlesbar.org/ausbildungssuche-mcp
+  - pkg:npm/@maschinenlesbar.org/autobahn-mcp
+  - pkg:npm/@maschinenlesbar.org/bundeshaushalt-mcp
+  - pkg:npm/@maschinenlesbar.org/bundesrat-mcp
+  - pkg:npm/@maschinenlesbar.org/bundeswahlleiterin-mcp
+  - pkg:npm/@maschinenlesbar.org/ckan-mcp
+  - pkg:npm/@maschinenlesbar.org/destatis-genesis-mcp
+  - pkg:npm/@maschinenlesbar.org/deutsche-digitale-bibliothek-mcp
+  - pkg:npm/@maschinenlesbar.org/dip-bundestag-mcp
+  - pkg:npm/@maschinenlesbar.org/dwd-mcp
+  - pkg:npm/@maschinenlesbar.org/entgeltatlas-mcp
+  - pkg:npm/@maschinenlesbar.org/fim-portal-mcp
+  - pkg:npm/@maschinenlesbar.org/fit-connect-mcp
+  - pkg:npm/@maschinenlesbar.org/fragdenstaat-mcp
+  - pkg:npm/@maschinenlesbar.org/govdata-mcp
+  - pkg:npm/@maschinenlesbar.org/hochwasserzentralen-mcp
+  - pkg:npm/@maschinenlesbar.org/jobsuche-mcp
+  - pkg:npm/@maschinenlesbar.org/ladesaeulenregister-mcp
+  - pkg:npm/@maschinenlesbar.org/lebensmittelwarnung-mcp
+  - pkg:npm/@maschinenlesbar.org/lobbyregister-mcp
+  - pkg:npm/@maschinenlesbar.org/luftqualitaet-mcp
+  - pkg:npm/@maschinenlesbar.org/marktstammdatenregister-mcp
+  - pkg:npm/@maschinenlesbar.org/mudab-mcp
+  - pkg:npm/@maschinenlesbar.org/nina-warnungen-mcp
+  - pkg:npm/@maschinenlesbar.org/oparl-mcp
+  - pkg:npm/@maschinenlesbar.org/pegel-online-mcp
+  - pkg:npm/@maschinenlesbar.org/regionalatlas-mcp
+  - pkg:npm/@maschinenlesbar.org/regionalstatistik-mcp
+  - pkg:npm/@maschinenlesbar.org/reisewarnungen-mcp
+  - pkg:npm/@maschinenlesbar.org/smard-mcp
+  - pkg:npm/@maschinenlesbar.org/strahlenschutz-mcp
+  - pkg:npm/@maschinenlesbar.org/tagesschau-mcp
+
   # PyPI
   - pkg:pypi/ecosyste-ms-cli

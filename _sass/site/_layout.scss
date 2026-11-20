@@ -74,6 +74,59 @@
   margin-block-end: spacing.$spacing-05;
 }
 
+// A page whose content is the point (/packages/): the title, one line of copy
+// and its meta, then straight into the first section.
+.site-page-head--compact {
+  padding-block: spacing.$spacing-07 spacing.$spacing-03;
+
+  .site-page-head__title {
+    @include type.type-style("productive-heading-05");
+
+    margin-block-end: spacing.$spacing-02;
+  }
+
+  .site-section__lead { max-inline-size: none; }
+}
+
+.site-page-head__meta {
+  display: block;
+  margin-block-start: spacing.$spacing-02;
+
+  @include breakpoint.breakpoint(md) {
+    display: inline-block;
+    margin-block-start: 0;
+    margin-inline-start: spacing.$spacing-03;
+    white-space: nowrap;
+  }
+}
+
+// A section that follows a compact head: less air above and below, and the
+// title and its line of copy on one baseline from md up.
+.site-section--compact {
+  padding-block: spacing.$spacing-06;
+
+  @include breakpoint.breakpoint(md) {
+    padding-block: spacing.$spacing-07;
+  }
+
+  .site-section__head {
+    gap: spacing.$spacing-02;
+    margin-block-end: spacing.$spacing-05;
+
+    @include breakpoint.breakpoint(md) {
+      align-items: baseline;
+      justify-content: flex-start;
+      column-gap: spacing.$spacing-05;
+    }
+  }
+
+  .site-section__title {
+    @include type.type-style("productive-heading-03");
+
+    margin-block-end: 0;
+  }
+}
+
 // Eyebrow with a rule running to the end of the column — used above the
 // secondary blocks (Recent roles, Historical log, By package).
 .site-rule-head {
