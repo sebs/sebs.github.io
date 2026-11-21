@@ -12,7 +12,7 @@
   tags: [TypeScript, npm]
   active: true
   stars: 50
-  downloads: "2k/mo"        # TODO: confirm current npm download rate
+  downloads: "400/mo"
   license: MIT
   links:
     github: "https://github.com/sebs/es6-fuzz"
@@ -27,7 +27,7 @@
   active: true
   stars:
   last_activity: "actively developed"
-  license:                  # TODO: confirm license
+  license: MIT
   links:
     github: "https://github.com/sebs/claude-ecosystems-skills"
 
@@ -51,7 +51,7 @@
   tags: [JavaScript, npm]
   active: true
   stars: 552
-  downloads: "13k/mo"
+  downloads: "10k/mo"
   license: MIT
   links:
     github: "https://github.com/sebs/etherscan-api"
@@ -64,7 +64,7 @@
   tags: [TypeScript, npm]
   active: true
   stars: 1
-  downloads: "500/mo"
+  downloads: "250/mo"
   license: MIT
   links:
     github: "https://github.com/sebs/banira"
@@ -78,7 +78,7 @@
   active: true
   stars: 2
   last_activity: "actively developed"
-  license:                  # TODO: confirm license (none detected on GitHub)
+  license: LGPL-3.0
   links:
     github: "https://github.com/dadamachines/dada-tbd-tui"
 

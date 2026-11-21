@@ -192,8 +192,8 @@ share one blue.
 `06` (1.5rem), `07` (2rem), `09` (3rem), `10` (4rem). Inline gaps use 03 and 05,
 blocks use 06 and 07, sections use 09 and 10.
 
-## TODOs left in the data files
+## Left to fill in
 
-Search for `TODO` in `_data/*.yml`: confirm the npm download
-figure, and the `claude-ecosystems-skills` license. (Most talks are missing a
-venue — fill in `venue:` in `_data/talks.yml` if you track those down.)
+Most talks are missing a venue — fill in `venue:` in `_data/talks.yml` if you
+track those down. The `downloads:` figures in `_data/projects.yml` are typed in
+by hand (npm, last 30 days, as of 2026-11-20).
